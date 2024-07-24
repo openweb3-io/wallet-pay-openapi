@@ -1,0 +1,1 @@
+{"event_type":"order.paid","payload":{"amount":"0.187","currency":"ton","status":"PAID","wallet_id":"wallet_id"}}
