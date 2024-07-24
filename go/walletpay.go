@@ -51,7 +51,7 @@ func New(apikey string, privateKey string, options *walletpayOptions) *walletpay
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
-		buf, err := GenSign([]byte(dataToBeSignature), []byte(privateKey))
+		buf, err := genSign([]byte(dataToBeSignature), []byte(privateKey))
 		if err != nil {
 			log.Printf("Error generating signature: %v", err)
 		}

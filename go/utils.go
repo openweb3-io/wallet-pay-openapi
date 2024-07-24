@@ -93,7 +93,7 @@ func NewNullableTime(val *time.Time) *NullableTime {
 /**
  * 公钥验证签名
  */
-func Verify(data []byte, publicKey []byte, sign []byte) (err error) {
+func verify(data []byte, publicKey []byte, sign []byte) (err error) {
 	block, _ := pem.Decode(publicKey)
 	if block == nil {
 		return errors.New("public key error")
@@ -114,7 +114,7 @@ func Verify(data []byte, publicKey []byte, sign []byte) (err error) {
 /**
  * 私钥去生成签名
  */
-func GenSign(data []byte, privateKey []byte) (sign []byte, err error) {
+func genSign(data []byte, privateKey []byte) (sign []byte, err error) {
 	block, _ := pem.Decode(privateKey)
 	if block == nil {
 		return nil, errors.New("private key error")
