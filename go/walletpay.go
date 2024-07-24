@@ -15,14 +15,14 @@ import (
 )
 
 type (
-	walletpayOptions struct {
+	WalletPayOptions struct {
 		Debug bool
 
 		// Overrides the base URL (protocol + hostname) used for all requests sent by this walletpay client. (Useful for testing)
 		ServerUrl  *url.URL
 		HTTPClient *http.Client
 	}
-	walletpay struct {
+	WalletPay struct {
 		Endpoint *Endpoint
 		Order    *Order
 	}
@@ -32,7 +32,7 @@ var defaultHTTPClient = &http.Client{
 	Timeout: 60 * time.Second,
 }
 
-func New(apikey string, privateKey string, options *walletpayOptions) *walletpay {
+func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay {
 	conf := openapi.NewConfiguration()
 	conf.Scheme = "https"
 	conf.Host = "api.webhook.openweb3.io"
@@ -73,7 +73,7 @@ func New(apikey string, privateKey string, options *walletpayOptions) *walletpay
 	conf.AddDefaultHeader("x-api-key", apikey)
 	conf.UserAgent = fmt.Sprintf("walletpay-libs/%s/go", version.Version)
 	apiClient := openapi.NewAPIClient(conf)
-	return &walletpay{
+	return &WalletPay{
 		Endpoint: &Endpoint{
 			api: apiClient,
 		},
