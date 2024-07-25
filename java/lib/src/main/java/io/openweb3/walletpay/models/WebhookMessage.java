@@ -31,7 +31,7 @@ import java.util.Map;
  * The request body of the webhook POST request.
  */
 @ApiModel(description = "The request body of the webhook POST request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T11:05:34.978493+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T14:25:31.989173+08:00[Asia/Shanghai]")
 public class WebhookMessage {
   public static final String SERIALIZED_NAME_EVENT_TYPE = "event_type";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPE)

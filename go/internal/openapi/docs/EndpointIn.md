@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Uid** | Pointer to **NullableString** | Optional unique identifier for the endpoint | [optional] 
 **FilterTypes** | **[]string** | The webhook endpoint expected event types | 
 **Url** | **string** | The webhook endpoint url | 
 **Disabled** | Pointer to **bool** | indicate whether to disable the webhook endpoint | [optional] 
@@ -30,6 +31,41 @@ NewEndpointInWithDefaults instantiates a new EndpointIn object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetUid
+
+`func (o *EndpointIn) GetUid() string`
+
+GetUid returns the Uid field if non-nil, zero value otherwise.
+
+### GetUidOk
+
+`func (o *EndpointIn) GetUidOk() (*string, bool)`
+
+GetUidOk returns a tuple with the Uid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUid
+
+`func (o *EndpointIn) SetUid(v string)`
+
+SetUid sets Uid field to given value.
+
+### HasUid
+
+`func (o *EndpointIn) HasUid() bool`
+
+HasUid returns a boolean if a field has been set.
+
+### SetUidNil
+
+`func (o *EndpointIn) SetUidNil(b bool)`
+
+ SetUidNil sets the value for Uid to be an explicit nil
+
+### UnsetUid
+`func (o *EndpointIn) UnsetUid()`
+
+UnsetUid ensures that no value is present for Uid, not even an explicit nil
 ### GetFilterTypes
 
 `func (o *EndpointIn) GetFilterTypes() []string`

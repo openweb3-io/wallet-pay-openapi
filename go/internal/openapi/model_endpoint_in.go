@@ -16,6 +16,8 @@ import (
 
 // EndpointIn struct for EndpointIn
 type EndpointIn struct {
+	// Optional unique identifier for the endpoint
+	Uid NullableString `json:"uid,omitempty"`
 	// The webhook endpoint expected event types
 	FilterTypes []string `json:"filter_types"`
 	// The webhook endpoint url
@@ -47,6 +49,48 @@ func NewEndpointIn(filterTypes []string, url string) *EndpointIn {
 func NewEndpointInWithDefaults() *EndpointIn {
 	this := EndpointIn{}
 	return &this
+}
+
+// GetUid returns the Uid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *EndpointIn) GetUid() string {
+	if o == nil || o.Uid.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.Uid.Get()
+}
+
+// GetUidOk returns a tuple with the Uid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *EndpointIn) GetUidOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return o.Uid.Get(), o.Uid.IsSet()
+}
+
+// HasUid returns a boolean if a field has been set.
+func (o *EndpointIn) HasUid() bool {
+	if o != nil && o.Uid.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetUid gets a reference to the given NullableString and assigns it to the Uid field.
+func (o *EndpointIn) SetUid(v string) {
+	o.Uid.Set(&v)
+}
+// SetUidNil sets the value for Uid to be an explicit nil
+func (o *EndpointIn) SetUidNil() {
+	o.Uid.Set(nil)
+}
+
+// UnsetUid ensures that no value is present for Uid, not even an explicit nil
+func (o *EndpointIn) UnsetUid() {
+	o.Uid.Unset()
 }
 
 // GetFilterTypes returns the FilterTypes field value
@@ -229,6 +273,9 @@ func (o *EndpointIn) SetDescription(v string) {
 
 func (o EndpointIn) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Uid.IsSet() {
+		toSerialize["uid"] = o.Uid.Get()
+	}
 	if true {
 		toSerialize["filter_types"] = o.FilterTypes
 	}

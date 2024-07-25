@@ -14,6 +14,10 @@ import { HttpFile } from '../http/http';
 
 export class EndpointIn {
     /**
+    * Optional unique identifier for the endpoint
+    */
+    'uid'?: string;
+    /**
     * The webhook endpoint expected event types
     */
     'filterTypes': Array<string>;
@@ -41,6 +45,12 @@ export class EndpointIn {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "filterTypes",
             "baseName": "filter_types",

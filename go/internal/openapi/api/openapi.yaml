@@ -746,6 +746,7 @@ components:
       type: object
     EndpointIn:
       example:
+        uid: unique-endpoint-identifier
         headers:
           x-user-id: user1
           x-org-id: org_xdwfeees1xfeg
@@ -758,6 +759,14 @@ components:
         disabled: false
         url: http://example.com/endpoint
       properties:
+        uid:
+          description: Optional unique identifier for the endpoint
+          example: unique-endpoint-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
         filter_types:
           description: The webhook endpoint expected event types
           example:

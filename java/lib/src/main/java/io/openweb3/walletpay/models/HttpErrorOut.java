@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * HttpErrorOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T11:05:34.978493+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T14:25:31.989173+08:00[Asia/Shanghai]")
 public class HttpErrorOut {
   public static final String SERIALIZED_NAME_MSG = "msg";
   @SerializedName(SERIALIZED_NAME_MSG)

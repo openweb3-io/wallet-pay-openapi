@@ -31,8 +31,12 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T11:05:34.978493+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T14:25:31.989173+08:00[Asia/Shanghai]")
 public class EndpointIn {
+  public static final String SERIALIZED_NAME_UID = "uid";
+  @SerializedName(SERIALIZED_NAME_UID)
+  private String uid;
+
   public static final String SERIALIZED_NAME_FILTER_TYPES = "filter_types";
   @SerializedName(SERIALIZED_NAME_FILTER_TYPES)
   private List<String> filterTypes = new ArrayList<>();
@@ -56,6 +60,29 @@ public class EndpointIn {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+
+  public EndpointIn uid(String uid) {
+    
+    this.uid = uid;
+    return this;
+  }
+
+   /**
+   * Optional unique identifier for the endpoint
+   * @return uid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "unique-endpoint-identifier", value = "Optional unique identifier for the endpoint")
+
+  public String getUid() {
+    return uid;
+  }
+
+
+  public void setUid(String uid) {
+    this.uid = uid;
+  }
 
 
   public EndpointIn filterTypes(List<String> filterTypes) {
@@ -224,7 +251,8 @@ public class EndpointIn {
       return false;
     }
     EndpointIn endpointIn = (EndpointIn) o;
-    return Objects.equals(this.filterTypes, endpointIn.filterTypes) &&
+    return Objects.equals(this.uid, endpointIn.uid) &&
+        Objects.equals(this.filterTypes, endpointIn.filterTypes) &&
         Objects.equals(this.url, endpointIn.url) &&
         Objects.equals(this.disabled, endpointIn.disabled) &&
         Objects.equals(this.metadata, endpointIn.metadata) &&
@@ -234,13 +262,14 @@ public class EndpointIn {
 
   @Override
   public int hashCode() {
-    return Objects.hash(filterTypes, url, disabled, metadata, headers, description);
+    return Objects.hash(uid, filterTypes, url, disabled, metadata, headers, description);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EndpointIn {\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");

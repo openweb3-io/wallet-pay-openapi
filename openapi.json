@@ -1019,6 +1019,15 @@
             },
             "EndpointIn": {
                 "properties": {
+                    "uid": {
+                        "description": "Optional unique identifier for the endpoint",
+                        "example": "unique-endpoint-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
                     "filter_types": {
                         "description": "The webhook endpoint expected event types",
                         "example": [
