@@ -9,7 +9,7 @@ The request body of the webhook POST request.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **eventType** | **String** | Message event type |  [optional]
-**payload** | **Map&lt;String, Object&gt;** | Message content |  [optional]
+**payload** | [**OrderOut**](OrderOut.md) |  |  [optional]
 
 
 

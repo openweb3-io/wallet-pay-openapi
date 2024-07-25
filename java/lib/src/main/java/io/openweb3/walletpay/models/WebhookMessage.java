@@ -20,18 +20,16 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.openweb3.walletpay.models.OrderOut;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * The request body of the webhook POST request.
  */
 @ApiModel(description = "The request body of the webhook POST request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T14:25:31.989173+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T17:37:54.275584+08:00[Asia/Shanghai]")
 public class WebhookMessage {
   public static final String SERIALIZED_NAME_EVENT_TYPE = "event_type";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPE)
@@ -39,7 +37,7 @@ public class WebhookMessage {
 
   public static final String SERIALIZED_NAME_PAYLOAD = "payload";
   @SerializedName(SERIALIZED_NAME_PAYLOAD)
-  private Map<String, Object> payload = null;
+  private OrderOut payload;
 
 
   public WebhookMessage eventType(String eventType) {
@@ -65,33 +63,25 @@ public class WebhookMessage {
   }
 
 
-  public WebhookMessage payload(Map<String, Object> payload) {
+  public WebhookMessage payload(OrderOut payload) {
     
     this.payload = payload;
     return this;
   }
 
-  public WebhookMessage putPayloadItem(String key, Object payloadItem) {
-    if (this.payload == null) {
-      this.payload = new HashMap<>();
-    }
-    this.payload.put(key, payloadItem);
-    return this;
-  }
-
    /**
-   * Message content
+   * Get payload
    * @return payload
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Message content")
+  @ApiModelProperty(value = "")
 
-  public Map<String, Object> getPayload() {
+  public OrderOut getPayload() {
     return payload;
   }
 
 
-  public void setPayload(Map<String, Object> payload) {
+  public void setPayload(OrderOut payload) {
     this.payload = payload;
   }
 

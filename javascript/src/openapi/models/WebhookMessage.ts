@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { AnyType } from './AnyType';
+import { OrderOut } from './OrderOut';
 import { HttpFile } from '../http/http';
 
 /**
@@ -21,10 +21,7 @@ export class WebhookMessage {
     * Message event type
     */
     'eventType'?: string;
-    /**
-    * Message content
-    */
-    'payload'?: { [key: string]: AnyType; };
+    'payload'?: OrderOut;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -38,7 +35,7 @@ export class WebhookMessage {
         {
             "name": "payload",
             "baseName": "payload",
-            "type": "{ [key: string]: AnyType; }",
+            "type": "OrderOut",
             "format": ""
         }    ];
 

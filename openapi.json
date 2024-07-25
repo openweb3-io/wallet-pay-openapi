@@ -839,12 +839,7 @@
                         "minLength": 1
                     },
                     "payload": {
-                        "description": "Message content",
-                        "additionalProperties": {
-                        },
-                        "default": {},
-                        "type": "object",
-                        "nullable": true
+                        "$ref": "#/components/schemas/OrderOut"
                     }
                 }
             },

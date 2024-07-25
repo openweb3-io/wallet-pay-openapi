@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EventType** | Pointer to **string** | Message event type | [optional] 
-**Payload** | Pointer to **map[string]interface{}** | Message content | [optional] [default to {}]
+**Payload** | Pointer to [**OrderOut**](OrderOut.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasEventType returns a boolean if a field has been set.
 
 ### GetPayload
 
-`func (o *WebhookMessage) GetPayload() map[string]interface{}`
+`func (o *WebhookMessage) GetPayload() OrderOut`
 
 GetPayload returns the Payload field if non-nil, zero value otherwise.
 
 ### GetPayloadOk
 
-`func (o *WebhookMessage) GetPayloadOk() (*map[string]interface{}, bool)`
+`func (o *WebhookMessage) GetPayloadOk() (*OrderOut, bool)`
 
 GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPayload
 
-`func (o *WebhookMessage) SetPayload(v map[string]interface{})`
+`func (o *WebhookMessage) SetPayload(v OrderOut)`
 
 SetPayload sets Payload field to given value.
 
@@ -76,16 +76,6 @@ SetPayload sets Payload field to given value.
 
 HasPayload returns a boolean if a field has been set.
 
-### SetPayloadNil
-
-`func (o *WebhookMessage) SetPayloadNil(b bool)`
-
- SetPayloadNil sets the value for Payload to be an explicit nil
-
-### UnsetPayload
-`func (o *WebhookMessage) UnsetPayload()`
-
-UnsetPayload ensures that no value is present for Payload, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

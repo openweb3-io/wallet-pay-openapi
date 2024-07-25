@@ -18,8 +18,7 @@ import (
 type WebhookMessage struct {
 	// Message event type
 	EventType *string `json:"event_type,omitempty"`
-	// Message content
-	Payload map[string]interface{} `json:"payload,omitempty"`
+	Payload *OrderOut `json:"payload,omitempty"`
 }
 
 // NewWebhookMessage instantiates a new WebhookMessage object
@@ -71,23 +70,22 @@ func (o *WebhookMessage) SetEventType(v string) {
 	o.EventType = &v
 }
 
-// GetPayload returns the Payload field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *WebhookMessage) GetPayload() map[string]interface{} {
-	if o == nil  {
-		var ret map[string]interface{}
+// GetPayload returns the Payload field value if set, zero value otherwise.
+func (o *WebhookMessage) GetPayload() OrderOut {
+	if o == nil || o.Payload == nil {
+		var ret OrderOut
 		return ret
 	}
-	return o.Payload
+	return *o.Payload
 }
 
 // GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *WebhookMessage) GetPayloadOk() (*map[string]interface{}, bool) {
+func (o *WebhookMessage) GetPayloadOk() (*OrderOut, bool) {
 	if o == nil || o.Payload == nil {
 		return nil, false
 	}
-	return &o.Payload, true
+	return o.Payload, true
 }
 
 // HasPayload returns a boolean if a field has been set.
@@ -99,9 +97,9 @@ func (o *WebhookMessage) HasPayload() bool {
 	return false
 }
 
-// SetPayload gets a reference to the given map[string]interface{} and assigns it to the Payload field.
-func (o *WebhookMessage) SetPayload(v map[string]interface{}) {
-	o.Payload = v
+// SetPayload gets a reference to the given OrderOut and assigns it to the Payload field.
+func (o *WebhookMessage) SetPayload(v OrderOut) {
+	o.Payload = &v
 }
 
 func (o WebhookMessage) MarshalJSON() ([]byte, error) {

@@ -541,11 +541,7 @@ components:
           minLength: 1
           type: string
         payload:
-          additionalProperties: {}
-          default: {}
-          description: Message content
-          nullable: true
-          type: object
+          $ref: '#/components/schemas/OrderOut'
     OrderIn:
       example:
         uid: unique-order-identifier

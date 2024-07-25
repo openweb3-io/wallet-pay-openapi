@@ -13,7 +13,7 @@
 
 package io.openweb3.walletpay.internal;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T14:25:31.989173+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T17:37:54.275584+08:00[Asia/Shanghai]")
 public class Configuration {
     private static ApiClient defaultApiClient = new ApiClient();
 
