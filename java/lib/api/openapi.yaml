@@ -185,6 +185,76 @@ paths:
         code-samples: []
       x-contentType: application/json
       x-accepts: application/json
+  /api/v1/apps/{appId}/orders/{orderId}:
+    get:
+      description: Get specified order.
+      operationId: v1.order.get
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      - description: Specified the order id or order uid.
+        explode: false
+        in: path
+        name: orderId
+        required: true
+        schema:
+          description: Specified the order id or order uid.
+          example: 11b9ca57-0559-403a-bf8e-7bd1a31aff45
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderOut'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Get order
+      tags:
+      - Order
+      x-accepts: application/json
   /api/v1/webhooks/endpoints:
     get:
       description: List endpoints.
@@ -383,6 +453,65 @@ paths:
       tags:
       - Webhook Endpoint
       x-accepts: application/json
+    get:
+      description: get the specified webhook endpoint.
+      operationId: v1.endpoint.get
+      parameters:
+      - description: Specified the endpoint id or endpoint uid.
+        explode: false
+        in: path
+        name: endpointId
+        required: true
+        schema:
+          description: Specified the endpoint id.
+          example: wb_12345xsfei
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EndpointOut'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Delete endpoint
+      tags:
+      - Webhook Endpoint
+      x-accepts: application/json
 components:
   schemas:
     HttpErrorOut:
@@ -402,6 +531,21 @@ components:
       - asc
       - desc
       type: string
+    WebhookMessage:
+      description: The request body of the webhook POST request.
+      properties:
+        event_type:
+          description: Message event type
+          example: order.paid
+          maxLength: 256
+          minLength: 1
+          type: string
+        payload:
+          additionalProperties: {}
+          default: {}
+          description: Message content
+          nullable: true
+          type: object
     OrderIn:
       example:
         uid: unique-order-identifier

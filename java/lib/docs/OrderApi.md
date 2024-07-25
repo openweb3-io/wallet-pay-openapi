@@ -5,6 +5,7 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/apps/{appId}/orders | Create Order
+[**v1OrderGet**](OrderApi.md#v1OrderGet) | **GET** /api/v1/apps/{appId}/orders/{orderId} | Get order
 [**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/apps/{appId}/orders | List Orders
 
 
@@ -80,6 +81,83 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **201** | OK |  -  |
 **400** | Bad request |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
+**429** | Too Many Requests |  -  |
+
+<a name="v1OrderGet"></a>
+# **v1OrderGet**
+> OrderOut v1OrderGet(appId, orderId)
+
+Get order
+
+Get specified order.
+
+### Example
+```java
+// Import classes:
+import io.openweb3.walletpay.internal.ApiClient;
+import io.openweb3.walletpay.internal.ApiException;
+import io.openweb3.walletpay.internal.Configuration;
+import io.openweb3.walletpay.internal.auth.*;
+import io.openweb3.walletpay.internal.models.*;
+import io.openweb3.walletpay.internal.api.OrderApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    OrderApi apiInstance = new OrderApi(defaultClient);
+    String appId = "app_12345xsfei"; // String | Specified the app id.
+    String orderId = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the order id or order uid.
+    try {
+      OrderOut result = apiInstance.v1OrderGet(appId, orderId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling OrderApi#v1OrderGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **appId** | **String**| Specified the app id. |
+ **orderId** | **String**| Specified the order id or order uid. |
+
+### Return type
+
+[**OrderOut**](OrderOut.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **404** | Not Found |  -  |

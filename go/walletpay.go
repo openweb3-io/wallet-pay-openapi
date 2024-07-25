@@ -1,7 +1,6 @@
 package walletpay
 
 import (
-	"encoding/base64"
 	"fmt"
 	"io"
 	"log"
@@ -38,7 +37,7 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 	conf.Host = "api.webhook.openweb3.io"
 	conf.HTTPClient = defaultHTTPClient
 	conf.Middleware = func(req *http.Request) {
-		requestTime := time.Now().String()
+		requestTime := fmt.Sprintf("%d", time.Now().UnixMilli())
 		req.Header.Set("X-Request-Time", requestTime)
 
 		var dataToBeSignature string
@@ -51,13 +50,12 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
-		buf, err := genSign([]byte(dataToBeSignature), []byte(privateKey))
+		signature, err := genSign([]byte(dataToBeSignature), []byte(privateKey))
 		if err != nil {
 			log.Printf("Error generating signature: %v", err)
 		}
 
-		signatureStr := base64.StdEncoding.EncodeToString(buf)
-		req.Header.Set("X-Signature", signatureStr)
+		req.Header.Set("X-Signature", signature)
 	}
 
 	if options != nil {

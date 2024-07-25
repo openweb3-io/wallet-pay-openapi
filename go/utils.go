@@ -11,14 +11,16 @@
 package walletpay
 
 import (
-	"time"
 	"crypto"
 	"crypto/rand"
 	"crypto/rsa"
 	"crypto/x509"
 	"encoding/pem"
 	"errors"
+	"time"
+	"log"
 
+	"encoding/base64"
 	"github.com/openweb3-io/wallet-pay-openapi/go/internal/openapi"
 )
 
@@ -93,11 +95,18 @@ func NewNullableTime(val *time.Time) *NullableTime {
 /**
  * 公钥验证签名
  */
-func verify(data []byte, publicKey []byte, sign []byte) (err error) {
+func verify(data []byte, publicKey []byte, signature string) (err error) {
 	block, _ := pem.Decode(publicKey)
 	if block == nil {
 		return errors.New("public key error")
 	}
+
+	signBytes, err := base64.StdEncoding.DecodeString(signature)
+	if err != nil {
+		log.Printf("signature contain invalid charactors, %s", signature)
+		return err
+	}
+
 	pubInterface, err := x509.ParsePKIXPublicKey(block.Bytes)
 	if err != nil {
 		return err
@@ -108,24 +117,26 @@ func verify(data []byte, publicKey []byte, sign []byte) (err error) {
 	h := hashFunc.New()
 	h.Write(data)
 	hashed := h.Sum(nil)
-	return rsa.VerifyPKCS1v15(pub, hashFunc, hashed, sign)
+	return rsa.VerifyPKCS1v15(pub, hashFunc, hashed, signBytes)
 }
 
 /**
  * 私钥去生成签名
  */
-func genSign(data []byte, privateKey []byte) (sign []byte, err error) {
+func genSign(data []byte, privateKey []byte) (sign string, err error) {
+
 	block, _ := pem.Decode(privateKey)
 	if block == nil {
-		return nil, errors.New("private key error")
+		return "", errors.New("private key error")
 	}
 	priv, err := x509.ParsePKCS1PrivateKey(block.Bytes)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 	hashFunc := crypto.SHA256
 	h := hashFunc.New()
 	h.Write(data)
 	hashed := h.Sum(nil)
-	return rsa.SignPKCS1v15(rand.Reader, priv, hashFunc, hashed)
+	signBytes, err := rsa.SignPKCS1v15(rand.Reader, priv, hashFunc, hashed)
+	return base64.StdEncoding.EncodeToString(signBytes), err
 }

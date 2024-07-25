@@ -5,6 +5,7 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**V1OrderCreate**](OrderApi.md#V1OrderCreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
+[**V1OrderGet**](OrderApi.md#V1OrderGet) | **Get** /api/v1/apps/{appId}/orders/{orderId} | Get order
 [**V1OrderList**](OrderApi.md#V1OrderList) | **Get** /api/v1/apps/{appId}/orders | List Orders
 
 
@@ -74,6 +75,79 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1OrderGet
+
+> OrderOut V1OrderGet(ctx, appId, orderId).Execute()
+
+Get order
+
+
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    openapiclient "./openapi"
+)
+
+func main() {
+    appId := "app_12345xsfei" // string | Specified the app id.
+    orderId := "11b9ca57-0559-403a-bf8e-7bd1a31aff45" // string | Specified the order id or order uid.
+
+    configuration := openapiclient.NewConfiguration()
+    api_client := openapiclient.NewAPIClient(configuration)
+    resp, r, err := api_client.OrderApi.V1OrderGet(context.Background(), appId, orderId).Execute()
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderGet``: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `V1OrderGet`: OrderOut
+    fmt.Fprintf(os.Stdout, "Response from `OrderApi.V1OrderGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appId** | **string** | Specified the app id. | 
+**orderId** | **string** | Specified the order id or order uid. | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1OrderGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+
+### Return type
+
+[**OrderOut**](OrderOut.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

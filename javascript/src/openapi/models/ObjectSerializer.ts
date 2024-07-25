@@ -6,6 +6,7 @@ export * from './ListResponseOrderOut';
 export * from './OrderIn';
 export * from './OrderOut';
 export * from './Ordering';
+export * from './WebhookMessage';
 
 import { EndpointIn } from './EndpointIn';
 import { EndpointOut } from './EndpointOut';
@@ -15,6 +16,7 @@ import { ListResponseOrderOut } from './ListResponseOrderOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
 import { Ordering } from './Ordering';
+import { WebhookMessage } from './WebhookMessage';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -47,6 +49,7 @@ let typeMap: {[index: string]: any} = {
     "ListResponseOrderOut": ListResponseOrderOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,
+    "WebhookMessage": WebhookMessage,
 }
 
 export class ObjectSerializer {

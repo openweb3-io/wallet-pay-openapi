@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**v1EndpointCreate**](WebhookEndpointApi.md#v1EndpointCreate) | **POST** /api/v1/webhooks/endpoints | Create endpoint
 [**v1EndpointDelete**](WebhookEndpointApi.md#v1EndpointDelete) | **DELETE** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+[**v1EndpointGet**](WebhookEndpointApi.md#v1EndpointGet) | **GET** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
 [**v1EndpointList**](WebhookEndpointApi.md#v1EndpointList) | **GET** /api/v1/webhooks/endpoints | List endpoints
 
 
@@ -135,6 +136,81 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endpointId** | **String**| Specified the endpoint id. |
+
+### Return type
+
+[**EndpointOut**](EndpointOut.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** |  |  -  |
+**201** |  |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
+**429** | Too Many Requests |  -  |
+
+<a name="v1EndpointGet"></a>
+# **v1EndpointGet**
+> EndpointOut v1EndpointGet(endpointId)
+
+Delete endpoint
+
+get the specified webhook endpoint.
+
+### Example
+```java
+// Import classes:
+import io.openweb3.walletpay.internal.ApiClient;
+import io.openweb3.walletpay.internal.ApiException;
+import io.openweb3.walletpay.internal.Configuration;
+import io.openweb3.walletpay.internal.auth.*;
+import io.openweb3.walletpay.internal.models.*;
+import io.openweb3.walletpay.internal.api.WebhookEndpointApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.wallet-pay.openweb3.io");
+    
+    // Configure API key authorization: ApiKeyAuth
+    ApiKeyAuth ApiKeyAuth = (ApiKeyAuth) defaultClient.getAuthentication("ApiKeyAuth");
+    ApiKeyAuth.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //ApiKeyAuth.setApiKeyPrefix("Token");
+
+    WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
+    String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id or endpoint uid.
+    try {
+      EndpointOut result = apiInstance.v1EndpointGet(endpointId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling WebhookEndpointApi#v1EndpointGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **endpointId** | **String**| Specified the endpoint id or endpoint uid. |
 
 ### Return type
 

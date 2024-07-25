@@ -79,9 +79,11 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
+*OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{orderId} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
 *WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/webhooks/endpoints | Create endpoint
 *WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+*WebhookEndpointApi* | [**V1EndpointGet**](docs/WebhookEndpointApi.md#v1endpointget) | **Get** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
 *WebhookEndpointApi* | [**V1EndpointList**](docs/WebhookEndpointApi.md#v1endpointlist) | **Get** /api/v1/webhooks/endpoints | List endpoints
 
 
@@ -95,6 +97,7 @@ Class | Method | HTTP request | Description
  - [OrderIn](docs/OrderIn.md)
  - [OrderOut](docs/OrderOut.md)
  - [Ordering](docs/Ordering.md)
+ - [WebhookMessage](docs/WebhookMessage.md)
 
 
 ## Documentation For Authorization

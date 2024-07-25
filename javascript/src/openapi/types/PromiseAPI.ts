@@ -10,6 +10,7 @@ import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { WebhookMessage } from '../models/WebhookMessage';
 import { ObservableOrderApi } from './ObservableAPI';
 
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
@@ -32,6 +33,17 @@ export class PromiseOrderApi {
      */
     public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Promise<OrderOut> {
         const result = this.api.v1OrderCreate(appId, orderIn, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get specified order.
+     * Get order
+     * @param appId Specified the app id.
+     * @param orderId Specified the order id or order uid.
+     */
+    public v1OrderGet(appId: string, orderId: string, _options?: Configuration): Promise<OrderOut> {
+        const result = this.api.v1OrderGet(appId, orderId, _options);
         return result.toPromise();
     }
 
@@ -85,6 +97,16 @@ export class PromiseWebhookEndpointApi {
      */
     public v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
         const result = this.api.v1EndpointDelete(endpointId, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * get the specified webhook endpoint.
+     * Delete endpoint
+     * @param endpointId Specified the endpoint id or endpoint uid.
+     */
+    public v1EndpointGet(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
+        const result = this.api.v1EndpointGet(endpointId, _options);
         return result.toPromise();
     }
 

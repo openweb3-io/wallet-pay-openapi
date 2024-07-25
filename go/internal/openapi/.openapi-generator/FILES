@@ -16,6 +16,7 @@ docs/OrderIn.md
 docs/OrderOut.md
 docs/Ordering.md
 docs/WebhookEndpointApi.md
+docs/WebhookMessage.md
 git_push.sh
 go.mod
 go.sum
@@ -27,5 +28,6 @@ model_list_response_order_out_.go
 model_order_in.go
 model_order_out.go
 model_ordering.go
+model_webhook_message.go
 response.go
 utils.go

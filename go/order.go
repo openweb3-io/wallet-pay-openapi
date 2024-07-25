@@ -62,3 +62,15 @@ func (e *Order) CreateWithOptions(ctx context.Context, appId string, OrderIn *Or
 	ret := OrderOut(out)
 	return &ret, nil
 }
+
+func (e *Order) Get(ctx context.Context, appId string, orderId string) (*OrderOut, error) {
+	req := e.api.OrderApi.V1OrderGet(ctx, appId, orderId)
+
+	out, res, err := req.Execute()
+	if err != nil {
+		return nil, wrapError(err, res)
+	}
+	ret := OrderOut(out)
+
+	return &ret, nil
+}

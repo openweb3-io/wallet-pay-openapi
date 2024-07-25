@@ -66,6 +66,18 @@ func (e *Endpoint) CreateWithOptions(ctx context.Context, endpointIn *EndpointIn
 	return &ret, nil
 }
 
+func (e *Endpoint) Get(ctx context.Context, endpointId string) (*EndpointOut, error) {
+	req := e.api.WebhookEndpointApi.V1EndpointGet(ctx, endpointId)
+
+	out, res, err := req.Execute()
+	if err != nil {
+		return nil, wrapError(err, res)
+	}
+	ret := EndpointOut(out)
+
+	return &ret, nil
+}
+
 func (e *Endpoint) Delete(ctx context.Context, endpointId string) (*EndpointOut, error) {
 	req := e.api.WebhookEndpointApi.V1EndpointDelete(ctx, endpointId)
 	out, res, err := req.Execute()

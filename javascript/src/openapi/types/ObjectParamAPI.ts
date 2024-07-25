@@ -10,6 +10,7 @@ import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { WebhookMessage } from '../models/WebhookMessage';
 
 import { ObservableOrderApi } from "./ObservableAPI";
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
@@ -27,6 +28,21 @@ export interface OrderApiV1OrderCreateRequest {
      * @memberof OrderApiv1OrderCreate
      */
     orderIn: OrderIn
+}
+
+export interface OrderApiV1OrderGetRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof OrderApiv1OrderGet
+     */
+    appId: string
+    /**
+     * Specified the order id or order uid.
+     * @type string
+     * @memberof OrderApiv1OrderGet
+     */
+    orderId: string
 }
 
 export interface OrderApiV1OrderListRequest {
@@ -79,6 +95,15 @@ export class ObjectOrderApi {
     }
 
     /**
+     * Get specified order.
+     * Get order
+     * @param param the request object
+     */
+    public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<OrderOut> {
+        return this.api.v1OrderGet(param.appId, param.orderId,  options).toPromise();
+    }
+
+    /**
      * List orders.
      * List Orders
      * @param param the request object
@@ -106,6 +131,15 @@ export interface WebhookEndpointApiV1EndpointDeleteRequest {
      * Specified the endpoint id.
      * @type string
      * @memberof WebhookEndpointApiv1EndpointDelete
+     */
+    endpointId: string
+}
+
+export interface WebhookEndpointApiV1EndpointGetRequest {
+    /**
+     * Specified the endpoint id or endpoint uid.
+     * @type string
+     * @memberof WebhookEndpointApiv1EndpointGet
      */
     endpointId: string
 }
@@ -154,6 +188,15 @@ export class ObjectWebhookEndpointApi {
      */
     public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<EndpointOut> {
         return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
+    }
+
+    /**
+     * get the specified webhook endpoint.
+     * Delete endpoint
+     * @param param the request object
+     */
+    public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<EndpointOut> {
+        return this.api.v1EndpointGet(param.endpointId,  options).toPromise();
     }
 
     /**
