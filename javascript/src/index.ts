@@ -6,6 +6,9 @@ import {
   OrderIn,
   OrderOut,
   ListResponseOrderOut,
+  CurrencyOut,
+  CurrencyApi,
+  ListResponseCurrencyOut,
   Middleware,
   RequestContext,
   ResponseContext,
@@ -75,6 +78,7 @@ export class walletpay {
   public readonly _configuration: Configuration;
   public readonly Order: Order;
   public readonly Endpoint: Endpoint;
+  public readonly Currency: Currency;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
@@ -92,6 +96,7 @@ export class walletpay {
     this._configuration = config;
     this.Order = new Order(config);
     this.Endpoint = new Endpoint(config);
+    this.Currency = new Currency(config);
   }
 }
 export interface PostOptions {
@@ -104,6 +109,8 @@ interface ListOptions {
 }
 
 export interface OrderListOptions extends ListOptions {
+  channel?: string;
+  chain?: string;
 }
 
 class Order {
@@ -119,6 +126,26 @@ class Order {
 
   public create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
     return this.api.v1OrderCreate({ appId, orderIn, ...options });
+  }
+}
+
+export interface CurrencyListOptions extends ListOptions {
+  appId?: string;
+}
+
+class Currency {
+  private readonly api: CurrencyApi;
+
+  public constructor(config: Configuration) {
+    this.api = new CurrencyApi(config);
+  }
+
+  public list(appId: string, options?: CurrencyListOptions): Promise<ListResponseCurrencyOut> {
+    return this.api.v1CurrencyList({ appId, ...options });
+  }
+
+  public findByCode(code: string): Promise<CurrencyOut> {
+    return this.api.v1CurrencyFindByCode({code});
   }
 }
 

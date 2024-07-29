@@ -20,7 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.openweb3.walletpay.models.EndpointOut;
+import io.openweb3.walletpay.models.CurrencyOut;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,30 +28,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ListResponseEndpointOut
+ * ListResponseCurrencyOut
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T20:14:06.624144+08:00[Asia/Shanghai]")
-public class ListResponseEndpointOut {
+public class ListResponseCurrencyOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<EndpointOut> items = null;
+  private List<CurrencyOut> items = null;
 
-  public static final String SERIALIZED_NAME_PREV_CURSOR = "prev_cursor";
-  @SerializedName(SERIALIZED_NAME_PREV_CURSOR)
-  private String prevCursor;
-
-  public static final String SERIALIZED_NAME_NEXT_CURSOR = "next_cursor";
-  @SerializedName(SERIALIZED_NAME_NEXT_CURSOR)
-  private String nextCursor;
+  public static final String SERIALIZED_NAME_TOTAL = "total";
+  @SerializedName(SERIALIZED_NAME_TOTAL)
+  private Integer total;
 
 
-  public ListResponseEndpointOut items(List<EndpointOut> items) {
+  public ListResponseCurrencyOut items(List<CurrencyOut> items) {
     
     this.items = items;
     return this;
   }
 
-  public ListResponseEndpointOut addItemsItem(EndpointOut itemsItem) {
+  public ListResponseCurrencyOut addItemsItem(CurrencyOut itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -66,59 +62,36 @@ public class ListResponseEndpointOut {
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<EndpointOut> getItems() {
+  public List<CurrencyOut> getItems() {
     return items;
   }
 
 
-  public void setItems(List<EndpointOut> items) {
+  public void setItems(List<CurrencyOut> items) {
     this.items = items;
   }
 
 
-  public ListResponseEndpointOut prevCursor(String prevCursor) {
+  public ListResponseCurrencyOut total(Integer total) {
     
-    this.prevCursor = prevCursor;
+    this.total = total;
     return this;
   }
 
    /**
-   * Get prevCursor
-   * @return prevCursor
+   * Get total
+   * @return total
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public String getPrevCursor() {
-    return prevCursor;
+  public Integer getTotal() {
+    return total;
   }
 
 
-  public void setPrevCursor(String prevCursor) {
-    this.prevCursor = prevCursor;
-  }
-
-
-  public ListResponseEndpointOut nextCursor(String nextCursor) {
-    
-    this.nextCursor = nextCursor;
-    return this;
-  }
-
-   /**
-   * Get nextCursor
-   * @return nextCursor
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getNextCursor() {
-    return nextCursor;
-  }
-
-
-  public void setNextCursor(String nextCursor) {
-    this.nextCursor = nextCursor;
+  public void setTotal(Integer total) {
+    this.total = total;
   }
 
 
@@ -130,24 +103,22 @@ public class ListResponseEndpointOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ListResponseEndpointOut listResponseEndpointOut = (ListResponseEndpointOut) o;
-    return Objects.equals(this.items, listResponseEndpointOut.items) &&
-        Objects.equals(this.prevCursor, listResponseEndpointOut.prevCursor) &&
-        Objects.equals(this.nextCursor, listResponseEndpointOut.nextCursor);
+    ListResponseCurrencyOut listResponseCurrencyOut = (ListResponseCurrencyOut) o;
+    return Objects.equals(this.items, listResponseCurrencyOut.items) &&
+        Objects.equals(this.total, listResponseCurrencyOut.total);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, prevCursor, nextCursor);
+    return Objects.hash(items, total);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ListResponseEndpointOut {\n");
+    sb.append("class ListResponseCurrencyOut {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    prevCursor: ").append(toIndentedString(prevCursor)).append("\n");
-    sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");
+    sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("}");
     return sb.toString();
   }

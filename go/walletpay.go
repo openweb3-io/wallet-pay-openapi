@@ -24,6 +24,7 @@ type (
 	WalletPay struct {
 		Endpoint *Endpoint
 		Order    *Order
+		Currency *Currency
 	}
 )
 
@@ -76,6 +77,9 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 			api: apiClient,
 		},
 		Order: &Order{
+			api: apiClient,
+		},
+		Currency: &Currency{
 			api: apiClient,
 		},
 	}

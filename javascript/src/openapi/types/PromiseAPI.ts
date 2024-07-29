@@ -2,15 +2,58 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
+import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
 import { HttpErrorOut } from '../models/HttpErrorOut';
+import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { WebhookMessage } from '../models/WebhookMessage';
+import { ObservableCurrencyApi } from './ObservableAPI';
+
+import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
+export class PromiseCurrencyApi {
+    private api: ObservableCurrencyApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: CurrencyApiRequestFactory,
+        responseProcessor?: CurrencyApiResponseProcessor
+    ) {
+        this.api = new ObservableCurrencyApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get specified currency.
+     * Find currency by code
+     * @param code Specified currency code.
+     */
+    public v1CurrencyFindByCode(code: string, _options?: Configuration): Promise<CurrencyOut> {
+        const result = this.api.v1CurrencyFindByCode(code, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List currencies.
+     * List currencies
+     * @param appId Specified the app id.
+     * @param size Limit the number of returned items
+     * @param page Specifying the page index
+     */
+    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Promise<ListResponseCurrencyOut> {
+        const result = this.api.v1CurrencyList(appId, size, page, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
 import { ObservableOrderApi } from './ObservableAPI';
 
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";

@@ -2,15 +2,77 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
+import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
 import { HttpErrorOut } from '../models/HttpErrorOut';
+import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { WebhookMessage } from '../models/WebhookMessage';
+
+import { ObservableCurrencyApi } from "./ObservableAPI";
+import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
+
+export interface CurrencyApiV1CurrencyFindByCodeRequest {
+    /**
+     * Specified currency code.
+     * @type string
+     * @memberof CurrencyApiv1CurrencyFindByCode
+     */
+    code: string
+}
+
+export interface CurrencyApiV1CurrencyListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof CurrencyApiv1CurrencyList
+     */
+    appId?: string
+    /**
+     * Limit the number of returned items
+     * @type number
+     * @memberof CurrencyApiv1CurrencyList
+     */
+    size?: number
+    /**
+     * Specifying the page index
+     * @type number
+     * @memberof CurrencyApiv1CurrencyList
+     */
+    page?: number
+}
+
+export class ObjectCurrencyApi {
+    private api: ObservableCurrencyApi
+
+    public constructor(configuration: Configuration, requestFactory?: CurrencyApiRequestFactory, responseProcessor?: CurrencyApiResponseProcessor) {
+        this.api = new ObservableCurrencyApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Get specified currency.
+     * Find currency by code
+     * @param param the request object
+     */
+    public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<CurrencyOut> {
+        return this.api.v1CurrencyFindByCode(param.code,  options).toPromise();
+    }
+
+    /**
+     * List currencies.
+     * List currencies
+     * @param param the request object
+     */
+    public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ListResponseCurrencyOut> {
+        return this.api.v1CurrencyList(param.appId, param.size, param.page,  options).toPromise();
+    }
+
+}
 
 import { ObservableOrderApi } from "./ObservableAPI";
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";

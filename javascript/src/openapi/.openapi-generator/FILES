@@ -1,5 +1,6 @@
 .gitignore
 README.md
+apis/CurrencyApi.ts
 apis/OrderApi.ts
 apis/WebhookEndpointApi.ts
 apis/baseapi.ts
@@ -11,9 +12,11 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
+models/CurrencyOut.ts
 models/EndpointIn.ts
 models/EndpointOut.ts
 models/HttpErrorOut.ts
+models/ListResponseCurrencyOut.ts
 models/ListResponseEndpointOut.ts
 models/ListResponseOrderOut.ts
 models/ObjectSerializer.ts

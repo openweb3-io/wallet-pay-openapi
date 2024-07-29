@@ -52,6 +52,8 @@ type APIClient struct {
 
 	// API Services
 
+	CurrencyApi *CurrencyApiService
+
 	OrderApi *OrderApiService
 
 	WebhookEndpointApi *WebhookEndpointApiService
@@ -73,6 +75,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.CurrencyApi = (*CurrencyApiService)(&c.common)
 	c.OrderApi = (*OrderApiService)(&c.common)
 	c.WebhookEndpointApi = (*WebhookEndpointApiService)(&c.common)
 

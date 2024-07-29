@@ -7,6 +7,146 @@ servers:
 security:
 - ApiKeyAuth: []
 paths:
+  /api/v1/currencies:
+    get:
+      description: List currencies.
+      operationId: v1.currency.list
+      parameters:
+      - description: Specified the app id.
+        explode: true
+        in: query
+        name: app_id
+        required: false
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: form
+      - description: Limit the number of returned items
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 20
+          description: Limit the number of returned items
+          example: 100
+          format: uint64
+          minimum: 0
+          type: integer
+        style: form
+      - description: Specifying the page index
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          description: Specifying the page index
+          example: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListResponse_CurrencyOut_'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: List currencies
+      tags:
+      - Currency
+      x-accepts: application/json
+  /api/v1/apps/currencies/{code}:
+    get:
+      description: Get specified currency.
+      operationId: v1.currency.findByCode
+      parameters:
+      - description: Specified currency code.
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          description: Specified currency code.
+          example: USDT
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyOut'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HttpErrorOut'
+          description: Too Many Requests
+      summary: Find currency by code
+      tags:
+      - Currency
+      x-accepts: application/json
   /api/v1/apps/{appId}/orders:
     get:
       description: List orders.
@@ -542,6 +682,146 @@ components:
           type: string
         payload:
           $ref: '#/components/schemas/OrderOut'
+    CurrencyOut:
+      example:
+        symbol: http://symbol.jpg
+        code: USDT
+        precision: 6
+        can_deposit: false
+        min_withdraw_amount: "0.0012345"
+        max_withdraw_amount: "0.0012345"
+        decimals: 12
+        name: http://logo.jpg
+        logo: http://logo.jpg
+        can_withdraw: false
+        id: unique-order-identifier
+        can_transfer: false
+        min_deposit_amount: "0.0012345"
+      properties:
+        id:
+          description: Optional unique identifier for the order
+          example: unique-order-identifier
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        code:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        symbol:
+          description: Currency symbol
+          example: http://symbol.jpg
+          maxLength: 256
+          minLength: 1
+          type: string
+        logo:
+          description: Currency logo url
+          example: http://logo.jpg
+          maxLength: 256
+          minLength: 1
+          type: string
+        name:
+          description: Currency name
+          example: http://logo.jpg
+          maxLength: 256
+          minLength: 1
+          type: string
+        can_deposit:
+          description: Is it posible to deposit on blockchain
+          example: false
+          type: boolean
+        can_withdraw:
+          description: Is it posible to withdraw to blockchain
+          example: false
+          type: boolean
+        can_transfer:
+          description: Is it posible to transfer in custody wallet
+          example: false
+          type: boolean
+        min_deposit_amount:
+          description: Big decimal string representation. The min amount to deposit.
+          example: "0.0012345"
+          maxLength: 256
+          minLength: 1
+          type: string
+        min_withdraw_amount:
+          description: Big decimal string representation. The min amount to withdraw.
+          example: "0.0012345"
+          maxLength: 256
+          minLength: 1
+          type: string
+        max_withdraw_amount:
+          description: Big decimal string representation. The max amount to withdraw.
+          example: "0.0012345"
+          maxLength: 256
+          minLength: 1
+          type: string
+        precision:
+          description: Currency precision
+          example: 6
+          type: integer
+        decimals:
+          description: Currency decimal
+          example: 12
+          type: integer
+      required:
+      - can_deposit
+      - can_transfer
+      - can_withdraw
+      - code
+      - decimals
+      - id
+      - logo
+      - max_withdraw_amount
+      - min_deposit_amount
+      - min_withdraw_amount
+      - name
+      - precision
+      - symbol
+      type: object
+    ListResponse_CurrencyOut_:
+      example:
+        total: 0
+        items:
+        - symbol: http://symbol.jpg
+          code: USDT
+          precision: 6
+          can_deposit: false
+          min_withdraw_amount: "0.0012345"
+          max_withdraw_amount: "0.0012345"
+          decimals: 12
+          name: http://logo.jpg
+          logo: http://logo.jpg
+          can_withdraw: false
+          id: unique-order-identifier
+          can_transfer: false
+          min_deposit_amount: "0.0012345"
+        - symbol: http://symbol.jpg
+          code: USDT
+          precision: 6
+          can_deposit: false
+          min_withdraw_amount: "0.0012345"
+          max_withdraw_amount: "0.0012345"
+          decimals: 12
+          name: http://logo.jpg
+          logo: http://logo.jpg
+          can_withdraw: false
+          id: unique-order-identifier
+          can_transfer: false
+          min_deposit_amount: "0.0012345"
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/CurrencyOut'
+          type: array
+        total:
+          type: integer
+      required:
+      - data
+      type: object
     OrderIn:
       example:
         uid: unique-order-identifier

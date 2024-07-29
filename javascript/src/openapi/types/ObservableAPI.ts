@@ -3,15 +3,85 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
+import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
 import { HttpErrorOut } from '../models/HttpErrorOut';
+import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
 import { WebhookMessage } from '../models/WebhookMessage';
+
+import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
+export class ObservableCurrencyApi {
+    private requestFactory: CurrencyApiRequestFactory;
+    private responseProcessor: CurrencyApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: CurrencyApiRequestFactory,
+        responseProcessor?: CurrencyApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new CurrencyApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new CurrencyApiResponseProcessor();
+    }
+
+    /**
+     * Get specified currency.
+     * Find currency by code
+     * @param code Specified currency code.
+     */
+    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<CurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(code, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrencyFindByCode(rsp)));
+            }));
+    }
+ 
+    /**
+     * List currencies.
+     * List currencies
+     * @param appId Specified the app id.
+     * @param size Limit the number of returned items
+     * @param page Specifying the page index
+     */
+    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Observable<ListResponseCurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyList(appId, size, page, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrencyList(rsp)));
+            }));
+    }
+ 
+}
 
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
 export class ObservableOrderApi {

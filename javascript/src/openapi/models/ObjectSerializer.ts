@@ -1,6 +1,8 @@
+export * from './CurrencyOut';
 export * from './EndpointIn';
 export * from './EndpointOut';
 export * from './HttpErrorOut';
+export * from './ListResponseCurrencyOut';
 export * from './ListResponseEndpointOut';
 export * from './ListResponseOrderOut';
 export * from './OrderIn';
@@ -8,9 +10,11 @@ export * from './OrderOut';
 export * from './Ordering';
 export * from './WebhookMessage';
 
+import { CurrencyOut } from './CurrencyOut';
 import { EndpointIn } from './EndpointIn';
 import { EndpointOut } from './EndpointOut';
 import { HttpErrorOut } from './HttpErrorOut';
+import { ListResponseCurrencyOut } from './ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
 import { OrderIn } from './OrderIn';
@@ -42,9 +46,11 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "CurrencyOut": CurrencyOut,
     "EndpointIn": EndpointIn,
     "EndpointOut": EndpointOut,
     "HttpErrorOut": HttpErrorOut,
+    "ListResponseCurrencyOut": ListResponseCurrencyOut,
     "ListResponseEndpointOut": ListResponseEndpointOut,
     "ListResponseOrderOut": ListResponseOrderOut,
     "OrderIn": OrderIn,
