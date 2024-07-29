@@ -27,12 +27,8 @@ import java.io.IOException;
 /**
  * CurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T20:14:06.624144+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T21:59:49.481078+08:00[Asia/Shanghai]")
 public class CurrencyOut {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
-
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
   private String code;
@@ -80,28 +76,6 @@ public class CurrencyOut {
   public static final String SERIALIZED_NAME_DECIMALS = "decimals";
   @SerializedName(SERIALIZED_NAME_DECIMALS)
   private Integer decimals;
-
-
-  public CurrencyOut id(String id) {
-    
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Optional unique identifier for the order
-   * @return id
-  **/
-  @ApiModelProperty(example = "unique-order-identifier", required = true, value = "Optional unique identifier for the order")
-
-  public String getId() {
-    return id;
-  }
-
-
-  public void setId(String id) {
-    this.id = id;
-  }
 
 
   public CurrencyOut code(String code) {
@@ -377,8 +351,7 @@ public class CurrencyOut {
       return false;
     }
     CurrencyOut currencyOut = (CurrencyOut) o;
-    return Objects.equals(this.id, currencyOut.id) &&
-        Objects.equals(this.code, currencyOut.code) &&
+    return Objects.equals(this.code, currencyOut.code) &&
         Objects.equals(this.symbol, currencyOut.symbol) &&
         Objects.equals(this.logo, currencyOut.logo) &&
         Objects.equals(this.name, currencyOut.name) &&
@@ -394,14 +367,13 @@ public class CurrencyOut {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals);
+    return Objects.hash(code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CurrencyOut {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    symbol: ").append(toIndentedString(symbol)).append("\n");
     sb.append("    logo: ").append(toIndentedString(logo)).append("\n");

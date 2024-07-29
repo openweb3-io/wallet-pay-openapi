@@ -1052,14 +1052,6 @@
             },
             "CurrencyOut": {
                 "properties": {
-                    "id": {
-                        "description": "Optional unique identifier for the order",
-                        "example": "unique-order-identifier",
-                        "maxLength": 256,
-                        "minLength": 1,
-                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
-                        "type": "string"
-                    },
                     "code": {
                         "description": "Currency code",
                         "example": "USDT",
@@ -1137,7 +1129,6 @@
                     }
                 },
                 "required": [
-                    "id",
                     "code",
                     "symbol",
                     "logo",

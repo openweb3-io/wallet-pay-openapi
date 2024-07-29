@@ -684,27 +684,19 @@ components:
           $ref: '#/components/schemas/OrderOut'
     CurrencyOut:
       example:
+        max_withdraw_amount: "0.0012345"
         symbol: http://symbol.jpg
         code: USDT
         precision: 6
-        can_deposit: false
-        min_withdraw_amount: "0.0012345"
-        max_withdraw_amount: "0.0012345"
         decimals: 12
         name: http://logo.jpg
         logo: http://logo.jpg
         can_withdraw: false
-        id: unique-order-identifier
+        can_deposit: false
         can_transfer: false
         min_deposit_amount: "0.0012345"
+        min_withdraw_amount: "0.0012345"
       properties:
-        id:
-          description: Optional unique identifier for the order
-          example: unique-order-identifier
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
         code:
           description: Currency code
           example: USDT
@@ -773,7 +765,6 @@ components:
       - can_withdraw
       - code
       - decimals
-      - id
       - logo
       - max_withdraw_amount
       - min_deposit_amount
@@ -786,32 +777,30 @@ components:
       example:
         total: 0
         items:
-        - symbol: http://symbol.jpg
+        - max_withdraw_amount: "0.0012345"
+          symbol: http://symbol.jpg
           code: USDT
           precision: 6
-          can_deposit: false
-          min_withdraw_amount: "0.0012345"
-          max_withdraw_amount: "0.0012345"
           decimals: 12
           name: http://logo.jpg
           logo: http://logo.jpg
           can_withdraw: false
-          id: unique-order-identifier
+          can_deposit: false
           can_transfer: false
           min_deposit_amount: "0.0012345"
-        - symbol: http://symbol.jpg
+          min_withdraw_amount: "0.0012345"
+        - max_withdraw_amount: "0.0012345"
+          symbol: http://symbol.jpg
           code: USDT
           precision: 6
-          can_deposit: false
-          min_withdraw_amount: "0.0012345"
-          max_withdraw_amount: "0.0012345"
           decimals: 12
           name: http://logo.jpg
           logo: http://logo.jpg
           can_withdraw: false
-          id: unique-order-identifier
+          can_deposit: false
           can_transfer: false
           min_deposit_amount: "0.0012345"
+          min_withdraw_amount: "0.0012345"
       properties:
         items:
           items:

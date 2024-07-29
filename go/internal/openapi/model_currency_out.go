@@ -16,8 +16,6 @@ import (
 
 // CurrencyOut struct for CurrencyOut
 type CurrencyOut struct {
-	// Optional unique identifier for the order
-	Id string `json:"id"`
 	// Currency code
 	Code string `json:"code"`
 	// Currency symbol
@@ -48,9 +46,8 @@ type CurrencyOut struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrencyOut(id string, code string, symbol string, logo string, name string, canDeposit bool, canWithdraw bool, canTransfer bool, minDepositAmount string, minWithdrawAmount string, maxWithdrawAmount string, precision int32, decimals int32) *CurrencyOut {
+func NewCurrencyOut(code string, symbol string, logo string, name string, canDeposit bool, canWithdraw bool, canTransfer bool, minDepositAmount string, minWithdrawAmount string, maxWithdrawAmount string, precision int32, decimals int32) *CurrencyOut {
 	this := CurrencyOut{}
-	this.Id = id
 	this.Code = code
 	this.Symbol = symbol
 	this.Logo = logo
@@ -72,30 +69,6 @@ func NewCurrencyOut(id string, code string, symbol string, logo string, name str
 func NewCurrencyOutWithDefaults() *CurrencyOut {
 	this := CurrencyOut{}
 	return &this
-}
-
-// GetId returns the Id field value
-func (o *CurrencyOut) GetId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value
-// and a boolean to check if the value has been set.
-func (o *CurrencyOut) GetIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.Id, true
-}
-
-// SetId sets field value
-func (o *CurrencyOut) SetId(v string) {
-	o.Id = v
 }
 
 // GetCode returns the Code field value
@@ -388,9 +361,6 @@ func (o *CurrencyOut) SetDecimals(v int32) {
 
 func (o CurrencyOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
 	if true {
 		toSerialize["code"] = o.Code
 	}

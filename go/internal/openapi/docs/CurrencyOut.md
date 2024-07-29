@@ -4,7 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | **string** | Optional unique identifier for the order | 
 **Code** | **string** | Currency code | 
 **Symbol** | **string** | Currency symbol | 
 **Logo** | **string** | Currency logo url | 
@@ -22,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewCurrencyOut
 
-`func NewCurrencyOut(id string, code string, symbol string, logo string, name string, canDeposit bool, canWithdraw bool, canTransfer bool, minDepositAmount string, minWithdrawAmount string, maxWithdrawAmount string, precision int32, decimals int32, ) *CurrencyOut`
+`func NewCurrencyOut(code string, symbol string, logo string, name string, canDeposit bool, canWithdraw bool, canTransfer bool, minDepositAmount string, minWithdrawAmount string, maxWithdrawAmount string, precision int32, decimals int32, ) *CurrencyOut`
 
 NewCurrencyOut instantiates a new CurrencyOut object
 This constructor will assign default values to properties that have it defined,
@@ -36,26 +35,6 @@ will change when the set of required properties is changed
 NewCurrencyOutWithDefaults instantiates a new CurrencyOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
-
-### GetId
-
-`func (o *CurrencyOut) GetId() string`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *CurrencyOut) GetIdOk() (*string, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *CurrencyOut) SetId(v string)`
-
-SetId sets Id field to given value.
-
 
 ### GetCode
 

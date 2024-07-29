@@ -7,7 +7,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Optional unique identifier for the order | 
 **code** | **String** | Currency code | 
 **symbol** | **String** | Currency symbol | 
 **logo** | **String** | Currency logo url | 

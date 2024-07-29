@@ -14,10 +14,6 @@ import { HttpFile } from '../http/http';
 
 export class CurrencyOut {
     /**
-    * Optional unique identifier for the order
-    */
-    'id': string;
-    /**
     * Currency code
     */
     'code': string;
@@ -69,12 +65,6 @@ export class CurrencyOut {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
-        {
-            "name": "id",
-            "baseName": "id",
-            "type": "string",
-            "format": ""
-        },
         {
             "name": "code",
             "baseName": "code",
