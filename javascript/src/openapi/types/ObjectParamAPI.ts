@@ -162,7 +162,7 @@ export interface WebhookEndpointApiV1EndpointListRequest {
      * @type Ordering
      * @memberof WebhookEndpointApiv1EndpointList
      */
-    order?: Ordering
+    ordering?: Ordering
 }
 
 export class ObjectWebhookEndpointApi {
@@ -205,7 +205,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ListResponseEndpointOut> {
-        return this.api.v1EndpointList(param.limit, param.cursor, param.order,  options).toPromise();
+        return this.api.v1EndpointList(param.limit, param.cursor, param.ordering,  options).toPromise();
     }
 
 }

@@ -238,7 +238,7 @@ Name | Type | Description  | Notes
 
 <a name="v1EndpointList"></a>
 # **v1EndpointList**
-> ListResponseEndpointOut v1EndpointList(limit, cursor, order)
+> ListResponseEndpointOut v1EndpointList(limit, cursor, ordering)
 
 List endpoints
 
@@ -268,9 +268,9 @@ public class Example {
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
     Integer limit = 20; // Integer | Limit the number of returned items
     String cursor = "cursor_example"; // String | Specifying the start cursor position
-    Ordering order = Ordering.fromValue("asc"); // Ordering | The sorting order of the returned items
+    Ordering ordering = Ordering.fromValue("asc"); // Ordering | The sorting order of the returned items
     try {
-      ListResponseEndpointOut result = apiInstance.v1EndpointList(limit, cursor, order);
+      ListResponseEndpointOut result = apiInstance.v1EndpointList(limit, cursor, ordering);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointList");
@@ -289,7 +289,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **cursor** | **String**| Specifying the start cursor position | [optional]
- **order** | [**Ordering**](.md)| The sorting order of the returned items | [optional] [enum: asc, desc]
+ **ordering** | [**Ordering**](.md)| The sorting order of the returned items | [optional] [enum: asc, desc]
 
 ### Return type
 

@@ -19,9 +19,9 @@ type Endpoint struct {
 }
 
 type EndpointListOptions struct {
-	Limit  *int32
-	Cursor *string
-	Order  *Ordering
+	Limit    *int32
+	Cursor   *string
+	Ordering *Ordering
 }
 
 type EndpointStatsOptions struct {
@@ -38,8 +38,8 @@ func (e *Endpoint) List(ctx context.Context, options *EndpointListOptions) (*Lis
 		if options.Cursor != nil {
 			req = req.Cursor(*options.Cursor)
 		}
-		if options.Order != nil {
-			req = req.Order(*options.Order)
+		if options.Ordering != nil {
+			req = req.Ordering(*options.Ordering)
 		}
 	}
 	out, res, err := req.Execute()

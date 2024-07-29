@@ -202,10 +202,10 @@ export class ObservableWebhookEndpointApi {
      * List endpoints
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
-     * @param order The sorting order of the returned items
+     * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, order?: Ordering, _options?: Configuration): Observable<ListResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, order, _options);
+    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ListResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, ordering, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

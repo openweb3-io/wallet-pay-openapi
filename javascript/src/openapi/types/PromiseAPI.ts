@@ -115,10 +115,10 @@ export class PromiseWebhookEndpointApi {
      * List endpoints
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
-     * @param order The sorting order of the returned items
+     * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, order?: Ordering, _options?: Configuration): Promise<ListResponseEndpointOut> {
-        const result = this.api.v1EndpointList(limit, cursor, order, _options);
+    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<ListResponseEndpointOut> {
+        const result = this.api.v1EndpointList(limit, cursor, ordering, _options);
         return result.toPromise();
     }
 

@@ -285,7 +285,7 @@ paths:
       - description: The sorting order of the returned items
         explode: true
         in: query
-        name: order
+        name: ordering
         required: false
         schema:
           $ref: '#/components/schemas/Ordering'
@@ -698,7 +698,7 @@ components:
           type: string
       required:
       - amount
-      - createdAt
+      - created_at
       - currency
       - id
       - status

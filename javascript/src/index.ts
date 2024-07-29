@@ -113,18 +113,18 @@ class Order {
     this.api = new OrderApi(config);
   }
 
-  public list(options?: OrderListOptions): Promise<ListResponseOrderOut> {
-    return this.api.v1OrderList({ ...options });
+  public list(appId: string, options?: OrderListOptions): Promise<ListResponseOrderOut> {
+    return this.api.v1OrderList({ appId, ...options });
   }
 
-  public create(orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
-    return this.api.v1OrderCreate({ orderIn, ...options });
+  public create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
+    return this.api.v1OrderCreate({ appId, orderIn, ...options });
   }
 }
 
 
 export interface EndpointListOptions {
-  order?: Ordering;
+  ordering?: Ordering;
   cursor?: string;
   limit?: number;
 }

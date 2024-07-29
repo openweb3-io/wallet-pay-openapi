@@ -57,7 +57,7 @@ export class OrderOut {
     /**
     * The order's creation time
     */
-    'createdAt'?: Date;
+    'createdAt': Date;
     /**
     * The order's paid time
     */

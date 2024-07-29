@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **expiration** | **Integer** | The expiration seconds |  [optional]
 **status** | [**StatusEnum**](#StatusEnum) | The order&#39;s status | 
 **failedMessage** | **String** | The message when order failed |  [optional]
-**createdAt** | **OffsetDateTime** | The order&#39;s creation time |  [optional]
+**createdAt** | **OffsetDateTime** | The order&#39;s creation time | 
 **payedAt** | **OffsetDateTime** | The order&#39;s paid time |  [optional]
 **expiredAt** | **OffsetDateTime** | The order&#39;s expiration time |  [optional]
 **failedAt** | **OffsetDateTime** | The order&#39;s failure time |  [optional]

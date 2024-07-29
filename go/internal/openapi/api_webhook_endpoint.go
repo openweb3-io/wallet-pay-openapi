@@ -555,7 +555,7 @@ type ApiV1EndpointListRequest struct {
 	ApiService *WebhookEndpointApiService
 	limit *int32
 	cursor *string
-	order *Ordering
+	ordering *Ordering
 }
 
 func (r ApiV1EndpointListRequest) Limit(limit int32) ApiV1EndpointListRequest {
@@ -566,8 +566,8 @@ func (r ApiV1EndpointListRequest) Cursor(cursor string) ApiV1EndpointListRequest
 	r.cursor = &cursor
 	return r
 }
-func (r ApiV1EndpointListRequest) Order(order Ordering) ApiV1EndpointListRequest {
-	r.order = &order
+func (r ApiV1EndpointListRequest) Ordering(ordering Ordering) ApiV1EndpointListRequest {
+	r.ordering = &ordering
 	return r
 }
 
@@ -619,8 +619,8 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
-	if r.order != nil {
-		localVarQueryParams.Add("order", parameterToString(*r.order, ""))
+	if r.ordering != nil {
+		localVarQueryParams.Add("ordering", parameterToString(*r.ordering, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

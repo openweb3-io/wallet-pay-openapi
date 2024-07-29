@@ -431,7 +431,7 @@
                     {
                         "description": "The sorting order of the returned items",
                         "in": "query",
-                        "name": "order",
+                        "name": "ordering",
                         "schema": {
                             "$ref": "#/components/schemas/Ordering",
                             "description": "The sorting order of the returned items",
@@ -991,7 +991,7 @@
                     "currency",
                     "amount",
                     "status",
-                    "createdAt"
+                    "created_at"
                 ],
                 "type": "object"
             },

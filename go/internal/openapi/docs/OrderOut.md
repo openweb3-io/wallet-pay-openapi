@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **Expiration** | Pointer to **int32** | The expiration seconds | [optional] 
 **Status** | **string** | The order&#39;s status | 
 **FailedMessage** | Pointer to **string** | The message when order failed | [optional] 
-**CreatedAt** | Pointer to **time.Time** | The order&#39;s creation time | [optional] 
+**CreatedAt** | **time.Time** | The order&#39;s creation time | 
 **PayedAt** | Pointer to **time.Time** | The order&#39;s paid time | [optional] 
 **ExpiredAt** | Pointer to **time.Time** | The order&#39;s expiration time | [optional] 
 **FailedAt** | Pointer to **time.Time** | The order&#39;s failure time | [optional] 
@@ -24,7 +24,7 @@ Name | Type | Description | Notes
 
 ### NewOrderOut
 
-`func NewOrderOut(id string, currency string, amount string, status string, ) *OrderOut`
+`func NewOrderOut(id string, currency string, amount string, status string, createdAt time.Time, ) *OrderOut`
 
 NewOrderOut instantiates a new OrderOut object
 This constructor will assign default values to properties that have it defined,
@@ -333,11 +333,6 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
-### HasCreatedAt
-
-`func (o *OrderOut) HasCreatedAt() bool`
-
-HasCreatedAt returns a boolean if a field has been set.
 
 ### GetPayedAt
 

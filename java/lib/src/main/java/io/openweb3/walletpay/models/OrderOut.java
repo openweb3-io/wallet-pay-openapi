@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * OrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-25T17:37:54.275584+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-07-29T16:24:56.627425+08:00[Asia/Shanghai]")
 public class OrderOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -414,8 +414,7 @@ public class OrderOut {
    * The order&#39;s creation time
    * @return createdAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "The order's creation time")
+  @ApiModelProperty(required = true, value = "The order's creation time")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;

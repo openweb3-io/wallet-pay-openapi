@@ -39,7 +39,7 @@ type OrderOut struct {
 	// The message when order failed
 	FailedMessage *string `json:"failed_message,omitempty"`
 	// The order's creation time
-	CreatedAt *time.Time `json:"created_at,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
 	// The order's paid time
 	PayedAt *time.Time `json:"payed_at,omitempty"`
 	// The order's expiration time
@@ -52,12 +52,13 @@ type OrderOut struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrderOut(id string, currency string, amount string, status string) *OrderOut {
+func NewOrderOut(id string, currency string, amount string, status string, createdAt time.Time) *OrderOut {
 	this := OrderOut{}
 	this.Id = id
 	this.Currency = currency
 	this.Amount = amount
 	this.Status = status
+	this.CreatedAt = createdAt
 	return &this
 }
 
@@ -409,36 +410,28 @@ func (o *OrderOut) SetFailedMessage(v string) {
 	o.FailedMessage = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
+// GetCreatedAt returns the CreatedAt field value
 func (o *OrderOut) GetCreatedAt() time.Time {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil {
 		var ret time.Time
 		return ret
 	}
-	return *o.CreatedAt
+
+	return o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
+// GetCreatedAtOk returns a tuple with the CreatedAt field value
 // and a boolean to check if the value has been set.
 func (o *OrderOut) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil || o.CreatedAt == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.CreatedAt, true
+	return &o.CreatedAt, true
 }
 
-// HasCreatedAt returns a boolean if a field has been set.
-func (o *OrderOut) HasCreatedAt() bool {
-	if o != nil && o.CreatedAt != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
+// SetCreatedAt sets field value
 func (o *OrderOut) SetCreatedAt(v time.Time) {
-	o.CreatedAt = &v
+	o.CreatedAt = v
 }
 
 // GetPayedAt returns the PayedAt field value if set, zero value otherwise.
@@ -572,7 +565,7 @@ func (o OrderOut) MarshalJSON() ([]byte, error) {
 	if o.FailedMessage != nil {
 		toSerialize["failed_message"] = o.FailedMessage
 	}
-	if o.CreatedAt != nil {
+	if true {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if o.PayedAt != nil {

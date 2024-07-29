@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## V1EndpointList
 
-> ListResponseEndpointOut V1EndpointList(ctx).Limit(limit).Cursor(cursor).Order(order).Execute()
+> ListResponseEndpointOut V1EndpointList(ctx).Limit(limit).Cursor(cursor).Ordering(ordering).Execute()
 
 List endpoints
 
@@ -240,11 +240,11 @@ import (
 func main() {
     limit := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
     cursor := "cursor_example" // string | Specifying the start cursor position (optional)
-    order := openapiclient.Ordering("asc") // Ordering | The sorting order of the returned items (optional)
+    ordering := openapiclient.Ordering("asc") // Ordering | The sorting order of the returned items (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.WebhookEndpointApi.V1EndpointList(context.Background()).Limit(limit).Cursor(cursor).Order(order).Execute()
+    resp, r, err := api_client.WebhookEndpointApi.V1EndpointList(context.Background()).Limit(limit).Cursor(cursor).Ordering(ordering).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointApi.V1EndpointList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -267,7 +267,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | Limit the number of returned items | [default to 20]
  **cursor** | **string** | Specifying the start cursor position | 
- **order** | [**Ordering**](Ordering.md) | The sorting order of the returned items | 
+ **ordering** | [**Ordering**](Ordering.md) | The sorting order of the returned items | 
 
 ### Return type
 

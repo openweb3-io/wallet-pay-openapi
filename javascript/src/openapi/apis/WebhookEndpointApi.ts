@@ -159,9 +159,9 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
      * List endpoints
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
-     * @param order The sorting order of the returned items
+     * @param ordering The sorting order of the returned items
      */
-    public async v1EndpointList(limit?: number, cursor?: string, order?: Ordering, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
 
@@ -183,8 +183,8 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
         if (cursor !== undefined) {
             requestContext.setQueryParam("cursor", ObjectSerializer.serialize(cursor, "string", ""));
         }
-        if (order !== undefined) {
-            requestContext.setQueryParam("order", ObjectSerializer.serialize(order, "Ordering", ""));
+        if (ordering !== undefined) {
+            requestContext.setQueryParam("ordering", ObjectSerializer.serialize(ordering, "Ordering", ""));
         }
 
         // Header Params
