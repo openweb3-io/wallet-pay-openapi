@@ -1,6 +1,7 @@
 package walletpay
 
 import (
+	"bytes"
 	"fmt"
 	"io"
 	"log"
@@ -47,6 +48,9 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 			if err != nil {
 				log.Printf("Error reading body: %v", err)
 			}
+			// 需要主动重新把body设置回去
+			req.Body = io.NopCloser(bytes.NewBuffer(body))
+
 			dataToBeSignature = string(body)
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
