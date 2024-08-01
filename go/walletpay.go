@@ -35,7 +35,7 @@ var defaultHTTPClient = &http.Client{
 func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay {
 	conf := openapi.NewConfiguration()
 	conf.Scheme = "https"
-	conf.Host = "api.webhook.openweb3.io"
+	conf.Host = "api.wallet-pay.openweb3.io"
 	conf.HTTPClient = defaultHTTPClient
 	conf.Middleware = func(req *http.Request) {
 		requestTime := fmt.Sprintf("%d", time.Now().UnixMilli())
