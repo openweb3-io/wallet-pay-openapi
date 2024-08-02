@@ -104,7 +104,7 @@ export interface OrderApiV1OrderGetRequest {
      * @type string
      * @memberof OrderApiv1OrderGet
      */
-    orderId: string
+    idOrUid: string
 }
 
 export interface OrderApiV1OrderListRequest {
@@ -162,7 +162,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<OrderOut> {
-        return this.api.v1OrderGet(param.appId, param.orderId,  options).toPromise();
+        return this.api.v1OrderGet(param.appId, param.idOrUid,  options).toPromise();
     }
 
     /**

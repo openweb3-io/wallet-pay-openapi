@@ -498,7 +498,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/orders/{orderId}": {
+        "/api/v1/apps/{appId}/orders/{idOrUid}": {
             "get": {
                 "description": "Get specified order.",
                 "operationId": "v1.order.get",
@@ -518,7 +518,7 @@
                     {
                         "description": "Specified the order id or order uid.",
                         "in": "path",
-                        "name": "orderId",
+                        "name": "idOrUid",
                         "required": true,
                         "schema": {
                             "description": "Specified the order id or order uid.",

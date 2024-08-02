@@ -209,7 +209,7 @@ public class OrderApi {
     /**
      * Build call for v1OrderGet
      * @param appId Specified the app id. (required)
-     * @param orderId Specified the order id or order uid. (required)
+     * @param idOrUid Specified the order id or order uid. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -225,13 +225,13 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderGetCall(String appId, String orderId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1OrderGetCall(String appId, String idOrUid, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/orders/{orderId}"
+        String localVarPath = "/api/v1/apps/{appId}/orders/{idOrUid}"
             .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
-            .replaceAll("\\{" + "orderId" + "\\}", localVarApiClient.escapeString(orderId.toString()));
+            .replaceAll("\\{" + "idOrUid" + "\\}", localVarApiClient.escapeString(idOrUid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -258,20 +258,20 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1OrderGetValidateBeforeCall(String appId, String orderId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1OrderGetValidateBeforeCall(String appId, String idOrUid, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'appId' is set
         if (appId == null) {
             throw new ApiException("Missing the required parameter 'appId' when calling v1OrderGet(Async)");
         }
         
-        // verify the required parameter 'orderId' is set
-        if (orderId == null) {
-            throw new ApiException("Missing the required parameter 'orderId' when calling v1OrderGet(Async)");
+        // verify the required parameter 'idOrUid' is set
+        if (idOrUid == null) {
+            throw new ApiException("Missing the required parameter 'idOrUid' when calling v1OrderGet(Async)");
         }
         
 
-        okhttp3.Call localVarCall = v1OrderGetCall(appId, orderId, _callback);
+        okhttp3.Call localVarCall = v1OrderGetCall(appId, idOrUid, _callback);
         return localVarCall;
 
     }
@@ -280,7 +280,7 @@ public class OrderApi {
      * Get order
      * Get specified order.
      * @param appId Specified the app id. (required)
-     * @param orderId Specified the order id or order uid. (required)
+     * @param idOrUid Specified the order id or order uid. (required)
      * @return OrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -295,8 +295,8 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public OrderOut v1OrderGet(String appId, String orderId) throws ApiException {
-        ApiResponse<OrderOut> localVarResp = v1OrderGetWithHttpInfo(appId, orderId);
+    public OrderOut v1OrderGet(String appId, String idOrUid) throws ApiException {
+        ApiResponse<OrderOut> localVarResp = v1OrderGetWithHttpInfo(appId, idOrUid);
         return localVarResp.getData();
     }
 
@@ -304,7 +304,7 @@ public class OrderApi {
      * Get order
      * Get specified order.
      * @param appId Specified the app id. (required)
-     * @param orderId Specified the order id or order uid. (required)
+     * @param idOrUid Specified the order id or order uid. (required)
      * @return ApiResponse&lt;OrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -319,8 +319,8 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OrderOut> v1OrderGetWithHttpInfo(String appId, String orderId) throws ApiException {
-        okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, orderId, null);
+    public ApiResponse<OrderOut> v1OrderGetWithHttpInfo(String appId, String idOrUid) throws ApiException {
+        okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, idOrUid, null);
         Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -329,7 +329,7 @@ public class OrderApi {
      * Get order (asynchronously)
      * Get specified order.
      * @param appId Specified the app id. (required)
-     * @param orderId Specified the order id or order uid. (required)
+     * @param idOrUid Specified the order id or order uid. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -345,9 +345,9 @@ public class OrderApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderGetAsync(String appId, String orderId, final ApiCallback<OrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderGetAsync(String appId, String idOrUid, final ApiCallback<OrderOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, orderId, _callback);
+        okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, idOrUid, _callback);
         Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

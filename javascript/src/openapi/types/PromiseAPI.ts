@@ -83,10 +83,10 @@ export class PromiseOrderApi {
      * Get specified order.
      * Get order
      * @param appId Specified the app id.
-     * @param orderId Specified the order id or order uid.
+     * @param idOrUid Specified the order id or order uid.
      */
-    public v1OrderGet(appId: string, orderId: string, _options?: Configuration): Promise<OrderOut> {
-        const result = this.api.v1OrderGet(appId, orderId, _options);
+    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Promise<OrderOut> {
+        const result = this.api.v1OrderGet(appId, idOrUid, _options);
         return result.toPromise();
     }
 

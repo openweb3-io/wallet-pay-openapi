@@ -128,10 +128,10 @@ export class ObservableOrderApi {
      * Get specified order.
      * Get order
      * @param appId Specified the app id.
-     * @param orderId Specified the order id or order uid.
+     * @param idOrUid Specified the order id or order uid.
      */
-    public v1OrderGet(appId: string, orderId: string, _options?: Configuration): Observable<OrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderGet(appId, orderId, _options);
+    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Observable<OrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderGet(appId, idOrUid, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

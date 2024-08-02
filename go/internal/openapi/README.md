@@ -81,7 +81,7 @@ Class | Method | HTTP request | Description
 *CurrencyApi* | [**V1CurrencyFindByCode**](docs/CurrencyApi.md#v1currencyfindbycode) | **Get** /api/v1/apps/currencies/{code} | Find currency by code
 *CurrencyApi* | [**V1CurrencyList**](docs/CurrencyApi.md#v1currencylist) | **Get** /api/v1/currencies | List currencies
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
-*OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{orderId} | Get order
+*OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
 *WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/webhooks/endpoints | Create endpoint
 *WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint

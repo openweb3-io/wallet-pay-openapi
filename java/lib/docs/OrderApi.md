@@ -5,7 +5,7 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/apps/{appId}/orders | Create Order
-[**v1OrderGet**](OrderApi.md#v1OrderGet) | **GET** /api/v1/apps/{appId}/orders/{orderId} | Get order
+[**v1OrderGet**](OrderApi.md#v1OrderGet) | **GET** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 [**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/apps/{appId}/orders | List Orders
 
 
@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderGet"></a>
 # **v1OrderGet**
-> OrderOut v1OrderGet(appId, orderId)
+> OrderOut v1OrderGet(appId, idOrUid)
 
 Get order
 
@@ -118,9 +118,9 @@ public class Example {
 
     OrderApi apiInstance = new OrderApi(defaultClient);
     String appId = "app_12345xsfei"; // String | Specified the app id.
-    String orderId = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the order id or order uid.
+    String idOrUid = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the order id or order uid.
     try {
-      OrderOut result = apiInstance.v1OrderGet(appId, orderId);
+      OrderOut result = apiInstance.v1OrderGet(appId, idOrUid);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderGet");
@@ -138,7 +138,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **appId** | **String**| Specified the app id. |
- **orderId** | **String**| Specified the order id or order uid. |
+ **idOrUid** | **String**| Specified the order id or order uid. |
 
 ### Return type
 

@@ -325,7 +325,7 @@ paths:
         code-samples: []
       x-contentType: application/json
       x-accepts: application/json
-  /api/v1/apps/{appId}/orders/{orderId}:
+  /api/v1/apps/{appId}/orders/{idOrUid}:
     get:
       description: Get specified order.
       operationId: v1.order.get
@@ -343,7 +343,7 @@ paths:
       - description: Specified the order id or order uid.
         explode: false
         in: path
-        name: orderId
+        name: idOrUid
         required: true
         schema:
           description: Specified the order id or order uid.

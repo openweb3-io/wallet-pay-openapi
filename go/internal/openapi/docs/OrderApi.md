@@ -5,7 +5,7 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**V1OrderCreate**](OrderApi.md#V1OrderCreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
-[**V1OrderGet**](OrderApi.md#V1OrderGet) | **Get** /api/v1/apps/{appId}/orders/{orderId} | Get order
+[**V1OrderGet**](OrderApi.md#V1OrderGet) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 [**V1OrderList**](OrderApi.md#V1OrderList) | **Get** /api/v1/apps/{appId}/orders | List Orders
 
 
@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1OrderGet
 
-> OrderOut V1OrderGet(ctx, appId, orderId).Execute()
+> OrderOut V1OrderGet(ctx, appId, idOrUid).Execute()
 
 Get order
 
@@ -104,11 +104,11 @@ import (
 
 func main() {
     appId := "app_12345xsfei" // string | Specified the app id.
-    orderId := "11b9ca57-0559-403a-bf8e-7bd1a31aff45" // string | Specified the order id or order uid.
+    idOrUid := "11b9ca57-0559-403a-bf8e-7bd1a31aff45" // string | Specified the order id or order uid.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrderApi.V1OrderGet(context.Background(), appId, orderId).Execute()
+    resp, r, err := api_client.OrderApi.V1OrderGet(context.Background(), appId, idOrUid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -125,7 +125,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
 **appId** | **string** | Specified the app id. | 
-**orderId** | **string** | Specified the order id or order uid. | 
+**idOrUid** | **string** | Specified the order id or order uid. | 
 
 ### Other Parameters
 
