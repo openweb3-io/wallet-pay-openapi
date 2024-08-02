@@ -187,6 +187,10 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 			break
 		}
 		if try >= NumTries - 1 {
+			if resp != nil {
+				break
+			}
+			
 			return resp, err
 		}
 		retryCount++
