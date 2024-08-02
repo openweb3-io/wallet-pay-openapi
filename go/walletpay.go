@@ -48,8 +48,13 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 			if err != nil {
 				log.Printf("Error reading body: %v", err)
 			}
-			// 需要主动重新把body设置回去
-			req.Body = io.NopCloser(bytes.NewBuffer(body))
+			saveBody := body
+			savecl := req.ContentLength
+			defer func() {
+				// 在中间件处理结束后，需要主动重新把body设置回去
+				req.Body = io.NopCloser(bytes.NewBuffer(saveBody))
+				req.ContentLength = savecl
+			}()
 
 			dataToBeSignature = string(body)
 		}
