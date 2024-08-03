@@ -86,7 +86,7 @@ Name | Type | Description  | Notes
 
 <a name="v1CurrencyList"></a>
 # **v1CurrencyList**
-> ListResponseCurrencyOut v1CurrencyList(appId, size, page)
+> ResponseListCurrencyOut v1CurrencyList(appId, size, page)
 
 List currencies
 
@@ -118,7 +118,7 @@ public class Example {
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
     try {
-      ListResponseCurrencyOut result = apiInstance.v1CurrencyList(appId, size, page);
+      ResponseListCurrencyOut result = apiInstance.v1CurrencyList(appId, size, page);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#v1CurrencyList");
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseCurrencyOut**](ListResponseCurrencyOut.md)
+[**ResponseListCurrencyOut**](ResponseListCurrencyOut.md)
 
 ### Authorization
 

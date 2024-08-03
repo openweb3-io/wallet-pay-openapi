@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ## V1CurrencyList
 
-> ListResponseCurrencyOut V1CurrencyList(ctx).AppId(appId).Size(size).Page(page).Execute()
+> ResponseListCurrencyOut V1CurrencyList(ctx).AppId(appId).Size(size).Page(page).Execute()
 
 List currencies
 
@@ -111,7 +111,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrencyList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1CurrencyList`: ListResponseCurrencyOut
+    // response from `V1CurrencyList`: ResponseListCurrencyOut
     fmt.Fprintf(os.Stdout, "Response from `CurrencyApi.V1CurrencyList`: %v\n", resp)
 }
 ```
@@ -133,7 +133,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseCurrencyOut**](ListResponseCurrencyOut.md)
+[**ResponseListCurrencyOut**](ResponseListCurrencyOut.md)
 
 ### Authorization
 

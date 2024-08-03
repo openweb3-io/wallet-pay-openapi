@@ -120,8 +120,8 @@ class Order {
     this.api = new OrderApi(config);
   }
 
-  public list(appId: string, options?: OrderListOptions): Promise<ListResponseOrderOut> {
-    return this.api.v1OrderList({ appId, ...options });
+  public async list(appId: string, options?: OrderListOptions): Promise<ListResponseOrderOut> {
+    return (await this.api.v1OrderList({ appId, ...options })).data;
   }
 
   public async create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
@@ -140,8 +140,8 @@ class Currency {
     this.api = new CurrencyApi(config);
   }
 
-  public list(appId: string, options?: CurrencyListOptions): Promise<ListResponseCurrencyOut> {
-    return this.api.v1CurrencyList({ appId, ...options });
+  public async list(appId: string, options?: CurrencyListOptions): Promise<ListResponseCurrencyOut> {
+    return (await this.api.v1CurrencyList({ appId, ...options })).data;
   }
 
   public async findByCode(code: string): Promise<CurrencyOut> {
@@ -171,8 +171,8 @@ class Endpoint {
     return (await this.api.v1EndpointDelete({ endpointId })).data;
   }
 
-  public list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
-    return this.api.v1EndpointList({ ...options });
+  public async list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
+    return (await this.api.v1EndpointList({ ...options })).data;
   }
   
 }

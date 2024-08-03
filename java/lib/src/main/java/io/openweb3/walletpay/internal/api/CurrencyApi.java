@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.openweb3.walletpay.models.ListResponseCurrencyOut;
 import io.openweb3.walletpay.models.ResponseCurrencyOut;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListCurrencyOut;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -273,7 +273,7 @@ public class CurrencyApi {
      * @param appId Specified the app id. (optional)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
-     * @return ListResponseCurrencyOut
+     * @return ResponseListCurrencyOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -287,8 +287,8 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ListResponseCurrencyOut v1CurrencyList(String appId, Integer size, Integer page) throws ApiException {
-        ApiResponse<ListResponseCurrencyOut> localVarResp = v1CurrencyListWithHttpInfo(appId, size, page);
+    public ResponseListCurrencyOut v1CurrencyList(String appId, Integer size, Integer page) throws ApiException {
+        ApiResponse<ResponseListCurrencyOut> localVarResp = v1CurrencyListWithHttpInfo(appId, size, page);
         return localVarResp.getData();
     }
 
@@ -298,7 +298,7 @@ public class CurrencyApi {
      * @param appId Specified the app id. (optional)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
-     * @return ApiResponse&lt;ListResponseCurrencyOut&gt;
+     * @return ApiResponse&lt;ResponseListCurrencyOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -312,9 +312,9 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListResponseCurrencyOut> v1CurrencyListWithHttpInfo(String appId, Integer size, Integer page) throws ApiException {
+    public ApiResponse<ResponseListCurrencyOut> v1CurrencyListWithHttpInfo(String appId, Integer size, Integer page) throws ApiException {
         okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, size, page, null);
-        Type localVarReturnType = new TypeToken<ListResponseCurrencyOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListCurrencyOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -339,10 +339,10 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrencyListAsync(String appId, Integer size, Integer page, final ApiCallback<ListResponseCurrencyOut> _callback) throws ApiException {
+    public okhttp3.Call v1CurrencyListAsync(String appId, Integer size, Integer page, final ApiCallback<ResponseListCurrencyOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, size, page, _callback);
-        Type localVarReturnType = new TypeToken<ListResponseCurrencyOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListCurrencyOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -436,7 +436,7 @@ func (r ApiV1OrderListRequest) AccountId(accountId string) ApiV1OrderListRequest
 	return r
 }
 
-func (r ApiV1OrderListRequest) Execute() (ListResponseOrderOut, *_nethttp.Response, error) {
+func (r ApiV1OrderListRequest) Execute() (ResponseListOrderOut, *_nethttp.Response, error) {
 	return r.ApiService.V1OrderListExecute(r)
 }
 
@@ -457,16 +457,16 @@ func (a *OrderApiService) V1OrderList(ctx _context.Context, appId string) ApiV1O
 
 /*
  * Execute executes the request
- * @return ListResponseOrderOut
+ * @return ResponseListOrderOut
  */
-func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListResponseOrderOut, *_nethttp.Response, error) {
+func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ResponseListOrderOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ListResponseOrderOut
+		localVarReturnValue  ResponseListOrderOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderApiService.V1OrderList")

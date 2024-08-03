@@ -15,7 +15,9 @@ public final class Order {
 
 	public ListResponseOrderOut list(final String appId, final OrderListOptions options) throws ApiException {
 		try {
-			return api.v1OrderList(appId, options.getSize(), options.getPage(), options.getWalletId(), options.getAccountId());
+			return api.v1OrderList(appId, options.getSize(), 
+			options.getPage(), options.getWalletId(), 
+			options.getAccountId()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

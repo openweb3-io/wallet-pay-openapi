@@ -86,7 +86,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ListResponse_CurrencyOut_"
+                                    "$ref": "#/components/schemas/ResponseListCurrencyOut"
                                 }
                             }
                         },
@@ -338,7 +338,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ListResponse_OrderOut_"
+                                    "$ref": "#/components/schemas/ResponseListOrderOut"
                                 }
                             }
                         },
@@ -702,7 +702,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/ListResponse_EndpointOut_"
+                                    "$ref": "#/components/schemas/ResponseListEndpointOut"
                                 }
                             }
                         },
@@ -1254,6 +1254,19 @@
                 ],
                 "type": "object"
             },
+            "ResponseListCurrencyOut": {
+                "properties":{
+                    "data": {
+                        "description": "The currency list",
+                        "$ref": "#/components/schemas/ListResponse_CurrencyOut_"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseEndpointOut",
+                "type": "object"
+            },
             "OrderIn": {
                 "properties": {
                     "uid": {
@@ -1436,6 +1449,19 @@
                 "title": "ResponseOrderOut",
                 "type": "object"
             },
+            "ResponseListOrderOut": {
+                "properties":{
+                    "data": {
+                        "description": "The order list",
+                        "$ref": "#/components/schemas/ListResponse_OrderOut_"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseEndpointOut",
+                "type": "object"
+            },
             "EndpointIn": {
                 "properties": {
                     "uid": {
@@ -1588,6 +1614,19 @@
                     "data": {
                         "description": "The webhook endpoint info data",
                         "$ref": "#/components/schemas/EndpointOut"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseEndpointOut",
+                "type": "object"
+            },
+            "ResponseListEndpointOut": {
+                "properties":{
+                    "data": {
+                        "description": "The webhook endpoint list",
+                        "$ref": "#/components/schemas/ListResponse_EndpointOut_"
                     }
                 },
                 "required": [

@@ -25,6 +25,9 @@ models/Ordering.ts
 models/ResponseCurrencyOut.ts
 models/ResponseEndpointOut.ts
 models/ResponseError.ts
+models/ResponseListCurrencyOut.ts
+models/ResponseListEndpointOut.ts
+models/ResponseListOrderOut.ts
 models/ResponseOrderOut.ts
 models/WebhookMessage.ts
 models/all.ts

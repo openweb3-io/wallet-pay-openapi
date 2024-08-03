@@ -46,7 +46,7 @@ func (e *Endpoint) List(ctx context.Context, options *EndpointListOptions) (*Lis
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListResponseEndpointOut(out)
+	ret := ListResponseEndpointOut(out.Data)
 	return &ret, nil
 }
 

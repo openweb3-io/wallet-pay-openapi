@@ -15,7 +15,7 @@ public final class Endpoint {
 
 	public ListResponseEndpointOut list(final EndpointListOptions options) throws ApiException {
 		try {
-			return api.v1EndpointList(options.getLimit(),  options.getCursor(), options.getOrder());
+			return api.v1EndpointList(options.getLimit(),  options.getCursor(), options.getOrder()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
             throw new RuntimeException(e);
         }

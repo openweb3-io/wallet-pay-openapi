@@ -6,9 +6,9 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
-import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 
 /**
  * no description
@@ -199,14 +199,14 @@ export class CurrencyApiResponseProcessor {
      * @params response Response returned by the server for a request to v1CurrencyList
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1CurrencyList(response: ResponseContext): Promise<ListResponseCurrencyOut > {
+     public async v1CurrencyList(response: ResponseContext): Promise<ResponseListCurrencyOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListResponseCurrencyOut = ObjectSerializer.deserialize(
+            const body: ResponseListCurrencyOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseCurrencyOut", ""
-            ) as ListResponseCurrencyOut;
+                "ResponseListCurrencyOut", ""
+            ) as ResponseListCurrencyOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -254,10 +254,10 @@ export class CurrencyApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListResponseCurrencyOut = ObjectSerializer.deserialize(
+            const body: ResponseListCurrencyOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseCurrencyOut", ""
-            ) as ListResponseCurrencyOut;
+                "ResponseListCurrencyOut", ""
+            ) as ResponseListCurrencyOut;
             return body;
         }
 

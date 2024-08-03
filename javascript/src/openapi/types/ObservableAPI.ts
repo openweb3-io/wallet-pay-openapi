@@ -15,6 +15,9 @@ import { Ordering } from '../models/Ordering';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
+import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
+import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
@@ -65,7 +68,7 @@ export class ObservableCurrencyApi {
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      */
-    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Observable<ListResponseCurrencyOut> {
+    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Observable<ResponseListCurrencyOut> {
         const requestContextPromise = this.requestFactory.v1CurrencyList(appId, size, page, _options);
 
         // build promise chain
@@ -161,7 +164,7 @@ export class ObservableOrderApi {
      * @param walletId Optional wallet id
      * @param accountId Optional account id
      */
-    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Observable<ListResponseOrderOut> {
+    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Observable<ResponseListOrderOut> {
         const requestContextPromise = this.requestFactory.v1OrderList(appId, size, page, walletId, accountId, _options);
 
         // build promise chain
@@ -277,7 +280,7 @@ export class ObservableWebhookEndpointApi {
      * @param cursor Specifying the start cursor position
      * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ListResponseEndpointOut> {
+    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
         const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, ordering, _options);
 
         // build promise chain

@@ -10,6 +10,9 @@ export * from './Ordering';
 export * from './ResponseCurrencyOut';
 export * from './ResponseEndpointOut';
 export * from './ResponseError';
+export * from './ResponseListCurrencyOut';
+export * from './ResponseListEndpointOut';
+export * from './ResponseListOrderOut';
 export * from './ResponseOrderOut';
 export * from './WebhookMessage';
 
@@ -25,6 +28,9 @@ import { Ordering } from './Ordering';
 import { ResponseCurrencyOut } from './ResponseCurrencyOut';
 import { ResponseEndpointOut } from './ResponseEndpointOut';
 import { ResponseError } from './ResponseError';
+import { ResponseListCurrencyOut } from './ResponseListCurrencyOut';
+import { ResponseListEndpointOut } from './ResponseListEndpointOut';
+import { ResponseListOrderOut } from './ResponseListOrderOut';
 import { ResponseOrderOut } from './ResponseOrderOut';
 import { WebhookMessage } from './WebhookMessage';
 
@@ -63,6 +69,9 @@ let typeMap: {[index: string]: any} = {
     "ResponseCurrencyOut": ResponseCurrencyOut,
     "ResponseEndpointOut": ResponseEndpointOut,
     "ResponseError": ResponseError,
+    "ResponseListCurrencyOut": ResponseListCurrencyOut,
+    "ResponseListEndpointOut": ResponseListEndpointOut,
+    "ResponseListOrderOut": ResponseListOrderOut,
     "ResponseOrderOut": ResponseOrderOut,
     "WebhookMessage": WebhookMessage,
 }

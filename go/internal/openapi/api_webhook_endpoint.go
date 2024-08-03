@@ -601,7 +601,7 @@ func (r ApiV1EndpointListRequest) Ordering(ordering Ordering) ApiV1EndpointListR
 	return r
 }
 
-func (r ApiV1EndpointListRequest) Execute() (ListResponseEndpointOut, *_nethttp.Response, error) {
+func (r ApiV1EndpointListRequest) Execute() (ResponseListEndpointOut, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointListExecute(r)
 }
 
@@ -620,16 +620,16 @@ func (a *WebhookEndpointApiService) V1EndpointList(ctx _context.Context) ApiV1En
 
 /*
  * Execute executes the request
- * @return ListResponseEndpointOut
+ * @return ResponseListEndpointOut
  */
-func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListRequest) (ListResponseEndpointOut, *_nethttp.Response, error) {
+func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListRequest) (ResponseListEndpointOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ListResponseEndpointOut
+		localVarReturnValue  ResponseListEndpointOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointApiService.V1EndpointList")

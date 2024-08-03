@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * ListResponseCurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-03T20:09:25.141617+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-04T01:14:37.275895+08:00[Asia/Shanghai]")
 public class ListResponseCurrencyOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)

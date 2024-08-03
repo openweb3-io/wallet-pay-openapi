@@ -14,9 +14,9 @@
 package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
-import io.openweb3.walletpay.models.ListResponseOrderOut;
 import io.openweb3.walletpay.models.OrderIn;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListOrderOut;
 import io.openweb3.walletpay.models.ResponseOrderOut;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -84,7 +84,7 @@ public class OrderApiTest {
         Integer page = null;
         String walletId = null;
         String accountId = null;
-        ListResponseOrderOut response = api.v1OrderList(appId, size, page, walletId, accountId);
+        ResponseListOrderOut response = api.v1OrderList(appId, size, page, walletId, accountId);
 
         // TODO: test validations
     }

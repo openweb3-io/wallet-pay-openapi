@@ -15,10 +15,10 @@ package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
 import io.openweb3.walletpay.models.EndpointIn;
-import io.openweb3.walletpay.models.ListResponseEndpointOut;
 import io.openweb3.walletpay.models.Ordering;
 import io.openweb3.walletpay.models.ResponseEndpointOut;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListEndpointOut;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -97,7 +97,7 @@ public class WebhookEndpointApiTest {
         Integer limit = null;
         String cursor = null;
         Ordering ordering = null;
-        ListResponseEndpointOut response = api.v1EndpointList(limit, cursor, ordering);
+        ResponseListEndpointOut response = api.v1EndpointList(limit, cursor, ordering);
 
         // TODO: test validations
     }

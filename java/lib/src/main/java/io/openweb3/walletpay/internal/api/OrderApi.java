@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.openweb3.walletpay.models.ListResponseOrderOut;
 import io.openweb3.walletpay.models.OrderIn;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListOrderOut;
 import io.openweb3.walletpay.models.ResponseOrderOut;
 
 import java.lang.reflect.Type;
@@ -451,7 +451,7 @@ public class OrderApi {
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
      * @param accountId Optional account id (optional)
-     * @return ListResponseOrderOut
+     * @return ResponseListOrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -465,8 +465,8 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ListResponseOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
-        ApiResponse<ListResponseOrderOut> localVarResp = v1OrderListWithHttpInfo(appId, size, page, walletId, accountId);
+    public ResponseListOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
+        ApiResponse<ResponseListOrderOut> localVarResp = v1OrderListWithHttpInfo(appId, size, page, walletId, accountId);
         return localVarResp.getData();
     }
 
@@ -478,7 +478,7 @@ public class OrderApi {
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
      * @param accountId Optional account id (optional)
-     * @return ApiResponse&lt;ListResponseOrderOut&gt;
+     * @return ApiResponse&lt;ResponseListOrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -492,9 +492,9 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListResponseOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
+    public ApiResponse<ResponseListOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
         okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, null);
-        Type localVarReturnType = new TypeToken<ListResponseOrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListOrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -521,10 +521,10 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback<ListResponseOrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback<ResponseListOrderOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, _callback);
-        Type localVarReturnType = new TypeToken<ListResponseOrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListOrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

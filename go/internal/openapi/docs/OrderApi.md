@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## V1OrderList
 
-> ListResponseOrderOut V1OrderList(ctx, appId).Size(size).Page(page).WalletId(walletId).AccountId(accountId).Execute()
+> ResponseListOrderOut V1OrderList(ctx, appId).Size(size).Page(page).WalletId(walletId).AccountId(accountId).Execute()
 
 List Orders
 
@@ -189,7 +189,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1OrderList`: ListResponseOrderOut
+    // response from `V1OrderList`: ResponseListOrderOut
     fmt.Fprintf(os.Stdout, "Response from `OrderApi.V1OrderList`: %v\n", resp)
 }
 ```
@@ -217,7 +217,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseOrderOut**](ListResponseOrderOut.md)
+[**ResponseListOrderOut**](ResponseListOrderOut.md)
 
 ### Authorization
 

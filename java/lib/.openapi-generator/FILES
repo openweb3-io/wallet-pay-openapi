@@ -18,6 +18,9 @@ docs/Ordering.md
 docs/ResponseCurrencyOut.md
 docs/ResponseEndpointOut.md
 docs/ResponseError.md
+docs/ResponseListCurrencyOut.md
+docs/ResponseListEndpointOut.md
+docs/ResponseListOrderOut.md
 docs/ResponseOrderOut.md
 docs/WebhookEndpointApi.md
 docs/WebhookMessage.md
@@ -62,6 +65,9 @@ src/main/java/io/openweb3/walletpay/models/Ordering.java
 src/main/java/io/openweb3/walletpay/models/ResponseCurrencyOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseEndpointOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseError.java
+src/main/java/io/openweb3/walletpay/models/ResponseListCurrencyOut.java
+src/main/java/io/openweb3/walletpay/models/ResponseListEndpointOut.java
+src/main/java/io/openweb3/walletpay/models/ResponseListOrderOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseOrderOut.java
 src/main/java/io/openweb3/walletpay/models/WebhookMessage.java
 src/test/java/io/openweb3/walletpay/internal/api/CurrencyApiTest.java
@@ -79,5 +85,8 @@ src/test/java/io/openweb3/walletpay/models/OrderingTest.java
 src/test/java/io/openweb3/walletpay/models/ResponseCurrencyOutTest.java
 src/test/java/io/openweb3/walletpay/models/ResponseEndpointOutTest.java
 src/test/java/io/openweb3/walletpay/models/ResponseErrorTest.java
+src/test/java/io/openweb3/walletpay/models/ResponseListCurrencyOutTest.java
+src/test/java/io/openweb3/walletpay/models/ResponseListEndpointOutTest.java
+src/test/java/io/openweb3/walletpay/models/ResponseListOrderOutTest.java
 src/test/java/io/openweb3/walletpay/models/ResponseOrderOutTest.java
 src/test/java/io/openweb3/walletpay/models/WebhookMessageTest.java

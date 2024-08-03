@@ -14,6 +14,9 @@ import { Ordering } from '../models/Ordering';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
+import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
+import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
@@ -71,7 +74,7 @@ export class ObjectCurrencyApi {
      * List currencies
      * @param param the request object
      */
-    public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ListResponseCurrencyOut> {
+    public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ResponseListCurrencyOut> {
         return this.api.v1CurrencyList(param.appId, param.size, param.page,  options).toPromise();
     }
 
@@ -173,7 +176,7 @@ export class ObjectOrderApi {
      * List Orders
      * @param param the request object
      */
-    public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ListResponseOrderOut> {
+    public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
         return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.accountId,  options).toPromise();
     }
 
@@ -269,7 +272,7 @@ export class ObjectWebhookEndpointApi {
      * List endpoints
      * @param param the request object
      */
-    public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ListResponseEndpointOut> {
+    public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ResponseListEndpointOut> {
         return this.api.v1EndpointList(param.limit, param.cursor, param.ordering,  options).toPromise();
     }
 

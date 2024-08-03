@@ -6,9 +6,9 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
-import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
 
 /**
@@ -367,14 +367,14 @@ export class OrderApiResponseProcessor {
      * @params response Response returned by the server for a request to v1OrderList
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1OrderList(response: ResponseContext): Promise<ListResponseOrderOut > {
+     public async v1OrderList(response: ResponseContext): Promise<ResponseListOrderOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListResponseOrderOut = ObjectSerializer.deserialize(
+            const body: ResponseListOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseOrderOut", ""
-            ) as ListResponseOrderOut;
+                "ResponseListOrderOut", ""
+            ) as ResponseListOrderOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -422,10 +422,10 @@ export class OrderApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListResponseOrderOut = ObjectSerializer.deserialize(
+            const body: ResponseListOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseOrderOut", ""
-            ) as ListResponseOrderOut;
+                "ResponseListOrderOut", ""
+            ) as ResponseListOrderOut;
             return body;
         }
 

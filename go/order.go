@@ -43,7 +43,7 @@ func (e *Order) List(ctx context.Context, appId string, options *OrderListOption
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListResponseOrderOut(out)
+	ret := ListResponseOrderOut(out.Data)
 	return &ret, nil
 }
 

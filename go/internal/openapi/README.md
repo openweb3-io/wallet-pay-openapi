@@ -103,6 +103,9 @@ Class | Method | HTTP request | Description
  - [ResponseCurrencyOut](docs/ResponseCurrencyOut.md)
  - [ResponseEndpointOut](docs/ResponseEndpointOut.md)
  - [ResponseError](docs/ResponseError.md)
+ - [ResponseListCurrencyOut](docs/ResponseListCurrencyOut.md)
+ - [ResponseListEndpointOut](docs/ResponseListEndpointOut.md)
+ - [ResponseListOrderOut](docs/ResponseListOrderOut.md)
  - [ResponseOrderOut](docs/ResponseOrderOut.md)
  - [WebhookMessage](docs/WebhookMessage.md)
 

@@ -219,7 +219,7 @@ Name | Type | Description  | Notes
 
 ## V1EndpointList
 
-> ListResponseEndpointOut V1EndpointList(ctx).Limit(limit).Cursor(cursor).Ordering(ordering).Execute()
+> ResponseListEndpointOut V1EndpointList(ctx).Limit(limit).Cursor(cursor).Ordering(ordering).Execute()
 
 List endpoints
 
@@ -249,7 +249,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointApi.V1EndpointList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1EndpointList`: ListResponseEndpointOut
+    // response from `V1EndpointList`: ResponseListEndpointOut
     fmt.Fprintf(os.Stdout, "Response from `WebhookEndpointApi.V1EndpointList`: %v\n", resp)
 }
 ```
@@ -271,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseEndpointOut**](ListResponseEndpointOut.md)
+[**ResponseListEndpointOut**](ResponseListEndpointOut.md)
 
 ### Authorization
 

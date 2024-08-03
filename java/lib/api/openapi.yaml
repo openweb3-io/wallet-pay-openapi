@@ -51,7 +51,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse_CurrencyOut_'
+                $ref: '#/components/schemas/ResponseListCurrencyOut'
           description: OK
         "401":
           content:
@@ -225,7 +225,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse_OrderOut_'
+                $ref: '#/components/schemas/ResponseListOrderOut'
           description: OK
         "401":
           content:
@@ -465,7 +465,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListResponse_EndpointOut_'
+                $ref: '#/components/schemas/ResponseListEndpointOut'
         "401":
           content:
             application/json:
@@ -881,6 +881,42 @@ components:
       required:
       - items
       type: object
+    ResponseListCurrencyOut:
+      example:
+        data:
+          total: 0
+          items:
+          - max_withdraw_amount: "0.0012345"
+            symbol: http://symbol.jpg
+            code: USDT
+            precision: 6
+            decimals: 12
+            name: http://logo.jpg
+            logo: http://logo.jpg
+            can_withdraw: false
+            can_deposit: false
+            can_transfer: false
+            min_deposit_amount: "0.0012345"
+            min_withdraw_amount: "0.0012345"
+          - max_withdraw_amount: "0.0012345"
+            symbol: http://symbol.jpg
+            code: USDT
+            precision: 6
+            decimals: 12
+            name: http://logo.jpg
+            logo: http://logo.jpg
+            can_withdraw: false
+            can_deposit: false
+            can_transfer: false
+            min_deposit_amount: "0.0012345"
+            min_withdraw_amount: "0.0012345"
+      properties:
+        data:
+          $ref: '#/components/schemas/ListResponse_CurrencyOut_'
+      required:
+      - data
+      title: ResponseEndpointOut
+      type: object
     OrderIn:
       example:
         uid: unique-order-identifier
@@ -1114,6 +1150,50 @@ components:
       - data
       title: ResponseOrderOut
       type: object
+    ResponseListOrderOut:
+      example:
+        data:
+          total: 0
+          items:
+          - note: note example
+            amount: "1"
+            metadata:
+              key: metadata
+            created_at: 2000-01-23T04:56:07.000+00:00
+            expired_at: 2000-01-23T04:56:07.000+00:00
+            failed_message: failed_message
+            uid: unique-order-identifier
+            wallet_id: wallet_id
+            payed_at: 2000-01-23T04:56:07.000+00:00
+            user_id: user_id
+            currency: USDT
+            expiration: 600
+            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+            failed_at: 2000-01-23T04:56:07.000+00:00
+            status: PENDING
+          - note: note example
+            amount: "1"
+            metadata:
+              key: metadata
+            created_at: 2000-01-23T04:56:07.000+00:00
+            expired_at: 2000-01-23T04:56:07.000+00:00
+            failed_message: failed_message
+            uid: unique-order-identifier
+            wallet_id: wallet_id
+            payed_at: 2000-01-23T04:56:07.000+00:00
+            user_id: user_id
+            currency: USDT
+            expiration: 600
+            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+            failed_at: 2000-01-23T04:56:07.000+00:00
+            status: PENDING
+      properties:
+        data:
+          $ref: '#/components/schemas/ListResponse_OrderOut_'
+      required:
+      - data
+      title: ResponseEndpointOut
+      type: object
     EndpointIn:
       example:
         uid: unique-endpoint-identifier
@@ -1291,6 +1371,41 @@ components:
       properties:
         data:
           $ref: '#/components/schemas/EndpointOut'
+      required:
+      - data
+      title: ResponseEndpointOut
+      type: object
+    ResponseListEndpointOut:
+      example:
+        data:
+          prev_cursor: prev_cursor
+          next_cursor: next_cursor
+          items:
+          - headers:
+              x-user-id: user1
+              x-org-id: org_xdwfeees1xfeg
+            metadata:
+              node: http://dashboard.com/node1
+              tag: node
+            description: The description for endpoint
+            filter_types:
+            - tx.created
+            disabled: false
+            url: http://example.com/endpoint
+          - headers:
+              x-user-id: user1
+              x-org-id: org_xdwfeees1xfeg
+            metadata:
+              node: http://dashboard.com/node1
+              tag: node
+            description: The description for endpoint
+            filter_types:
+            - tx.created
+            disabled: false
+            url: http://example.com/endpoint
+      properties:
+        data:
+          $ref: '#/components/schemas/ListResponse_EndpointOut_'
       required:
       - data
       title: ResponseEndpointOut

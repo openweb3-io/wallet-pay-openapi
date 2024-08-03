@@ -14,6 +14,9 @@ import { Ordering } from '../models/Ordering';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
+import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
+import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 import { ObservableCurrencyApi } from './ObservableAPI';
@@ -47,7 +50,7 @@ export class PromiseCurrencyApi {
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      */
-    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Promise<ListResponseCurrencyOut> {
+    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Promise<ResponseListCurrencyOut> {
         const result = this.api.v1CurrencyList(appId, size, page, _options);
         return result.toPromise();
     }
@@ -102,7 +105,7 @@ export class PromiseOrderApi {
      * @param walletId Optional wallet id
      * @param accountId Optional account id
      */
-    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<ListResponseOrderOut> {
+    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<ResponseListOrderOut> {
         const result = this.api.v1OrderList(appId, size, page, walletId, accountId, _options);
         return result.toPromise();
     }
@@ -163,7 +166,7 @@ export class PromiseWebhookEndpointApi {
      * @param cursor Specifying the start cursor position
      * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<ListResponseEndpointOut> {
+    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<ResponseListEndpointOut> {
         const result = this.api.v1EndpointList(limit, cursor, ordering, _options);
         return result.toPromise();
     }

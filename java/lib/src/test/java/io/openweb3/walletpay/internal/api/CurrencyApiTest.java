@@ -14,9 +14,9 @@
 package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
-import io.openweb3.walletpay.models.ListResponseCurrencyOut;
 import io.openweb3.walletpay.models.ResponseCurrencyOut;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListCurrencyOut;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -63,7 +63,7 @@ public class CurrencyApiTest {
         String appId = null;
         Integer size = null;
         Integer page = null;
-        ListResponseCurrencyOut response = api.v1CurrencyList(appId, size, page);
+        ResponseListCurrencyOut response = api.v1CurrencyList(appId, size, page);
 
         // TODO: test validations
     }

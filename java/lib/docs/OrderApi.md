@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderList"></a>
 # **v1OrderList**
-> ListResponseOrderOut v1OrderList(appId, size, page, walletId, accountId)
+> ResponseListOrderOut v1OrderList(appId, size, page, walletId, accountId)
 
 List Orders
 
@@ -202,7 +202,7 @@ public class Example {
     String walletId = "wallet_id"; // String | Optional wallet id
     String accountId = "account_id"; // String | Optional account id
     try {
-      ListResponseOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, accountId);
+      ResponseListOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, accountId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderList");
@@ -227,7 +227,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListResponseOrderOut**](ListResponseOrderOut.md)
+[**ResponseListOrderOut**](ResponseListOrderOut.md)
 
 ### Authorization
 

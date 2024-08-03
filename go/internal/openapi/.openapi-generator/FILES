@@ -21,6 +21,9 @@ docs/Ordering.md
 docs/ResponseCurrencyOut.md
 docs/ResponseEndpointOut.md
 docs/ResponseError.md
+docs/ResponseListCurrencyOut.md
+docs/ResponseListEndpointOut.md
+docs/ResponseListOrderOut.md
 docs/ResponseOrderOut.md
 docs/WebhookEndpointApi.md
 docs/WebhookMessage.md
@@ -39,6 +42,9 @@ model_ordering.go
 model_response_currency_out.go
 model_response_endpoint_out.go
 model_response_error.go
+model_response_list_currency_out.go
+model_response_list_endpoint_out.go
+model_response_list_order_out.go
 model_response_order_out.go
 model_webhook_message.go
 response.go

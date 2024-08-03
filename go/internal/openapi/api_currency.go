@@ -227,7 +227,7 @@ func (r ApiV1CurrencyListRequest) Page(page int32) ApiV1CurrencyListRequest {
 	return r
 }
 
-func (r ApiV1CurrencyListRequest) Execute() (ListResponseCurrencyOut, *_nethttp.Response, error) {
+func (r ApiV1CurrencyListRequest) Execute() (ResponseListCurrencyOut, *_nethttp.Response, error) {
 	return r.ApiService.V1CurrencyListExecute(r)
 }
 
@@ -246,16 +246,16 @@ func (a *CurrencyApiService) V1CurrencyList(ctx _context.Context) ApiV1CurrencyL
 
 /*
  * Execute executes the request
- * @return ListResponseCurrencyOut
+ * @return ResponseListCurrencyOut
  */
-func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (ListResponseCurrencyOut, *_nethttp.Response, error) {
+func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (ResponseListCurrencyOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  ListResponseCurrencyOut
+		localVarReturnValue  ResponseListCurrencyOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrencyApiService.V1CurrencyList")

@@ -38,7 +38,7 @@ func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*Lis
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListResponseCurrencyOut(out)
+	ret := ListResponseCurrencyOut(out.Data)
 	return &ret, nil
 }
 

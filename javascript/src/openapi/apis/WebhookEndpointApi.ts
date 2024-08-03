@@ -7,10 +7,10 @@ import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
 import { EndpointIn } from '../models/EndpointIn';
-import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { Ordering } from '../models/Ordering';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 
 /**
  * no description
@@ -462,14 +462,14 @@ export class WebhookEndpointApiResponseProcessor {
      * @params response Response returned by the server for a request to v1EndpointList
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1EndpointList(response: ResponseContext): Promise<ListResponseEndpointOut > {
+     public async v1EndpointList(response: ResponseContext): Promise<ResponseListEndpointOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: ListResponseEndpointOut = ObjectSerializer.deserialize(
+            const body: ResponseListEndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseEndpointOut", ""
-            ) as ListResponseEndpointOut;
+                "ResponseListEndpointOut", ""
+            ) as ResponseListEndpointOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
@@ -510,10 +510,10 @@ export class WebhookEndpointApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: ListResponseEndpointOut = ObjectSerializer.deserialize(
+            const body: ResponseListEndpointOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "ListResponseEndpointOut", ""
-            ) as ListResponseEndpointOut;
+                "ResponseListEndpointOut", ""
+            ) as ResponseListEndpointOut;
             return body;
         }
 

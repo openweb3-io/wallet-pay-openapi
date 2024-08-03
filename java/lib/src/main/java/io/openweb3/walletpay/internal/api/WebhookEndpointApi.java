@@ -28,10 +28,10 @@ import java.io.IOException;
 
 
 import io.openweb3.walletpay.models.EndpointIn;
-import io.openweb3.walletpay.models.ListResponseEndpointOut;
 import io.openweb3.walletpay.models.Ordering;
 import io.openweb3.walletpay.models.ResponseEndpointOut;
 import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseListEndpointOut;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -557,7 +557,7 @@ public class WebhookEndpointApi {
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
      * @param ordering The sorting order of the returned items (optional)
-     * @return ListResponseEndpointOut
+     * @return ResponseListEndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -570,8 +570,8 @@ public class WebhookEndpointApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ListResponseEndpointOut v1EndpointList(Integer limit, String cursor, Ordering ordering) throws ApiException {
-        ApiResponse<ListResponseEndpointOut> localVarResp = v1EndpointListWithHttpInfo(limit, cursor, ordering);
+    public ResponseListEndpointOut v1EndpointList(Integer limit, String cursor, Ordering ordering) throws ApiException {
+        ApiResponse<ResponseListEndpointOut> localVarResp = v1EndpointListWithHttpInfo(limit, cursor, ordering);
         return localVarResp.getData();
     }
 
@@ -581,7 +581,7 @@ public class WebhookEndpointApi {
      * @param limit Limit the number of returned items (optional, default to 20)
      * @param cursor Specifying the start cursor position (optional)
      * @param ordering The sorting order of the returned items (optional)
-     * @return ApiResponse&lt;ListResponseEndpointOut&gt;
+     * @return ApiResponse&lt;ResponseListEndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -594,9 +594,9 @@ public class WebhookEndpointApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListResponseEndpointOut> v1EndpointListWithHttpInfo(Integer limit, String cursor, Ordering ordering) throws ApiException {
+    public ApiResponse<ResponseListEndpointOut> v1EndpointListWithHttpInfo(Integer limit, String cursor, Ordering ordering) throws ApiException {
         okhttp3.Call localVarCall = v1EndpointListValidateBeforeCall(limit, cursor, ordering, null);
-        Type localVarReturnType = new TypeToken<ListResponseEndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListEndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -620,10 +620,10 @@ public class WebhookEndpointApi {
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1EndpointListAsync(Integer limit, String cursor, Ordering ordering, final ApiCallback<ListResponseEndpointOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointListAsync(Integer limit, String cursor, Ordering ordering, final ApiCallback<ResponseListEndpointOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1EndpointListValidateBeforeCall(limit, cursor, ordering, _callback);
-        Type localVarReturnType = new TypeToken<ListResponseEndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseListEndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
