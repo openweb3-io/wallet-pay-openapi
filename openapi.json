@@ -442,7 +442,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrderOut"
+                                    "$ref": "#/components/schemas/ResponseOrderOut"
                                 }
                             }
                         },
@@ -452,7 +452,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrderOut"
+                                    "$ref": "#/components/schemas/ResponseOrderOut"
                                 }
                             }
                         },
@@ -509,6 +509,16 @@
                         "description": "Conflict"
                     },
                     "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
                         "content": {
                             "application/json": {
                                 "schema": {

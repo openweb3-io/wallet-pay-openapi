@@ -108,7 +108,7 @@ export class ObservableOrderApi {
      * @param appId Specified the app id.
      * @param orderIn 
      */
-    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Observable<OrderOut> {
+    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Observable<ResponseOrderOut> {
         const requestContextPromise = this.requestFactory.v1OrderCreate(appId, orderIn, _options);
 
         // build promise chain

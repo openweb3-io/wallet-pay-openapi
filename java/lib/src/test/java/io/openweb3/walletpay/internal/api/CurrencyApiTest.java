@@ -14,9 +14,9 @@
 package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
-import io.openweb3.walletpay.models.CurrencyOut;
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseCurrencyOut;
+import io.openweb3.walletpay.models.ResponseCurrencyOut;
+import io.openweb3.walletpay.models.ResponseError;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -35,6 +35,22 @@ public class CurrencyApiTest {
 
     
     /**
+     * Find currency by code
+     *
+     * Get specified currency.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1CurrencyFindByCodeTest() throws ApiException {
+        String code = null;
+        ResponseCurrencyOut response = api.v1CurrencyFindByCode(code);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List currencies
      *
      * List currencies.
@@ -48,22 +64,6 @@ public class CurrencyApiTest {
         Integer size = null;
         Integer page = null;
         ListResponseCurrencyOut response = api.v1CurrencyList(appId, size, page);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Find currency by code
-     *
-     * Get specified currency.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void v1OrderFindByCodeTest() throws ApiException {
-        String code = null;
-        CurrencyOut response = api.v1OrderFindByCode(code);
 
         // TODO: test validations
     }

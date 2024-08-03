@@ -59,7 +59,7 @@ func (e *Order) CreateWithOptions(ctx context.Context, appId string, OrderIn *Or
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := OrderOut(out)
+	ret := OrderOut(out.Data)
 	return &ret, nil
 }
 
@@ -70,7 +70,7 @@ func (e *Order) Get(ctx context.Context, appId string, orderId string) (*OrderOu
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := OrderOut(out)
+	ret := OrderOut(out.Data)
 
 	return &ret, nil
 }

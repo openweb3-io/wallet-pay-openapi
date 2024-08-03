@@ -124,8 +124,8 @@ class Order {
     return this.api.v1OrderList({ appId, ...options });
   }
 
-  public create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
-    return this.api.v1OrderCreate({ appId, orderIn, ...options });
+  public async create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
+    return (await this.api.v1OrderCreate({ appId, orderIn, ...options })).data;
   }
 }
 
@@ -144,8 +144,8 @@ class Currency {
     return this.api.v1CurrencyList({ appId, ...options });
   }
 
-  public findByCode(code: string): Promise<CurrencyOut> {
-    return this.api.v1CurrencyFindByCode({code});
+  public async findByCode(code: string): Promise<CurrencyOut> {
+    return (await this.api.v1CurrencyFindByCode({code})).data
   }
 }
 
@@ -163,12 +163,12 @@ class Endpoint {
     this.api = new WebhookEndpointApi(config);
   }
 
-  public create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
-    return this.api.v1EndpointCreate({ endpointIn, ...options });
+  public async create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+    return (await this.api.v1EndpointCreate({ endpointIn, ...options })).data;
   }
 
-  public delete(endpointId: string): Promise<EndpointOut> {
-    return this.api.v1EndpointDelete({ endpointId });
+  public async delete(endpointId: string): Promise<EndpointOut> {
+    return (await this.api.v1EndpointDelete({ endpointId })).data;
   }
 
   public list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {

@@ -8,7 +8,6 @@ import {isCodeInRange} from '../util';
 
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
-import { OrderOut } from '../models/OrderOut';
 import { ResponseError } from '../models/ResponseError';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
 
@@ -201,21 +200,21 @@ export class OrderApiResponseProcessor {
      * @params response Response returned by the server for a request to v1OrderCreate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1OrderCreate(response: ResponseContext): Promise<OrderOut > {
+     public async v1OrderCreate(response: ResponseContext): Promise<ResponseOrderOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
@@ -260,13 +259,20 @@ export class OrderApiResponseProcessor {
             ) as ResponseError;
             throw new ApiException<ResponseError>(429, body);
         }
+        if (isCodeInRange("500", response.httpStatusCode)) {
+            const body: ResponseError = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(500, body);
+        }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
 

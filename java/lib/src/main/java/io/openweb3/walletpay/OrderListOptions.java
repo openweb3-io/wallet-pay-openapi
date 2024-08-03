@@ -1,21 +1,21 @@
 package io.openweb3.walletpay;
 
 public class OrderListOptions extends ListOptions {
-    private String channel;
-    private String chain;
+    private String walletId;
+    private String accountId;
 
-    public void setChannel(final String channel) {
-        this.channel = channel;
+    public void setWalletId(final String walletId) {
+        this.walletId = walletId;
     }
 
-    public String getChannel() {
-        return channel;
+    public String getWalletId() {
+        return walletId;
     }
 
-    public void setChain(final String chain) {
-        this.chain = chain;
+    public void setAccountId(final String accountId) {
+        this.accountId = accountId;
     }
-    public String getChain() {
-        return chain;
+    public String getAccountId() {
+        return accountId;
     }
 }

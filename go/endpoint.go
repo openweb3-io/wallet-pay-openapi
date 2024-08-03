@@ -62,7 +62,7 @@ func (e *Endpoint) CreateWithOptions(ctx context.Context, endpointIn *EndpointIn
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := EndpointOut(out)
+	ret := EndpointOut(out.Data)
 	return &ret, nil
 }
 
@@ -73,7 +73,7 @@ func (e *Endpoint) Get(ctx context.Context, endpointId string) (*EndpointOut, er
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := EndpointOut(out)
+	ret := EndpointOut(out.Data)
 
 	return &ret, nil
 }
@@ -85,7 +85,7 @@ func (e *Endpoint) Delete(ctx context.Context, endpointId string) (*EndpointOut,
 		return nil, wrapError(err, res)
 	}
 
-	ret := EndpointOut(out)
+	ret := EndpointOut(out.Data)
 
 	return &ret, nil
 }

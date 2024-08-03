@@ -39,7 +39,7 @@ func (r ApiV1OrderCreateRequest) OrderIn(orderIn OrderIn) ApiV1OrderCreateReques
 	return r
 }
 
-func (r ApiV1OrderCreateRequest) Execute() (OrderOut, *_nethttp.Response, error) {
+func (r ApiV1OrderCreateRequest) Execute() (ResponseOrderOut, *_nethttp.Response, error) {
 	return r.ApiService.V1OrderCreateExecute(r)
 }
 
@@ -60,16 +60,16 @@ func (a *OrderApiService) V1OrderCreate(ctx _context.Context, appId string) ApiV
 
 /*
  * Execute executes the request
- * @return OrderOut
+ * @return ResponseOrderOut
  */
-func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (OrderOut, *_nethttp.Response, error) {
+func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (ResponseOrderOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OrderOut
+		localVarReturnValue  ResponseOrderOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderApiService.V1OrderCreate")
@@ -193,6 +193,16 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
 			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

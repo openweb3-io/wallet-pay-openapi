@@ -77,7 +77,7 @@ export class PromiseOrderApi {
      * @param appId Specified the app id.
      * @param orderIn 
      */
-    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Promise<OrderOut> {
+    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Promise<ResponseOrderOut> {
         const result = this.api.v1OrderCreate(appId, orderIn, _options);
         return result.toPromise();
     }

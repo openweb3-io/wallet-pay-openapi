@@ -15,7 +15,7 @@ public final class Order {
 
 	public ListResponseOrderOut list(final String appId, final OrderListOptions options) throws ApiException {
 		try {
-			return api.v1OrderList(appId, options.getLimit(), options.getOffset(), options.getChain(), options.getChannel());
+			return api.v1OrderList(appId, options.getSize(), options.getPage(), options.getWalletId(), options.getAccountId());
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
@@ -27,19 +27,14 @@ public final class Order {
 
 	public OrderOut create(final String appId, final OrderIn OrderIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1OrderCreate(appId, OrderIn);
+			return api.v1OrderCreate(appId, OrderIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
-
-	public OrderOut getOrCreate(final String appId, final OrderIn OrderIn) throws ApiException {
-		return this.getOrCreate(appId, OrderIn, new PostOptions());
-	}
-
-	public OrderOut getOrCreate(final String appId, final OrderIn OrderIn, final PostOptions options) throws ApiException {
+	public OrderOut retrieve(final String appId, final String idOrUid) throws ApiException {
 		try {
-			return api.v1OrderCreate(appId, OrderIn);
+			return api.v1OrderGet(appId, idOrUid).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

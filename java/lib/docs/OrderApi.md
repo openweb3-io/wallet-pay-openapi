@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 <a name="v1OrderCreate"></a>
 # **v1OrderCreate**
-> OrderOut v1OrderCreate(appId, orderIn)
+> ResponseOrderOut v1OrderCreate(appId, orderIn)
 
 Create Order
 
@@ -42,7 +42,7 @@ public class Example {
     String appId = "app_12345xsfei"; // String | Specified the app id.
     OrderIn orderIn = new OrderIn(); // OrderIn | 
     try {
-      OrderOut result = apiInstance.v1OrderCreate(appId, orderIn);
+      ResponseOrderOut result = apiInstance.v1OrderCreate(appId, orderIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderCreate");
@@ -64,7 +64,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrderOut**](OrderOut.md)
+[**ResponseOrderOut**](ResponseOrderOut.md)
 
 ### Authorization
 
@@ -86,6 +86,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Too Many Requests |  -  |
 
 <a name="v1OrderGet"></a>
 # **v1OrderGet**

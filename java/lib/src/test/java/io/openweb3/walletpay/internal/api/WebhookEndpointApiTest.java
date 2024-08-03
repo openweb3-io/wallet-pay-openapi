@@ -15,10 +15,10 @@ package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
 import io.openweb3.walletpay.models.EndpointIn;
-import io.openweb3.walletpay.models.EndpointOut;
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseEndpointOut;
 import io.openweb3.walletpay.models.Ordering;
+import io.openweb3.walletpay.models.ResponseEndpointOut;
+import io.openweb3.walletpay.models.ResponseError;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -47,7 +47,7 @@ public class WebhookEndpointApiTest {
     @Test
     public void v1EndpointCreateTest() throws ApiException {
         EndpointIn endpointIn = null;
-        EndpointOut response = api.v1EndpointCreate(endpointIn);
+        ResponseEndpointOut response = api.v1EndpointCreate(endpointIn);
 
         // TODO: test validations
     }
@@ -63,7 +63,23 @@ public class WebhookEndpointApiTest {
     @Test
     public void v1EndpointDeleteTest() throws ApiException {
         String endpointId = null;
-        EndpointOut response = api.v1EndpointDelete(endpointId);
+        ResponseEndpointOut response = api.v1EndpointDelete(endpointId);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete endpoint
+     *
+     * get the specified webhook endpoint.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1EndpointGetTest() throws ApiException {
+        String endpointId = null;
+        ResponseEndpointOut response = api.v1EndpointGet(endpointId);
 
         // TODO: test validations
     }
@@ -80,8 +96,8 @@ public class WebhookEndpointApiTest {
     public void v1EndpointListTest() throws ApiException {
         Integer limit = null;
         String cursor = null;
-        Ordering order = null;
-        ListResponseEndpointOut response = api.v1EndpointList(limit, cursor, order);
+        Ordering ordering = null;
+        ListResponseEndpointOut response = api.v1EndpointList(limit, cursor, ordering);
 
         // TODO: test validations
     }

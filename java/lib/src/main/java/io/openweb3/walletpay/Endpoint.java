@@ -27,27 +27,16 @@ public final class Endpoint {
 
 	public EndpointOut create(final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1EndpointCreate(EndpointIn);
+			return api.v1EndpointCreate(EndpointIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	public EndpointOut getOrCreate(final EndpointIn EndpointIn) throws ApiException {
-		return this.getOrCreate(EndpointIn, new PostOptions());
-	}
-
-	public EndpointOut getOrCreate(final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
-		try {
-			return api.v1EndpointCreate(EndpointIn);
-		} catch (io.openweb3.walletpay.internal.ApiException e) {
-			throw Utils.WrapInternalApiException(e);
-		}
-	}
 	// delete
 	public EndpointOut delete(final String endpointId) throws ApiException {
 		try {
-			return api.v1EndpointDelete(endpointId);
+			return api.v1EndpointDelete(endpointId).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

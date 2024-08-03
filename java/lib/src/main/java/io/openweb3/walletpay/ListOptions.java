@@ -1,37 +1,37 @@
 package io.openweb3.walletpay;
 
 public class ListOptions {
-    private static final int DEFAULT_LIMIT = 50;
+    private static final int DEFAULT_SIZE = 50;
 
-    private Integer offset;
-    private Integer limit = DEFAULT_LIMIT;
+    private Integer page;
+    private Integer size = DEFAULT_SIZE;
 
 	public ListOptions() {
 	}
 
-	public <T extends ListOptions> T offset(final Integer offset) {
-		this.offset = offset;
+	public <T extends ListOptions> T page(final Integer page) {
+		this.page = page;
 		return (T) this;
 	}
 
-	public <T extends ListOptions> T  limit(final Integer limit) {
-		this.limit = limit;
+	public <T extends ListOptions> T  size(final Integer size) {
+		this.size = size;
 		return (T) this;
 	}
 
-	public void setOffset(final Integer offset) {
-		this.offset = offset;
+	public void setPage(final Integer page) {
+		this.page = page;
 	}
 
-	public void setLimit(final Integer limit) {
-		this.limit = limit;
+	public void setSize(final Integer size) {
+		this.size = size;
 	}
 
-	public Integer getOffset() {
-		return offset;
+	public Integer getPage() {
+		return page;
 	}
 
-	public Integer getLimit() {
-		return limit;
+	public Integer getSize() {
+		return size;
 	}
 }

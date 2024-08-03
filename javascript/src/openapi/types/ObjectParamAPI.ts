@@ -155,7 +155,7 @@ export class ObjectOrderApi {
      * Create Order
      * @param param the request object
      */
-    public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<OrderOut> {
+    public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<ResponseOrderOut> {
         return this.api.v1OrderCreate(param.appId, param.orderIn,  options).toPromise();
     }
 

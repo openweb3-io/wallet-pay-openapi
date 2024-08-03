@@ -292,13 +292,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/ResponseOrderOut'
           description: OK
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/ResponseOrderOut'
           description: OK
         "400":
           content:
@@ -331,6 +331,12 @@ paths:
                 $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
           content:
             application/json:
               schema:

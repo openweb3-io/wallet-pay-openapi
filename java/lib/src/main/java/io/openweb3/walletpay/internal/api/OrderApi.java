@@ -29,7 +29,6 @@ import java.io.IOException;
 
 import io.openweb3.walletpay.models.ListResponseOrderOut;
 import io.openweb3.walletpay.models.OrderIn;
-import io.openweb3.walletpay.models.OrderOut;
 import io.openweb3.walletpay.models.ResponseError;
 import io.openweb3.walletpay.models.ResponseOrderOut;
 
@@ -76,6 +75,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1OrderCreateCall(String appId, OrderIn orderIn, final ApiCallback _callback) throws ApiException {
@@ -133,7 +133,7 @@ public class OrderApi {
      * Create a new order.
      * @param appId Specified the app id. (required)
      * @param orderIn  (required)
-     * @return OrderOut
+     * @return ResponseOrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -146,10 +146,11 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public OrderOut v1OrderCreate(String appId, OrderIn orderIn) throws ApiException {
-        ApiResponse<OrderOut> localVarResp = v1OrderCreateWithHttpInfo(appId, orderIn);
+    public ResponseOrderOut v1OrderCreate(String appId, OrderIn orderIn) throws ApiException {
+        ApiResponse<ResponseOrderOut> localVarResp = v1OrderCreateWithHttpInfo(appId, orderIn);
         return localVarResp.getData();
     }
 
@@ -158,7 +159,7 @@ public class OrderApi {
      * Create a new order.
      * @param appId Specified the app id. (required)
      * @param orderIn  (required)
-     * @return ApiResponse&lt;OrderOut&gt;
+     * @return ApiResponse&lt;ResponseOrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -171,11 +172,12 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OrderOut> v1OrderCreateWithHttpInfo(String appId, OrderIn orderIn) throws ApiException {
+    public ApiResponse<ResponseOrderOut> v1OrderCreateWithHttpInfo(String appId, OrderIn orderIn) throws ApiException {
         okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(appId, orderIn, null);
-        Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseOrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -198,12 +200,13 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderCreateAsync(String appId, OrderIn orderIn, final ApiCallback<OrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderCreateAsync(String appId, OrderIn orderIn, final ApiCallback<ResponseOrderOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1OrderCreateValidateBeforeCall(appId, orderIn, _callback);
-        Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseOrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

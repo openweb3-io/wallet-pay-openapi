@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 ## V1OrderCreate
 
-> OrderOut V1OrderCreate(ctx, appId).OrderIn(orderIn).Execute()
+> ResponseOrderOut V1OrderCreate(ctx, appId).OrderIn(orderIn).Execute()
 
 Create Order
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1OrderCreate`: OrderOut
+    // response from `V1OrderCreate`: ResponseOrderOut
     fmt.Fprintf(os.Stdout, "Response from `OrderApi.V1OrderCreate`: %v\n", resp)
 }
 ```
@@ -66,7 +66,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrderOut**](OrderOut.md)
+[**ResponseOrderOut**](ResponseOrderOut.md)
 
 ### Authorization
 

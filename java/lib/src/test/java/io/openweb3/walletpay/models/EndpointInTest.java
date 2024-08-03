@@ -45,19 +45,11 @@ public class EndpointInTest {
     }
 
     /**
-     * Test the property 'description'
+     * Test the property 'uid'
      */
     @Test
-    public void descriptionTest() {
-        // TODO: test description
-    }
-
-    /**
-     * Test the property 'url'
-     */
-    @Test
-    public void urlTest() {
-        // TODO: test url
+    public void uidTest() {
+        // TODO: test uid
     }
 
     /**
@@ -66,6 +58,14 @@ public class EndpointInTest {
     @Test
     public void filterTypesTest() {
         // TODO: test filterTypes
+    }
+
+    /**
+     * Test the property 'url'
+     */
+    @Test
+    public void urlTest() {
+        // TODO: test url
     }
 
     /**
@@ -90,6 +90,14 @@ public class EndpointInTest {
     @Test
     public void headersTest() {
         // TODO: test headers
+    }
+
+    /**
+     * Test the property 'description'
+     */
+    @Test
+    public void descriptionTest() {
+        // TODO: test description
     }
 
 }

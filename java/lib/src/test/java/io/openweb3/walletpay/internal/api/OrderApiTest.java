@@ -14,10 +14,10 @@
 package io.openweb3.walletpay.internal.api;
 
 import io.openweb3.walletpay.internal.ApiException;
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseOrderOut;
 import io.openweb3.walletpay.models.OrderIn;
-import io.openweb3.walletpay.models.OrderOut;
+import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseOrderOut;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -45,9 +45,26 @@ public class OrderApiTest {
      */
     @Test
     public void v1OrderCreateTest() throws ApiException {
-        OrderIn orderIn = null;
         String appId = null;
-        OrderOut response = api.v1OrderCreate(appId, orderIn);
+        OrderIn orderIn = null;
+        ResponseOrderOut response = api.v1OrderCreate(appId, orderIn);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get order
+     *
+     * Get specified order.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1OrderGetTest() throws ApiException {
+        String appId = null;
+        String idOrUid = null;
+        ResponseOrderOut response = api.v1OrderGet(appId, idOrUid);
 
         // TODO: test validations
     }
@@ -62,11 +79,11 @@ public class OrderApiTest {
      */
     @Test
     public void v1OrderListTest() throws ApiException {
+        String appId = null;
         Integer size = null;
         Integer page = null;
         String walletId = null;
         String accountId = null;
-        String appId = null;
         ListResponseOrderOut response = api.v1OrderList(appId, size, page, walletId, accountId);
 
         // TODO: test validations

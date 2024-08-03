@@ -68,22 +68,6 @@ public class OrderInTest {
     }
 
     /**
-     * Test the property 'walletId'
-     */
-    @Test
-    public void walletIdTest() {
-        // TODO: test walletId
-    }
-
-    /**
-     * Test the property 'userId'
-     */
-    @Test
-    public void userIdTest() {
-        // TODO: test userId
-    }
-
-    /**
      * Test the property 'note'
      */
     @Test

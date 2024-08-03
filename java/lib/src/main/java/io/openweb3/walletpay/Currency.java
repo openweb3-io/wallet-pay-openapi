@@ -14,7 +14,7 @@ public final class Currency {
 
 	public ListResponseCurrencyOut list(final CurrencyListOptions options) throws ApiException {
 		try {
-			return api.v1CurrencyList(options.getLimit(), options.getOffset(), options.getAppId());
+			return api.v1CurrencyList(options.getAppId(), options.getSize(), options.getPage());
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
@@ -23,7 +23,7 @@ public final class Currency {
 	// find by code
 	public CurrencyOut findByCode(final String code) throws ApiException {
 		try {
-			return api.v1CurrencyFindByCode(code);
+			return api.v1CurrencyFindByCode(code).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

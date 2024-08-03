@@ -49,7 +49,7 @@ func (e *Currency) FindByCode(ctx context.Context, code string) (*CurrencyOut, e
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := CurrencyOut(out)
+	ret := CurrencyOut(out.Data)
 
 	return &ret, nil
 }
