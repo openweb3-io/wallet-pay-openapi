@@ -38,7 +38,7 @@ func (r ApiV1EndpointCreateRequest) EndpointIn(endpointIn EndpointIn) ApiV1Endpo
 	return r
 }
 
-func (r ApiV1EndpointCreateRequest) Execute() (EndpointOut, *_nethttp.Response, error) {
+func (r ApiV1EndpointCreateRequest) Execute() (ResponseEndpointOut, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointCreateExecute(r)
 }
 
@@ -57,16 +57,16 @@ func (a *WebhookEndpointApiService) V1EndpointCreate(ctx _context.Context) ApiV1
 
 /*
  * Execute executes the request
- * @return EndpointOut
+ * @return ResponseEndpointOut
  */
-func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreateRequest) (EndpointOut, *_nethttp.Response, error) {
+func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreateRequest) (ResponseEndpointOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  EndpointOut
+		localVarReturnValue  ResponseEndpointOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointApiService.V1EndpointCreate")
@@ -139,7 +139,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -149,7 +149,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -159,7 +159,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -169,7 +169,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -179,7 +179,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -189,7 +189,17 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -219,7 +229,7 @@ type ApiV1EndpointDeleteRequest struct {
 }
 
 
-func (r ApiV1EndpointDeleteRequest) Execute() (EndpointOut, *_nethttp.Response, error) {
+func (r ApiV1EndpointDeleteRequest) Execute() (ResponseEndpointOut, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointDeleteExecute(r)
 }
 
@@ -240,16 +250,16 @@ func (a *WebhookEndpointApiService) V1EndpointDelete(ctx _context.Context, endpo
 
 /*
  * Execute executes the request
- * @return EndpointOut
+ * @return ResponseEndpointOut
  */
-func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDeleteRequest) (EndpointOut, *_nethttp.Response, error) {
+func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDeleteRequest) (ResponseEndpointOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  EndpointOut
+		localVarReturnValue  ResponseEndpointOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointApiService.V1EndpointDelete")
@@ -318,7 +328,7 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -328,7 +338,7 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -338,7 +348,7 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -348,7 +358,7 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -358,7 +368,17 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -388,7 +408,7 @@ type ApiV1EndpointGetRequest struct {
 }
 
 
-func (r ApiV1EndpointGetRequest) Execute() (EndpointOut, *_nethttp.Response, error) {
+func (r ApiV1EndpointGetRequest) Execute() (ResponseEndpointOut, *_nethttp.Response, error) {
 	return r.ApiService.V1EndpointGetExecute(r)
 }
 
@@ -409,16 +429,16 @@ func (a *WebhookEndpointApiService) V1EndpointGet(ctx _context.Context, endpoint
 
 /*
  * Execute executes the request
- * @return EndpointOut
+ * @return ResponseEndpointOut
  */
-func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetRequest) (EndpointOut, *_nethttp.Response, error) {
+func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetRequest) (ResponseEndpointOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  EndpointOut
+		localVarReturnValue  ResponseEndpointOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhookEndpointApiService.V1EndpointGet")
@@ -487,7 +507,7 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -497,7 +517,7 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -507,7 +527,7 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -517,7 +537,7 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -527,7 +547,17 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -676,7 +706,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -686,7 +716,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -696,7 +726,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -706,7 +736,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -716,7 +746,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

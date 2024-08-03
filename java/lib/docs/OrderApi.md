@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderGet"></a>
 # **v1OrderGet**
-> OrderOut v1OrderGet(appId, idOrUid)
+> ResponseOrderOut v1OrderGet(appId, idOrUid)
 
 Get order
 
@@ -120,7 +120,7 @@ public class Example {
     String appId = "app_12345xsfei"; // String | Specified the app id.
     String idOrUid = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the order id or order uid.
     try {
-      OrderOut result = apiInstance.v1OrderGet(appId, idOrUid);
+      ResponseOrderOut result = apiInstance.v1OrderGet(appId, idOrUid);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderGet");
@@ -142,7 +142,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrderOut**](OrderOut.md)
+[**ResponseOrderOut**](ResponseOrderOut.md)
 
 ### Authorization
 
@@ -163,6 +163,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 
 <a name="v1OrderList"></a>
 # **v1OrderList**
@@ -245,4 +246,5 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 

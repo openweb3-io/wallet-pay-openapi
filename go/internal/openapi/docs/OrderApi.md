@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1OrderGet
 
-> OrderOut V1OrderGet(ctx, appId, idOrUid).Execute()
+> ResponseOrderOut V1OrderGet(ctx, appId, idOrUid).Execute()
 
 Get order
 
@@ -113,7 +113,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1OrderGet`: OrderOut
+    // response from `V1OrderGet`: ResponseOrderOut
     fmt.Fprintf(os.Stdout, "Response from `OrderApi.V1OrderGet`: %v\n", resp)
 }
 ```
@@ -139,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**OrderOut**](OrderOut.md)
+[**ResponseOrderOut**](ResponseOrderOut.md)
 
 ### Authorization
 

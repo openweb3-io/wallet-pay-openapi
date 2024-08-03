@@ -14,7 +14,7 @@ import { EndpointOut } from './EndpointOut';
 import { HttpFile } from '../http/http';
 
 export class ListResponseEndpointOut {
-    'items'?: Array<EndpointOut>;
+    'items': Array<EndpointOut>;
     'prevCursor'?: string;
     'nextCursor'?: string;
 

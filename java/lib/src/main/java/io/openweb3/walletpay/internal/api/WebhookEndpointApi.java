@@ -28,10 +28,10 @@ import java.io.IOException;
 
 
 import io.openweb3.walletpay.models.EndpointIn;
-import io.openweb3.walletpay.models.EndpointOut;
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseEndpointOut;
 import io.openweb3.walletpay.models.Ordering;
+import io.openweb3.walletpay.models.ResponseEndpointOut;
+import io.openweb3.walletpay.models.ResponseError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -75,6 +75,7 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1EndpointCreateCall(EndpointIn endpointIn, final ApiCallback _callback) throws ApiException {
@@ -125,7 +126,7 @@ public class WebhookEndpointApi {
      * Create endpoint
      * Create a webhook endpoint.
      * @param endpointIn  (required)
-     * @return EndpointOut
+     * @return ResponseEndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -138,10 +139,11 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public EndpointOut v1EndpointCreate(EndpointIn endpointIn) throws ApiException {
-        ApiResponse<EndpointOut> localVarResp = v1EndpointCreateWithHttpInfo(endpointIn);
+    public ResponseEndpointOut v1EndpointCreate(EndpointIn endpointIn) throws ApiException {
+        ApiResponse<ResponseEndpointOut> localVarResp = v1EndpointCreateWithHttpInfo(endpointIn);
         return localVarResp.getData();
     }
 
@@ -149,7 +151,7 @@ public class WebhookEndpointApi {
      * Create endpoint
      * Create a webhook endpoint.
      * @param endpointIn  (required)
-     * @return ApiResponse&lt;EndpointOut&gt;
+     * @return ApiResponse&lt;ResponseEndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -162,11 +164,12 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EndpointOut> v1EndpointCreateWithHttpInfo(EndpointIn endpointIn) throws ApiException {
+    public ApiResponse<ResponseEndpointOut> v1EndpointCreateWithHttpInfo(EndpointIn endpointIn) throws ApiException {
         okhttp3.Call localVarCall = v1EndpointCreateValidateBeforeCall(endpointIn, null);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -188,12 +191,13 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1EndpointCreateAsync(EndpointIn endpointIn, final ApiCallback<EndpointOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointCreateAsync(EndpointIn endpointIn, final ApiCallback<ResponseEndpointOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1EndpointCreateValidateBeforeCall(endpointIn, _callback);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -213,6 +217,7 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1EndpointDeleteCall(String endpointId, final ApiCallback _callback) throws ApiException {
@@ -264,7 +269,7 @@ public class WebhookEndpointApi {
      * Delete endpoint
      * delete the specified webhook endpoint.
      * @param endpointId Specified the endpoint id. (required)
-     * @return EndpointOut
+     * @return ResponseEndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -276,10 +281,11 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public EndpointOut v1EndpointDelete(String endpointId) throws ApiException {
-        ApiResponse<EndpointOut> localVarResp = v1EndpointDeleteWithHttpInfo(endpointId);
+    public ResponseEndpointOut v1EndpointDelete(String endpointId) throws ApiException {
+        ApiResponse<ResponseEndpointOut> localVarResp = v1EndpointDeleteWithHttpInfo(endpointId);
         return localVarResp.getData();
     }
 
@@ -287,7 +293,7 @@ public class WebhookEndpointApi {
      * Delete endpoint
      * delete the specified webhook endpoint.
      * @param endpointId Specified the endpoint id. (required)
-     * @return ApiResponse&lt;EndpointOut&gt;
+     * @return ApiResponse&lt;ResponseEndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -299,11 +305,12 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EndpointOut> v1EndpointDeleteWithHttpInfo(String endpointId) throws ApiException {
+    public ApiResponse<ResponseEndpointOut> v1EndpointDeleteWithHttpInfo(String endpointId) throws ApiException {
         okhttp3.Call localVarCall = v1EndpointDeleteValidateBeforeCall(endpointId, null);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -324,12 +331,13 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1EndpointDeleteAsync(String endpointId, final ApiCallback<EndpointOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointDeleteAsync(String endpointId, final ApiCallback<ResponseEndpointOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1EndpointDeleteValidateBeforeCall(endpointId, _callback);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -349,6 +357,7 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1EndpointGetCall(String endpointId, final ApiCallback _callback) throws ApiException {
@@ -400,7 +409,7 @@ public class WebhookEndpointApi {
      * Delete endpoint
      * get the specified webhook endpoint.
      * @param endpointId Specified the endpoint id or endpoint uid. (required)
-     * @return EndpointOut
+     * @return ResponseEndpointOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -412,10 +421,11 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public EndpointOut v1EndpointGet(String endpointId) throws ApiException {
-        ApiResponse<EndpointOut> localVarResp = v1EndpointGetWithHttpInfo(endpointId);
+    public ResponseEndpointOut v1EndpointGet(String endpointId) throws ApiException {
+        ApiResponse<ResponseEndpointOut> localVarResp = v1EndpointGetWithHttpInfo(endpointId);
         return localVarResp.getData();
     }
 
@@ -423,7 +433,7 @@ public class WebhookEndpointApi {
      * Delete endpoint
      * get the specified webhook endpoint.
      * @param endpointId Specified the endpoint id or endpoint uid. (required)
-     * @return ApiResponse&lt;EndpointOut&gt;
+     * @return ApiResponse&lt;ResponseEndpointOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -435,11 +445,12 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EndpointOut> v1EndpointGetWithHttpInfo(String endpointId) throws ApiException {
+    public ApiResponse<ResponseEndpointOut> v1EndpointGetWithHttpInfo(String endpointId) throws ApiException {
         okhttp3.Call localVarCall = v1EndpointGetValidateBeforeCall(endpointId, null);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -460,12 +471,13 @@ public class WebhookEndpointApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1EndpointGetAsync(String endpointId, final ApiCallback<EndpointOut> _callback) throws ApiException {
+    public okhttp3.Call v1EndpointGetAsync(String endpointId, final ApiCallback<ResponseEndpointOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1EndpointGetValidateBeforeCall(endpointId, _callback);
-        Type localVarReturnType = new TypeToken<EndpointOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseEndpointOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

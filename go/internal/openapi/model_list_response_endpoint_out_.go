@@ -16,7 +16,7 @@ import (
 
 // ListResponseEndpointOut struct for ListResponseEndpointOut
 type ListResponseEndpointOut struct {
-	Items *[]EndpointOut `json:"items,omitempty"`
+	Items []EndpointOut `json:"items"`
 	PrevCursor *string `json:"prev_cursor,omitempty"`
 	NextCursor *string `json:"next_cursor,omitempty"`
 }
@@ -25,8 +25,9 @@ type ListResponseEndpointOut struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListResponseEndpointOut() *ListResponseEndpointOut {
+func NewListResponseEndpointOut(items []EndpointOut) *ListResponseEndpointOut {
 	this := ListResponseEndpointOut{}
+	this.Items = items
 	return &this
 }
 
@@ -38,36 +39,28 @@ func NewListResponseEndpointOutWithDefaults() *ListResponseEndpointOut {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
+// GetItems returns the Items field value
 func (o *ListResponseEndpointOut) GetItems() []EndpointOut {
-	if o == nil || o.Items == nil {
+	if o == nil {
 		var ret []EndpointOut
 		return ret
 	}
-	return *o.Items
+
+	return o.Items
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 func (o *ListResponseEndpointOut) GetItemsOk() (*[]EndpointOut, bool) {
-	if o == nil || o.Items == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *ListResponseEndpointOut) HasItems() bool {
-	if o != nil && o.Items != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItems gets a reference to the given []EndpointOut and assigns it to the Items field.
+// SetItems sets field value
 func (o *ListResponseEndpointOut) SetItems(v []EndpointOut) {
-	o.Items = &v
+	o.Items = v
 }
 
 // GetPrevCursor returns the PrevCursor field value if set, zero value otherwise.
@@ -136,7 +129,7 @@ func (o *ListResponseEndpointOut) SetNextCursor(v string) {
 
 func (o ListResponseEndpointOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Items != nil {
+	if true {
 		toSerialize["items"] = o.Items
 	}
 	if o.PrevCursor != nil {

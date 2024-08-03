@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]OrderOut**](OrderOut.md) |  | [optional] 
+**Items** | [**[]OrderOut**](OrderOut.md) |  | 
 **Total** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewListResponseOrderOut
 
-`func NewListResponseOrderOut() *ListResponseOrderOut`
+`func NewListResponseOrderOut(items []OrderOut, ) *ListResponseOrderOut`
 
 NewListResponseOrderOut instantiates a new ListResponseOrderOut object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *ListResponseOrderOut) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetTotal
 

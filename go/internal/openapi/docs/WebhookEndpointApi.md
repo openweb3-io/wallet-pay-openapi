@@ -13,7 +13,7 @@ Method | HTTP request | Description
 
 ## V1EndpointCreate
 
-> EndpointOut V1EndpointCreate(ctx).EndpointIn(endpointIn).Execute()
+> ResponseEndpointOut V1EndpointCreate(ctx).EndpointIn(endpointIn).Execute()
 
 Create endpoint
 
@@ -41,7 +41,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointApi.V1EndpointCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1EndpointCreate`: EndpointOut
+    // response from `V1EndpointCreate`: ResponseEndpointOut
     fmt.Fprintf(os.Stdout, "Response from `WebhookEndpointApi.V1EndpointCreate`: %v\n", resp)
 }
 ```
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 ## V1EndpointDelete
 
-> EndpointOut V1EndpointDelete(ctx, endpointId).Execute()
+> ResponseEndpointOut V1EndpointDelete(ctx, endpointId).Execute()
 
 Delete endpoint
 
@@ -107,7 +107,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointApi.V1EndpointDelete``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1EndpointDelete`: EndpointOut
+    // response from `V1EndpointDelete`: ResponseEndpointOut
     fmt.Fprintf(os.Stdout, "Response from `WebhookEndpointApi.V1EndpointDelete`: %v\n", resp)
 }
 ```
@@ -131,7 +131,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 
@@ -149,7 +149,7 @@ Name | Type | Description  | Notes
 
 ## V1EndpointGet
 
-> EndpointOut V1EndpointGet(ctx, endpointId).Execute()
+> ResponseEndpointOut V1EndpointGet(ctx, endpointId).Execute()
 
 Delete endpoint
 
@@ -177,7 +177,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `WebhookEndpointApi.V1EndpointGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1EndpointGet`: EndpointOut
+    // response from `V1EndpointGet`: ResponseEndpointOut
     fmt.Fprintf(os.Stdout, "Response from `WebhookEndpointApi.V1EndpointGet`: %v\n", resp)
 }
 ```
@@ -201,7 +201,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 

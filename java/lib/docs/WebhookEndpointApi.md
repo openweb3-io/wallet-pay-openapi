@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="v1EndpointCreate"></a>
 # **v1EndpointCreate**
-> EndpointOut v1EndpointCreate(endpointIn)
+> ResponseEndpointOut v1EndpointCreate(endpointIn)
 
 Create endpoint
 
@@ -42,7 +42,7 @@ public class Example {
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
     EndpointIn endpointIn = new EndpointIn(); // EndpointIn | 
     try {
-      EndpointOut result = apiInstance.v1EndpointCreate(endpointIn);
+      ResponseEndpointOut result = apiInstance.v1EndpointCreate(endpointIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointCreate");
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 
@@ -85,10 +85,11 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 
 <a name="v1EndpointDelete"></a>
 # **v1EndpointDelete**
-> EndpointOut v1EndpointDelete(endpointId)
+> ResponseEndpointOut v1EndpointDelete(endpointId)
 
 Delete endpoint
 
@@ -118,7 +119,7 @@ public class Example {
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
     String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id.
     try {
-      EndpointOut result = apiInstance.v1EndpointDelete(endpointId);
+      ResponseEndpointOut result = apiInstance.v1EndpointDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointDelete");
@@ -139,7 +140,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 
@@ -160,10 +161,11 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 
 <a name="v1EndpointGet"></a>
 # **v1EndpointGet**
-> EndpointOut v1EndpointGet(endpointId)
+> ResponseEndpointOut v1EndpointGet(endpointId)
 
 Delete endpoint
 
@@ -193,7 +195,7 @@ public class Example {
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
     String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id or endpoint uid.
     try {
-      EndpointOut result = apiInstance.v1EndpointGet(endpointId);
+      ResponseEndpointOut result = apiInstance.v1EndpointGet(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointGet");
@@ -214,7 +216,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**EndpointOut**](EndpointOut.md)
+[**ResponseEndpointOut**](ResponseEndpointOut.md)
 
 ### Authorization
 
@@ -235,6 +237,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 
 <a name="v1EndpointList"></a>
 # **v1EndpointList**

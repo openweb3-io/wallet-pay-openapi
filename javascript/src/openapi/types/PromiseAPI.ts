@@ -5,13 +5,16 @@ import { Configuration} from '../configuration'
 import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
-import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
+import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
+import { ResponseError } from '../models/ResponseError';
+import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 import { ObservableCurrencyApi } from './ObservableAPI';
 
@@ -32,7 +35,7 @@ export class PromiseCurrencyApi {
      * Find currency by code
      * @param code Specified currency code.
      */
-    public v1CurrencyFindByCode(code: string, _options?: Configuration): Promise<CurrencyOut> {
+    public v1CurrencyFindByCode(code: string, _options?: Configuration): Promise<ResponseCurrencyOut> {
         const result = this.api.v1CurrencyFindByCode(code, _options);
         return result.toPromise();
     }
@@ -85,7 +88,7 @@ export class PromiseOrderApi {
      * @param appId Specified the app id.
      * @param idOrUid Specified the order id or order uid.
      */
-    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Promise<OrderOut> {
+    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Promise<ResponseOrderOut> {
         const result = this.api.v1OrderGet(appId, idOrUid, _options);
         return result.toPromise();
     }
@@ -128,7 +131,7 @@ export class PromiseWebhookEndpointApi {
      * Create endpoint
      * @param endpointIn 
      */
-    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Promise<ResponseEndpointOut> {
         const result = this.api.v1EndpointCreate(endpointIn, _options);
         return result.toPromise();
     }
@@ -138,7 +141,7 @@ export class PromiseWebhookEndpointApi {
      * Delete endpoint
      * @param endpointId Specified the endpoint id.
      */
-    public v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<ResponseEndpointOut> {
         const result = this.api.v1EndpointDelete(endpointId, _options);
         return result.toPromise();
     }
@@ -148,7 +151,7 @@ export class PromiseWebhookEndpointApi {
      * Delete endpoint
      * @param endpointId Specified the endpoint id or endpoint uid.
      */
-    public v1EndpointGet(endpointId: string, _options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointGet(endpointId: string, _options?: Configuration): Promise<ResponseEndpointOut> {
         const result = this.api.v1EndpointGet(endpointId, _options);
         return result.toPromise();
     }

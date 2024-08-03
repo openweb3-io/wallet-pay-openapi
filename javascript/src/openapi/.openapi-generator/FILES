@@ -15,7 +15,6 @@ middleware.ts
 models/CurrencyOut.ts
 models/EndpointIn.ts
 models/EndpointOut.ts
-models/HttpErrorOut.ts
 models/ListResponseCurrencyOut.ts
 models/ListResponseEndpointOut.ts
 models/ListResponseOrderOut.ts
@@ -23,6 +22,10 @@ models/ObjectSerializer.ts
 models/OrderIn.ts
 models/OrderOut.ts
 models/Ordering.ts
+models/ResponseCurrencyOut.ts
+models/ResponseEndpointOut.ts
+models/ResponseError.ts
+models/ResponseOrderOut.ts
 models/WebhookMessage.ts
 models/all.ts
 package.json

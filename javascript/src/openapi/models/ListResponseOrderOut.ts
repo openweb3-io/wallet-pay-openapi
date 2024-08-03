@@ -14,7 +14,7 @@ import { OrderOut } from './OrderOut';
 import { HttpFile } from '../http/http';
 
 export class ListResponseOrderOut {
-    'items'?: Array<OrderOut>;
+    'items': Array<OrderOut>;
     'total'?: number;
 
     static readonly discriminator: string | undefined = undefined;

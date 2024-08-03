@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]EndpointOut**](EndpointOut.md) |  | [optional] 
+**Items** | [**[]EndpointOut**](EndpointOut.md) |  | 
 **PrevCursor** | Pointer to **string** |  | [optional] 
 **NextCursor** | Pointer to **string** |  | [optional] 
 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 
 ### NewListResponseEndpointOut
 
-`func NewListResponseEndpointOut() *ListResponseEndpointOut`
+`func NewListResponseEndpointOut(items []EndpointOut, ) *ListResponseEndpointOut`
 
 NewListResponseEndpointOut instantiates a new ListResponseEndpointOut object
 This constructor will assign default values to properties that have it defined,
@@ -46,11 +46,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *ListResponseEndpointOut) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetPrevCursor
 

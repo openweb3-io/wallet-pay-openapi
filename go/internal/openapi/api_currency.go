@@ -34,7 +34,7 @@ type ApiV1CurrencyFindByCodeRequest struct {
 }
 
 
-func (r ApiV1CurrencyFindByCodeRequest) Execute() (CurrencyOut, *_nethttp.Response, error) {
+func (r ApiV1CurrencyFindByCodeRequest) Execute() (ResponseCurrencyOut, *_nethttp.Response, error) {
 	return r.ApiService.V1CurrencyFindByCodeExecute(r)
 }
 
@@ -55,16 +55,16 @@ func (a *CurrencyApiService) V1CurrencyFindByCode(ctx _context.Context, code str
 
 /*
  * Execute executes the request
- * @return CurrencyOut
+ * @return ResponseCurrencyOut
  */
-func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCodeRequest) (CurrencyOut, *_nethttp.Response, error) {
+func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCodeRequest) (ResponseCurrencyOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  CurrencyOut
+		localVarReturnValue  ResponseCurrencyOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CurrencyApiService.V1CurrencyFindByCode")
@@ -133,7 +133,7 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -143,7 +143,7 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +163,7 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -173,7 +173,17 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -322,7 +332,7 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -332,7 +342,7 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -342,7 +352,7 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -352,7 +362,7 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -362,7 +372,17 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

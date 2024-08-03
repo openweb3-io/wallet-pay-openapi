@@ -6,13 +6,16 @@ import {mergeMap, map} from  '../rxjsStub';
 import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
-import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
+import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
+import { ResponseError } from '../models/ResponseError';
+import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
 import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
@@ -36,7 +39,7 @@ export class ObservableCurrencyApi {
      * Find currency by code
      * @param code Specified currency code.
      */
-    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<CurrencyOut> {
+    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
         const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(code, _options);
 
         // build promise chain
@@ -130,7 +133,7 @@ export class ObservableOrderApi {
      * @param appId Specified the app id.
      * @param idOrUid Specified the order id or order uid.
      */
-    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Observable<OrderOut> {
+    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Observable<ResponseOrderOut> {
         const requestContextPromise = this.requestFactory.v1OrderGet(appId, idOrUid, _options);
 
         // build promise chain
@@ -200,7 +203,7 @@ export class ObservableWebhookEndpointApi {
      * Create endpoint
      * @param endpointIn 
      */
-    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<EndpointOut> {
+    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
         const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
 
         // build promise chain
@@ -224,7 +227,7 @@ export class ObservableWebhookEndpointApi {
      * Delete endpoint
      * @param endpointId Specified the endpoint id.
      */
-    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
         const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
 
         // build promise chain
@@ -248,7 +251,7 @@ export class ObservableWebhookEndpointApi {
      * Delete endpoint
      * @param endpointId Specified the endpoint id or endpoint uid.
      */
-    public v1EndpointGet(endpointId: string, _options?: Configuration): Observable<EndpointOut> {
+    public v1EndpointGet(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
         const requestContextPromise = this.requestFactory.v1EndpointGet(endpointId, _options);
 
         // build promise chain

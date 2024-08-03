@@ -27,10 +27,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseOrderOut;
 import io.openweb3.walletpay.models.OrderIn;
 import io.openweb3.walletpay.models.OrderOut;
+import io.openweb3.walletpay.models.ResponseError;
+import io.openweb3.walletpay.models.ResponseOrderOut;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -223,6 +224,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1OrderGetCall(String appId, String idOrUid, final ApiCallback _callback) throws ApiException {
@@ -281,7 +283,7 @@ public class OrderApi {
      * Get specified order.
      * @param appId Specified the app id. (required)
      * @param idOrUid Specified the order id or order uid. (required)
-     * @return OrderOut
+     * @return ResponseOrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -293,10 +295,11 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public OrderOut v1OrderGet(String appId, String idOrUid) throws ApiException {
-        ApiResponse<OrderOut> localVarResp = v1OrderGetWithHttpInfo(appId, idOrUid);
+    public ResponseOrderOut v1OrderGet(String appId, String idOrUid) throws ApiException {
+        ApiResponse<ResponseOrderOut> localVarResp = v1OrderGetWithHttpInfo(appId, idOrUid);
         return localVarResp.getData();
     }
 
@@ -305,7 +308,7 @@ public class OrderApi {
      * Get specified order.
      * @param appId Specified the app id. (required)
      * @param idOrUid Specified the order id or order uid. (required)
-     * @return ApiResponse&lt;OrderOut&gt;
+     * @return ApiResponse&lt;ResponseOrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -317,11 +320,12 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OrderOut> v1OrderGetWithHttpInfo(String appId, String idOrUid) throws ApiException {
+    public ApiResponse<ResponseOrderOut> v1OrderGetWithHttpInfo(String appId, String idOrUid) throws ApiException {
         okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, idOrUid, null);
-        Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseOrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -343,12 +347,13 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderGetAsync(String appId, String idOrUid, final ApiCallback<OrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderGetAsync(String appId, String idOrUid, final ApiCallback<ResponseOrderOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1OrderGetValidateBeforeCall(appId, idOrUid, _callback);
-        Type localVarReturnType = new TypeToken<OrderOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseOrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -371,6 +376,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1OrderListCall(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
@@ -453,6 +459,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public ListResponseOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
@@ -479,6 +486,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ListResponseOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
@@ -507,6 +515,7 @@ public class OrderApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback<ListResponseOrderOut> _callback) throws ApiException {

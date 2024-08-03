@@ -94,13 +94,16 @@ Class | Method | HTTP request | Description
  - [CurrencyOut](docs/CurrencyOut.md)
  - [EndpointIn](docs/EndpointIn.md)
  - [EndpointOut](docs/EndpointOut.md)
- - [HttpErrorOut](docs/HttpErrorOut.md)
  - [ListResponseCurrencyOut](docs/ListResponseCurrencyOut.md)
  - [ListResponseEndpointOut](docs/ListResponseEndpointOut.md)
  - [ListResponseOrderOut](docs/ListResponseOrderOut.md)
  - [OrderIn](docs/OrderIn.md)
  - [OrderOut](docs/OrderOut.md)
  - [Ordering](docs/Ordering.md)
+ - [ResponseCurrencyOut](docs/ResponseCurrencyOut.md)
+ - [ResponseEndpointOut](docs/ResponseEndpointOut.md)
+ - [ResponseError](docs/ResponseError.md)
+ - [ResponseOrderOut](docs/ResponseOrderOut.md)
  - [WebhookMessage](docs/WebhookMessage.md)
 
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## V1CurrencyFindByCode
 
-> CurrencyOut V1CurrencyFindByCode(ctx, code).Execute()
+> ResponseCurrencyOut V1CurrencyFindByCode(ctx, code).Execute()
 
 Find currency by code
 
@@ -39,7 +39,7 @@ func main() {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrencyFindByCode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
-    // response from `V1CurrencyFindByCode`: CurrencyOut
+    // response from `V1CurrencyFindByCode`: ResponseCurrencyOut
     fmt.Fprintf(os.Stdout, "Response from `CurrencyApi.V1CurrencyFindByCode`: %v\n", resp)
 }
 ```
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CurrencyOut**](CurrencyOut.md)
+[**ResponseCurrencyOut**](ResponseCurrencyOut.md)
 
 ### Authorization
 

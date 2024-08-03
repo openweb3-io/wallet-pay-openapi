@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]CurrencyOut**](CurrencyOut.md) |  | [optional] 
+**Items** | [**[]CurrencyOut**](CurrencyOut.md) |  | 
 **Total** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
 ### NewListResponseCurrencyOut
 
-`func NewListResponseCurrencyOut() *ListResponseCurrencyOut`
+`func NewListResponseCurrencyOut(items []CurrencyOut, ) *ListResponseCurrencyOut`
 
 NewListResponseCurrencyOut instantiates a new ListResponseCurrencyOut object
 This constructor will assign default values to properties that have it defined,
@@ -45,11 +45,6 @@ and a boolean to check if the value has been set.
 
 SetItems sets Items field to given value.
 
-### HasItems
-
-`func (o *ListResponseCurrencyOut) HasItems() bool`
-
-HasItems returns a boolean if a field has been set.
 
 ### GetTotal
 

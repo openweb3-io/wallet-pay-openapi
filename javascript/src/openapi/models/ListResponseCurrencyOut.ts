@@ -14,7 +14,7 @@ import { CurrencyOut } from './CurrencyOut';
 import { HttpFile } from '../http/http';
 
 export class ListResponseCurrencyOut {
-    'items'?: Array<CurrencyOut>;
+    'items': Array<CurrencyOut>;
     'total'?: number;
 
     static readonly discriminator: string | undefined = undefined;

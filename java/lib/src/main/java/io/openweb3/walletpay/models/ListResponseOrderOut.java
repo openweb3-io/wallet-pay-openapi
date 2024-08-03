@@ -30,11 +30,11 @@ import java.util.List;
 /**
  * ListResponseOrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T21:59:07.547948+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-03T19:03:21.294682+08:00[Asia/Shanghai]")
 public class ListResponseOrderOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<OrderOut> items = null;
+  private List<OrderOut> items = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
@@ -48,9 +48,6 @@ public class ListResponseOrderOut {
   }
 
   public ListResponseOrderOut addItemsItem(OrderOut itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -59,8 +56,7 @@ public class ListResponseOrderOut {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public List<OrderOut> getItems() {
     return items;

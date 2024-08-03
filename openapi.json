@@ -96,7 +96,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -106,7 +106,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -116,7 +116,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -126,7 +126,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -136,11 +136,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "List currencies",
@@ -172,7 +182,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CurrencyOut"
+                                    "$ref": "#/components/schemas/ResponseCurrencyOut"
                                 }
                             }
                         },
@@ -182,7 +192,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/CurrencyOut"
+                                    "$ref": "#/components/schemas/ResponseCurrencyOut"
                                 }
                             }
                         },
@@ -192,7 +202,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -202,7 +212,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -212,7 +222,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -222,7 +232,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -232,11 +242,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "Find currency by code",
@@ -328,7 +348,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -338,7 +358,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -348,7 +368,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -358,7 +378,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -368,11 +388,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "List Orders",
@@ -432,7 +462,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -442,7 +472,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -452,7 +482,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -462,7 +492,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -472,7 +502,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -482,7 +512,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -533,7 +563,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrderOut"
+                                    "$ref": "#/components/schemas/ResponseOrderOut"
                                 }
                             }
                         },
@@ -543,7 +573,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/OrderOut"
+                                    "$ref": "#/components/schemas/ResponseOrderOut"
                                 }
                             }
                         },
@@ -553,7 +583,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -563,7 +593,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -573,7 +603,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -583,7 +613,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -593,11 +623,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "Get order",
@@ -662,7 +702,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -672,7 +712,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -682,7 +722,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -692,7 +732,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -702,7 +742,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -732,7 +772,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -742,7 +782,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -752,7 +792,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -762,7 +802,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -772,7 +812,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -782,7 +822,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -792,7 +832,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -802,11 +842,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "Create endpoint",
@@ -841,7 +891,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -851,7 +901,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -861,7 +911,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -871,7 +921,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -881,7 +931,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -891,7 +941,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -901,11 +951,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "Delete endpoint",
@@ -935,7 +995,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -945,7 +1005,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/EndpointOut"
+                                    "$ref": "#/components/schemas/ResponseEndpointOut"
                                 }
                             }
                         },
@@ -955,7 +1015,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -965,7 +1025,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -975,7 +1035,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -985,7 +1045,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
@@ -995,11 +1055,21 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/HttpErrorOut"
+                                    "$ref": "#/components/schemas/ResponseError"
                                 }
                             }
                         },
                         "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
                     }
                 },
                 "summary": "Delete endpoint",
@@ -1011,20 +1081,20 @@
     },
     "components": {
         "schemas": {
-            "HttpErrorOut": {
+            "ResponseError": {
                 "properties": {
                     "msg": {
                         "type": "string"
                     },
                     "code": {
-                        "type": "integer",
-                        "nullable": true
+                        "type": "integer"
                     }
                 },
                 "required": [
+                    "code",
                     "msg"
                 ],
-                "title": "HttpError",
+                "title": "ResponseError",
                 "type": "object"
             },
             "Ordering": {
@@ -1041,7 +1111,7 @@
                     "event_type": {
                         "description": "Message event type",
                         "type": "string",
-                        "example": "order.paid",
+                        "example": "order_paid",
                         "maxLength": 256,
                         "minLength": 1
                     },
@@ -1049,6 +1119,19 @@
                         "$ref": "#/components/schemas/OrderOut"
                     }
                 }
+            },
+            "ResponseCurrencyOut": {
+                "properties":{
+                    "data": {
+                        "description": "The currency info data",
+                        "$ref": "#/components/schemas/CurrencyOut"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseCurrencyOut",
+                "type": "object"
             },
             "CurrencyOut": {
                 "properties": {
@@ -1157,7 +1240,7 @@
                     }
                 },
                 "required": [
-                    "data"
+                    "items"
                 ],
                 "type": "object"
             },
@@ -1326,8 +1409,21 @@
                     }
                 },
                 "required": [
+                    "items"
+                ],
+                "type": "object"
+            },
+            "ResponseOrderOut": {
+                "properties":{
+                    "data": {
+                        "description": "The order info data",
+                        "$ref": "#/components/schemas/OrderOut"
+                    }
+                },
+                "required": [
                     "data"
                 ],
+                "title": "ResponseOrderOut",
                 "type": "object"
             },
             "EndpointIn": {
@@ -1473,8 +1569,21 @@
                     }
                 },
                 "required": [
+                    "items"
+                ],
+                "type": "object"
+            },
+            "ResponseEndpointOut": {
+                "properties":{
+                    "data": {
+                        "description": "The webhook endpoint info data",
+                        "$ref": "#/components/schemas/EndpointOut"
+                    }
+                },
+                "required": [
                     "data"
                 ],
+                "title": "ResponseEndpointOut",
                 "type": "object"
             }
         },

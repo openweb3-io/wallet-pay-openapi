@@ -16,7 +16,7 @@ import (
 
 // ListResponseCurrencyOut struct for ListResponseCurrencyOut
 type ListResponseCurrencyOut struct {
-	Items *[]CurrencyOut `json:"items,omitempty"`
+	Items []CurrencyOut `json:"items"`
 	Total *int32 `json:"total,omitempty"`
 }
 
@@ -24,8 +24,9 @@ type ListResponseCurrencyOut struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListResponseCurrencyOut() *ListResponseCurrencyOut {
+func NewListResponseCurrencyOut(items []CurrencyOut) *ListResponseCurrencyOut {
 	this := ListResponseCurrencyOut{}
+	this.Items = items
 	return &this
 }
 
@@ -37,36 +38,28 @@ func NewListResponseCurrencyOutWithDefaults() *ListResponseCurrencyOut {
 	return &this
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
+// GetItems returns the Items field value
 func (o *ListResponseCurrencyOut) GetItems() []CurrencyOut {
-	if o == nil || o.Items == nil {
+	if o == nil {
 		var ret []CurrencyOut
 		return ret
 	}
-	return *o.Items
+
+	return o.Items
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetItemsOk returns a tuple with the Items field value
 // and a boolean to check if the value has been set.
 func (o *ListResponseCurrencyOut) GetItemsOk() (*[]CurrencyOut, bool) {
-	if o == nil || o.Items == nil {
+	if o == nil  {
 		return nil, false
 	}
-	return o.Items, true
+	return &o.Items, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *ListResponseCurrencyOut) HasItems() bool {
-	if o != nil && o.Items != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetItems gets a reference to the given []CurrencyOut and assigns it to the Items field.
+// SetItems sets field value
 func (o *ListResponseCurrencyOut) SetItems(v []CurrencyOut) {
-	o.Items = &v
+	o.Items = v
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise.
@@ -103,7 +96,7 @@ func (o *ListResponseCurrencyOut) SetTotal(v int32) {
 
 func (o ListResponseCurrencyOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Items != nil {
+	if true {
 		toSerialize["items"] = o.Items
 	}
 	if o.Total != nil {

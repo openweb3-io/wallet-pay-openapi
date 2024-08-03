@@ -30,11 +30,11 @@ import java.util.List;
 /**
  * ListResponseEndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T21:59:07.547948+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-03T19:03:21.294682+08:00[Asia/Shanghai]")
 public class ListResponseEndpointOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<EndpointOut> items = null;
+  private List<EndpointOut> items = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PREV_CURSOR = "prev_cursor";
   @SerializedName(SERIALIZED_NAME_PREV_CURSOR)
@@ -52,9 +52,6 @@ public class ListResponseEndpointOut {
   }
 
   public ListResponseEndpointOut addItemsItem(EndpointOut itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
     this.items.add(itemsItem);
     return this;
   }
@@ -63,8 +60,7 @@ public class ListResponseEndpointOut {
    * Get items
    * @return items
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
   public List<EndpointOut> getItems() {
     return items;

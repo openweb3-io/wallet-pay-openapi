@@ -5,13 +5,16 @@ import { Configuration} from '../configuration'
 import { CurrencyOut } from '../models/CurrencyOut';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
-import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
+import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
+import { ResponseError } from '../models/ResponseError';
+import { ResponseOrderOut } from '../models/ResponseOrderOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
 import { ObservableCurrencyApi } from "./ObservableAPI";
@@ -59,7 +62,7 @@ export class ObjectCurrencyApi {
      * Find currency by code
      * @param param the request object
      */
-    public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<CurrencyOut> {
+    public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<ResponseCurrencyOut> {
         return this.api.v1CurrencyFindByCode(param.code,  options).toPromise();
     }
 
@@ -161,7 +164,7 @@ export class ObjectOrderApi {
      * Get order
      * @param param the request object
      */
-    public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<OrderOut> {
+    public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<ResponseOrderOut> {
         return this.api.v1OrderGet(param.appId, param.idOrUid,  options).toPromise();
     }
 
@@ -239,7 +242,7 @@ export class ObjectWebhookEndpointApi {
      * Create endpoint
      * @param param the request object
      */
-    public v1EndpointCreate(param: WebhookEndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointCreate(param: WebhookEndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<ResponseEndpointOut> {
         return this.api.v1EndpointCreate(param.endpointIn,  options).toPromise();
     }
 
@@ -248,7 +251,7 @@ export class ObjectWebhookEndpointApi {
      * Delete endpoint
      * @param param the request object
      */
-    public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<ResponseEndpointOut> {
         return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
     }
 
@@ -257,7 +260,7 @@ export class ObjectWebhookEndpointApi {
      * Delete endpoint
      * @param param the request object
      */
-    public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<EndpointOut> {
+    public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<ResponseEndpointOut> {
         return this.api.v1EndpointGet(param.endpointId,  options).toPromise();
     }
 

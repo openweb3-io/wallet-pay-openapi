@@ -143,7 +143,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -153,7 +153,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -163,7 +163,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -173,7 +173,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -183,7 +183,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -193,7 +193,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Order
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -224,7 +224,7 @@ type ApiV1OrderGetRequest struct {
 }
 
 
-func (r ApiV1OrderGetRequest) Execute() (OrderOut, *_nethttp.Response, error) {
+func (r ApiV1OrderGetRequest) Execute() (ResponseOrderOut, *_nethttp.Response, error) {
 	return r.ApiService.V1OrderGetExecute(r)
 }
 
@@ -247,16 +247,16 @@ func (a *OrderApiService) V1OrderGet(ctx _context.Context, appId string, idOrUid
 
 /*
  * Execute executes the request
- * @return OrderOut
+ * @return ResponseOrderOut
  */
-func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *_nethttp.Response, error) {
+func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (ResponseOrderOut, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  OrderOut
+		localVarReturnValue  ResponseOrderOut
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrderApiService.V1OrderGet")
@@ -326,7 +326,7 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -336,7 +336,7 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -346,7 +346,7 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -356,7 +356,7 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -366,7 +366,17 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (OrderOut, *
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -527,7 +537,7 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListRespo
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -537,7 +547,7 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -547,7 +557,7 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -557,7 +567,7 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
-			var v HttpErrorOut
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
@@ -567,7 +577,17 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ListRespo
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
-			var v HttpErrorOut
+			var v ResponseError
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ResponseError
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()

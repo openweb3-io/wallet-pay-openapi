@@ -57,32 +57,38 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: List currencies
       tags:
       - Currency
@@ -107,42 +113,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurrencyOut'
+                $ref: '#/components/schemas/ResponseCurrencyOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurrencyOut'
+                $ref: '#/components/schemas/ResponseCurrencyOut'
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: Find currency by code
       tags:
       - Currency
@@ -219,32 +231,38 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: List Orders
       tags:
       - Order
@@ -286,37 +304,37 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Bad request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
       summary: Create Order
       tags:
@@ -355,42 +373,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/ResponseOrderOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/OrderOut'
+                $ref: '#/components/schemas/ResponseOrderOut'
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: Get order
       tags:
       - Order
@@ -440,31 +464,31 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
       summary: List endpoints
       tags:
@@ -484,48 +508,54 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Bad request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: Create endpoint
       tags:
       - Webhook Endpoint
@@ -553,42 +583,48 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: Delete endpoint
       tags:
       - Webhook Endpoint
@@ -612,58 +648,64 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "201":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EndpointOut'
+                $ref: '#/components/schemas/ResponseEndpointOut'
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Unauthorized
         "403":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Not Found
         "409":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Conflict
         "429":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HttpErrorOut'
+                $ref: '#/components/schemas/ResponseError'
           description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
       summary: Delete endpoint
       tags:
       - Webhook Endpoint
       x-accepts: application/json
 components:
   schemas:
-    HttpErrorOut:
+    ResponseError:
       properties:
         msg:
           type: string
         code:
-          nullable: true
           type: integer
       required:
+      - code
       - msg
-      title: HttpError
+      title: ResponseError
       type: object
     Ordering:
       description: Defines the ordering in a listing of results.
@@ -676,12 +718,34 @@ components:
       properties:
         event_type:
           description: Message event type
-          example: order.paid
+          example: order_paid
           maxLength: 256
           minLength: 1
           type: string
         payload:
           $ref: '#/components/schemas/OrderOut'
+    ResponseCurrencyOut:
+      example:
+        data:
+          max_withdraw_amount: "0.0012345"
+          symbol: http://symbol.jpg
+          code: USDT
+          precision: 6
+          decimals: 12
+          name: http://logo.jpg
+          logo: http://logo.jpg
+          can_withdraw: false
+          can_deposit: false
+          can_transfer: false
+          min_deposit_amount: "0.0012345"
+          min_withdraw_amount: "0.0012345"
+      properties:
+        data:
+          $ref: '#/components/schemas/CurrencyOut'
+      required:
+      - data
+      title: ResponseCurrencyOut
+      type: object
     CurrencyOut:
       example:
         max_withdraw_amount: "0.0012345"
@@ -809,7 +873,7 @@ components:
         total:
           type: integer
       required:
-      - data
+      - items
       type: object
     OrderIn:
       example:
@@ -1016,7 +1080,33 @@ components:
         total:
           type: integer
       required:
+      - items
+      type: object
+    ResponseOrderOut:
+      example:
+        data:
+          note: note example
+          amount: "1"
+          metadata:
+            key: metadata
+          created_at: 2000-01-23T04:56:07.000+00:00
+          expired_at: 2000-01-23T04:56:07.000+00:00
+          failed_message: failed_message
+          uid: unique-order-identifier
+          wallet_id: wallet_id
+          payed_at: 2000-01-23T04:56:07.000+00:00
+          user_id: user_id
+          currency: USDT
+          expiration: 600
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          status: PENDING
+      properties:
+        data:
+          $ref: '#/components/schemas/OrderOut'
+      required:
       - data
+      title: ResponseOrderOut
       type: object
     EndpointIn:
       example:
@@ -1176,7 +1266,28 @@ components:
         next_cursor:
           type: string
       required:
+      - items
+      type: object
+    ResponseEndpointOut:
+      example:
+        data:
+          headers:
+            x-user-id: user1
+            x-org-id: org_xdwfeees1xfeg
+          metadata:
+            node: http://dashboard.com/node1
+            tag: node
+          description: The description for endpoint
+          filter_types:
+          - tx.created
+          disabled: false
+          url: http://example.com/endpoint
+      properties:
+        data:
+          $ref: '#/components/schemas/EndpointOut'
+      required:
       - data
+      title: ResponseEndpointOut
       type: object
   securitySchemes:
     ApiKeyAuth:

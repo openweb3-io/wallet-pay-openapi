@@ -13,7 +13,7 @@
 
 package io.openweb3.walletpay.internal;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-02T21:59:07.547948+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-03T19:03:21.294682+08:00[Asia/Shanghai]")
 public class Pair {
     private String name = "";
     private String value = "";

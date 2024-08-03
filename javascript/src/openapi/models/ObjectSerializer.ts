@@ -1,25 +1,31 @@
 export * from './CurrencyOut';
 export * from './EndpointIn';
 export * from './EndpointOut';
-export * from './HttpErrorOut';
 export * from './ListResponseCurrencyOut';
 export * from './ListResponseEndpointOut';
 export * from './ListResponseOrderOut';
 export * from './OrderIn';
 export * from './OrderOut';
 export * from './Ordering';
+export * from './ResponseCurrencyOut';
+export * from './ResponseEndpointOut';
+export * from './ResponseError';
+export * from './ResponseOrderOut';
 export * from './WebhookMessage';
 
 import { CurrencyOut } from './CurrencyOut';
 import { EndpointIn } from './EndpointIn';
 import { EndpointOut } from './EndpointOut';
-import { HttpErrorOut } from './HttpErrorOut';
 import { ListResponseCurrencyOut } from './ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
 import { Ordering } from './Ordering';
+import { ResponseCurrencyOut } from './ResponseCurrencyOut';
+import { ResponseEndpointOut } from './ResponseEndpointOut';
+import { ResponseError } from './ResponseError';
+import { ResponseOrderOut } from './ResponseOrderOut';
 import { WebhookMessage } from './WebhookMessage';
 
 /* tslint:disable:no-unused-variable */
@@ -49,12 +55,15 @@ let typeMap: {[index: string]: any} = {
     "CurrencyOut": CurrencyOut,
     "EndpointIn": EndpointIn,
     "EndpointOut": EndpointOut,
-    "HttpErrorOut": HttpErrorOut,
     "ListResponseCurrencyOut": ListResponseCurrencyOut,
     "ListResponseEndpointOut": ListResponseEndpointOut,
     "ListResponseOrderOut": ListResponseOrderOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,
+    "ResponseCurrencyOut": ResponseCurrencyOut,
+    "ResponseEndpointOut": ResponseEndpointOut,
+    "ResponseError": ResponseError,
+    "ResponseOrderOut": ResponseOrderOut,
     "WebhookMessage": WebhookMessage,
 }
 

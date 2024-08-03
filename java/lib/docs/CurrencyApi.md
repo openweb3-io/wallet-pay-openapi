@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="v1CurrencyFindByCode"></a>
 # **v1CurrencyFindByCode**
-> CurrencyOut v1CurrencyFindByCode(code)
+> ResponseCurrencyOut v1CurrencyFindByCode(code)
 
 Find currency by code
 
@@ -40,7 +40,7 @@ public class Example {
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String code = "USDT"; // String | Specified currency code.
     try {
-      CurrencyOut result = apiInstance.v1CurrencyFindByCode(code);
+      ResponseCurrencyOut result = apiInstance.v1CurrencyFindByCode(code);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#v1CurrencyFindByCode");
@@ -61,7 +61,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CurrencyOut**](CurrencyOut.md)
+[**ResponseCurrencyOut**](ResponseCurrencyOut.md)
 
 ### Authorization
 
@@ -82,6 +82,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 
 <a name="v1CurrencyList"></a>
 # **v1CurrencyList**
@@ -160,4 +161,5 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Too Many Requests |  -  |
+**500** | Internal Server Error |  -  |
 

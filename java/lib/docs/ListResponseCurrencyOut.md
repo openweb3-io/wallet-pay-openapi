@@ -7,7 +7,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**List&lt;CurrencyOut&gt;**](CurrencyOut.md) |  |  [optional]
+**items** | [**List&lt;CurrencyOut&gt;**](CurrencyOut.md) |  | 
 **total** | **Integer** |  |  [optional]
 
 

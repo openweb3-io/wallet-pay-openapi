@@ -6,10 +6,11 @@ import {ObjectSerializer} from '../models/ObjectSerializer';
 import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
-import { HttpErrorOut } from '../models/HttpErrorOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
+import { ResponseError } from '../models/ResponseError';
+import { ResponseOrderOut } from '../models/ResponseOrderOut';
 
 /**
  * no description
@@ -218,46 +219,46 @@ export class OrderApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("400", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(400, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(400, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(401, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(401, body);
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(403, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(403, body);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(404, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(404, body);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(409, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(409, body);
         }
         if (isCodeInRange("429", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(429, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(429, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
@@ -280,65 +281,72 @@ export class OrderApiResponseProcessor {
      * @params response Response returned by the server for a request to v1OrderGet
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async v1OrderGet(response: ResponseContext): Promise<OrderOut > {
+     public async v1OrderGet(response: ResponseContext): Promise<ResponseOrderOut > {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
 
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(401, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(401, body);
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(403, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(403, body);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(404, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(404, body);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(409, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(409, body);
         }
         if (isCodeInRange("429", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(429, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(429, body);
+        }
+        if (isCodeInRange("500", response.httpStatusCode)) {
+            const body: ResponseError = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(500, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: OrderOut = ObjectSerializer.deserialize(
+            const body: ResponseOrderOut = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "OrderOut", ""
-            ) as OrderOut;
+                "ResponseOrderOut", ""
+            ) as ResponseOrderOut;
             return body;
         }
 
@@ -364,39 +372,46 @@ export class OrderApiResponseProcessor {
             return body;
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(401, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(401, body);
         }
         if (isCodeInRange("403", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(403, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(403, body);
         }
         if (isCodeInRange("404", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(404, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(404, body);
         }
         if (isCodeInRange("409", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(409, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(409, body);
         }
         if (isCodeInRange("429", response.httpStatusCode)) {
-            const body: HttpErrorOut = ObjectSerializer.deserialize(
+            const body: ResponseError = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "HttpErrorOut", ""
-            ) as HttpErrorOut;
-            throw new ApiException<HttpErrorOut>(429, body);
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(429, body);
+        }
+        if (isCodeInRange("500", response.httpStatusCode)) {
+            const body: ResponseError = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ResponseError", ""
+            ) as ResponseError;
+            throw new ApiException<ResponseError>(500, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml

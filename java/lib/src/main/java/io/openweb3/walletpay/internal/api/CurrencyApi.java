@@ -27,9 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.openweb3.walletpay.models.CurrencyOut;
-import io.openweb3.walletpay.models.HttpErrorOut;
 import io.openweb3.walletpay.models.ListResponseCurrencyOut;
+import io.openweb3.walletpay.models.ResponseCurrencyOut;
+import io.openweb3.walletpay.models.ResponseError;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -72,6 +72,7 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1CurrencyFindByCodeCall(String code, final ApiCallback _callback) throws ApiException {
@@ -123,7 +124,7 @@ public class CurrencyApi {
      * Find currency by code
      * Get specified currency.
      * @param code Specified currency code. (required)
-     * @return CurrencyOut
+     * @return ResponseCurrencyOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -135,10 +136,11 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public CurrencyOut v1CurrencyFindByCode(String code) throws ApiException {
-        ApiResponse<CurrencyOut> localVarResp = v1CurrencyFindByCodeWithHttpInfo(code);
+    public ResponseCurrencyOut v1CurrencyFindByCode(String code) throws ApiException {
+        ApiResponse<ResponseCurrencyOut> localVarResp = v1CurrencyFindByCodeWithHttpInfo(code);
         return localVarResp.getData();
     }
 
@@ -146,7 +148,7 @@ public class CurrencyApi {
      * Find currency by code
      * Get specified currency.
      * @param code Specified currency code. (required)
-     * @return ApiResponse&lt;CurrencyOut&gt;
+     * @return ApiResponse&lt;ResponseCurrencyOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -158,11 +160,12 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CurrencyOut> v1CurrencyFindByCodeWithHttpInfo(String code) throws ApiException {
+    public ApiResponse<ResponseCurrencyOut> v1CurrencyFindByCodeWithHttpInfo(String code) throws ApiException {
         okhttp3.Call localVarCall = v1CurrencyFindByCodeValidateBeforeCall(code, null);
-        Type localVarReturnType = new TypeToken<CurrencyOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseCurrencyOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -183,12 +186,13 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrencyFindByCodeAsync(String code, final ApiCallback<CurrencyOut> _callback) throws ApiException {
+    public okhttp3.Call v1CurrencyFindByCodeAsync(String code, final ApiCallback<ResponseCurrencyOut> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1CurrencyFindByCodeValidateBeforeCall(code, _callback);
-        Type localVarReturnType = new TypeToken<CurrencyOut>(){}.getType();
+        Type localVarReturnType = new TypeToken<ResponseCurrencyOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -209,6 +213,7 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1CurrencyListCall(String appId, Integer size, Integer page, final ApiCallback _callback) throws ApiException {
@@ -279,6 +284,7 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public ListResponseCurrencyOut v1CurrencyList(String appId, Integer size, Integer page) throws ApiException {
@@ -303,6 +309,7 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public ApiResponse<ListResponseCurrencyOut> v1CurrencyListWithHttpInfo(String appId, Integer size, Integer page) throws ApiException {
@@ -329,6 +336,7 @@ public class CurrencyApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 409 </td><td> Conflict </td><td>  -  </td></tr>
         <tr><td> 429 </td><td> Too Many Requests </td><td>  -  </td></tr>
+        <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
     public okhttp3.Call v1CurrencyListAsync(String appId, Integer size, Integer page, final ApiCallback<ListResponseCurrencyOut> _callback) throws ApiException {
