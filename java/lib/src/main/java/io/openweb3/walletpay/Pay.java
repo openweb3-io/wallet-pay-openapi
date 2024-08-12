@@ -29,8 +29,7 @@ public final class Pay {
 		this(apikey, privateKeyPath, new PayOptions());
 	}
 
-	public Pay(final String apikey, final String privateKeyPath, final PayOptions options) throws Exception {
-		final String privateKeyStr = Utils.getStringFromFile(privateKeyPath);
+	public Pay(final String apikey, final String privateKey, final PayOptions options) throws Exception {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(getProgressInterceptor());
 		builder.addInterceptor(new Interceptor() {
@@ -51,12 +50,13 @@ public final class Pay {
 				}
 				String body = originalRequest.body() == null ? "" : originalRequest.body().toString();
 				// 计算请求的 SHA-256 签名
-                String signature = null;
-                try {
-                    signature = calculateSignature(privateKeyPath, body, uri, timestamp);
-                } catch (SigningException e) {
-                    throw new RuntimeException(e);
-                }
+				String signature = null;
+				try {
+					String content = String.format("%s%s%s", body, uri, timestamp);
+					signature = Utils.calculateSignature(privateKey, content);
+				} catch (SigningException e) {
+					throw new RuntimeException(e);
+				}
                 if (signature != null) {
 					// 将签名添加到请求头
 					builder.header("x-signature", signature);
@@ -98,34 +98,6 @@ public final class Pay {
 			}
 		};
 	}
-
-    private static String calculateSignature(final String privateKeyPath, final String body, final String uri, final String timestamp) throws SigningException {
-		try {
-			String content = String.format("%s%s%s", body, uri, timestamp);
-			Signature sign = Signature.getInstance("SHA256withRSA");
-
-			String stripPrivateKey = Utils.getStringFromFile(privateKeyPath);
-			// 开头行和结束行，以及所有换行字符
-			stripPrivateKey = stripPrivateKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", ""); 
-
-			Base64.Decoder decoder = Base64.getDecoder();
-			PKCS8EncodedKeySpec ks = new PKCS8EncodedKeySpec(decoder.decode(stripPrivateKey));
-			KeyFactory kf = KeyFactory.getInstance("RSA");
-			RSAPrivateKey pvt = (RSAPrivateKey)kf.generatePrivate(ks);
-
-			sign.initSign(pvt);
-			sign.update(content.getBytes(StandardCharsets.UTF_8));
-			return Base64.getEncoder().encodeToString(sign.sign()).replace("[\n\r]", "");
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-			return null;
-		} catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
-            throw new SigningException(e.getMessage());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
 	public Order getOrder() {
 		return order;
