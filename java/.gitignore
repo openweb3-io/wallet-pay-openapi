@@ -33,3 +33,6 @@ bin/
 .idea/
 
 *.pem
+
+examples
+.DS_Store
