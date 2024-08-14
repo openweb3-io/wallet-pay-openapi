@@ -204,10 +204,11 @@ export class ObservableWebhookEndpointApi {
     /**
      * Create a webhook endpoint.
      * Create endpoint
+     * @param appId Specified the app id.
      * @param endpointIn 
      */
-    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
+    public v1EndpointCreate(appId: string, endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointCreate(appId, endpointIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -228,10 +229,11 @@ export class ObservableWebhookEndpointApi {
     /**
      * delete the specified webhook endpoint.
      * Delete endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id.
      */
-    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
+    public v1EndpointDelete(appId: string, endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointDelete(appId, endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -252,10 +254,11 @@ export class ObservableWebhookEndpointApi {
     /**
      * get the specified webhook endpoint.
      * Delete endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id or endpoint uid.
      */
-    public v1EndpointGet(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointGet(endpointId, _options);
+    public v1EndpointGet(appId: string, endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointGet(appId, endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -276,12 +279,13 @@ export class ObservableWebhookEndpointApi {
     /**
      * List endpoints.
      * List endpoints
+     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, ordering, _options);
+    public v1EndpointList(appId: string, limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointList(appId, limit, cursor, ordering, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

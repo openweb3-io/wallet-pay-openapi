@@ -20,10 +20,17 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a webhook endpoint.
      * Create endpoint
+     * @param appId Specified the app id.
      * @param endpointIn 
      */
-    public async v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointCreate(appId: string, endpointIn: EndpointIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1EndpointCreate.');
+        }
+
 
         // verify required parameter 'endpointIn' is not null or undefined
         if (endpointIn === null || endpointIn === undefined) {
@@ -32,7 +39,8 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/endpoints';
+        const localVarPath = '/api/v1/apps/{appId}/webhooks/endpoints'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -71,10 +79,17 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * delete the specified webhook endpoint.
      * Delete endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id.
      */
-    public async v1EndpointDelete(endpointId: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointDelete(appId: string, endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1EndpointDelete.');
+        }
+
 
         // verify required parameter 'endpointId' is not null or undefined
         if (endpointId === null || endpointId === undefined) {
@@ -83,7 +98,8 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/endpoints/{endpointId}'
+        const localVarPath = '/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
@@ -114,10 +130,17 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * get the specified webhook endpoint.
      * Delete endpoint
+     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id or endpoint uid.
      */
-    public async v1EndpointGet(endpointId: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointGet(appId: string, endpointId: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1EndpointGet.');
+        }
+
 
         // verify required parameter 'endpointId' is not null or undefined
         if (endpointId === null || endpointId === undefined) {
@@ -126,7 +149,8 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/endpoints/{endpointId}'
+        const localVarPath = '/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
             .replace('{' + 'endpointId' + '}', encodeURIComponent(String(endpointId)));
 
         // Make Request Context
@@ -157,18 +181,26 @@ export class WebhookEndpointApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * List endpoints.
      * List endpoints
+     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      * @param ordering The sorting order of the returned items
      */
-    public async v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<RequestContext> {
+    public async v1EndpointList(appId: string, limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'appId' is not null or undefined
+        if (appId === null || appId === undefined) {
+            throw new RequiredError('Required parameter appId was null or undefined when calling v1EndpointList.');
+        }
+
 
 
 
 
         // Path Params
-        const localVarPath = '/api/v1/webhooks/endpoints';
+        const localVarPath = '/api/v1/apps/{appId}/webhooks/endpoints'
+            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

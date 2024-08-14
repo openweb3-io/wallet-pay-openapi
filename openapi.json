@@ -656,11 +656,23 @@
                 ]
             }
         },
-        "/api/v1/webhooks/endpoints" : {
+        "/api/v1/apps/{appId}/webhooks/endpoints" : {
             "get": {
                 "description": "List endpoints.",
                 "operationId": "v1.endpoint.list",
                 "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -767,6 +779,20 @@
             "post": {
                 "description": "Create a webhook endpoint.",
                 "operationId": "v1.endpoint.create",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -878,11 +904,23 @@
                 }
             }
         },
-        "/api/v1/webhooks/endpoints/{endpointId}": {          
+        "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}": {          
             "delete": {
                 "description": "delete the specified webhook endpoint.",
                 "operationId": "v1.endpoint.delete",
                 "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
                     {
                         "description": "Specified the endpoint id.",
                         "in": "path",
@@ -987,6 +1025,18 @@
                 "description": "get the specified webhook endpoint.",
                 "operationId": "v1.endpoint.get",
                 "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
                     {
                         "description": "Specified the endpoint id or endpoint uid.",
                         "in": "path",
@@ -1495,7 +1545,6 @@
                     },
                     "metadata": {
                         "additionalProperties": {
-                            "type": "string"
                         },
                         "default": {},
                         "type": "object",
@@ -1560,7 +1609,6 @@
                     },
                     "metadata": {
                         "additionalProperties": {
-                            "type": "string"
                         },
                         "default": {},
                         "type": "object",

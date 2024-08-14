@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **url** | **String** | The webhook endpoint url | 
 **filterTypes** | **List&lt;String&gt;** | The webhook endpoint expected event types | 
 **disabled** | **Boolean** | indicate whether to disable the webhook endpoint |  [optional]
-**metadata** | **Map&lt;String, String&gt;** | Optional metadata |  [optional]
+**metadata** | **Map&lt;String, Object&gt;** | Optional metadata |  [optional]
 **headers** | **Map&lt;String, String&gt;** | Optional headers |  [optional]
 
 

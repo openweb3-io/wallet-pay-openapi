@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * ListResponseOrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-04T01:14:37.275895+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-14T22:03:52.263656+08:00[Asia/Shanghai]")
 public class ListResponseOrderOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)

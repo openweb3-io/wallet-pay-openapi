@@ -46,8 +46,9 @@ public class WebhookEndpointApiTest {
      */
     @Test
     public void v1EndpointCreateTest() throws ApiException {
+        String appId = null;
         EndpointIn endpointIn = null;
-        ResponseEndpointOut response = api.v1EndpointCreate(endpointIn);
+        ResponseEndpointOut response = api.v1EndpointCreate(appId, endpointIn);
 
         // TODO: test validations
     }
@@ -62,8 +63,9 @@ public class WebhookEndpointApiTest {
      */
     @Test
     public void v1EndpointDeleteTest() throws ApiException {
+        String appId = null;
         String endpointId = null;
-        ResponseEndpointOut response = api.v1EndpointDelete(endpointId);
+        ResponseEndpointOut response = api.v1EndpointDelete(appId, endpointId);
 
         // TODO: test validations
     }
@@ -78,8 +80,9 @@ public class WebhookEndpointApiTest {
      */
     @Test
     public void v1EndpointGetTest() throws ApiException {
+        String appId = null;
         String endpointId = null;
-        ResponseEndpointOut response = api.v1EndpointGet(endpointId);
+        ResponseEndpointOut response = api.v1EndpointGet(appId, endpointId);
 
         // TODO: test validations
     }
@@ -94,10 +97,11 @@ public class WebhookEndpointApiTest {
      */
     @Test
     public void v1EndpointListTest() throws ApiException {
+        String appId = null;
         Integer limit = null;
         String cursor = null;
         Ordering ordering = null;
-        ResponseListEndpointOut response = api.v1EndpointList(limit, cursor, ordering);
+        ResponseListEndpointOut response = api.v1EndpointList(appId, limit, cursor, ordering);
 
         // TODO: test validations
     }

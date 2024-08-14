@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { AnyType } from './AnyType';
 import { HttpFile } from '../http/http';
 
 export class EndpointOut {
@@ -32,7 +33,7 @@ export class EndpointOut {
     /**
     * Optional metadata
     */
-    'metadata'?: { [key: string]: string; };
+    'metadata'?: { [key: string]: AnyType; };
     /**
     * Optional headers
     */
@@ -68,7 +69,7 @@ export class EndpointOut {
         {
             "name": "metadata",
             "baseName": "metadata",
-            "type": "{ [key: string]: string; }",
+            "type": "{ [key: string]: AnyType; }",
             "format": ""
         },
         {

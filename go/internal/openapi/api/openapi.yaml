@@ -419,11 +419,21 @@ paths:
       summary: Get order
       tags:
       - Order
-  /api/v1/webhooks/endpoints:
+  /api/v1/apps/{appId}/webhooks/endpoints:
     get:
       description: List endpoints.
       operationId: v1.endpoint.list
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Limit the number of returned items
         explode: true
         in: query
@@ -496,6 +506,17 @@ paths:
     post:
       description: Create a webhook endpoint.
       operationId: v1.endpoint.create
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       requestBody:
         content:
           application/json:
@@ -560,11 +581,21 @@ paths:
       - Webhook Endpoint
       x-readme:
         code-samples: []
-  /api/v1/webhooks/endpoints/{endpointId}:
+  /api/v1/apps/{appId}/webhooks/endpoints/{endpointId}:
     delete:
       description: delete the specified webhook endpoint.
       operationId: v1.endpoint.delete
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified the endpoint id.
         explode: false
         in: path
@@ -629,6 +660,16 @@ paths:
       description: get the specified webhook endpoint.
       operationId: v1.endpoint.get
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified the endpoint id or endpoint uid.
         explode: false
         in: path
@@ -1222,8 +1263,7 @@ components:
           example: false
           type: boolean
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           default: {}
           description: Optional metadata
           example:
@@ -1283,8 +1323,7 @@ components:
           example: false
           type: boolean
         metadata:
-          additionalProperties:
-            type: string
+          additionalProperties: {}
           default: {}
           description: Optional metadata
           example:

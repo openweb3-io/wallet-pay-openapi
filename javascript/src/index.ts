@@ -163,16 +163,20 @@ class Endpoint {
     this.api = new WebhookEndpointApi(config);
   }
 
-  public async create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
-    return (await this.api.v1EndpointCreate({ endpointIn, ...options })).data;
+  public async create(appId:string, endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+    return (await this.api.v1EndpointCreate({ appId, endpointIn, ...options })).data;
   }
 
-  public async delete(endpointId: string): Promise<EndpointOut> {
-    return (await this.api.v1EndpointDelete({ endpointId })).data;
+  public async delete(appId: string, endpointId: string): Promise<EndpointOut> {
+    return (await this.api.v1EndpointDelete({ appId, endpointId })).data;
   }
 
-  public async list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
-    return (await this.api.v1EndpointList({ ...options })).data;
+  public async get(appId: string, endpointId: string): Promise<EndpointOut> {
+    return (await this.api.v1EndpointGet({ appId, endpointId })).data;
+  }
+
+  public async list(appId:string, options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
+    return (await this.api.v1EndpointList({ appId, ...options })).data;
   }
   
 }

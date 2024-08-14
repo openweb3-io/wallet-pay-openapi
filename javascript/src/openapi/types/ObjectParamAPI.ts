@@ -187,6 +187,12 @@ import { WebhookEndpointApiRequestFactory, WebhookEndpointApiResponseProcessor} 
 
 export interface WebhookEndpointApiV1EndpointCreateRequest {
     /**
+     * Specified the app id.
+     * @type string
+     * @memberof WebhookEndpointApiv1EndpointCreate
+     */
+    appId: string
+    /**
      * 
      * @type EndpointIn
      * @memberof WebhookEndpointApiv1EndpointCreate
@@ -195,6 +201,12 @@ export interface WebhookEndpointApiV1EndpointCreateRequest {
 }
 
 export interface WebhookEndpointApiV1EndpointDeleteRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof WebhookEndpointApiv1EndpointDelete
+     */
+    appId: string
     /**
      * Specified the endpoint id.
      * @type string
@@ -205,6 +217,12 @@ export interface WebhookEndpointApiV1EndpointDeleteRequest {
 
 export interface WebhookEndpointApiV1EndpointGetRequest {
     /**
+     * Specified the app id.
+     * @type string
+     * @memberof WebhookEndpointApiv1EndpointGet
+     */
+    appId: string
+    /**
      * Specified the endpoint id or endpoint uid.
      * @type string
      * @memberof WebhookEndpointApiv1EndpointGet
@@ -213,6 +231,12 @@ export interface WebhookEndpointApiV1EndpointGetRequest {
 }
 
 export interface WebhookEndpointApiV1EndpointListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof WebhookEndpointApiv1EndpointList
+     */
+    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -246,7 +270,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointCreate(param: WebhookEndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointCreate(param.endpointIn,  options).toPromise();
+        return this.api.v1EndpointCreate(param.appId, param.endpointIn,  options).toPromise();
     }
 
     /**
@@ -255,7 +279,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
+        return this.api.v1EndpointDelete(param.appId, param.endpointId,  options).toPromise();
     }
 
     /**
@@ -264,7 +288,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointGet(param.endpointId,  options).toPromise();
+        return this.api.v1EndpointGet(param.appId, param.endpointId,  options).toPromise();
     }
 
     /**
@@ -273,7 +297,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ResponseListEndpointOut> {
-        return this.api.v1EndpointList(param.limit, param.cursor, param.ordering,  options).toPromise();
+        return this.api.v1EndpointList(param.appId, param.limit, param.cursor, param.ordering,  options).toPromise();
     }
 
 }

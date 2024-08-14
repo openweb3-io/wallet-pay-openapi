@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-04T01:14:37.275895+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-14T22:03:52.263656+08:00[Asia/Shanghai]")
 public class EndpointOut {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
@@ -51,7 +51,7 @@ public class EndpointOut {
 
   public static final String SERIALIZED_NAME_METADATA = "metadata";
   @SerializedName(SERIALIZED_NAME_METADATA)
-  private Map<String, String> metadata = null;
+  private Map<String, Object> metadata = null;
 
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
@@ -153,13 +153,13 @@ public class EndpointOut {
   }
 
 
-  public EndpointOut metadata(Map<String, String> metadata) {
+  public EndpointOut metadata(Map<String, Object> metadata) {
     
     this.metadata = metadata;
     return this;
   }
 
-  public EndpointOut putMetadataItem(String key, String metadataItem) {
+  public EndpointOut putMetadataItem(String key, Object metadataItem) {
     if (this.metadata == null) {
       this.metadata = new HashMap<>();
     }
@@ -174,12 +174,12 @@ public class EndpointOut {
   @javax.annotation.Nullable
   @ApiModelProperty(example = "{\"node\":\"http://dashboard.com/node1\",\"tag\":\"node\"}", value = "Optional metadata")
 
-  public Map<String, String> getMetadata() {
+  public Map<String, Object> getMetadata() {
     return metadata;
   }
 
 
-  public void setMetadata(Map<String, String> metadata) {
+  public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
   }
 

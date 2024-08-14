@@ -29,8 +29,8 @@ type EndpointStatsOptions struct {
 	Until *time.Time
 }
 
-func (e *Endpoint) List(ctx context.Context, options *EndpointListOptions) (*ListResponseEndpointOut, error) {
-	req := e.api.WebhookEndpointApi.V1EndpointList(ctx)
+func (e *Endpoint) List(ctx context.Context, appId string, options *EndpointListOptions) (*ListResponseEndpointOut, error) {
+	req := e.api.WebhookEndpointApi.V1EndpointList(ctx, appId)
 	if options != nil {
 		if options.Limit != nil {
 			req = req.Limit(*options.Limit)
@@ -50,12 +50,12 @@ func (e *Endpoint) List(ctx context.Context, options *EndpointListOptions) (*Lis
 	return &ret, nil
 }
 
-func (e *Endpoint) Create(ctx context.Context, endpointIn *EndpointIn) (*EndpointOut, error) {
-	return e.CreateWithOptions(ctx, endpointIn, nil)
+func (e *Endpoint) Create(ctx context.Context, appId string, endpointIn *EndpointIn) (*EndpointOut, error) {
+	return e.CreateWithOptions(ctx, appId, endpointIn, nil)
 }
 
-func (e *Endpoint) CreateWithOptions(ctx context.Context, endpointIn *EndpointIn, options *PostOptions) (*EndpointOut, error) {
-	req := e.api.WebhookEndpointApi.V1EndpointCreate(ctx)
+func (e *Endpoint) CreateWithOptions(ctx context.Context, appId string, endpointIn *EndpointIn, options *PostOptions) (*EndpointOut, error) {
+	req := e.api.WebhookEndpointApi.V1EndpointCreate(ctx, appId)
 	req = req.EndpointIn(openapi.EndpointIn(*endpointIn))
 
 	out, res, err := req.Execute()
@@ -66,8 +66,8 @@ func (e *Endpoint) CreateWithOptions(ctx context.Context, endpointIn *EndpointIn
 	return &ret, nil
 }
 
-func (e *Endpoint) Get(ctx context.Context, endpointId string) (*EndpointOut, error) {
-	req := e.api.WebhookEndpointApi.V1EndpointGet(ctx, endpointId)
+func (e *Endpoint) Get(ctx context.Context, appId, endpointId string) (*EndpointOut, error) {
+	req := e.api.WebhookEndpointApi.V1EndpointGet(ctx, appId, endpointId)
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -78,8 +78,8 @@ func (e *Endpoint) Get(ctx context.Context, endpointId string) (*EndpointOut, er
 	return &ret, nil
 }
 
-func (e *Endpoint) Delete(ctx context.Context, endpointId string) (*EndpointOut, error) {
-	req := e.api.WebhookEndpointApi.V1EndpointDelete(ctx, endpointId)
+func (e *Endpoint) Delete(ctx context.Context, appId, endpointId string) (*EndpointOut, error) {
+	req := e.api.WebhookEndpointApi.V1EndpointDelete(ctx, appId, endpointId)
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)

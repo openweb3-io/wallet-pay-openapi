@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Url** | **string** | The webhook endpoint url | 
 **FilterTypes** | **[]string** | The webhook endpoint expected event types | 
 **Disabled** | Pointer to **bool** | indicate whether to disable the webhook endpoint | [optional] 
-**Metadata** | Pointer to **map[string]string** | Optional metadata | [optional] [default to {}]
+**Metadata** | Pointer to **map[string]interface{}** | Optional metadata | [optional] [default to {}]
 **Headers** | Pointer to **map[string]string** | Optional headers | [optional] [default to {}]
 
 ## Methods
@@ -122,20 +122,20 @@ HasDisabled returns a boolean if a field has been set.
 
 ### GetMetadata
 
-`func (o *EndpointOut) GetMetadata() map[string]string`
+`func (o *EndpointOut) GetMetadata() map[string]interface{}`
 
 GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
 ### GetMetadataOk
 
-`func (o *EndpointOut) GetMetadataOk() (*map[string]string, bool)`
+`func (o *EndpointOut) GetMetadataOk() (*map[string]interface{}, bool)`
 
 GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMetadata
 
-`func (o *EndpointOut) SetMetadata(v map[string]string)`
+`func (o *EndpointOut) SetMetadata(v map[string]interface{})`
 
 SetMetadata sets Metadata field to given value.
 

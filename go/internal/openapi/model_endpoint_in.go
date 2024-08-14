@@ -25,7 +25,7 @@ type EndpointIn struct {
 	// indicate whether to disable the webhook endpoint
 	Disabled *bool `json:"disabled,omitempty"`
 	// Optional metadata
-	Metadata map[string]string `json:"metadata,omitempty"`
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Optional headers
 	Headers map[string]string `json:"headers,omitempty"`
 	// The endpoint's description
@@ -174,9 +174,9 @@ func (o *EndpointIn) SetDisabled(v bool) {
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *EndpointIn) GetMetadata() map[string]string {
+func (o *EndpointIn) GetMetadata() map[string]interface{} {
 	if o == nil  {
-		var ret map[string]string
+		var ret map[string]interface{}
 		return ret
 	}
 	return o.Metadata
@@ -185,7 +185,7 @@ func (o *EndpointIn) GetMetadata() map[string]string {
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *EndpointIn) GetMetadataOk() (*map[string]string, bool) {
+func (o *EndpointIn) GetMetadataOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
@@ -201,8 +201,8 @@ func (o *EndpointIn) HasMetadata() bool {
 	return false
 }
 
-// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
-func (o *EndpointIn) SetMetadata(v map[string]string) {
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *EndpointIn) SetMetadata(v map[string]interface{}) {
 	o.Metadata = v
 }
 
