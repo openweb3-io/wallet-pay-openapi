@@ -40,10 +40,11 @@ export class ObservableCurrencyApi {
     /**
      * Get specified currency.
      * Find currency by code
+     * @param appId Specified the app id.
      * @param code Specified currency code.
      */
-    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(code, _options);
+    public v1CurrencyFindByCode(appId: string, code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(appId, code, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -67,9 +68,10 @@ export class ObservableCurrencyApi {
      * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
+     * @param rated Specifying if currency supports fetching rates
      */
-    public v1CurrencyList(appId?: string, size?: number, page?: number, _options?: Configuration): Observable<ResponseListCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyList(appId, size, page, _options);
+    public v1CurrencyList(appId: string, size?: number, page?: number, rated?: boolean, _options?: Configuration): Observable<ResponseListCurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyList(appId, size, page, rated, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

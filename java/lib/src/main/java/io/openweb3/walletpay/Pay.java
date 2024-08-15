@@ -25,6 +25,7 @@ public final class Pay {
 	public static final String VERSION = "0.2.0";
 	private final Order order;
 	private final Endpoint endpoint;
+	private final Currency currency;
 
 	public Pay(final String apikey, final String privateKeyPath) throws Exception {
 		this(apikey, privateKeyPath, new PayOptions());
@@ -92,6 +93,7 @@ public final class Pay {
 
 		this.order = new Order();
 		this.endpoint = new Endpoint();
+		this.currency = new Currency();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -118,5 +120,9 @@ public final class Pay {
 
 	public Endpoint getEndpoint() {
 		return endpoint;
+	}
+
+	public Currency getCurrency() {
+		return currency;
 	}
 }

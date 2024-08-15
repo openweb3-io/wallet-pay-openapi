@@ -30,6 +30,7 @@ type CurrencyApiService service
 type ApiV1CurrencyFindByCodeRequest struct {
 	ctx _context.Context
 	ApiService *CurrencyApiService
+	appId string
 	code string
 }
 
@@ -42,13 +43,15 @@ func (r ApiV1CurrencyFindByCodeRequest) Execute() (ResponseCurrencyOut, *_nethtt
  * V1CurrencyFindByCode Find currency by code
  * Get specified currency.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appId Specified the app id.
  * @param code Specified currency code.
  * @return ApiV1CurrencyFindByCodeRequest
  */
-func (a *CurrencyApiService) V1CurrencyFindByCode(ctx _context.Context, code string) ApiV1CurrencyFindByCodeRequest {
+func (a *CurrencyApiService) V1CurrencyFindByCode(ctx _context.Context, appId string, code string) ApiV1CurrencyFindByCodeRequest {
 	return ApiV1CurrencyFindByCodeRequest{
 		ApiService: a,
 		ctx: ctx,
+		appId: appId,
 		code: code,
 	}
 }
@@ -72,7 +75,8 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/currencies/{code}"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies/{code}"
+	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"code"+"}", _neturl.PathEscape(parameterToString(r.code, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -209,21 +213,22 @@ func (a *CurrencyApiService) V1CurrencyFindByCodeExecute(r ApiV1CurrencyFindByCo
 type ApiV1CurrencyListRequest struct {
 	ctx _context.Context
 	ApiService *CurrencyApiService
-	appId *string
+	appId string
 	size *int32
 	page *int32
+	rated *bool
 }
 
-func (r ApiV1CurrencyListRequest) AppId(appId string) ApiV1CurrencyListRequest {
-	r.appId = &appId
-	return r
-}
 func (r ApiV1CurrencyListRequest) Size(size int32) ApiV1CurrencyListRequest {
 	r.size = &size
 	return r
 }
 func (r ApiV1CurrencyListRequest) Page(page int32) ApiV1CurrencyListRequest {
 	r.page = &page
+	return r
+}
+func (r ApiV1CurrencyListRequest) Rated(rated bool) ApiV1CurrencyListRequest {
+	r.rated = &rated
 	return r
 }
 
@@ -235,12 +240,14 @@ func (r ApiV1CurrencyListRequest) Execute() (ResponseListCurrencyOut, *_nethttp.
  * V1CurrencyList List currencies
  * List currencies.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param appId Specified the app id.
  * @return ApiV1CurrencyListRequest
  */
-func (a *CurrencyApiService) V1CurrencyList(ctx _context.Context) ApiV1CurrencyListRequest {
+func (a *CurrencyApiService) V1CurrencyList(ctx _context.Context, appId string) ApiV1CurrencyListRequest {
 	return ApiV1CurrencyListRequest{
 		ApiService: a,
 		ctx: ctx,
+		appId: appId,
 	}
 }
 
@@ -263,20 +270,21 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/currencies"
+	localVarPath := localBasePath + "/api/v1/apps/{appId}/currencies"
+	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.appId != nil {
-		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
-	}
 	if r.size != nil {
 		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	}
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	if r.rated != nil {
+		localVarQueryParams.Add("rated", parameterToString(*r.rated, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -58,7 +58,7 @@ export class CurrencyOut {
     */
     'precision': number;
     /**
-    * Currency decimal
+    * Currency decimals
     */
     'decimals': number;
 

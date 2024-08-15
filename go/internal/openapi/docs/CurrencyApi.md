@@ -4,14 +4,14 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1CurrencyFindByCode**](CurrencyApi.md#V1CurrencyFindByCode) | **Get** /api/v1/apps/currencies/{code} | Find currency by code
-[**V1CurrencyList**](CurrencyApi.md#V1CurrencyList) | **Get** /api/v1/currencies | List currencies
+[**V1CurrencyFindByCode**](CurrencyApi.md#V1CurrencyFindByCode) | **Get** /api/v1/apps/{appId}/currencies/{code} | Find currency by code
+[**V1CurrencyList**](CurrencyApi.md#V1CurrencyList) | **Get** /api/v1/apps/{appId}/currencies | List currencies
 
 
 
 ## V1CurrencyFindByCode
 
-> ResponseCurrencyOut V1CurrencyFindByCode(ctx, code).Execute()
+> ResponseCurrencyOut V1CurrencyFindByCode(ctx, appId, code).Execute()
 
 Find currency by code
 
@@ -30,11 +30,12 @@ import (
 )
 
 func main() {
+    appId := "app_12345xsfei" // string | Specified the app id.
     code := "USDT" // string | Specified currency code.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrencyApi.V1CurrencyFindByCode(context.Background(), code).Execute()
+    resp, r, err := api_client.CurrencyApi.V1CurrencyFindByCode(context.Background(), appId, code).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrencyFindByCode``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -50,6 +51,7 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appId** | **string** | Specified the app id. | 
 **code** | **string** | Specified currency code. | 
 
 ### Other Parameters
@@ -59,6 +61,7 @@ Other parameters are passed through a pointer to a apiV1CurrencyFindByCodeReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+
 
 
 ### Return type
@@ -81,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1CurrencyList
 
-> ResponseListCurrencyOut V1CurrencyList(ctx).AppId(appId).Size(size).Page(page).Execute()
+> ResponseListCurrencyOut V1CurrencyList(ctx, appId).Size(size).Page(page).Rated(rated).Execute()
 
 List currencies
 
@@ -100,13 +103,14 @@ import (
 )
 
 func main() {
-    appId := "app_12345xsfei" // string | Specified the app id. (optional)
+    appId := "app_12345xsfei" // string | Specified the app id.
     size := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
     page := int32(0) // int32 | Specifying the page index (optional) (default to 0)
+    rated := true // bool | Specifying if currency supports fetching rates (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrencyApi.V1CurrencyList(context.Background()).AppId(appId).Size(size).Page(page).Execute()
+    resp, r, err := api_client.CurrencyApi.V1CurrencyList(context.Background(), appId).Size(size).Page(page).Rated(rated).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrencyList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -119,6 +123,10 @@ func main() {
 ### Path Parameters
 
 
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**appId** | **string** | Specified the app id. | 
 
 ### Other Parameters
 
@@ -127,9 +135,10 @@ Other parameters are passed through a pointer to a apiV1CurrencyListRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **string** | Specified the app id. | 
+
  **size** | **int32** | Limit the number of returned items | [default to 20]
  **page** | **int32** | Specifying the page index | [default to 0]
+ **rated** | **bool** | Specifying if currency supports fetching rates | 
 
 ### Return type
 

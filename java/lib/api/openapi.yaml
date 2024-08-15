@@ -7,21 +7,21 @@ servers:
 security:
 - ApiKeyAuth: []
 paths:
-  /api/v1/currencies:
+  /api/v1/apps/{appId}/currencies:
     get:
       description: List currencies.
       operationId: v1.currency.list
       parameters:
       - description: Specified the app id.
-        explode: true
-        in: query
-        name: app_id
-        required: false
+        explode: false
+        in: path
+        name: appId
+        required: true
         schema:
           description: Specified the app id.
           example: app_12345xsfei
           type: string
-        style: form
+        style: simple
       - description: Limit the number of returned items
         explode: true
         in: query
@@ -45,6 +45,16 @@ paths:
           description: Specifying the page index
           example: 0
           type: integer
+        style: form
+      - description: Specifying if currency supports fetching rates
+        explode: true
+        in: query
+        name: rated
+        required: false
+        schema:
+          description: Specifying if currency supports fetching rates
+          example: true
+          type: boolean
         style: form
       responses:
         "200":
@@ -93,11 +103,21 @@ paths:
       tags:
       - Currency
       x-accepts: application/json
-  /api/v1/apps/currencies/{code}:
+  /api/v1/apps/{appId}/currencies/{code}:
     get:
       description: Get specified currency.
       operationId: v1.currency.findByCode
       parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
       - description: Specified currency code.
         explode: false
         in: path
@@ -867,7 +887,7 @@ components:
           example: 6
           type: integer
         decimals:
-          description: Currency decimal
+          description: Currency decimals
           example: 12
           type: integer
       required:

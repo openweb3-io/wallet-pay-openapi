@@ -18,11 +18,11 @@ type Currency struct {
 type CurrencyListOptions struct {
 	Size  *int32
 	Page  *int32
-	AppId *string
+	Rated *bool
 }
 
-func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
-	req := e.api.CurrencyApi.V1CurrencyList(ctx)
+func (e *Currency) List(ctx context.Context, appId string, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
+	req := e.api.CurrencyApi.V1CurrencyList(ctx, appId)
 	if options != nil {
 		if options.Size != nil {
 			req = req.Size(*options.Size)
@@ -30,8 +30,8 @@ func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*Lis
 		if options.Page != nil {
 			req = req.Page(*options.Page)
 		}
-		if options.AppId != nil {
-			req = req.AppId(*options.AppId)
+		if options.Rated != nil {
+			req = req.Rated(*options.Rated)
 		}
 	}
 	out, res, err := req.Execute()
@@ -42,8 +42,8 @@ func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*Lis
 	return &ret, nil
 }
 
-func (e *Currency) FindByCode(ctx context.Context, code string) (*CurrencyOut, error) {
-	req := e.api.CurrencyApi.V1CurrencyFindByCode(ctx, code)
+func (e *Currency) FindByCode(ctx context.Context, appId, code string) (*CurrencyOut, error) {
+	req := e.api.CurrencyApi.V1CurrencyFindByCode(ctx, appId, code)
 
 	out, res, err := req.Execute()
 	if err != nil {

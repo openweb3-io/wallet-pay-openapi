@@ -1,13 +1,13 @@
 package io.openweb3.walletpay;
 
 public class CurrencyListOptions extends ListOptions {
-    private String appId;
+    private boolean rated;
 
-    public void setAppId(final String appId) {
-        this.appId = appId;
+    public void setRated(final boolean rated) {
+        this.rated = rated;
     }
 
-    public String getAppId() {
-        return appId;
+    public boolean getRated() {
+        return rated;
     }
 }

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-14T22:03:52.263656+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-15T20:57:28.292431+08:00[Asia/Shanghai]")
 public class CurrencyOut {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -327,10 +327,10 @@ public class CurrencyOut {
   }
 
    /**
-   * Currency decimal
+   * Currency decimals
    * @return decimals
   **/
-  @ApiModelProperty(example = "12", required = true, value = "Currency decimal")
+  @ApiModelProperty(example = "12", required = true, value = "Currency decimals")
 
   public Integer getDecimals() {
     return decimals;

@@ -130,7 +130,7 @@ class Order {
 }
 
 export interface CurrencyListOptions extends ListOptions {
-  appId?: string;
+  rated?: boolean;
 }
 
 class Currency {
@@ -144,8 +144,8 @@ class Currency {
     return (await this.api.v1CurrencyList({ appId, ...options })).data;
   }
 
-  public async findByCode(code: string): Promise<CurrencyOut> {
-    return (await this.api.v1CurrencyFindByCode({code})).data
+  public async findByCode(appId:string, code: string): Promise<CurrencyOut> {
+    return (await this.api.v1CurrencyFindByCode({appId, code})).data
   }
 }
 

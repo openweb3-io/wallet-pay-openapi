@@ -28,7 +28,7 @@ import java.io.IOException;
 /**
  * ResponseListOrderOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-14T22:03:52.263656+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-15T20:57:28.292431+08:00[Asia/Shanghai]")
 public class ResponseListOrderOut {
   public static final String SERIALIZED_NAME_DATA = "data";
   @SerializedName(SERIALIZED_NAME_DATA)

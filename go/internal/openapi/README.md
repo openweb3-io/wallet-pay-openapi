@@ -78,8 +78,8 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CurrencyApi* | [**V1CurrencyFindByCode**](docs/CurrencyApi.md#v1currencyfindbycode) | **Get** /api/v1/apps/currencies/{code} | Find currency by code
-*CurrencyApi* | [**V1CurrencyList**](docs/CurrencyApi.md#v1currencylist) | **Get** /api/v1/currencies | List currencies
+*CurrencyApi* | [**V1CurrencyFindByCode**](docs/CurrencyApi.md#v1currencyfindbycode) | **Get** /api/v1/apps/{appId}/currencies/{code} | Find currency by code
+*CurrencyApi* | [**V1CurrencyList**](docs/CurrencyApi.md#v1currencylist) | **Get** /api/v1/apps/{appId}/currencies | List currencies
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
 *OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders

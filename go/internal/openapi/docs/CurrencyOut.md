@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **MinWithdrawAmount** | **string** | Big decimal string representation. The min amount to withdraw. | 
 **MaxWithdrawAmount** | **string** | Big decimal string representation. The max amount to withdraw. | 
 **Precision** | **int32** | Currency precision | 
-**Decimals** | **int32** | Currency decimal | 
+**Decimals** | **int32** | Currency decimals | 
 
 ## Methods
 

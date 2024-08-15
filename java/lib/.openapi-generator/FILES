@@ -70,4 +70,4 @@ src/main/java/io/openweb3/walletpay/models/ResponseListEndpointOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseListOrderOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseOrderOut.java
 src/main/java/io/openweb3/walletpay/models/WebhookMessage.java
-src/test/java/io/openweb3/walletpay/internal/api/WebhookEndpointApiTest.java
+src/test/java/io/openweb3/walletpay/internal/api/CurrencyApiTest.java

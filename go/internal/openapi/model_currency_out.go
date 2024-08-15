@@ -38,7 +38,7 @@ type CurrencyOut struct {
 	MaxWithdrawAmount string `json:"max_withdraw_amount"`
 	// Currency precision
 	Precision int32 `json:"precision"`
-	// Currency decimal
+	// Currency decimals
 	Decimals int32 `json:"decimals"`
 }
 

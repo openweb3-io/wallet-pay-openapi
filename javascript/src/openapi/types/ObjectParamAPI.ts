@@ -25,6 +25,12 @@ import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/
 
 export interface CurrencyApiV1CurrencyFindByCodeRequest {
     /**
+     * Specified the app id.
+     * @type string
+     * @memberof CurrencyApiv1CurrencyFindByCode
+     */
+    appId: string
+    /**
      * Specified currency code.
      * @type string
      * @memberof CurrencyApiv1CurrencyFindByCode
@@ -38,7 +44,7 @@ export interface CurrencyApiV1CurrencyListRequest {
      * @type string
      * @memberof CurrencyApiv1CurrencyList
      */
-    appId?: string
+    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -51,6 +57,12 @@ export interface CurrencyApiV1CurrencyListRequest {
      * @memberof CurrencyApiv1CurrencyList
      */
     page?: number
+    /**
+     * Specifying if currency supports fetching rates
+     * @type boolean
+     * @memberof CurrencyApiv1CurrencyList
+     */
+    rated?: boolean
 }
 
 export class ObjectCurrencyApi {
@@ -66,7 +78,7 @@ export class ObjectCurrencyApi {
      * @param param the request object
      */
     public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<ResponseCurrencyOut> {
-        return this.api.v1CurrencyFindByCode(param.code,  options).toPromise();
+        return this.api.v1CurrencyFindByCode(param.appId, param.code,  options).toPromise();
     }
 
     /**
@@ -75,7 +87,7 @@ export class ObjectCurrencyApi {
      * @param param the request object
      */
     public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ResponseListCurrencyOut> {
-        return this.api.v1CurrencyList(param.appId, param.size, param.page,  options).toPromise();
+        return this.api.v1CurrencyList(param.appId, param.size, param.page, param.rated,  options).toPromise();
     }
 
 }

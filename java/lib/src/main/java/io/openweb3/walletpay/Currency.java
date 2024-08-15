@@ -12,18 +12,18 @@ public final class Currency {
 		api = new CurrencyApi();
 	}
 
-	public ListResponseCurrencyOut list(final CurrencyListOptions options) throws ApiException {
+	public ListResponseCurrencyOut list(final String appId, final CurrencyListOptions options) throws ApiException {
 		try {
-			return api.v1CurrencyList(options.getAppId(), options.getSize(), options.getPage()).getData();
+			return api.v1CurrencyList(appId, options.getSize(), options.getPage(), options.getRated()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// find by code
-	public CurrencyOut findByCode(final String code) throws ApiException {
+	public CurrencyOut findByCode(final String appId, final String code) throws ApiException {
 		try {
-			return api.v1CurrencyFindByCode(code).getData();
+			return api.v1CurrencyFindByCode(appId, code).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

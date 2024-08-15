@@ -4,13 +4,13 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1CurrencyFindByCode**](CurrencyApi.md#v1CurrencyFindByCode) | **GET** /api/v1/apps/currencies/{code} | Find currency by code
-[**v1CurrencyList**](CurrencyApi.md#v1CurrencyList) | **GET** /api/v1/currencies | List currencies
+[**v1CurrencyFindByCode**](CurrencyApi.md#v1CurrencyFindByCode) | **GET** /api/v1/apps/{appId}/currencies/{code} | Find currency by code
+[**v1CurrencyList**](CurrencyApi.md#v1CurrencyList) | **GET** /api/v1/apps/{appId}/currencies | List currencies
 
 
 <a name="v1CurrencyFindByCode"></a>
 # **v1CurrencyFindByCode**
-> ResponseCurrencyOut v1CurrencyFindByCode(code)
+> ResponseCurrencyOut v1CurrencyFindByCode(appId, code)
 
 Find currency by code
 
@@ -38,9 +38,10 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
+    String appId = "app_12345xsfei"; // String | Specified the app id.
     String code = "USDT"; // String | Specified currency code.
     try {
-      ResponseCurrencyOut result = apiInstance.v1CurrencyFindByCode(code);
+      ResponseCurrencyOut result = apiInstance.v1CurrencyFindByCode(appId, code);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#v1CurrencyFindByCode");
@@ -57,6 +58,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **appId** | **String**| Specified the app id. |
  **code** | **String**| Specified currency code. |
 
 ### Return type
@@ -86,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="v1CurrencyList"></a>
 # **v1CurrencyList**
-> ResponseListCurrencyOut v1CurrencyList(appId, size, page)
+> ResponseListCurrencyOut v1CurrencyList(appId, size, page, rated)
 
 List currencies
 
@@ -117,8 +119,9 @@ public class Example {
     String appId = "app_12345xsfei"; // String | Specified the app id.
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
+    Boolean rated = true; // Boolean | Specifying if currency supports fetching rates
     try {
-      ResponseListCurrencyOut result = apiInstance.v1CurrencyList(appId, size, page);
+      ResponseListCurrencyOut result = apiInstance.v1CurrencyList(appId, size, page, rated);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#v1CurrencyList");
@@ -135,9 +138,10 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. | [optional]
+ **appId** | **String**| Specified the app id. |
  **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **page** | **Integer**| Specifying the page index | [optional] [default to 0]
+ **rated** | **Boolean**| Specifying if currency supports fetching rates | [optional]
 
 ### Return type
 

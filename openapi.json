@@ -38,21 +38,22 @@
     },
     "paths":
       {        
-        "/api/v1/currencies": {
+        "/api/v1/apps/{appId}/currencies": {
             "get": {
                 "description": "List currencies.",
                 "operationId": "v1.currency.list",
                 "parameters": [
                     {
                         "description": "Specified the app id.",
-                        "in": "query",
-                        "name": "app_id",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
                         "schema": {
                             "description": "Specified the app id.",
                             "example": "app_12345xsfei",
                             "type": "string"
                         },
-                        "style": "form"
+                        "style": "simple"
                     },
                     {
                         "description": "Limit the number of returned items",
@@ -77,6 +78,17 @@
                             "example": 0,
                             "default": 0,
                             "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying if currency supports fetching rates",
+                        "in": "query",
+                        "name": "rated",
+                        "schema": {
+                            "description": "Specifying if currency supports fetching rates",
+                            "example": true,
+                            "type": "boolean"
                         },
                         "style": "form"
                     }
@@ -159,11 +171,23 @@
                 ]
             }
         },
-        "/api/v1/apps/currencies/{code}": {
+        "/api/v1/apps/{appId}/currencies/{code}": {
             "get": {
                 "description": "Get specified currency.",
                 "operationId": "v1.currency.findByCode",
                 "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
                     {
                         "description": "Specified currency code.",
                         "in": "path",
@@ -1266,7 +1290,7 @@
 
                     },
                     "decimals": {
-                        "description": "Currency decimal",
+                        "description": "Currency decimals",
                         "example": 12,
                         "type": "integer"
                     }
