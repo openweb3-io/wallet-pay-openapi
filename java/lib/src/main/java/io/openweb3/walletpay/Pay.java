@@ -127,4 +127,8 @@ public final class Pay {
 	public Currency getCurrency() {
 		return currency;
 	}
+
+	public Transfer getTransfer() {
+		return transfer;
+	}
 }
