@@ -83,6 +83,7 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
 *OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
+*TransferApi* | [**V1TransferCreate**](docs/TransferApi.md#v1transfercreate) | **Post** /api/v1/apps/{appId}/transfers | Create Transfer
 *WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/apps/{appId}/webhooks/endpoints | Create endpoint
 *WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
 *WebhookEndpointApi* | [**V1EndpointGet**](docs/WebhookEndpointApi.md#v1endpointget) | **Get** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
@@ -107,6 +108,9 @@ Class | Method | HTTP request | Description
  - [ResponseListEndpointOut](docs/ResponseListEndpointOut.md)
  - [ResponseListOrderOut](docs/ResponseListOrderOut.md)
  - [ResponseOrderOut](docs/ResponseOrderOut.md)
+ - [ResponseTransferOut](docs/ResponseTransferOut.md)
+ - [TransferIn](docs/TransferIn.md)
+ - [TransferOut](docs/TransferOut.md)
  - [WebhookMessage](docs/WebhookMessage.md)
 
 

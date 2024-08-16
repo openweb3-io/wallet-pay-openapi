@@ -2,6 +2,7 @@
 README.md
 apis/CurrencyApi.ts
 apis/OrderApi.ts
+apis/TransferApi.ts
 apis/WebhookEndpointApi.ts
 apis/baseapi.ts
 apis/exception.ts
@@ -29,6 +30,9 @@ models/ResponseListCurrencyOut.ts
 models/ResponseListEndpointOut.ts
 models/ResponseListOrderOut.ts
 models/ResponseOrderOut.ts
+models/ResponseTransferOut.ts
+models/TransferIn.ts
+models/TransferOut.ts
 models/WebhookMessage.ts
 models/all.ts
 package.json

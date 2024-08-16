@@ -18,6 +18,9 @@ import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseTransferOut } from '../models/ResponseTransferOut';
+import { TransferIn } from '../models/TransferIn';
+import { TransferOut } from '../models/TransferOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 import { ObservableCurrencyApi } from './ObservableAPI';
 
@@ -109,6 +112,36 @@ export class PromiseOrderApi {
      */
     public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<ResponseListOrderOut> {
         const result = this.api.v1OrderList(appId, size, page, walletId, accountId, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableTransferApi } from './ObservableAPI';
+
+import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
+export class PromiseTransferApi {
+    private api: ObservableTransferApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: TransferApiRequestFactory,
+        responseProcessor?: TransferApiResponseProcessor
+    ) {
+        this.api = new ObservableTransferApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a new transfer.
+     * Create Transfer
+     * @param appId Specified the app id.
+     * @param transferIn 
+     */
+    public v1TransferCreate(appId: string, transferIn: TransferIn, _options?: Configuration): Promise<ResponseTransferOut> {
+        const result = this.api.v1TransferCreate(appId, transferIn, _options);
         return result.toPromise();
     }
 

@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-15T20:57:28.292431+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-16T01:01:36.014420+08:00[Asia/Shanghai]")
 public class CurrencyOut {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -110,7 +110,7 @@ public class CurrencyOut {
    * Currency symbol
    * @return symbol
   **/
-  @ApiModelProperty(example = "http://symbol.jpg", required = true, value = "Currency symbol")
+  @ApiModelProperty(example = "USDT", required = true, value = "Currency symbol")
 
   public String getSymbol() {
     return symbol;
@@ -154,7 +154,7 @@ public class CurrencyOut {
    * Currency name
    * @return name
   **/
-  @ApiModelProperty(example = "http://logo.jpg", required = true, value = "Currency name")
+  @ApiModelProperty(example = "USDT", required = true, value = "Currency name")
 
   public String getName() {
     return name;

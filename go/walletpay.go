@@ -26,6 +26,7 @@ type (
 		Endpoint *Endpoint
 		Order    *Order
 		Currency *Currency
+		Transfer *Transfer
 	}
 )
 
@@ -89,6 +90,9 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 			api: apiClient,
 		},
 		Currency: &Currency{
+			api: apiClient,
+		},
+		Transfer: &Transfer{
 			api: apiClient,
 		},
 	}

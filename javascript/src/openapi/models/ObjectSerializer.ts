@@ -14,6 +14,9 @@ export * from './ResponseListCurrencyOut';
 export * from './ResponseListEndpointOut';
 export * from './ResponseListOrderOut';
 export * from './ResponseOrderOut';
+export * from './ResponseTransferOut';
+export * from './TransferIn';
+export * from './TransferOut';
 export * from './WebhookMessage';
 
 import { CurrencyOut } from './CurrencyOut';
@@ -32,6 +35,9 @@ import { ResponseListCurrencyOut } from './ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from './ResponseListEndpointOut';
 import { ResponseListOrderOut } from './ResponseListOrderOut';
 import { ResponseOrderOut } from './ResponseOrderOut';
+import { ResponseTransferOut } from './ResponseTransferOut';
+import { TransferIn } from './TransferIn';
+import { TransferOut } from './TransferOut';
 import { WebhookMessage } from './WebhookMessage';
 
 /* tslint:disable:no-unused-variable */
@@ -73,6 +79,9 @@ let typeMap: {[index: string]: any} = {
     "ResponseListEndpointOut": ResponseListEndpointOut,
     "ResponseListOrderOut": ResponseListOrderOut,
     "ResponseOrderOut": ResponseOrderOut,
+    "ResponseTransferOut": ResponseTransferOut,
+    "TransferIn": TransferIn,
+    "TransferOut": TransferOut,
     "WebhookMessage": WebhookMessage,
 }
 

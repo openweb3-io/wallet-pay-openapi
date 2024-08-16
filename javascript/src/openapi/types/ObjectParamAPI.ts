@@ -18,6 +18,9 @@ import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseTransferOut } from '../models/ResponseTransferOut';
+import { TransferIn } from '../models/TransferIn';
+import { TransferOut } from '../models/TransferOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
 import { ObservableCurrencyApi } from "./ObservableAPI";
@@ -190,6 +193,42 @@ export class ObjectOrderApi {
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
         return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.accountId,  options).toPromise();
+    }
+
+}
+
+import { ObservableTransferApi } from "./ObservableAPI";
+import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
+
+export interface TransferApiV1TransferCreateRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof TransferApiv1TransferCreate
+     */
+    appId: string
+    /**
+     * 
+     * @type TransferIn
+     * @memberof TransferApiv1TransferCreate
+     */
+    transferIn: TransferIn
+}
+
+export class ObjectTransferApi {
+    private api: ObservableTransferApi
+
+    public constructor(configuration: Configuration, requestFactory?: TransferApiRequestFactory, responseProcessor?: TransferApiResponseProcessor) {
+        this.api = new ObservableTransferApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a new transfer.
+     * Create Transfer
+     * @param param the request object
+     */
+    public v1TransferCreate(param: TransferApiV1TransferCreateRequest, options?: Configuration): Promise<ResponseTransferOut> {
+        return this.api.v1TransferCreate(param.appId, param.transferIn,  options).toPromise();
     }
 
 }

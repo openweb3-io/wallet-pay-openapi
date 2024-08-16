@@ -22,6 +22,10 @@ docs/ResponseListCurrencyOut.md
 docs/ResponseListEndpointOut.md
 docs/ResponseListOrderOut.md
 docs/ResponseOrderOut.md
+docs/ResponseTransferOut.md
+docs/TransferApi.md
+docs/TransferIn.md
+docs/TransferOut.md
 docs/WebhookEndpointApi.md
 docs/WebhookMessage.md
 git_push.sh
@@ -48,6 +52,7 @@ src/main/java/io/openweb3/walletpay/internal/ServerVariable.java
 src/main/java/io/openweb3/walletpay/internal/StringUtil.java
 src/main/java/io/openweb3/walletpay/internal/api/CurrencyApi.java
 src/main/java/io/openweb3/walletpay/internal/api/OrderApi.java
+src/main/java/io/openweb3/walletpay/internal/api/TransferApi.java
 src/main/java/io/openweb3/walletpay/internal/api/WebhookEndpointApi.java
 src/main/java/io/openweb3/walletpay/internal/auth/ApiKeyAuth.java
 src/main/java/io/openweb3/walletpay/internal/auth/Authentication.java
@@ -69,5 +74,11 @@ src/main/java/io/openweb3/walletpay/models/ResponseListCurrencyOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseListEndpointOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseListOrderOut.java
 src/main/java/io/openweb3/walletpay/models/ResponseOrderOut.java
+src/main/java/io/openweb3/walletpay/models/ResponseTransferOut.java
+src/main/java/io/openweb3/walletpay/models/TransferIn.java
+src/main/java/io/openweb3/walletpay/models/TransferOut.java
 src/main/java/io/openweb3/walletpay/models/WebhookMessage.java
-src/test/java/io/openweb3/walletpay/internal/api/CurrencyApiTest.java
+src/test/java/io/openweb3/walletpay/internal/api/TransferApiTest.java
+src/test/java/io/openweb3/walletpay/models/ResponseTransferOutTest.java
+src/test/java/io/openweb3/walletpay/models/TransferInTest.java
+src/test/java/io/openweb3/walletpay/models/TransferOutTest.java

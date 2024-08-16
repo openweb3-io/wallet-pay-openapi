@@ -4,6 +4,7 @@ README.md
 api/openapi.yaml
 api_currency.go
 api_order.go
+api_transfer.go
 api_webhook_endpoint.go
 client.go
 configuration.go
@@ -25,6 +26,10 @@ docs/ResponseListCurrencyOut.md
 docs/ResponseListEndpointOut.md
 docs/ResponseListOrderOut.md
 docs/ResponseOrderOut.md
+docs/ResponseTransferOut.md
+docs/TransferApi.md
+docs/TransferIn.md
+docs/TransferOut.md
 docs/WebhookEndpointApi.md
 docs/WebhookMessage.md
 git_push.sh
@@ -46,6 +51,9 @@ model_response_list_currency_out.go
 model_response_list_endpoint_out.go
 model_response_list_order_out.go
 model_response_order_out.go
+model_response_transfer_out.go
+model_transfer_in.go
+model_transfer_out.go
 model_webhook_message.go
 response.go
 utils.go

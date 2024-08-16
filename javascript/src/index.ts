@@ -17,6 +17,9 @@ import {
   EndpointOut,
   Ordering,
   ListResponseEndpointOut,
+  TransferApi,
+  TransferIn,
+  TransferOut,
 
 } from "./openapi/index";
 export * from "./openapi/models/all";
@@ -79,6 +82,7 @@ export class walletpay {
   public readonly Order: Order;
   public readonly Endpoint: Endpoint;
   public readonly Currency: Currency;
+  public readonly Transfer: Transfer;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
@@ -97,6 +101,7 @@ export class walletpay {
     this.Order = new Order(config);
     this.Endpoint = new Endpoint(config);
     this.Currency = new Currency(config);
+    this.Transfer = new Transfer(config);
   }
 }
 export interface PostOptions {
@@ -149,6 +154,17 @@ class Currency {
   }
 }
 
+class Transfer {
+  private readonly api: TransferApi;
+
+  public constructor(config: Configuration) {
+    this.api = new TransferApi(config);
+  }
+
+  public async transfer(appId:string, transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
+    return (await this.api.v1TransferCreate({ appId, transferIn, ...options })).data;
+  }
+}
 
 export interface EndpointListOptions {
   ordering?: Ordering;

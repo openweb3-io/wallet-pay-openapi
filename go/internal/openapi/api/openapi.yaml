@@ -177,6 +177,87 @@ paths:
       summary: Find currency by code
       tags:
       - Currency
+  /api/v1/apps/{appId}/transfers:
+    post:
+      description: Create a new transfer.
+      operationId: v1.transfer.create
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTransferOut'
+          description: OK
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseTransferOut'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+      summary: Create Transfer
+      tags:
+      - Transfer
+      x-readme:
+        code-samples: []
   /api/v1/apps/{appId}/orders:
     get:
       description: List orders.
@@ -784,11 +865,11 @@ components:
       example:
         data:
           max_withdraw_amount: "0.0012345"
-          symbol: http://symbol.jpg
+          symbol: USDT
           code: USDT
           precision: 6
           decimals: 12
-          name: http://logo.jpg
+          name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_deposit: false
@@ -805,11 +886,11 @@ components:
     CurrencyOut:
       example:
         max_withdraw_amount: "0.0012345"
-        symbol: http://symbol.jpg
+        symbol: USDT
         code: USDT
         precision: 6
         decimals: 12
-        name: http://logo.jpg
+        name: USDT
         logo: http://logo.jpg
         can_withdraw: false
         can_deposit: false
@@ -825,7 +906,7 @@ components:
           type: string
         symbol:
           description: Currency symbol
-          example: http://symbol.jpg
+          example: USDT
           maxLength: 256
           minLength: 1
           type: string
@@ -837,7 +918,7 @@ components:
           type: string
         name:
           description: Currency name
-          example: http://logo.jpg
+          example: USDT
           maxLength: 256
           minLength: 1
           type: string
@@ -898,11 +979,11 @@ components:
         total: 0
         items:
         - max_withdraw_amount: "0.0012345"
-          symbol: http://symbol.jpg
+          symbol: USDT
           code: USDT
           precision: 6
           decimals: 12
-          name: http://logo.jpg
+          name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_deposit: false
@@ -910,11 +991,11 @@ components:
           min_deposit_amount: "0.0012345"
           min_withdraw_amount: "0.0012345"
         - max_withdraw_amount: "0.0012345"
-          symbol: http://symbol.jpg
+          symbol: USDT
           code: USDT
           precision: 6
           decimals: 12
-          name: http://logo.jpg
+          name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_deposit: false
@@ -937,11 +1018,11 @@ components:
           total: 0
           items:
           - max_withdraw_amount: "0.0012345"
-            symbol: http://symbol.jpg
+            symbol: USDT
             code: USDT
             precision: 6
             decimals: 12
-            name: http://logo.jpg
+            name: USDT
             logo: http://logo.jpg
             can_withdraw: false
             can_deposit: false
@@ -949,11 +1030,11 @@ components:
             min_deposit_amount: "0.0012345"
             min_withdraw_amount: "0.0012345"
           - max_withdraw_amount: "0.0012345"
-            symbol: http://symbol.jpg
+            symbol: USDT
             code: USDT
             precision: 6
             decimals: 12
-            name: http://logo.jpg
+            name: USDT
             logo: http://logo.jpg
             can_withdraw: false
             can_deposit: false
@@ -966,6 +1047,67 @@ components:
       required:
       - data
       title: ResponseEndpointOut
+      type: object
+    TransferIn:
+      example:
+        to_wallet_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
+        amount: "10000"
+        currency: USDT
+        auto_commit: true
+      properties:
+        to_wallet_id:
+          description: the target wallet id
+          example: 7e5c8e13-0573-472e-9e34-fe779c618fcf
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        currency:
+          description: currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: big integer string representation
+          example: "10000"
+          maxLength: 256
+          minLength: 1
+          type: string
+        auto_commit:
+          description: auto commit, default is true
+          example: true
+          type: boolean
+      required:
+      - amount
+      - auto_commit
+      - currency
+      - to_wallet_id
+      type: object
+    TransferOut:
+      example:
+        transfer_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
+      properties:
+        transfer_id:
+          description: the transfer id
+          example: 7e5c8e13-0573-472e-9e34-fe779c618fcf
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+      required:
+      - transfer_id
+      type: object
+    ResponseTransferOut:
+      example:
+        data:
+          transfer_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
+      properties:
+        data:
+          $ref: '#/components/schemas/TransferOut'
+      required:
+      - data
+      title: ResponseTransferOut
       type: object
     OrderIn:
       example:

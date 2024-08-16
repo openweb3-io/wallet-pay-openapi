@@ -19,6 +19,9 @@ import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseTransferOut } from '../models/ResponseTransferOut';
+import { TransferIn } from '../models/TransferIn';
+import { TransferOut } from '../models/TransferOut';
 import { WebhookMessage } from '../models/WebhookMessage';
 
 import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
@@ -182,6 +185,49 @@ export class ObservableOrderApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
+            }));
+    }
+ 
+}
+
+import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
+export class ObservableTransferApi {
+    private requestFactory: TransferApiRequestFactory;
+    private responseProcessor: TransferApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: TransferApiRequestFactory,
+        responseProcessor?: TransferApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new TransferApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new TransferApiResponseProcessor();
+    }
+
+    /**
+     * Create a new transfer.
+     * Create Transfer
+     * @param appId Specified the app id.
+     * @param transferIn 
+     */
+    public v1TransferCreate(appId: string, transferIn: TransferIn, _options?: Configuration): Observable<ResponseTransferOut> {
+        const requestContextPromise = this.requestFactory.v1TransferCreate(appId, transferIn, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1TransferCreate(rsp)));
             }));
     }
  
