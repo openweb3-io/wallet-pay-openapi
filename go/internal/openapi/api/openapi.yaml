@@ -258,6 +258,257 @@ paths:
       - Transfer
       x-readme:
         code-samples: []
+  /api/v1/apps/{appId}/refunds:
+    get:
+      description: List refunds.
+      operationId: v1.refund.list
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      - description: Limit the number of returned items
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          default: 20
+          description: Limit the number of returned items
+          example: 100
+          format: uint64
+          minimum: 0
+          type: integer
+        style: form
+      - description: Specifying the page index
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 0
+          description: Specifying the page index
+          example: 0
+          type: integer
+        style: form
+      - description: Optional order id
+        explode: true
+        in: query
+        name: order_id
+        required: false
+        schema:
+          description: Optional order id
+          example: 923be366-51d1-447f-a0e8-db4c75dffae5
+          nullable: true
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseListRefundOut'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+      summary: List Refunds
+      tags:
+      - Refund
+    post:
+      description: Create a refund.
+      operationId: v1.refund.create
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRefundOut'
+          description: OK
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRefundOut'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+      summary: Create Refund
+      tags:
+      - Refund
+      x-readme:
+        code-samples: []
+  /api/v1/apps/{appId}/refunds/{idOrUid}:
+    get:
+      description: Get specified refund.
+      operationId: v1.refund.get
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      - description: Specified the refund id or refund uid.
+        explode: false
+        in: path
+        name: idOrUid
+        required: true
+        schema:
+          description: Specified the refund id or refund uid.
+          example: 11b9ca57-0559-403a-bf8e-7bd1a31aff45
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRefundOut'
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRefundOut'
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+      summary: Get Refund
+      tags:
+      - Refund
   /api/v1/apps/{appId}/orders:
     get:
       description: List orders.
@@ -1109,6 +1360,216 @@ components:
       - data
       title: ResponseTransferOut
       type: object
+    RefundIn:
+      example:
+        uid: unique-identifier
+        note: note example
+        amount: "123450000"
+        order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+      properties:
+        uid:
+          description: Optional unique identifier for the refund
+          example: unique-identifier
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        order_id:
+          description: The order's ID
+          example: fdcefb20-1994-417a-8c6a-0648b841c266
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        amount:
+          description: Big integer string representation, whose meaning is the value
+            of absolute floating-point number multiplied by the corresponding decimals
+            of the cryptocurrency.
+          example: "123450000"
+          maxLength: 256
+          minLength: 1
+          type: string
+        note:
+          description: Optional refund note
+          example: note example
+          maxLength: 256
+          minLength: 1
+          type: string
+      required:
+      - amount
+      - order_id
+      type: object
+    RefundOut:
+      example:
+        uid: unique-identifier
+        note: note example
+        completed_at: 2000-01-23T04:56:07.000+00:00
+        amount: "12345000"
+        created_at: 2000-01-23T04:56:07.000+00:00
+        currency: USDT
+        id: fdcefb20-1994-417a-8c6a-0648b841c266
+        failed_at: 2000-01-23T04:56:07.000+00:00
+        order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+        failed_message: failed_message
+        status: PENDING
+      properties:
+        id:
+          description: The refund's ID
+          example: fdcefb20-1994-417a-8c6a-0648b841c266
+          type: string
+        uid:
+          description: The refund's UID
+          example: unique-identifier
+          maxLength: 256
+          minLength: 1
+          nullable: true
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
+        order_id:
+          description: The relative order id
+          example: fdcefb20-1994-417a-8c6a-0648b841c266
+          type: string
+        currency:
+          description: Currency code
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        amount:
+          description: Big integer string representation, whose meaning is the value
+            of absolute floating-point number multiplied by the corresponding decimals
+            of the cryptocurrency.
+          example: "12345000"
+          maxLength: 256
+          minLength: 1
+          type: string
+        status:
+          description: The refund's status
+          enum:
+          - PENDING
+          - FAILED
+          - COMPLETED
+          type: string
+        note:
+          description: Optional refund note
+          example: note example
+          maxLength: 256
+          minLength: 1
+          type: string
+        failed_at:
+          description: The refund's failure time
+          format: date-time
+          type: string
+        failed_message:
+          description: The message when refund failed
+          type: string
+        created_at:
+          description: The refund's created time
+          format: date-time
+          type: string
+        completed_at:
+          description: The refund's completed time
+          format: date-time
+          type: string
+      required:
+      - amount
+      - created_at
+      - currency
+      - id
+      - order_id
+      - status
+      type: object
+    ListResponse_RefundOut_:
+      example:
+        total: 0
+        items:
+        - uid: unique-identifier
+          note: note example
+          completed_at: 2000-01-23T04:56:07.000+00:00
+          amount: "12345000"
+          created_at: 2000-01-23T04:56:07.000+00:00
+          currency: USDT
+          id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_message: failed_message
+          status: PENDING
+        - uid: unique-identifier
+          note: note example
+          completed_at: 2000-01-23T04:56:07.000+00:00
+          amount: "12345000"
+          created_at: 2000-01-23T04:56:07.000+00:00
+          currency: USDT
+          id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_message: failed_message
+          status: PENDING
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/RefundOut'
+          type: array
+        total:
+          type: integer
+      required:
+      - items
+      type: object
+    ResponseRefundOut:
+      example:
+        data:
+          uid: unique-identifier
+          note: note example
+          completed_at: 2000-01-23T04:56:07.000+00:00
+          amount: "12345000"
+          created_at: 2000-01-23T04:56:07.000+00:00
+          currency: USDT
+          id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_at: 2000-01-23T04:56:07.000+00:00
+          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+          failed_message: failed_message
+          status: PENDING
+      properties:
+        data:
+          $ref: '#/components/schemas/RefundOut'
+      required:
+      - data
+      title: ResponseRefundOut
+      type: object
+    ResponseListRefundOut:
+      example:
+        data:
+          total: 0
+          items:
+          - uid: unique-identifier
+            note: note example
+            completed_at: 2000-01-23T04:56:07.000+00:00
+            amount: "12345000"
+            created_at: 2000-01-23T04:56:07.000+00:00
+            currency: USDT
+            id: fdcefb20-1994-417a-8c6a-0648b841c266
+            failed_at: 2000-01-23T04:56:07.000+00:00
+            order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+            failed_message: failed_message
+            status: PENDING
+          - uid: unique-identifier
+            note: note example
+            completed_at: 2000-01-23T04:56:07.000+00:00
+            amount: "12345000"
+            created_at: 2000-01-23T04:56:07.000+00:00
+            currency: USDT
+            id: fdcefb20-1994-417a-8c6a-0648b841c266
+            failed_at: 2000-01-23T04:56:07.000+00:00
+            order_id: fdcefb20-1994-417a-8c6a-0648b841c266
+            failed_message: failed_message
+            status: PENDING
+      properties:
+        data:
+          $ref: '#/components/schemas/ListResponse_RefundOut_'
+      required:
+      - data
+      title: ResponseListRefundOut
+      type: object
     OrderIn:
       example:
         uid: unique-order-identifier
@@ -1134,11 +1595,9 @@ components:
           minLength: 1
           type: string
         amount:
-          description: Big decimal string representation. Note that the max precision
-            (number of digits after decimal point) depends on the currencyCode. E.g.
-            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
-            also min order amount for creating an order. It's 0.000001 BTC / 0.01
-            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          description: Big integer string representation, whose meaning is the value
+            of absolute floating-point number multiplied by the corresponding decimals
+            of the cryptocurrency.
           example: "0.0012345"
           maxLength: 256
           minLength: 1
@@ -1202,11 +1661,9 @@ components:
           minLength: 1
           type: string
         amount:
-          description: Big decimal string representation. Note that the max precision
-            (number of digits after decimal point) depends on the currencyCode. E.g.
-            for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's
-            also min order amount for creating an order. It's 0.000001 BTC / 0.01
-            USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.
+          description: Big integer string representation, whose meaning is the value
+            of absolute floating-point number multiplied by the corresponding decimals
+            of the cryptocurrency.
           example: "1"
           maxLength: 256
           minLength: 1
@@ -1384,7 +1841,7 @@ components:
           $ref: '#/components/schemas/ListResponse_OrderOut_'
       required:
       - data
-      title: ResponseEndpointOut
+      title: ResponseListOrderOut
       type: object
     EndpointIn:
       example:
@@ -1598,7 +2055,7 @@ components:
           $ref: '#/components/schemas/ListResponse_EndpointOut_'
       required:
       - data
-      title: ResponseEndpointOut
+      title: ResponseListEndpointOut
       type: object
   securitySchemes:
     ApiKeyAuth:

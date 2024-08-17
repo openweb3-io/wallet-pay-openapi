@@ -83,6 +83,9 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
 *OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
+*RefundApi* | [**V1RefundCreate**](docs/RefundApi.md#v1refundcreate) | **Post** /api/v1/apps/{appId}/refunds | Create Refund
+*RefundApi* | [**V1RefundGet**](docs/RefundApi.md#v1refundget) | **Get** /api/v1/apps/{appId}/refunds/{idOrUid} | Get Refund
+*RefundApi* | [**V1RefundList**](docs/RefundApi.md#v1refundlist) | **Get** /api/v1/apps/{appId}/refunds | List Refunds
 *TransferApi* | [**V1TransferCreate**](docs/TransferApi.md#v1transfercreate) | **Post** /api/v1/apps/{appId}/transfers | Create Transfer
 *WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/apps/{appId}/webhooks/endpoints | Create endpoint
 *WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
@@ -98,16 +101,21 @@ Class | Method | HTTP request | Description
  - [ListResponseCurrencyOut](docs/ListResponseCurrencyOut.md)
  - [ListResponseEndpointOut](docs/ListResponseEndpointOut.md)
  - [ListResponseOrderOut](docs/ListResponseOrderOut.md)
+ - [ListResponseRefundOut](docs/ListResponseRefundOut.md)
  - [OrderIn](docs/OrderIn.md)
  - [OrderOut](docs/OrderOut.md)
  - [Ordering](docs/Ordering.md)
+ - [RefundIn](docs/RefundIn.md)
+ - [RefundOut](docs/RefundOut.md)
  - [ResponseCurrencyOut](docs/ResponseCurrencyOut.md)
  - [ResponseEndpointOut](docs/ResponseEndpointOut.md)
  - [ResponseError](docs/ResponseError.md)
  - [ResponseListCurrencyOut](docs/ResponseListCurrencyOut.md)
  - [ResponseListEndpointOut](docs/ResponseListEndpointOut.md)
  - [ResponseListOrderOut](docs/ResponseListOrderOut.md)
+ - [ResponseListRefundOut](docs/ResponseListRefundOut.md)
  - [ResponseOrderOut](docs/ResponseOrderOut.md)
+ - [ResponseRefundOut](docs/ResponseRefundOut.md)
  - [ResponseTransferOut](docs/ResponseTransferOut.md)
  - [TransferIn](docs/TransferIn.md)
  - [TransferOut](docs/TransferOut.md)

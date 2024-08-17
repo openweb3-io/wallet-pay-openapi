@@ -4,16 +4,21 @@ export * from './EndpointOut';
 export * from './ListResponseCurrencyOut';
 export * from './ListResponseEndpointOut';
 export * from './ListResponseOrderOut';
+export * from './ListResponseRefundOut';
 export * from './OrderIn';
 export * from './OrderOut';
 export * from './Ordering';
+export * from './RefundIn';
+export * from './RefundOut';
 export * from './ResponseCurrencyOut';
 export * from './ResponseEndpointOut';
 export * from './ResponseError';
 export * from './ResponseListCurrencyOut';
 export * from './ResponseListEndpointOut';
 export * from './ResponseListOrderOut';
+export * from './ResponseListRefundOut';
 export * from './ResponseOrderOut';
+export * from './ResponseRefundOut';
 export * from './ResponseTransferOut';
 export * from './TransferIn';
 export * from './TransferOut';
@@ -25,16 +30,21 @@ import { EndpointOut } from './EndpointOut';
 import { ListResponseCurrencyOut } from './ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
+import { ListResponseRefundOut } from './ListResponseRefundOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
 import { Ordering } from './Ordering';
+import { RefundIn } from './RefundIn';
+import { RefundOut     , RefundOutStatusEnum        } from './RefundOut';
 import { ResponseCurrencyOut } from './ResponseCurrencyOut';
 import { ResponseEndpointOut } from './ResponseEndpointOut';
 import { ResponseError } from './ResponseError';
 import { ResponseListCurrencyOut } from './ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from './ResponseListEndpointOut';
 import { ResponseListOrderOut } from './ResponseListOrderOut';
+import { ResponseListRefundOut } from './ResponseListRefundOut';
 import { ResponseOrderOut } from './ResponseOrderOut';
+import { ResponseRefundOut } from './ResponseRefundOut';
 import { ResponseTransferOut } from './ResponseTransferOut';
 import { TransferIn } from './TransferIn';
 import { TransferOut } from './TransferOut';
@@ -61,6 +71,7 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 let enumsMap: Set<string> = new Set<string>([
     "OrderOutStatusEnum",
     "Ordering",
+    "RefundOutStatusEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
@@ -70,15 +81,20 @@ let typeMap: {[index: string]: any} = {
     "ListResponseCurrencyOut": ListResponseCurrencyOut,
     "ListResponseEndpointOut": ListResponseEndpointOut,
     "ListResponseOrderOut": ListResponseOrderOut,
+    "ListResponseRefundOut": ListResponseRefundOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,
+    "RefundIn": RefundIn,
+    "RefundOut": RefundOut,
     "ResponseCurrencyOut": ResponseCurrencyOut,
     "ResponseEndpointOut": ResponseEndpointOut,
     "ResponseError": ResponseError,
     "ResponseListCurrencyOut": ResponseListCurrencyOut,
     "ResponseListEndpointOut": ResponseListEndpointOut,
     "ResponseListOrderOut": ResponseListOrderOut,
+    "ResponseListRefundOut": ResponseListRefundOut,
     "ResponseOrderOut": ResponseOrderOut,
+    "ResponseRefundOut": ResponseRefundOut,
     "ResponseTransferOut": ResponseTransferOut,
     "TransferIn": TransferIn,
     "TransferOut": TransferOut,

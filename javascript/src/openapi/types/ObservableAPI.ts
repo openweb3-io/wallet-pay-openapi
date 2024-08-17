@@ -9,16 +9,21 @@ import { EndpointOut } from '../models/EndpointOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
+import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { RefundIn } from '../models/RefundIn';
+import { RefundOut } from '../models/RefundOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
 import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
+import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseRefundOut } from '../models/ResponseRefundOut';
 import { ResponseTransferOut } from '../models/ResponseTransferOut';
 import { TransferIn } from '../models/TransferIn';
 import { TransferOut } from '../models/TransferOut';
@@ -185,6 +190,101 @@ export class ObservableOrderApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
+            }));
+    }
+ 
+}
+
+import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
+export class ObservableRefundApi {
+    private requestFactory: RefundApiRequestFactory;
+    private responseProcessor: RefundApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: RefundApiRequestFactory,
+        responseProcessor?: RefundApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new RefundApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RefundApiResponseProcessor();
+    }
+
+    /**
+     * Create a refund.
+     * Create Refund
+     * @param appId Specified the app id.
+     * @param refundIn 
+     */
+    public v1RefundCreate(appId: string, refundIn: RefundIn, _options?: Configuration): Observable<ResponseRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundCreate(appId, refundIn, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundCreate(rsp)));
+            }));
+    }
+ 
+    /**
+     * Get specified refund.
+     * Get Refund
+     * @param appId Specified the app id.
+     * @param idOrUid Specified the refund id or refund uid.
+     */
+    public v1RefundGet(appId: string, idOrUid: string, _options?: Configuration): Observable<ResponseRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundGet(appId, idOrUid, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundGet(rsp)));
+            }));
+    }
+ 
+    /**
+     * List refunds.
+     * List Refunds
+     * @param appId Specified the app id.
+     * @param size Limit the number of returned items
+     * @param page Specifying the page index
+     * @param orderId Optional order id
+     */
+    public v1RefundList(appId: string, size?: number, page?: number, orderId?: string, _options?: Configuration): Observable<ResponseListRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundList(appId, size, page, orderId, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundList(rsp)));
             }));
     }
  

@@ -417,6 +417,385 @@
                     "code-samples": []
                 }
             }
+        },        
+        "/api/v1/apps/{appId}/refunds": {
+            "get": {
+                "description": "List refunds.",
+                "operationId": "v1.refund.list",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Limit the number of returned items",
+                        "in": "query",
+                        "name": "size",
+                        "schema": {
+                            "description": "Limit the number of returned items",
+                            "format": "uint64",
+                            "minimum": 0,
+                            "default": 20,
+                            "example": 100,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specifying the page index",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "description": "Specifying the page index",
+                            "example": 0,
+                            "default": 0,
+                            "type": "integer"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Optional order id",
+                        "in": "query",
+                        "name": "order_id",
+                        "schema": {
+                            "description": "Optional order id",
+                            "example": "923be366-51d1-447f-a0e8-db4c75dffae5",
+                            "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseListRefundOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                },
+                "summary": "List Refunds",
+                "tags": [
+                    "Refund"
+                ]
+            },
+            "post": {
+                "description": "Create a refund.",
+                "operationId": "v1.refund.create",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RefundIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseRefundOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseRefundOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Create Refund",
+                "tags": [
+                    "Refund"
+                ],
+                "x-readme": {
+                    "code-samples": []
+                }
+            }
+        },        
+        "/api/v1/apps/{appId}/refunds/{idOrUid}": {
+            "get": {
+                "description": "Get specified refund.",
+                "operationId": "v1.refund.get",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Specified the refund id or refund uid.",
+                        "in": "path",
+                        "name": "idOrUid",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the refund id or refund uid.",
+                            "example": "11b9ca57-0559-403a-bf8e-7bd1a31aff45",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseRefundOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseRefundOut"
+                                }
+                            }
+                        },
+                        "description": ""
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                },
+                "summary": "Get Refund",
+                "tags": [
+                    "Refund"
+                ]
+            }
         },
         "/api/v1/apps/{appId}/orders": {
             "get": {
@@ -1537,6 +1916,165 @@
                 "title": "ResponseTransferOut",
                 "type": "object"
             },
+            "RefundIn": {
+                "properties": {
+                    "uid": {
+                        "description": "Optional unique identifier for the refund",
+                        "example": "unique-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "order_id": {
+                        "description": "The order's ID",
+                        "example": "fdcefb20-1994-417a-8c6a-0648b841c266",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.",
+                        "example": "123450000",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "note": {
+                        "description": "Optional refund note",
+                        "example": "note example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "order_id",
+                    "amount"
+                ],
+                "type": "object"
+            },
+            "RefundOut": {
+                "properties": {
+                    "id": {
+                        "description": "The refund's ID",
+                        "example": "fdcefb20-1994-417a-8c6a-0648b841c266",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "description": "The refund's UID",
+                        "example": "unique-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "nullable": true,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
+                    "order_id": {
+                        "description": "The relative order id",
+                        "example": "fdcefb20-1994-417a-8c6a-0648b841c266",
+                        "type": "string"
+                    },
+                    "currency": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "amount": {
+                        "description": "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.",
+                        "example": "12345000",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["PENDING", "FAILED", "COMPLETED"],
+                        "description": "The refund's status"
+                    },
+                    "note": {
+                        "description": "Optional refund note",
+                        "example": "note example",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "failed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The refund's failure time"
+                    },
+                    "failed_message": {
+                        "type": "string",
+                        "description": "The message when refund failed"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The refund's created time"
+                    },
+                    "completed_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The refund's completed time"
+                    }
+                },
+                "required": [
+                    "id",
+                    "order_id",
+                    "currency",
+                    "amount",
+                    "status",
+                    "created_at"
+                ],
+                "type": "object"
+            },
+            "ListResponse_RefundOut_": {
+                "properties": {
+                    "items": {
+                        "items": {
+                            "$ref": "#/components/schemas/RefundOut"
+                        },
+                        "type": "array"
+                    },
+                    "total": {
+                        "type": "integer"
+                    }
+                },
+                "required": [
+                    "items"
+                ],
+                "type": "object"
+            },
+            "ResponseRefundOut": {
+                "properties":{
+                    "data": {
+                        "description": "The refund info data",
+                        "$ref": "#/components/schemas/RefundOut"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseRefundOut",
+                "type": "object"
+            },
+            "ResponseListRefundOut": {
+                "properties":{
+                    "data": {
+                        "description": "The refund list",
+                        "$ref": "#/components/schemas/ListResponse_RefundOut_"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseListRefundOut",
+                "type": "object"
+            },
             "OrderIn": {
                 "properties": {
                     "uid": {
@@ -1556,7 +2094,7 @@
                         "type": "string"
                     },
                     "amount": {
-                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "description": "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.",
                         "example": "0.0012345",
                         "maxLength": 256,
                         "minLength": 1,
@@ -1614,7 +2152,7 @@
                         "type": "string"
                     },
                     "amount": {
-                        "description": "Big decimal string representation. Note that the max precision (number of digits after decimal point) depends on the currencyCode. E.g. for all fiat currencies is 2 (0.01), for BTC is 8, for USDT is 6. There's also min order amount for creating an order. It's 0.000001 BTC / 0.01 USDT / 0.01 USD / 0.01 EUR / 0.1 RUB.",
+                        "description": "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.",
                         "example": "1",
                         "maxLength": 256,
                         "minLength": 1,
@@ -1729,7 +2267,7 @@
                 "required": [
                     "data"
                 ],
-                "title": "ResponseEndpointOut",
+                "title": "ResponseListOrderOut",
                 "type": "object"
             },
             "EndpointIn": {
@@ -1900,7 +2438,7 @@
                 "required": [
                     "data"
                 ],
-                "title": "ResponseEndpointOut",
+                "title": "ResponseListEndpointOut",
                 "type": "object"
             }
         },

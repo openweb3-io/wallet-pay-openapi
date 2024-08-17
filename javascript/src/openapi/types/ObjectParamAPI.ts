@@ -8,16 +8,21 @@ import { EndpointOut } from '../models/EndpointOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
+import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { RefundIn } from '../models/RefundIn';
+import { RefundOut } from '../models/RefundOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
 import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
+import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseRefundOut } from '../models/ResponseRefundOut';
 import { ResponseTransferOut } from '../models/ResponseTransferOut';
 import { TransferIn } from '../models/TransferIn';
 import { TransferOut } from '../models/TransferOut';
@@ -193,6 +198,102 @@ export class ObjectOrderApi {
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
         return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.accountId,  options).toPromise();
+    }
+
+}
+
+import { ObservableRefundApi } from "./ObservableAPI";
+import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
+
+export interface RefundApiV1RefundCreateRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof RefundApiv1RefundCreate
+     */
+    appId: string
+    /**
+     * 
+     * @type RefundIn
+     * @memberof RefundApiv1RefundCreate
+     */
+    refundIn: RefundIn
+}
+
+export interface RefundApiV1RefundGetRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof RefundApiv1RefundGet
+     */
+    appId: string
+    /**
+     * Specified the refund id or refund uid.
+     * @type string
+     * @memberof RefundApiv1RefundGet
+     */
+    idOrUid: string
+}
+
+export interface RefundApiV1RefundListRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof RefundApiv1RefundList
+     */
+    appId: string
+    /**
+     * Limit the number of returned items
+     * @type number
+     * @memberof RefundApiv1RefundList
+     */
+    size?: number
+    /**
+     * Specifying the page index
+     * @type number
+     * @memberof RefundApiv1RefundList
+     */
+    page?: number
+    /**
+     * Optional order id
+     * @type string
+     * @memberof RefundApiv1RefundList
+     */
+    orderId?: string
+}
+
+export class ObjectRefundApi {
+    private api: ObservableRefundApi
+
+    public constructor(configuration: Configuration, requestFactory?: RefundApiRequestFactory, responseProcessor?: RefundApiResponseProcessor) {
+        this.api = new ObservableRefundApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a refund.
+     * Create Refund
+     * @param param the request object
+     */
+    public v1RefundCreate(param: RefundApiV1RefundCreateRequest, options?: Configuration): Promise<ResponseRefundOut> {
+        return this.api.v1RefundCreate(param.appId, param.refundIn,  options).toPromise();
+    }
+
+    /**
+     * Get specified refund.
+     * Get Refund
+     * @param param the request object
+     */
+    public v1RefundGet(param: RefundApiV1RefundGetRequest, options?: Configuration): Promise<ResponseRefundOut> {
+        return this.api.v1RefundGet(param.appId, param.idOrUid,  options).toPromise();
+    }
+
+    /**
+     * List refunds.
+     * List Refunds
+     * @param param the request object
+     */
+    public v1RefundList(param: RefundApiV1RefundListRequest, options?: Configuration): Promise<ResponseListRefundOut> {
+        return this.api.v1RefundList(param.appId, param.size, param.page, param.orderId,  options).toPromise();
     }
 
 }

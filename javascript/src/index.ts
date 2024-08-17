@@ -20,7 +20,10 @@ import {
   TransferApi,
   TransferIn,
   TransferOut,
-
+  RefundApi,
+  RefundIn,
+  RefundOut,
+  ListResponseRefundOut,
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
@@ -194,5 +197,28 @@ class Endpoint {
   public async list(appId:string, options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
     return (await this.api.v1EndpointList({ appId, ...options })).data;
   }
-  
+}
+
+export interface RefundListOptions extends ListOptions {
+  orderId?: string;
+}
+
+class Refund {
+  private readonly api: RefundApi;
+
+  public constructor(config: Configuration) {
+    this.api = new RefundApi(config);
+  }
+
+  public async list(appId: string, options?: RefundListOptions): Promise<ListResponseRefundOut> {
+    return (await this.api.v1RefundList({ appId, ...options })).data;
+  }
+
+  public async create(appId: string, refundIn: RefundIn, options?: PostOptions): Promise<RefundOut> {
+    return (await this.api.v1RefundCreate({ appId, refundIn, ...options })).data;
+  }
+
+  public async get(appId: string, idOrUid: string): Promise<RefundOut> {
+    return (await this.api.v1RefundGet({ appId, idOrUid })).data;
+  }
 }

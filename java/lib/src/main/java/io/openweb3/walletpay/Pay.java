@@ -27,6 +27,7 @@ public final class Pay {
 	private final Endpoint endpoint;
 	private final Currency currency;
 	private final Transfer transfer;
+	private final Refund refund;
 
 	public Pay(final String apikey, final String privateKeyPath) throws Exception {
 		this(apikey, privateKeyPath, new PayOptions());
@@ -96,6 +97,7 @@ public final class Pay {
 		this.endpoint = new Endpoint();
 		this.currency = new Currency();
 		this.transfer = new Transfer();
+		this.refund = new Refund();
 	}
 
 	private Interceptor getProgressInterceptor() {
@@ -130,5 +132,9 @@ public final class Pay {
 
 	public Transfer getTransfer() {
 		return transfer;
+	}
+
+	public Refund getRefund() {
+		return refund;
 	}
 }

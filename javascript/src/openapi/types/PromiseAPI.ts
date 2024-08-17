@@ -8,16 +8,21 @@ import { EndpointOut } from '../models/EndpointOut';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
+import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { RefundIn } from '../models/RefundIn';
+import { RefundOut } from '../models/RefundOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
 import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
+import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseRefundOut } from '../models/ResponseRefundOut';
 import { ResponseTransferOut } from '../models/ResponseTransferOut';
 import { TransferIn } from '../models/TransferIn';
 import { TransferOut } from '../models/TransferOut';
@@ -112,6 +117,60 @@ export class PromiseOrderApi {
      */
     public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<ResponseListOrderOut> {
         const result = this.api.v1OrderList(appId, size, page, walletId, accountId, _options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableRefundApi } from './ObservableAPI';
+
+import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
+export class PromiseRefundApi {
+    private api: ObservableRefundApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: RefundApiRequestFactory,
+        responseProcessor?: RefundApiResponseProcessor
+    ) {
+        this.api = new ObservableRefundApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create a refund.
+     * Create Refund
+     * @param appId Specified the app id.
+     * @param refundIn 
+     */
+    public v1RefundCreate(appId: string, refundIn: RefundIn, _options?: Configuration): Promise<ResponseRefundOut> {
+        const result = this.api.v1RefundCreate(appId, refundIn, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get specified refund.
+     * Get Refund
+     * @param appId Specified the app id.
+     * @param idOrUid Specified the refund id or refund uid.
+     */
+    public v1RefundGet(appId: string, idOrUid: string, _options?: Configuration): Promise<ResponseRefundOut> {
+        const result = this.api.v1RefundGet(appId, idOrUid, _options);
+        return result.toPromise();
+    }
+
+    /**
+     * List refunds.
+     * List Refunds
+     * @param appId Specified the app id.
+     * @param size Limit the number of returned items
+     * @param page Specifying the page index
+     * @param orderId Optional order id
+     */
+    public v1RefundList(appId: string, size?: number, page?: number, orderId?: string, _options?: Configuration): Promise<ResponseListRefundOut> {
+        const result = this.api.v1RefundList(appId, size, page, orderId, _options);
         return result.toPromise();
     }
 
