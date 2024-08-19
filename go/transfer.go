@@ -17,7 +17,7 @@ type Transfer struct {
 
 func (e *Transfer) Create(ctx context.Context, appId string, transferIn *TransferIn) (*TransferOut, error) {
 	req := e.api.TransferApi.V1TransferCreate(ctx, appId)
-	req.TransferIn(openapi.TransferIn(*transferIn))
+	req = req.TransferIn(openapi.TransferIn(*transferIn))
 
 	out, res, err := req.Execute()
 	if err != nil {
