@@ -20,39 +20,17 @@ import java.security.spec.X509EncodedKeySpec;
 import io.openweb3.walletpay.exceptions.VerificationException;
 
 public final class Webhook {
-    private final String publicKeyPath;
+    private final String publicKey;
 
-	public Webhook(final String publicKeyPath) {
-        this.publicKeyPath = publicKeyPath;
+	public Webhook(final String publicKey) {
+        this.publicKey = publicKey;
 	}
 
 	public boolean verify(final String payload, final String signature) throws VerificationException {
-		try {
-			return verifyData(payload, signature, this.getPubKey());
+        try {
+			return Utils.verify(payload, signature, this.publicKey);
 		} catch (Exception e) {
-			throw new VerificationException("Signature verify failed");
+			throw new VerificationException(e.getMessage());
 		}
 	}
-
-    private static boolean verifyData(String dataString, String signatureString, PublicKey publicKey)
-            throws NoSuchAlgorithmException, InvalidKeyException, SignatureException, UnsupportedEncodingException {
-        signatureString = signatureString.replace("[\r\n]", "");
-        byte[] signatureBytes = Base64.getDecoder().decode(signatureString);
-        Signature signature = Signature.getInstance("SHA256withRSA");
-        signature.initVerify(publicKey);
-        signature.update(dataString.getBytes(StandardCharsets.UTF_8));
-        return signature.verify(signatureBytes);
-    }
-
-    private PublicKey getPubKey() throws Exception {
-        String pubKeyString = Utils.getStringFromFile(this.publicKeyPath);
-        pubKeyString = pubKeyString.replaceAll("(-+BEGIN PUBLIC KEY-+\\r?\\n|-+END PUBLIC KEY-+\\r?\\n?|\\r|\\n)", "");
-        byte[] keyBytes = Base64.getDecoder().decode(pubKeyString.getBytes(StandardCharsets.UTF_8));
-
-        // generate public key
-        X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-
-        return keyFactory.generatePublic(spec);
-    }
 }

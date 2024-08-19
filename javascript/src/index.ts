@@ -164,7 +164,7 @@ class Transfer {
     this.api = new TransferApi(config);
   }
 
-  public async transfer(appId:string, transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
+  public async create(appId:string, transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
     return (await this.api.v1TransferCreate({ appId, transferIn, ...options })).data;
   }
 }

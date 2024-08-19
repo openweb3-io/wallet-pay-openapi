@@ -2,6 +2,8 @@ package io.openweb3.walletpay;
 
 import io.openweb3.walletpay.exceptions.ApiException;
 import io.openweb3.walletpay.exceptions.SigningException;
+import org.bouncycastle.asn1.ASN1Integer;
+import org.bouncycastle.asn1.ASN1Sequence;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -10,8 +12,10 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.Base64;
 
 final class Utils {
@@ -74,11 +78,32 @@ final class Utils {
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
             return null;
-        } catch (InvalidKeySpecException | SignatureException | InvalidKeyException e) {
-            throw new SigningException(e.getMessage());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static boolean verify(String dataString, String signature, String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
+        // 开头行和结束行，以及所有换行字符
+
+        String stripPublicKey = publicKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", "");
+
+            Base64.Decoder decoder = Base64.getDecoder();
+            byte[] pkcs1Bytes = decoder.decode(stripPublicKey);
+            ASN1Sequence seq = ASN1Sequence.getInstance(pkcs1Bytes);
+            ASN1Integer mod = (ASN1Integer) seq.getObjectAt(0);
+            ASN1Integer exp = (ASN1Integer) seq.getObjectAt(1);
+
+            RSAPublicKeySpec ks = new RSAPublicKeySpec(mod.getValue(), exp.getValue());
+            KeyFactory kf = KeyFactory.getInstance("RSA");
+            RSAPublicKey pk = (RSAPublicKey)kf.generatePublic(ks);
+
+            signature = signature.replace("[\r\n]", "");
+            byte[] signatureBytes = Base64.getDecoder().decode(signature);
+            Signature signer = Signature.getInstance("SHA256withRSA");
+            signer.initVerify(pk);
+            signer.update(dataString.getBytes(StandardCharsets.UTF_8));
+            return signer.verify(signatureBytes);
     }
 
     /**
@@ -100,5 +125,6 @@ final class Utils {
         System.arraycopy(pkcs1Bytes, 0, pkcs8Bytes, pkcs8Header.length, pkcs1Bytes.length);
         return pkcs8Bytes;
     }
+
 
 }
