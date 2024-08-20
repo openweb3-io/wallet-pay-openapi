@@ -1877,13 +1877,27 @@
                         "description": "auto commit, default is true",
                         "example": "true",
                         "type": "boolean"
+                    },
+                    "description": {
+                        "description": "transfer description",
+                        "example": "Distribute prizes",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "transfer tags",
+                        "items": {
+                            "type": "string"
+                        },
+                        "type": "array",
+                        "nullable": true
                     }
                 },
                 "required": [
                     "to_wallet_id",
                     "currency",
-                    "amount",
-                    "auto_commit"
+                    "amount"
                 ],
                 "type": "object"
             },

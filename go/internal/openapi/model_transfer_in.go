@@ -23,19 +23,22 @@ type TransferIn struct {
 	// big integer string representation
 	Amount string `json:"amount"`
 	// auto commit, default is true
-	AutoCommit bool `json:"auto_commit"`
+	AutoCommit *bool `json:"auto_commit,omitempty"`
+	// transfer description
+	Description *string `json:"description,omitempty"`
+	// transfer tags
+	Tags []string `json:"tags,omitempty"`
 }
 
 // NewTransferIn instantiates a new TransferIn object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTransferIn(toWalletId string, currency string, amount string, autoCommit bool) *TransferIn {
+func NewTransferIn(toWalletId string, currency string, amount string) *TransferIn {
 	this := TransferIn{}
 	this.ToWalletId = toWalletId
 	this.Currency = currency
 	this.Amount = amount
-	this.AutoCommit = autoCommit
 	return &this
 }
 
@@ -119,28 +122,101 @@ func (o *TransferIn) SetAmount(v string) {
 	o.Amount = v
 }
 
-// GetAutoCommit returns the AutoCommit field value
+// GetAutoCommit returns the AutoCommit field value if set, zero value otherwise.
 func (o *TransferIn) GetAutoCommit() bool {
-	if o == nil {
+	if o == nil || o.AutoCommit == nil {
 		var ret bool
 		return ret
 	}
-
-	return o.AutoCommit
+	return *o.AutoCommit
 }
 
-// GetAutoCommitOk returns a tuple with the AutoCommit field value
+// GetAutoCommitOk returns a tuple with the AutoCommit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TransferIn) GetAutoCommitOk() (*bool, bool) {
-	if o == nil  {
+	if o == nil || o.AutoCommit == nil {
 		return nil, false
 	}
-	return &o.AutoCommit, true
+	return o.AutoCommit, true
 }
 
-// SetAutoCommit sets field value
+// HasAutoCommit returns a boolean if a field has been set.
+func (o *TransferIn) HasAutoCommit() bool {
+	if o != nil && o.AutoCommit != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAutoCommit gets a reference to the given bool and assigns it to the AutoCommit field.
 func (o *TransferIn) SetAutoCommit(v bool) {
-	o.AutoCommit = v
+	o.AutoCommit = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *TransferIn) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TransferIn) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *TransferIn) HasDescription() bool {
+	if o != nil && o.Description != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *TransferIn) SetDescription(v string) {
+	o.Description = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TransferIn) GetTags() []string {
+	if o == nil  {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TransferIn) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *TransferIn) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *TransferIn) SetTags(v []string) {
+	o.Tags = v
 }
 
 func (o TransferIn) MarshalJSON() ([]byte, error) {
@@ -154,8 +230,14 @@ func (o TransferIn) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["amount"] = o.Amount
 	}
-	if true {
+	if o.AutoCommit != nil {
 		toSerialize["auto_commit"] = o.AutoCommit
+	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	return json.Marshal(toSerialize)
 }

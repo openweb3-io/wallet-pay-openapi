@@ -30,7 +30,7 @@ import (
 
 func main() {
     appId := "app_12345xsfei" // string | Specified the app id.
-    transferIn := *openapiclient.NewTransferIn("7e5c8e13-0573-472e-9e34-fe779c618fcf", "USDT", "10000", true) // TransferIn | 
+    transferIn := *openapiclient.NewTransferIn("7e5c8e13-0573-472e-9e34-fe779c618fcf", "USDT", "10000") // TransferIn | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

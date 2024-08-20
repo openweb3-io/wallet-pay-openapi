@@ -28,7 +28,15 @@ export class TransferIn {
     /**
     * auto commit, default is true
     */
-    'autoCommit': boolean;
+    'autoCommit'?: boolean;
+    /**
+    * transfer description
+    */
+    'description'?: string;
+    /**
+    * transfer tags
+    */
+    'tags'?: Array<string>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -55,6 +63,18 @@ export class TransferIn {
             "name": "autoCommit",
             "baseName": "auto_commit",
             "type": "boolean",
+            "format": ""
+        },
+        {
+            "name": "description",
+            "baseName": "description",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "tags",
+            "baseName": "tags",
+            "type": "Array<string>",
             "format": ""
         }    ];
 

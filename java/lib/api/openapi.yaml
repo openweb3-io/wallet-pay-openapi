@@ -1320,8 +1320,12 @@ components:
       example:
         to_wallet_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
         amount: "10000"
+        description: USDT
         currency: USDT
         auto_commit: true
+        tags:
+        - tags
+        - tags
       properties:
         to_wallet_id:
           description: the target wallet id
@@ -1346,9 +1350,20 @@ components:
           description: auto commit, default is true
           example: true
           type: boolean
+        description:
+          description: transfer description
+          example: USDT
+          maxLength: 256
+          minLength: 1
+          type: string
+        tags:
+          description: transfer tags
+          items:
+            type: string
+          nullable: true
+          type: array
       required:
       - amount
-      - auto_commit
       - currency
       - to_wallet_id
       type: object
