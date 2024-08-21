@@ -17,7 +17,7 @@ type Currency struct {
 
 type CurrencyListOptions struct {
 	Cursor *string
-	Limit  int32
+	Limit  *int32
 	Rated  *bool
 }
 
@@ -30,7 +30,9 @@ func (e *Currency) List(ctx context.Context, appId string, options *CurrencyList
 		if options.Rated != nil {
 			req = req.Rated(*options.Rated)
 		}
-		req.Limit(options.Limit)
+		if options.Limit != nil {
+			req = req.Limit(*options.Limit)
+		}
 	}
 	out, res, err := req.Execute()
 	if err != nil {
