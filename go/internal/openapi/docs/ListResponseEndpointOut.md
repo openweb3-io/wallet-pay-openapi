@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Items** | [**[]EndpointOut**](EndpointOut.md) |  | 
 **PrevCursor** | Pointer to **string** |  | [optional] 
 **NextCursor** | Pointer to **string** |  | [optional] 
+**HasNext** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -96,6 +97,31 @@ SetNextCursor sets NextCursor field to given value.
 `func (o *ListResponseEndpointOut) HasNextCursor() bool`
 
 HasNextCursor returns a boolean if a field has been set.
+
+### GetHasNext
+
+`func (o *ListResponseEndpointOut) GetHasNext() bool`
+
+GetHasNext returns the HasNext field if non-nil, zero value otherwise.
+
+### GetHasNextOk
+
+`func (o *ListResponseEndpointOut) GetHasNextOk() (*bool, bool)`
+
+GetHasNextOk returns a tuple with the HasNext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasNext
+
+`func (o *ListResponseEndpointOut) SetHasNext(v bool)`
+
+SetHasNext sets HasNext field to given value.
+
+### HasHasNext
+
+`func (o *ListResponseEndpointOut) HasHasNext() bool`
+
+HasHasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -15,7 +15,9 @@ import { HttpFile } from '../http/http';
 
 export class ListResponseCurrencyOut {
     'items': Array<CurrencyOut>;
-    'total'?: number;
+    'nextCursor'?: string;
+    'prevCursor'?: string;
+    'hasNext'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -27,9 +29,21 @@ export class ListResponseCurrencyOut {
             "format": ""
         },
         {
-            "name": "total",
-            "baseName": "total",
-            "type": "number",
+            "name": "nextCursor",
+            "baseName": "next_cursor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "prevCursor",
+            "baseName": "prev_cursor",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "hasNext",
+            "baseName": "has_next",
+            "type": "boolean",
             "format": ""
         }    ];
 

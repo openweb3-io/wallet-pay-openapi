@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T17:44:11.856419+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T19:29:02.160382+08:00[Asia/Shanghai]")
 public class EndpointIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)

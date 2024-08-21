@@ -209,8 +209,8 @@ public class CurrencyApi {
     /**
      * Build call for v1CurrencyList
      * @param appId Specified the app id. (required)
-     * @param size Limit the number of returned items (optional, default to 20)
-     * @param page Specifying the page index (optional, default to 0)
+     * @param limit Limit the number of returned items (optional, default to 20)
+     * @param cursor Specifying the start cursor position (optional)
      * @param rated Specifying if currency supports fetching rates (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -227,7 +227,7 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrencyListCall(String appId, Integer size, Integer page, Boolean rated, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1CurrencyListCall(String appId, Integer limit, String cursor, Boolean rated, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -240,12 +240,12 @@ public class CurrencyApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (size != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
+        if (limit != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("limit", limit));
         }
 
-        if (page != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        if (cursor != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("cursor", cursor));
         }
 
         if (rated != null) {
@@ -271,7 +271,7 @@ public class CurrencyApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1CurrencyListValidateBeforeCall(String appId, Integer size, Integer page, Boolean rated, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1CurrencyListValidateBeforeCall(String appId, Integer limit, String cursor, Boolean rated, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'appId' is set
         if (appId == null) {
@@ -279,7 +279,7 @@ public class CurrencyApi {
         }
         
 
-        okhttp3.Call localVarCall = v1CurrencyListCall(appId, size, page, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrencyListCall(appId, limit, cursor, rated, _callback);
         return localVarCall;
 
     }
@@ -288,8 +288,8 @@ public class CurrencyApi {
      * List currencies
      * List currencies.
      * @param appId Specified the app id. (required)
-     * @param size Limit the number of returned items (optional, default to 20)
-     * @param page Specifying the page index (optional, default to 0)
+     * @param limit Limit the number of returned items (optional, default to 20)
+     * @param cursor Specifying the start cursor position (optional)
      * @param rated Specifying if currency supports fetching rates (optional)
      * @return ResponseListCurrencyOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -305,8 +305,8 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseListCurrencyOut v1CurrencyList(String appId, Integer size, Integer page, Boolean rated) throws ApiException {
-        ApiResponse<ResponseListCurrencyOut> localVarResp = v1CurrencyListWithHttpInfo(appId, size, page, rated);
+    public ResponseListCurrencyOut v1CurrencyList(String appId, Integer limit, String cursor, Boolean rated) throws ApiException {
+        ApiResponse<ResponseListCurrencyOut> localVarResp = v1CurrencyListWithHttpInfo(appId, limit, cursor, rated);
         return localVarResp.getData();
     }
 
@@ -314,8 +314,8 @@ public class CurrencyApi {
      * List currencies
      * List currencies.
      * @param appId Specified the app id. (required)
-     * @param size Limit the number of returned items (optional, default to 20)
-     * @param page Specifying the page index (optional, default to 0)
+     * @param limit Limit the number of returned items (optional, default to 20)
+     * @param cursor Specifying the start cursor position (optional)
      * @param rated Specifying if currency supports fetching rates (optional)
      * @return ApiResponse&lt;ResponseListCurrencyOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -331,8 +331,8 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseListCurrencyOut> v1CurrencyListWithHttpInfo(String appId, Integer size, Integer page, Boolean rated) throws ApiException {
-        okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, size, page, rated, null);
+    public ApiResponse<ResponseListCurrencyOut> v1CurrencyListWithHttpInfo(String appId, Integer limit, String cursor, Boolean rated) throws ApiException {
+        okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, limit, cursor, rated, null);
         Type localVarReturnType = new TypeToken<ResponseListCurrencyOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -341,8 +341,8 @@ public class CurrencyApi {
      * List currencies (asynchronously)
      * List currencies.
      * @param appId Specified the app id. (required)
-     * @param size Limit the number of returned items (optional, default to 20)
-     * @param page Specifying the page index (optional, default to 0)
+     * @param limit Limit the number of returned items (optional, default to 20)
+     * @param cursor Specifying the start cursor position (optional)
      * @param rated Specifying if currency supports fetching rates (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -359,9 +359,9 @@ public class CurrencyApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1CurrencyListAsync(String appId, Integer size, Integer page, Boolean rated, final ApiCallback<ResponseListCurrencyOut> _callback) throws ApiException {
+    public okhttp3.Call v1CurrencyListAsync(String appId, Integer limit, String cursor, Boolean rated, final ApiCallback<ResponseListCurrencyOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, size, page, rated, _callback);
+        okhttp3.Call localVarCall = v1CurrencyListValidateBeforeCall(appId, limit, cursor, rated, _callback);
         Type localVarReturnType = new TypeToken<ResponseListCurrencyOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

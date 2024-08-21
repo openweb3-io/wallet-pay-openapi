@@ -214,17 +214,17 @@ type ApiV1CurrencyListRequest struct {
 	ctx _context.Context
 	ApiService *CurrencyApiService
 	appId string
-	size *int32
-	page *int32
+	limit *int32
+	cursor *string
 	rated *bool
 }
 
-func (r ApiV1CurrencyListRequest) Size(size int32) ApiV1CurrencyListRequest {
-	r.size = &size
+func (r ApiV1CurrencyListRequest) Limit(limit int32) ApiV1CurrencyListRequest {
+	r.limit = &limit
 	return r
 }
-func (r ApiV1CurrencyListRequest) Page(page int32) ApiV1CurrencyListRequest {
-	r.page = &page
+func (r ApiV1CurrencyListRequest) Cursor(cursor string) ApiV1CurrencyListRequest {
+	r.cursor = &cursor
 	return r
 }
 func (r ApiV1CurrencyListRequest) Rated(rated bool) ApiV1CurrencyListRequest {
@@ -277,11 +277,11 @@ func (a *CurrencyApiService) V1CurrencyListExecute(r ApiV1CurrencyListRequest) (
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.size != nil {
-		localVarQueryParams.Add("size", parameterToString(*r.size, ""))
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
-	if r.page != nil {
-		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
 	if r.rated != nil {
 		localVarQueryParams.Add("rated", parameterToString(*r.rated, ""))

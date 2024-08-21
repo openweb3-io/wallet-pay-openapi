@@ -17,6 +17,7 @@ export class ListResponseEndpointOut {
     'items': Array<EndpointOut>;
     'prevCursor'?: string;
     'nextCursor'?: string;
+    'hasNext'?: boolean;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,6 +38,12 @@ export class ListResponseEndpointOut {
             "name": "nextCursor",
             "baseName": "next_cursor",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "hasNext",
+            "baseName": "has_next",
+            "type": "boolean",
             "format": ""
         }    ];
 

@@ -70,11 +70,11 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
      * List currencies.
      * List currencies
      * @param appId Specified the app id.
-     * @param size Limit the number of returned items
-     * @param page Specifying the page index
+     * @param limit Limit the number of returned items
+     * @param cursor Specifying the start cursor position
      * @param rated Specifying if currency supports fetching rates
      */
-    public async v1CurrencyList(appId: string, size?: number, page?: number, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async v1CurrencyList(appId: string, limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'appId' is not null or undefined
@@ -97,11 +97,11 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (size !== undefined) {
-            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", "uint64"));
+        if (limit !== undefined) {
+            requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", "uint64"));
         }
-        if (page !== undefined) {
-            requestContext.setQueryParam("page", ObjectSerializer.serialize(page, "number", ""));
+        if (cursor !== undefined) {
+            requestContext.setQueryParam("cursor", ObjectSerializer.serialize(cursor, "string", ""));
         }
         if (rated !== undefined) {
             requestContext.setQueryParam("rated", ObjectSerializer.serialize(rated, "boolean", ""));

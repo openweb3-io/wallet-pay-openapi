@@ -58,13 +58,13 @@ export interface CurrencyApiV1CurrencyListRequest {
      * @type number
      * @memberof CurrencyApiv1CurrencyList
      */
-    size?: number
+    limit?: number
     /**
-     * Specifying the page index
-     * @type number
+     * Specifying the start cursor position
+     * @type string
      * @memberof CurrencyApiv1CurrencyList
      */
-    page?: number
+    cursor?: string
     /**
      * Specifying if currency supports fetching rates
      * @type boolean
@@ -95,7 +95,7 @@ export class ObjectCurrencyApi {
      * @param param the request object
      */
     public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ResponseListCurrencyOut> {
-        return this.api.v1CurrencyList(param.appId, param.size, param.page, param.rated,  options).toPromise();
+        return this.api.v1CurrencyList(param.appId, param.limit, param.cursor, param.rated,  options).toPromise();
     }
 
 }

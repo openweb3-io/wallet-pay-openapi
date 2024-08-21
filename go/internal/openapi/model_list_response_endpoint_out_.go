@@ -19,6 +19,7 @@ type ListResponseEndpointOut struct {
 	Items []EndpointOut `json:"items"`
 	PrevCursor *string `json:"prev_cursor,omitempty"`
 	NextCursor *string `json:"next_cursor,omitempty"`
+	HasNext *bool `json:"has_next,omitempty"`
 }
 
 // NewListResponseEndpointOut instantiates a new ListResponseEndpointOut object
@@ -127,6 +128,38 @@ func (o *ListResponseEndpointOut) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
+// GetHasNext returns the HasNext field value if set, zero value otherwise.
+func (o *ListResponseEndpointOut) GetHasNext() bool {
+	if o == nil || o.HasNext == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasNext
+}
+
+// GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListResponseEndpointOut) GetHasNextOk() (*bool, bool) {
+	if o == nil || o.HasNext == nil {
+		return nil, false
+	}
+	return o.HasNext, true
+}
+
+// HasHasNext returns a boolean if a field has been set.
+func (o *ListResponseEndpointOut) HasHasNext() bool {
+	if o != nil && o.HasNext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
+func (o *ListResponseEndpointOut) SetHasNext(v bool) {
+	o.HasNext = &v
+}
+
 func (o ListResponseEndpointOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -137,6 +170,9 @@ func (o ListResponseEndpointOut) MarshalJSON() ([]byte, error) {
 	}
 	if o.NextCursor != nil {
 		toSerialize["next_cursor"] = o.NextCursor
+	}
+	if o.HasNext != nil {
+		toSerialize["has_next"] = o.HasNext
 	}
 	return json.Marshal(toSerialize)
 }

@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Items** | [**[]CurrencyOut**](CurrencyOut.md) |  | 
-**Total** | Pointer to **int32** |  | [optional] 
+**NextCursor** | Pointer to **string** |  | [optional] 
+**PrevCursor** | Pointer to **string** |  | [optional] 
+**HasNext** | Pointer to **bool** |  | [optional] 
 
 ## Methods
 
@@ -46,30 +48,80 @@ and a boolean to check if the value has been set.
 SetItems sets Items field to given value.
 
 
-### GetTotal
+### GetNextCursor
 
-`func (o *ListResponseCurrencyOut) GetTotal() int32`
+`func (o *ListResponseCurrencyOut) GetNextCursor() string`
 
-GetTotal returns the Total field if non-nil, zero value otherwise.
+GetNextCursor returns the NextCursor field if non-nil, zero value otherwise.
 
-### GetTotalOk
+### GetNextCursorOk
 
-`func (o *ListResponseCurrencyOut) GetTotalOk() (*int32, bool)`
+`func (o *ListResponseCurrencyOut) GetNextCursorOk() (*string, bool)`
 
-GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+GetNextCursorOk returns a tuple with the NextCursor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetTotal
+### SetNextCursor
 
-`func (o *ListResponseCurrencyOut) SetTotal(v int32)`
+`func (o *ListResponseCurrencyOut) SetNextCursor(v string)`
 
-SetTotal sets Total field to given value.
+SetNextCursor sets NextCursor field to given value.
 
-### HasTotal
+### HasNextCursor
 
-`func (o *ListResponseCurrencyOut) HasTotal() bool`
+`func (o *ListResponseCurrencyOut) HasNextCursor() bool`
 
-HasTotal returns a boolean if a field has been set.
+HasNextCursor returns a boolean if a field has been set.
+
+### GetPrevCursor
+
+`func (o *ListResponseCurrencyOut) GetPrevCursor() string`
+
+GetPrevCursor returns the PrevCursor field if non-nil, zero value otherwise.
+
+### GetPrevCursorOk
+
+`func (o *ListResponseCurrencyOut) GetPrevCursorOk() (*string, bool)`
+
+GetPrevCursorOk returns a tuple with the PrevCursor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrevCursor
+
+`func (o *ListResponseCurrencyOut) SetPrevCursor(v string)`
+
+SetPrevCursor sets PrevCursor field to given value.
+
+### HasPrevCursor
+
+`func (o *ListResponseCurrencyOut) HasPrevCursor() bool`
+
+HasPrevCursor returns a boolean if a field has been set.
+
+### GetHasNext
+
+`func (o *ListResponseCurrencyOut) GetHasNext() bool`
+
+GetHasNext returns the HasNext field if non-nil, zero value otherwise.
+
+### GetHasNextOk
+
+`func (o *ListResponseCurrencyOut) GetHasNextOk() (*bool, bool)`
+
+GetHasNextOk returns a tuple with the HasNext field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetHasNext
+
+`func (o *ListResponseCurrencyOut) SetHasNext(v bool)`
+
+SetHasNext sets HasNext field to given value.
+
+### HasHasNext
+
+`func (o *ListResponseCurrencyOut) HasHasNext() bool`
+
+HasHasNext returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

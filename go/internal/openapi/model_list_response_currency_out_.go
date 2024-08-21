@@ -17,7 +17,9 @@ import (
 // ListResponseCurrencyOut struct for ListResponseCurrencyOut
 type ListResponseCurrencyOut struct {
 	Items []CurrencyOut `json:"items"`
-	Total *int32 `json:"total,omitempty"`
+	NextCursor *string `json:"next_cursor,omitempty"`
+	PrevCursor *string `json:"prev_cursor,omitempty"`
+	HasNext *bool `json:"has_next,omitempty"`
 }
 
 // NewListResponseCurrencyOut instantiates a new ListResponseCurrencyOut object
@@ -62,36 +64,100 @@ func (o *ListResponseCurrencyOut) SetItems(v []CurrencyOut) {
 	o.Items = v
 }
 
-// GetTotal returns the Total field value if set, zero value otherwise.
-func (o *ListResponseCurrencyOut) GetTotal() int32 {
-	if o == nil || o.Total == nil {
-		var ret int32
+// GetNextCursor returns the NextCursor field value if set, zero value otherwise.
+func (o *ListResponseCurrencyOut) GetNextCursor() string {
+	if o == nil || o.NextCursor == nil {
+		var ret string
 		return ret
 	}
-	return *o.Total
+	return *o.NextCursor
 }
 
-// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// GetNextCursorOk returns a tuple with the NextCursor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListResponseCurrencyOut) GetTotalOk() (*int32, bool) {
-	if o == nil || o.Total == nil {
+func (o *ListResponseCurrencyOut) GetNextCursorOk() (*string, bool) {
+	if o == nil || o.NextCursor == nil {
 		return nil, false
 	}
-	return o.Total, true
+	return o.NextCursor, true
 }
 
-// HasTotal returns a boolean if a field has been set.
-func (o *ListResponseCurrencyOut) HasTotal() bool {
-	if o != nil && o.Total != nil {
+// HasNextCursor returns a boolean if a field has been set.
+func (o *ListResponseCurrencyOut) HasNextCursor() bool {
+	if o != nil && o.NextCursor != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetTotal gets a reference to the given int32 and assigns it to the Total field.
-func (o *ListResponseCurrencyOut) SetTotal(v int32) {
-	o.Total = &v
+// SetNextCursor gets a reference to the given string and assigns it to the NextCursor field.
+func (o *ListResponseCurrencyOut) SetNextCursor(v string) {
+	o.NextCursor = &v
+}
+
+// GetPrevCursor returns the PrevCursor field value if set, zero value otherwise.
+func (o *ListResponseCurrencyOut) GetPrevCursor() string {
+	if o == nil || o.PrevCursor == nil {
+		var ret string
+		return ret
+	}
+	return *o.PrevCursor
+}
+
+// GetPrevCursorOk returns a tuple with the PrevCursor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListResponseCurrencyOut) GetPrevCursorOk() (*string, bool) {
+	if o == nil || o.PrevCursor == nil {
+		return nil, false
+	}
+	return o.PrevCursor, true
+}
+
+// HasPrevCursor returns a boolean if a field has been set.
+func (o *ListResponseCurrencyOut) HasPrevCursor() bool {
+	if o != nil && o.PrevCursor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPrevCursor gets a reference to the given string and assigns it to the PrevCursor field.
+func (o *ListResponseCurrencyOut) SetPrevCursor(v string) {
+	o.PrevCursor = &v
+}
+
+// GetHasNext returns the HasNext field value if set, zero value otherwise.
+func (o *ListResponseCurrencyOut) GetHasNext() bool {
+	if o == nil || o.HasNext == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasNext
+}
+
+// GetHasNextOk returns a tuple with the HasNext field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListResponseCurrencyOut) GetHasNextOk() (*bool, bool) {
+	if o == nil || o.HasNext == nil {
+		return nil, false
+	}
+	return o.HasNext, true
+}
+
+// HasHasNext returns a boolean if a field has been set.
+func (o *ListResponseCurrencyOut) HasHasNext() bool {
+	if o != nil && o.HasNext != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetHasNext gets a reference to the given bool and assigns it to the HasNext field.
+func (o *ListResponseCurrencyOut) SetHasNext(v bool) {
+	o.HasNext = &v
 }
 
 func (o ListResponseCurrencyOut) MarshalJSON() ([]byte, error) {
@@ -99,8 +165,14 @@ func (o ListResponseCurrencyOut) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["items"] = o.Items
 	}
-	if o.Total != nil {
-		toSerialize["total"] = o.Total
+	if o.NextCursor != nil {
+		toSerialize["next_cursor"] = o.NextCursor
+	}
+	if o.PrevCursor != nil {
+		toSerialize["prev_cursor"] = o.PrevCursor
+	}
+	if o.HasNext != nil {
+		toSerialize["has_next"] = o.HasNext
 	}
 	return json.Marshal(toSerialize)
 }

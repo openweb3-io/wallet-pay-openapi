@@ -30,15 +30,23 @@ import java.util.List;
 /**
  * ListResponseCurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T17:44:11.856419+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T19:29:02.160382+08:00[Asia/Shanghai]")
 public class ListResponseCurrencyOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
   private List<CurrencyOut> items = new ArrayList<>();
 
-  public static final String SERIALIZED_NAME_TOTAL = "total";
-  @SerializedName(SERIALIZED_NAME_TOTAL)
-  private Integer total;
+  public static final String SERIALIZED_NAME_NEXT_CURSOR = "next_cursor";
+  @SerializedName(SERIALIZED_NAME_NEXT_CURSOR)
+  private String nextCursor;
+
+  public static final String SERIALIZED_NAME_PREV_CURSOR = "prev_cursor";
+  @SerializedName(SERIALIZED_NAME_PREV_CURSOR)
+  private String prevCursor;
+
+  public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
+  @SerializedName(SERIALIZED_NAME_HAS_NEXT)
+  private Boolean hasNext;
 
 
   public ListResponseCurrencyOut items(List<CurrencyOut> items) {
@@ -68,26 +76,72 @@ public class ListResponseCurrencyOut {
   }
 
 
-  public ListResponseCurrencyOut total(Integer total) {
+  public ListResponseCurrencyOut nextCursor(String nextCursor) {
     
-    this.total = total;
+    this.nextCursor = nextCursor;
     return this;
   }
 
    /**
-   * Get total
-   * @return total
+   * Get nextCursor
+   * @return nextCursor
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public Integer getTotal() {
-    return total;
+  public String getNextCursor() {
+    return nextCursor;
   }
 
 
-  public void setTotal(Integer total) {
-    this.total = total;
+  public void setNextCursor(String nextCursor) {
+    this.nextCursor = nextCursor;
+  }
+
+
+  public ListResponseCurrencyOut prevCursor(String prevCursor) {
+    
+    this.prevCursor = prevCursor;
+    return this;
+  }
+
+   /**
+   * Get prevCursor
+   * @return prevCursor
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public String getPrevCursor() {
+    return prevCursor;
+  }
+
+
+  public void setPrevCursor(String prevCursor) {
+    this.prevCursor = prevCursor;
+  }
+
+
+  public ListResponseCurrencyOut hasNext(Boolean hasNext) {
+    
+    this.hasNext = hasNext;
+    return this;
+  }
+
+   /**
+   * Get hasNext
+   * @return hasNext
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getHasNext() {
+    return hasNext;
+  }
+
+
+  public void setHasNext(Boolean hasNext) {
+    this.hasNext = hasNext;
   }
 
 
@@ -101,12 +155,14 @@ public class ListResponseCurrencyOut {
     }
     ListResponseCurrencyOut listResponseCurrencyOut = (ListResponseCurrencyOut) o;
     return Objects.equals(this.items, listResponseCurrencyOut.items) &&
-        Objects.equals(this.total, listResponseCurrencyOut.total);
+        Objects.equals(this.nextCursor, listResponseCurrencyOut.nextCursor) &&
+        Objects.equals(this.prevCursor, listResponseCurrencyOut.prevCursor) &&
+        Objects.equals(this.hasNext, listResponseCurrencyOut.hasNext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, total);
+    return Objects.hash(items, nextCursor, prevCursor, hasNext);
   }
 
   @Override
@@ -114,7 +170,9 @@ public class ListResponseCurrencyOut {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListResponseCurrencyOut {\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
-    sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");
+    sb.append("    prevCursor: ").append(toIndentedString(prevCursor)).append("\n");
+    sb.append("    hasNext: ").append(toIndentedString(hasNext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

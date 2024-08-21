@@ -25,7 +25,7 @@ paths:
       - description: Limit the number of returned items
         explode: true
         in: query
-        name: size
+        name: limit
         required: false
         schema:
           default: 20
@@ -35,16 +35,14 @@ paths:
           minimum: 0
           type: integer
         style: form
-      - description: Specifying the page index
+      - description: Specifying the start cursor position
         explode: true
         in: query
-        name: page
+        name: cursor
         required: false
         schema:
-          default: 0
-          description: Specifying the page index
-          example: 0
-          type: integer
+          description: Specifying the start cursor position
+          type: string
         style: form
       - description: Specifying if currency supports fetching rates
         explode: true
@@ -1244,7 +1242,9 @@ components:
       type: object
     ListResponse_CurrencyOut_:
       example:
-        total: 0
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
         items:
         - max_withdraw_amount: "0.0012345"
           symbol: USDT
@@ -1275,15 +1275,21 @@ components:
           items:
             $ref: '#/components/schemas/CurrencyOut'
           type: array
-        total:
-          type: integer
+        next_cursor:
+          type: string
+        prev_cursor:
+          type: string
+        has_next:
+          type: boolean
       required:
       - items
       type: object
     ResponseListCurrencyOut:
       example:
         data:
-          total: 0
+          prev_cursor: prev_cursor
+          next_cursor: next_cursor
+          has_next: true
           items:
           - max_withdraw_amount: "0.0012345"
             symbol: USDT
@@ -2015,6 +2021,7 @@ components:
       example:
         prev_cursor: prev_cursor
         next_cursor: next_cursor
+        has_next: true
         items:
         - uid: unique-endpoint-identifier
           headers:
@@ -2051,6 +2058,8 @@ components:
           type: string
         next_cursor:
           type: string
+        has_next:
+          type: boolean
       required:
       - items
       type: object
@@ -2082,6 +2091,7 @@ components:
         data:
           prev_cursor: prev_cursor
           next_cursor: next_cursor
+          has_next: true
           items:
           - uid: unique-endpoint-identifier
             headers:

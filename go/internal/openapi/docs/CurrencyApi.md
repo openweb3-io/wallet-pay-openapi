@@ -84,7 +84,7 @@ Name | Type | Description  | Notes
 
 ## V1CurrencyList
 
-> ResponseListCurrencyOut V1CurrencyList(ctx, appId).Size(size).Page(page).Rated(rated).Execute()
+> ResponseListCurrencyOut V1CurrencyList(ctx, appId).Limit(limit).Cursor(cursor).Rated(rated).Execute()
 
 List currencies
 
@@ -104,13 +104,13 @@ import (
 
 func main() {
     appId := "app_12345xsfei" // string | Specified the app id.
-    size := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
-    page := int32(0) // int32 | Specifying the page index (optional) (default to 0)
+    limit := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
+    cursor := "cursor_example" // string | Specifying the start cursor position (optional)
     rated := true // bool | Specifying if currency supports fetching rates (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrencyApi.V1CurrencyList(context.Background(), appId).Size(size).Page(page).Rated(rated).Execute()
+    resp, r, err := api_client.CurrencyApi.V1CurrencyList(context.Background(), appId).Limit(limit).Cursor(cursor).Rated(rated).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrencyApi.V1CurrencyList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -136,8 +136,8 @@ Other parameters are passed through a pointer to a apiV1CurrencyListRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
- **size** | **int32** | Limit the number of returned items | [default to 20]
- **page** | **int32** | Specifying the page index | [default to 0]
+ **limit** | **int32** | Limit the number of returned items | [default to 20]
+ **cursor** | **string** | Specifying the start cursor position | 
  **rated** | **bool** | Specifying if currency supports fetching rates | 
 
 ### Return type

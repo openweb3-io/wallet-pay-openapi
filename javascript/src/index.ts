@@ -139,7 +139,9 @@ class Order {
   }
 }
 
-export interface CurrencyListOptions extends ListOptions {
+export interface CurrencyListOptions {
+  cursor?: string;
+  limit?:number;
   rated?: boolean;
 }
 

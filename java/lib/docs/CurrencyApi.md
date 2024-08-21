@@ -88,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="v1CurrencyList"></a>
 # **v1CurrencyList**
-> ResponseListCurrencyOut v1CurrencyList(appId, size, page, rated)
+> ResponseListCurrencyOut v1CurrencyList(appId, limit, cursor, rated)
 
 List currencies
 
@@ -117,11 +117,11 @@ public class Example {
 
     CurrencyApi apiInstance = new CurrencyApi(defaultClient);
     String appId = "app_12345xsfei"; // String | Specified the app id.
-    Integer size = 20; // Integer | Limit the number of returned items
-    Integer page = 0; // Integer | Specifying the page index
+    Integer limit = 20; // Integer | Limit the number of returned items
+    String cursor = "cursor_example"; // String | Specifying the start cursor position
     Boolean rated = true; // Boolean | Specifying if currency supports fetching rates
     try {
-      ResponseListCurrencyOut result = apiInstance.v1CurrencyList(appId, size, page, rated);
+      ResponseListCurrencyOut result = apiInstance.v1CurrencyList(appId, limit, cursor, rated);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrencyApi#v1CurrencyList");
@@ -139,8 +139,8 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **appId** | **String**| Specified the app id. |
- **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
- **page** | **Integer**| Specifying the page index | [optional] [default to 0]
+ **limit** | **Integer**| Limit the number of returned items | [optional] [default to 20]
+ **cursor** | **String**| Specifying the start cursor position | [optional]
  **rated** | **Boolean**| Specifying if currency supports fetching rates | [optional]
 
 ### Return type

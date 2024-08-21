@@ -62,10 +62,10 @@ public class CurrencyApiTest {
     @Test
     public void v1CurrencyListTest() throws ApiException {
         String appId = null;
-        Integer size = null;
-        Integer page = null;
+        String cursor= null;
+        Integer limit = null;
         Boolean rated = null;
-        ResponseListCurrencyOut response = api.v1CurrencyList(appId, size, page, rated);
+        ResponseListCurrencyOut response = api.v1CurrencyList(appId, limit, cursor, rated);
 
         // TODO: test validations
     }

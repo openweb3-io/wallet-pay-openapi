@@ -58,7 +58,7 @@
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
-                        "name": "size",
+                        "name": "limit",
                         "schema": {
                             "description": "Limit the number of returned items",
                             "format": "uint64",
@@ -70,14 +70,12 @@
                         "style": "form"
                     },
                     {
-                        "description": "Specifying the page index",
+                        "description": "Specifying the start cursor position",
                         "in": "query",
-                        "name": "page",
+                        "name": "cursor",
                         "schema": {
-                            "description": "Specifying the page index",
-                            "example": 0,
-                            "default": 0,
-                            "type": "integer"
+                            "description": "Specifying the start cursor position",
+                            "type": "string"
                         },
                         "style": "form"
                     },
@@ -1827,8 +1825,14 @@
                         },
                         "type": "array"
                     },
-                    "total": {
-                        "type": "integer"
+                    "next_cursor": {
+                        "type": "string"
+                    },
+                    "prev_cursor": {
+                        "type": "string"
+                    },
+                    "has_next": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
@@ -2439,6 +2443,9 @@
                     },
                     "next_cursor": {
                         "type": "string"
+                    },
+                    "has_next": {
+                        "type":"boolean"
                     }
                 },
                 "required": [

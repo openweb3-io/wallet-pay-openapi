@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * ListResponseEndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T17:44:11.856419+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T19:29:02.160382+08:00[Asia/Shanghai]")
 public class ListResponseEndpointOut {
   public static final String SERIALIZED_NAME_ITEMS = "items";
   @SerializedName(SERIALIZED_NAME_ITEMS)
@@ -43,6 +43,10 @@ public class ListResponseEndpointOut {
   public static final String SERIALIZED_NAME_NEXT_CURSOR = "next_cursor";
   @SerializedName(SERIALIZED_NAME_NEXT_CURSOR)
   private String nextCursor;
+
+  public static final String SERIALIZED_NAME_HAS_NEXT = "has_next";
+  @SerializedName(SERIALIZED_NAME_HAS_NEXT)
+  private Boolean hasNext;
 
 
   public ListResponseEndpointOut items(List<EndpointOut> items) {
@@ -118,6 +122,29 @@ public class ListResponseEndpointOut {
   }
 
 
+  public ListResponseEndpointOut hasNext(Boolean hasNext) {
+    
+    this.hasNext = hasNext;
+    return this;
+  }
+
+   /**
+   * Get hasNext
+   * @return hasNext
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public Boolean getHasNext() {
+    return hasNext;
+  }
+
+
+  public void setHasNext(Boolean hasNext) {
+    this.hasNext = hasNext;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -129,12 +156,13 @@ public class ListResponseEndpointOut {
     ListResponseEndpointOut listResponseEndpointOut = (ListResponseEndpointOut) o;
     return Objects.equals(this.items, listResponseEndpointOut.items) &&
         Objects.equals(this.prevCursor, listResponseEndpointOut.prevCursor) &&
-        Objects.equals(this.nextCursor, listResponseEndpointOut.nextCursor);
+        Objects.equals(this.nextCursor, listResponseEndpointOut.nextCursor) &&
+        Objects.equals(this.hasNext, listResponseEndpointOut.hasNext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, prevCursor, nextCursor);
+    return Objects.hash(items, prevCursor, nextCursor, hasNext);
   }
 
   @Override
@@ -144,6 +172,7 @@ public class ListResponseEndpointOut {
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("    prevCursor: ").append(toIndentedString(prevCursor)).append("\n");
     sb.append("    nextCursor: ").append(toIndentedString(nextCursor)).append("\n");
+    sb.append("    hasNext: ").append(toIndentedString(hasNext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

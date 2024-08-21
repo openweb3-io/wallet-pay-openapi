@@ -14,7 +14,7 @@ public final class Currency {
 
 	public ListResponseCurrencyOut list(final String appId, final CurrencyListOptions options) throws ApiException {
 		try {
-			return api.v1CurrencyList(appId, options.getSize(), options.getPage(), options.getRated()).getData();
+			return api.v1CurrencyList(appId, options.getLimit(), options.getCursor(), options.getRated()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

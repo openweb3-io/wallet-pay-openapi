@@ -16,23 +16,21 @@ type Currency struct {
 }
 
 type CurrencyListOptions struct {
-	Size  *int32
-	Page  *int32
-	Rated *bool
+	Cursor *string
+	Limit  int32
+	Rated  *bool
 }
 
 func (e *Currency) List(ctx context.Context, appId string, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
 	req := e.api.CurrencyApi.V1CurrencyList(ctx, appId)
 	if options != nil {
-		if options.Size != nil {
-			req = req.Size(*options.Size)
-		}
-		if options.Page != nil {
-			req = req.Page(*options.Page)
+		if options.Cursor != nil {
+			req = req.Cursor(*options.Cursor)
 		}
 		if options.Rated != nil {
 			req = req.Rated(*options.Rated)
 		}
+		req.Limit(options.Limit)
 	}
 	out, res, err := req.Execute()
 	if err != nil {
