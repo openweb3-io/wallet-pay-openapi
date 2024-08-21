@@ -31,8 +31,16 @@ import java.util.Map;
 /**
  * EndpointOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-20T20:27:06.254546+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T17:44:11.856419+08:00[Asia/Shanghai]")
 public class EndpointOut {
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private String id;
+
+  public static final String SERIALIZED_NAME_UID = "uid";
+  @SerializedName(SERIALIZED_NAME_UID)
+  private String uid;
+
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
@@ -56,6 +64,51 @@ public class EndpointOut {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, String> headers = null;
+
+
+  public EndpointOut id(String id) {
+    
+    this.id = id;
+    return this;
+  }
+
+   /**
+   * The order&#39;s ID
+   * @return id
+  **/
+  @ApiModelProperty(example = "1brOrx2ZWZBpBUvZwXKQmoEYga2", required = true, value = "The order's ID")
+
+  public String getId() {
+    return id;
+  }
+
+
+  public void setId(String id) {
+    this.id = id;
+  }
+
+
+  public EndpointOut uid(String uid) {
+    
+    this.uid = uid;
+    return this;
+  }
+
+   /**
+   * Optional unique identifier for the endpoint
+   * @return uid
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(example = "unique-endpoint-identifier", value = "Optional unique identifier for the endpoint")
+
+  public String getUid() {
+    return uid;
+  }
+
+
+  public void setUid(String uid) {
+    this.uid = uid;
+  }
 
 
   public EndpointOut description(String description) {
@@ -118,7 +171,7 @@ public class EndpointOut {
    * The webhook endpoint expected event types
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"tx.created\"]", required = true, value = "The webhook endpoint expected event types")
+  @ApiModelProperty(example = "[\"order_expired\"]", required = true, value = "The webhook endpoint expected event types")
 
   public List<String> getFilterTypes() {
     return filterTypes;
@@ -224,7 +277,9 @@ public class EndpointOut {
       return false;
     }
     EndpointOut endpointOut = (EndpointOut) o;
-    return Objects.equals(this.description, endpointOut.description) &&
+    return Objects.equals(this.id, endpointOut.id) &&
+        Objects.equals(this.uid, endpointOut.uid) &&
+        Objects.equals(this.description, endpointOut.description) &&
         Objects.equals(this.url, endpointOut.url) &&
         Objects.equals(this.filterTypes, endpointOut.filterTypes) &&
         Objects.equals(this.disabled, endpointOut.disabled) &&
@@ -234,13 +289,15 @@ public class EndpointOut {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, url, filterTypes, disabled, metadata, headers);
+    return Objects.hash(id, uid, description, url, filterTypes, disabled, metadata, headers);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EndpointOut {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    filterTypes: ").append(toIndentedString(filterTypes)).append("\n");

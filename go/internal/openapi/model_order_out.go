@@ -31,7 +31,7 @@ type OrderOut struct {
 	WalletId *string `json:"wallet_id,omitempty"`
 	// Optional order notes
 	Note *string `json:"note,omitempty"`
-	Metadata *map[string]string `json:"metadata,omitempty"`
+	Metadata map[string]string `json:"metadata,omitempty"`
 	// The expiration seconds
 	Expiration *int32 `json:"expiration,omitempty"`
 	// The order's status
@@ -290,22 +290,23 @@ func (o *OrderOut) SetNote(v string) {
 	o.Note = &v
 }
 
-// GetMetadata returns the Metadata field value if set, zero value otherwise.
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *OrderOut) GetMetadata() map[string]string {
-	if o == nil || o.Metadata == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *OrderOut) GetMetadataOk() (*map[string]string, bool) {
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return o.Metadata, true
+	return &o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -319,7 +320,7 @@ func (o *OrderOut) HasMetadata() bool {
 
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
 func (o *OrderOut) SetMetadata(v map[string]string) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
 // GetExpiration returns the Expiration field value if set, zero value otherwise.

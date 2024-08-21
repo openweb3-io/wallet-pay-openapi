@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Id** | **string** | The order&#39;s ID | 
+**Uid** | Pointer to **string** | Optional unique identifier for the endpoint | [optional] 
 **Description** | Pointer to **string** | The endpoint&#39;s description | [optional] 
 **Url** | **string** | The webhook endpoint url | 
 **FilterTypes** | **[]string** | The webhook endpoint expected event types | 
@@ -15,7 +17,7 @@ Name | Type | Description | Notes
 
 ### NewEndpointOut
 
-`func NewEndpointOut(url string, filterTypes []string, ) *EndpointOut`
+`func NewEndpointOut(id string, url string, filterTypes []string, ) *EndpointOut`
 
 NewEndpointOut instantiates a new EndpointOut object
 This constructor will assign default values to properties that have it defined,
@@ -29,6 +31,51 @@ will change when the set of required properties is changed
 NewEndpointOutWithDefaults instantiates a new EndpointOut object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetId
+
+`func (o *EndpointOut) GetId() string`
+
+GetId returns the Id field if non-nil, zero value otherwise.
+
+### GetIdOk
+
+`func (o *EndpointOut) GetIdOk() (*string, bool)`
+
+GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetId
+
+`func (o *EndpointOut) SetId(v string)`
+
+SetId sets Id field to given value.
+
+
+### GetUid
+
+`func (o *EndpointOut) GetUid() string`
+
+GetUid returns the Uid field if non-nil, zero value otherwise.
+
+### GetUidOk
+
+`func (o *EndpointOut) GetUidOk() (*string, bool)`
+
+GetUidOk returns a tuple with the Uid field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUid
+
+`func (o *EndpointOut) SetUid(v string)`
+
+SetUid sets Uid field to given value.
+
+### HasUid
+
+`func (o *EndpointOut) HasUid() bool`
+
+HasUid returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -145,6 +192,16 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### SetMetadataNil
+
+`func (o *EndpointOut) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *EndpointOut) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetHeaders
 
 `func (o *EndpointOut) GetHeaders() map[string]string`
@@ -170,6 +227,16 @@ SetHeaders sets Headers field to given value.
 
 HasHeaders returns a boolean if a field has been set.
 
+### SetHeadersNil
+
+`func (o *EndpointOut) SetHeadersNil(b bool)`
+
+ SetHeadersNil sets the value for Headers to be an explicit nil
+
+### UnsetHeaders
+`func (o *EndpointOut) UnsetHeaders()`
+
+UnsetHeaders ensures that no value is present for Headers, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

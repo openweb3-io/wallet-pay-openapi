@@ -2195,7 +2195,8 @@
                         "additionalProperties": {
                             "type": "string"
                         },
-                        "type": "object"
+                        "type": "object",
+                        "nullable": true
                     },
                     "expiration": {
                         "description": "The expiration seconds",
@@ -2298,7 +2299,7 @@
                     "filter_types": {
                         "description": "The webhook endpoint expected event types",
                         "example": [
-                            "tx.created"
+                            "order_expired"
                         ],
                         "items": {
                             "type": "string"
@@ -2354,6 +2355,19 @@
             },
             "EndpointOut": {
                 "properties": {
+                    "id": {
+                        "description": "The order's ID",
+                        "example": "1brOrx2ZWZBpBUvZwXKQmoEYga2",
+                        "type": "string"
+                    },
+                    "uid": {
+                        "description": "Optional unique identifier for the endpoint",
+                        "example": "unique-endpoint-identifier",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "pattern": "^[a-zA-Z0-9\\-_.]+$",
+                        "type": "string"
+                    },
                     "description": {
                         "description": "The endpoint's description",
                         "example": "The description for endpoint",
@@ -2367,7 +2381,7 @@
                     "filter_types": {
                         "description": "The webhook endpoint expected event types",
                         "example": [
-                            "tx.created"
+                            "order_expired"
                         ],
                         "items": {
                             "type": "string"
@@ -2384,6 +2398,7 @@
                         },
                         "default": {},
                         "type": "object",
+                        "nullable": true,
                         "description": "Optional metadata",
                         "example": {
                             "node": "http://dashboard.com/node1",
@@ -2395,6 +2410,7 @@
                             "type": "string"
                         },
                         "default": {},
+                        "nullable": true,
                         "type": "object",
                         "description": "Optional headers",
                         "example": {
@@ -2404,6 +2420,7 @@
                     }
                 },
                 "required": [
+                    "id",
                     "url",
                     "filter_types"
                 ],

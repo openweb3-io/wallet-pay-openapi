@@ -14,6 +14,14 @@ import { HttpFile } from '../http/http';
 
 export class EndpointOut {
     /**
+    * The order's ID
+    */
+    'id': string;
+    /**
+    * Optional unique identifier for the endpoint
+    */
+    'uid'?: string;
+    /**
     * The endpoint's description
     */
     'description'?: string;
@@ -41,6 +49,18 @@ export class EndpointOut {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "uid",
+            "baseName": "uid",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "description",
             "baseName": "description",

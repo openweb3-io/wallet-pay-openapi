@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * TransferIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-20T20:27:06.254546+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T17:44:11.856419+08:00[Asia/Shanghai]")
 public class TransferIn {
   public static final String SERIALIZED_NAME_TO_WALLET_ID = "to_wallet_id";
   @SerializedName(SERIALIZED_NAME_TO_WALLET_ID)
@@ -156,7 +156,7 @@ public class TransferIn {
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(example = "USDT", value = "transfer description")
+  @ApiModelProperty(example = "Distribute prizes", value = "transfer description")
 
   public String getDescription() {
     return description;

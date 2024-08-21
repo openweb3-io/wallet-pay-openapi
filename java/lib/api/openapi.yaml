@@ -1320,7 +1320,7 @@ components:
       example:
         to_wallet_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
         amount: "10000"
-        description: USDT
+        description: Distribute prizes
         currency: USDT
         auto_commit: true
         tags:
@@ -1352,7 +1352,7 @@ components:
           type: boolean
         description:
           description: transfer description
-          example: USDT
+          example: Distribute prizes
           maxLength: 256
           minLength: 1
           type: string
@@ -1719,6 +1719,7 @@ components:
         metadata:
           additionalProperties:
             type: string
+          nullable: true
           type: object
         expiration:
           description: The expiration seconds
@@ -1886,7 +1887,7 @@ components:
           tag: node
         description: The description for endpoint
         filter_types:
-        - tx.created
+        - order_expired
         disabled: false
         url: http://example.com/endpoint
       properties:
@@ -1901,7 +1902,7 @@ components:
         filter_types:
           description: The webhook endpoint expected event types
           example:
-          - tx.created
+          - order_expired
           items:
             type: string
           type: array
@@ -1942,6 +1943,7 @@ components:
       type: object
     EndpointOut:
       example:
+        uid: unique-endpoint-identifier
         headers:
           x-user-id: user1
           x-org-id: org_xdwfeees1xfeg
@@ -1950,10 +1952,22 @@ components:
           tag: node
         description: The description for endpoint
         filter_types:
-        - tx.created
+        - order_expired
         disabled: false
+        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
         url: http://example.com/endpoint
       properties:
+        id:
+          description: The order's ID
+          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
+          type: string
+        uid:
+          description: Optional unique identifier for the endpoint
+          example: unique-endpoint-identifier
+          maxLength: 256
+          minLength: 1
+          pattern: ^[a-zA-Z0-9\-_.]+$
+          type: string
         description:
           description: The endpoint's description
           example: The description for endpoint
@@ -1965,7 +1979,7 @@ components:
         filter_types:
           description: The webhook endpoint expected event types
           example:
-          - tx.created
+          - order_expired
           items:
             type: string
           type: array
@@ -1980,6 +1994,7 @@ components:
           example:
             node: http://dashboard.com/node1
             tag: node
+          nullable: true
           type: object
         headers:
           additionalProperties:
@@ -1989,9 +2004,11 @@ components:
           example:
             x-user-id: user1
             x-org-id: org_xdwfeees1xfeg
+          nullable: true
           type: object
       required:
       - filter_types
+      - id
       - url
       type: object
     ListResponse_EndpointOut_:
@@ -1999,7 +2016,8 @@ components:
         prev_cursor: prev_cursor
         next_cursor: next_cursor
         items:
-        - headers:
+        - uid: unique-endpoint-identifier
+          headers:
             x-user-id: user1
             x-org-id: org_xdwfeees1xfeg
           metadata:
@@ -2007,10 +2025,12 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - tx.created
+          - order_expired
           disabled: false
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
-        - headers:
+        - uid: unique-endpoint-identifier
+          headers:
             x-user-id: user1
             x-org-id: org_xdwfeees1xfeg
           metadata:
@@ -2018,8 +2038,9 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - tx.created
+          - order_expired
           disabled: false
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
       properties:
         items:
@@ -2036,6 +2057,7 @@ components:
     ResponseEndpointOut:
       example:
         data:
+          uid: unique-endpoint-identifier
           headers:
             x-user-id: user1
             x-org-id: org_xdwfeees1xfeg
@@ -2044,8 +2066,9 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - tx.created
+          - order_expired
           disabled: false
+          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
       properties:
         data:
@@ -2060,7 +2083,8 @@ components:
           prev_cursor: prev_cursor
           next_cursor: next_cursor
           items:
-          - headers:
+          - uid: unique-endpoint-identifier
+            headers:
               x-user-id: user1
               x-org-id: org_xdwfeees1xfeg
             metadata:
@@ -2068,10 +2092,12 @@ components:
               tag: node
             description: The description for endpoint
             filter_types:
-            - tx.created
+            - order_expired
             disabled: false
+            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
             url: http://example.com/endpoint
-          - headers:
+          - uid: unique-endpoint-identifier
+            headers:
               x-user-id: user1
               x-org-id: org_xdwfeees1xfeg
             metadata:
@@ -2079,8 +2105,9 @@ components:
               tag: node
             description: The description for endpoint
             filter_types:
-            - tx.created
+            - order_expired
             disabled: false
+            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
             url: http://example.com/endpoint
       properties:
         data:
