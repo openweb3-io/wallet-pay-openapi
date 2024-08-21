@@ -27,6 +27,7 @@ type (
 		Order    *Order
 		Currency *Currency
 		Transfer *Transfer
+		// Refund   *Refund
 	}
 )
 
@@ -95,5 +96,8 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 		Transfer: &Transfer{
 			api: apiClient,
 		},
+		// Refund: &Refund{
+		// 	api: apiClient,
+		// },
 	}
 }

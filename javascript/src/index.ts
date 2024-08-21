@@ -86,6 +86,7 @@ export class walletpay {
   public readonly Endpoint: Endpoint;
   public readonly Currency: Currency;
   public readonly Transfer: Transfer;
+  // public readonly Refund: Refund;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
@@ -105,6 +106,7 @@ export class walletpay {
     this.Endpoint = new Endpoint(config);
     this.Currency = new Currency(config);
     this.Transfer = new Transfer(config);
+    // this.Refund = new Refund(config);
   }
 }
 export interface PostOptions {
@@ -199,26 +201,26 @@ class Endpoint {
   }
 }
 
-export interface RefundListOptions extends ListOptions {
-  orderId?: string;
-}
+// export interface RefundListOptions extends ListOptions {
+//   orderId?: string;
+// }
 
-class Refund {
-  private readonly api: RefundApi;
+// class Refund {
+//   private readonly api: RefundApi;
 
-  public constructor(config: Configuration) {
-    this.api = new RefundApi(config);
-  }
+//   public constructor(config: Configuration) {
+//     this.api = new RefundApi(config);
+//   }
 
-  public async list(appId: string, options?: RefundListOptions): Promise<ListResponseRefundOut> {
-    return (await this.api.v1RefundList({ appId, ...options })).data;
-  }
+//   public async list(appId: string, options?: RefundListOptions): Promise<ListResponseRefundOut> {
+//     return (await this.api.v1RefundList({ appId, ...options })).data;
+//   }
 
-  public async create(appId: string, refundIn: RefundIn, options?: PostOptions): Promise<RefundOut> {
-    return (await this.api.v1RefundCreate({ appId, refundIn, ...options })).data;
-  }
+//   public async create(appId: string, refundIn: RefundIn, options?: PostOptions): Promise<RefundOut> {
+//     return (await this.api.v1RefundCreate({ appId, refundIn, ...options })).data;
+//   }
 
-  public async get(appId: string, idOrUid: string): Promise<RefundOut> {
-    return (await this.api.v1RefundGet({ appId, idOrUid })).data;
-  }
-}
+//   public async get(appId: string, idOrUid: string): Promise<RefundOut> {
+//     return (await this.api.v1RefundGet({ appId, idOrUid })).data;
+//   }
+// }
