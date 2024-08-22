@@ -13,6 +13,7 @@ public class CurrencyListOptions {
         return rated;
     }
 
+
     public void setCursor(final String cursor) {
         this.cursor = cursor;
     }
@@ -21,11 +22,26 @@ public class CurrencyListOptions {
         return cursor;
     }
 
-    public void setLimit(final int limit) {
+    public void setLimit(final Integer limit) {
         this.limit = limit;
     }
 
     public Integer getLimit() {
         return limit;
+    }
+
+    public CurrencyListOptions rated(final boolean rated) {
+        this.rated = rated;
+        return this;
+    }
+
+    public CurrencyListOptions cursor(final String cursor) {
+        this.cursor = cursor;
+        return this;
+    }
+
+    public CurrencyListOptions limit(final Integer limit) {
+        this.limit = limit;
+        return this;
     }
 }

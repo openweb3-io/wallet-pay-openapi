@@ -29,4 +29,19 @@ public class EndpointListOptions  {
 	public Integer getLimit() {
 		return limit;
 	}
+
+    public EndpointListOptions order(final Ordering order) {
+        this.order = order;
+        return this;
+    }
+
+    public EndpointListOptions cursor(final String cursor) {
+        this.cursor = cursor;
+        return this;
+    }
+
+    public EndpointListOptions limit(final Integer limit) {
+        this.limit = limit;
+        return this;
+    }
 }

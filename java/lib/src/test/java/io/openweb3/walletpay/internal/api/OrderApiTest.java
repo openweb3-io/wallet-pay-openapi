@@ -83,8 +83,9 @@ public class OrderApiTest {
         Integer size = null;
         Integer page = null;
         String walletId = null;
-        String accountId = null;
-        ResponseListOrderOut response = api.v1OrderList(appId, size, page, walletId, accountId);
+        String status = null;
+        String currency = null;
+        ResponseListOrderOut response = api.v1OrderList(appId, size, page, walletId, currency, status);
 
         // TODO: test validations
     }

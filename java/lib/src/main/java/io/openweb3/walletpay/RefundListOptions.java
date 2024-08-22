@@ -10,4 +10,9 @@ public class RefundListOptions extends ListOptions {
     public String getOrderId() {
         return orderId;
     }
+
+    public RefundListOptions orderId(final String orderId) {
+        this.orderId = orderId;
+        return this;
+    }
 }
