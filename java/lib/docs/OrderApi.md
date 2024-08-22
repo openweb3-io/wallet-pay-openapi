@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderList"></a>
 # **v1OrderList**
-> ResponseListOrderOut v1OrderList(appId, size, page, walletId, accountId)
+> ResponseListOrderOut v1OrderList(appId, size, page, walletId, currency, status)
 
 List Orders
 
@@ -200,9 +200,10 @@ public class Example {
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
     String walletId = "wallet_id"; // String | Optional wallet id
-    String accountId = "account_id"; // String | Optional account id
+    String currency = "USDT"; // String | Optional currency code
+    String status = "PENDING"; // String | Optional order status
     try {
-      ResponseListOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, accountId);
+      ResponseListOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, currency, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderList");
@@ -223,7 +224,8 @@ Name | Type | Description  | Notes
  **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **page** | **Integer**| Specifying the page index | [optional] [default to 0]
  **walletId** | **String**| Optional wallet id | [optional]
- **accountId** | **String**| Optional account id | [optional]
+ **currency** | **String**| Optional currency code | [optional]
+ **status** | **String**| Optional order status | [optional] [enum: PENDING, PAID, EXPIRED, FAILED, COMPLETED]
 
 ### Return type
 

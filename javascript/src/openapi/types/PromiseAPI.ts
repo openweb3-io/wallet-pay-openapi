@@ -113,10 +113,11 @@ export class PromiseOrderApi {
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
-     * @param accountId Optional account id
+     * @param currency Optional currency code
+     * @param status Optional order status
      */
-    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<ResponseListOrderOut> {
-        const result = this.api.v1OrderList(appId, size, page, walletId, accountId, _options);
+    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Promise<ResponseListOrderOut> {
+        const result = this.api.v1OrderList(appId, size, page, walletId, currency, status, _options);
         return result.toPromise();
     }
 

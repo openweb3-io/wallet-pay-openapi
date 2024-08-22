@@ -133,15 +133,17 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
-     * @param accountId Optional account id
+     * @param currency Optional currency code
+     * @param status Optional order status
      */
-    public async v1OrderList(appId: string, size?: number, page?: number, walletId?: string, accountId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderList(appId: string, size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'appId' is not null or undefined
         if (appId === null || appId === undefined) {
             throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderList.');
         }
+
 
 
 
@@ -168,8 +170,11 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
         if (walletId !== undefined) {
             requestContext.setQueryParam("wallet_id", ObjectSerializer.serialize(walletId, "string", ""));
         }
-        if (accountId !== undefined) {
-            requestContext.setQueryParam("account_id", ObjectSerializer.serialize(accountId, "string", ""));
+        if (currency !== undefined) {
+            requestContext.setQueryParam("currency", ObjectSerializer.serialize(currency, "string", ""));
+        }
+        if (status !== undefined) {
+            requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED'", ""));
         }
 
         // Header Params

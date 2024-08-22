@@ -119,8 +119,9 @@ interface ListOptions {
 }
 
 export interface OrderListOptions extends ListOptions {
-  channel?: string;
-  chain?: string;
+  walletId?:string;
+  currency?:string;
+  status?:'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED';
 }
 
 class Order {

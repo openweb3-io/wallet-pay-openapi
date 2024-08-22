@@ -565,14 +565,31 @@ paths:
           nullable: true
           type: string
         style: form
-      - description: Optional account id
+      - description: Optional currency code
         explode: true
         in: query
-        name: account_id
+        name: currency
         required: false
         schema:
-          description: Optional account id
-          example: account_id
+          description: Optional currency code
+          example: USDT
+          nullable: true
+          type: string
+        style: form
+      - description: Optional order status
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Optional order status
+          enum:
+          - PENDING
+          - PAID
+          - EXPIRED
+          - FAILED
+          - COMPLETED
+          example: PENDING
           nullable: true
           type: string
         style: form

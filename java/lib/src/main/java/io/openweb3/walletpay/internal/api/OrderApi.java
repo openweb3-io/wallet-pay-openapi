@@ -366,7 +366,8 @@ public class OrderApi {
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
-     * @param accountId Optional account id (optional)
+     * @param currency Optional currency code (optional)
+     * @param status Optional order status (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -382,7 +383,7 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderListCall(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1OrderListCall(String appId, Integer size, Integer page, String walletId, String currency, String status, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -407,8 +408,12 @@ public class OrderApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("wallet_id", walletId));
         }
 
-        if (accountId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("account_id", accountId));
+        if (currency != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("currency", currency));
+        }
+
+        if (status != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
         final String[] localVarAccepts = {
@@ -430,7 +435,7 @@ public class OrderApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1OrderListValidateBeforeCall(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1OrderListValidateBeforeCall(String appId, Integer size, Integer page, String walletId, String currency, String status, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'appId' is set
         if (appId == null) {
@@ -438,7 +443,7 @@ public class OrderApi {
         }
         
 
-        okhttp3.Call localVarCall = v1OrderListCall(appId, size, page, walletId, accountId, _callback);
+        okhttp3.Call localVarCall = v1OrderListCall(appId, size, page, walletId, currency, status, _callback);
         return localVarCall;
 
     }
@@ -450,7 +455,8 @@ public class OrderApi {
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
-     * @param accountId Optional account id (optional)
+     * @param currency Optional currency code (optional)
+     * @param status Optional order status (optional)
      * @return ResponseListOrderOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -465,8 +471,8 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseListOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
-        ApiResponse<ResponseListOrderOut> localVarResp = v1OrderListWithHttpInfo(appId, size, page, walletId, accountId);
+    public ResponseListOrderOut v1OrderList(String appId, Integer size, Integer page, String walletId, String currency, String status) throws ApiException {
+        ApiResponse<ResponseListOrderOut> localVarResp = v1OrderListWithHttpInfo(appId, size, page, walletId, currency, status);
         return localVarResp.getData();
     }
 
@@ -477,7 +483,8 @@ public class OrderApi {
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
-     * @param accountId Optional account id (optional)
+     * @param currency Optional currency code (optional)
+     * @param status Optional order status (optional)
      * @return ApiResponse&lt;ResponseListOrderOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -492,8 +499,8 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseListOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String accountId) throws ApiException {
-        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, null);
+    public ApiResponse<ResponseListOrderOut> v1OrderListWithHttpInfo(String appId, Integer size, Integer page, String walletId, String currency, String status) throws ApiException {
+        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, currency, status, null);
         Type localVarReturnType = new TypeToken<ResponseListOrderOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -505,7 +512,8 @@ public class OrderApi {
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param walletId Optional wallet id (optional)
-     * @param accountId Optional account id (optional)
+     * @param currency Optional currency code (optional)
+     * @param status Optional order status (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -521,9 +529,9 @@ public class OrderApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String accountId, final ApiCallback<ResponseListOrderOut> _callback) throws ApiException {
+    public okhttp3.Call v1OrderListAsync(String appId, Integer size, Integer page, String walletId, String currency, String status, final ApiCallback<ResponseListOrderOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, accountId, _callback);
+        okhttp3.Call localVarCall = v1OrderListValidateBeforeCall(appId, size, page, walletId, currency, status, _callback);
         Type localVarReturnType = new TypeToken<ResponseListOrderOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

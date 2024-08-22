@@ -159,11 +159,17 @@ export interface OrderApiV1OrderListRequest {
      */
     walletId?: string
     /**
-     * Optional account id
+     * Optional currency code
      * @type string
      * @memberof OrderApiv1OrderList
      */
-    accountId?: string
+    currency?: string
+    /**
+     * Optional order status
+     * @type &#39;PENDING&#39; | &#39;PAID&#39; | &#39;EXPIRED&#39; | &#39;FAILED&#39; | &#39;COMPLETED&#39;
+     * @memberof OrderApiv1OrderList
+     */
+    status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED'
 }
 
 export class ObjectOrderApi {
@@ -197,7 +203,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
-        return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.accountId,  options).toPromise();
+        return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.currency, param.status,  options).toPromise();
     }
 
 }

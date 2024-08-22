@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ## V1OrderList
 
-> ResponseListOrderOut V1OrderList(ctx, appId).Size(size).Page(page).WalletId(walletId).AccountId(accountId).Execute()
+> ResponseListOrderOut V1OrderList(ctx, appId).Size(size).Page(page).WalletId(walletId).Currency(currency).Status(status).Execute()
 
 List Orders
 
@@ -180,11 +180,12 @@ func main() {
     size := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
     page := int32(0) // int32 | Specifying the page index (optional) (default to 0)
     walletId := "wallet_id" // string | Optional wallet id (optional)
-    accountId := "account_id" // string | Optional account id (optional)
+    currency := "USDT" // string | Optional currency code (optional)
+    status := "PENDING" // string | Optional order status (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrderApi.V1OrderList(context.Background(), appId).Size(size).Page(page).WalletId(walletId).AccountId(accountId).Execute()
+    resp, r, err := api_client.OrderApi.V1OrderList(context.Background(), appId).Size(size).Page(page).WalletId(walletId).Currency(currency).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrderApi.V1OrderList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -213,7 +214,8 @@ Name | Type | Description  | Notes
  **size** | **int32** | Limit the number of returned items | [default to 20]
  **page** | **int32** | Specifying the page index | [default to 0]
  **walletId** | **string** | Optional wallet id | 
- **accountId** | **string** | Optional account id | 
+ **currency** | **string** | Optional currency code | 
+ **status** | **string** | Optional order status | 
 
 ### Return type
 

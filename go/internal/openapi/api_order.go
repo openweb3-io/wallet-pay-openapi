@@ -416,7 +416,8 @@ type ApiV1OrderListRequest struct {
 	size *int32
 	page *int32
 	walletId *string
-	accountId *string
+	currency *string
+	status *string
 }
 
 func (r ApiV1OrderListRequest) Size(size int32) ApiV1OrderListRequest {
@@ -431,8 +432,12 @@ func (r ApiV1OrderListRequest) WalletId(walletId string) ApiV1OrderListRequest {
 	r.walletId = &walletId
 	return r
 }
-func (r ApiV1OrderListRequest) AccountId(accountId string) ApiV1OrderListRequest {
-	r.accountId = &accountId
+func (r ApiV1OrderListRequest) Currency(currency string) ApiV1OrderListRequest {
+	r.currency = &currency
+	return r
+}
+func (r ApiV1OrderListRequest) Status(status string) ApiV1OrderListRequest {
+	r.status = &status
 	return r
 }
 
@@ -490,8 +495,11 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ResponseL
 	if r.walletId != nil {
 		localVarQueryParams.Add("wallet_id", parameterToString(*r.walletId, ""))
 	}
-	if r.accountId != nil {
-		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
+	if r.currency != nil {
+		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
+	}
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

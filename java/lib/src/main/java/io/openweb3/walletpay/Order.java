@@ -17,7 +17,7 @@ public final class Order {
 		try {
 			return api.v1OrderList(appId, options.getSize(), 
 			options.getPage(), options.getWalletId(), 
-			options.getAccountId()).getData();
+			options.getCurrency(), options.getStatus()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

@@ -18,7 +18,7 @@ import io.openweb3.walletpay.internal.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-21T19:29:02.160382+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T23:11:19.415718+08:00[Asia/Shanghai]")
 public class HttpBearerAuth implements Authentication {
   private final String scheme;
   private String bearerToken;

@@ -17,10 +17,11 @@ type Order struct {
 }
 
 type OrderListOptions struct {
-	Size      *int32
-	Page      *int32
-	WalletId  *string
-	AccountId *string
+	Size     *int32
+	Page     *int32
+	WalletId *string
+	Status   *string
+	Currency *string
 }
 
 func (e *Order) List(ctx context.Context, appId string, options *OrderListOptions) (*ListResponseOrderOut, error) {
@@ -35,8 +36,11 @@ func (e *Order) List(ctx context.Context, appId string, options *OrderListOption
 		if options.WalletId != nil {
 			req = req.WalletId(*options.WalletId)
 		}
-		if options.AccountId != nil {
-			req = req.AccountId(*options.AccountId)
+		if options.Status != nil {
+			req = req.Status(*options.Status)
+		}
+		if options.Currency != nil {
+			req = req.Currency(*options.Currency)
 		}
 	}
 	out, res, err := req.Execute()

@@ -851,13 +851,26 @@
                         "style": "form"
                     },
                     {
-                        "description": "Optional account id",
+                        "description": "Optional currency code",
                         "in": "query",
-                        "name": "account_id",
+                        "name": "currency",
                         "schema": {
-                            "description": "Optional account id",
-                            "example": "account_id",
+                            "description": "Optional currency code",
+                            "example": "USDT",
                             "type": "string",
+                            "nullable": true
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Optional order status",
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "description": "Optional order status",
+                            "example": "PENDING",
+                            "type": "string",
+                            "enum": ["PENDING", "PAID", "EXPIRED", "FAILED", "COMPLETED"],
                             "nullable": true
                         },
                         "style": "form"
