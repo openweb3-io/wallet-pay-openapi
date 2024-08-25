@@ -4,8 +4,11 @@ import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { CurrencyOut } from '../models/CurrencyOut';
+import { CurrencyPair } from '../models/CurrencyPair';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
+import { EstimateOut } from '../models/EstimateOut';
+import { GetRatesIn } from '../models/GetRatesIn';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
@@ -13,16 +16,20 @@ import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { RateData } from '../models/RateData';
+import { RatesOut } from '../models/RatesOut';
 import { RefundIn } from '../models/RefundIn';
 import { RefundOut } from '../models/RefundOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseEstimateOut } from '../models/ResponseEstimateOut';
 import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseRatesOut } from '../models/ResponseRatesOut';
 import { ResponseRefundOut } from '../models/ResponseRefundOut';
 import { ResponseTransferOut } from '../models/ResponseTransferOut';
 import { TransferIn } from '../models/TransferIn';
@@ -191,6 +198,76 @@ export class ObservableOrderApi {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
                 return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
+            }));
+    }
+ 
+}
+
+import { RateApiRequestFactory, RateApiResponseProcessor} from "../apis/RateApi";
+export class ObservableRateApi {
+    private requestFactory: RateApiRequestFactory;
+    private responseProcessor: RateApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: RateApiRequestFactory,
+        responseProcessor?: RateApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new RateApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RateApiResponseProcessor();
+    }
+
+    /**
+     * Estimate the amount of currency exchange.
+     * Estimate the amount of currency exchange.
+     * @param appId Specified the app id.
+     * @param from Specified the base currency that needs to be estimated
+     * @param toCurrency Specify the target currency.
+     * @param baseAmount Specify the amount of base currency that need to be estimated.
+     */
+    public v1RateEstimate(appId: string, from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
+        const requestContextPromise = this.requestFactory.v1RateEstimate(appId, from, toCurrency, baseAmount, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RateEstimate(rsp)));
+            }));
+    }
+ 
+    /**
+     * Query exchange rates between different currencies.
+     * Query exchange rates between different currencies. 
+     * @param appId Specified the app id.
+     * @param getRatesIn 
+     */
+    public v1RateGetRates(appId: string, getRatesIn: GetRatesIn, _options?: Configuration): Observable<ResponseRatesOut> {
+        const requestContextPromise = this.requestFactory.v1RateGetRates(appId, getRatesIn, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RateGetRates(rsp)));
             }));
     }
  

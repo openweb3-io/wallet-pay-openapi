@@ -27,6 +27,7 @@ public final class Pay {
 	private final Endpoint endpoint;
 	private final Currency currency;
 	private final Transfer transfer;
+	private final Rate  rate;
 	// private final Refund refund;
 
 	public Pay(final String apikey, final String privateKeyPath) throws Exception {
@@ -97,6 +98,7 @@ public final class Pay {
 		this.endpoint = new Endpoint();
 		this.currency = new Currency();
 		this.transfer = new Transfer();
+		this.rate = new Rate();
 		// this.refund = new Refund();
 	}
 
@@ -132,6 +134,10 @@ public final class Pay {
 
 	public Transfer getTransfer() {
 		return transfer;
+	}
+
+	public Rate getRate() {
+		return rate;
 	}
 
 	// public Refund getRefund() {

@@ -28,16 +28,15 @@
             "shell"
         ],
         "parameter-ordering": [
-            "path", 
-            "query", 
-            "header", 
-            "cookie", 
-            "body", 
+            "path",
+            "query",
+            "header",
+            "cookie",
+            "body",
             "form"
         ]
     },
-    "paths":
-      {        
+    "paths": {
         "/api/v1/apps/{appId}/currencies": {
             "get": {
                 "description": "List currencies.",
@@ -286,7 +285,259 @@
                     "Currency"
                 ]
             }
-        },        
+        },
+        "/api/v1/apps/{appId}/rates/estimate": {
+            "get": {
+                "description": "Estimate the amount of currency exchange.",
+                "operationId": "v1.rate.estimate",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    },
+                    {
+                        "description": "Specified the base currency that needs to be estimated",
+                        "in": "query",
+                        "name": "from",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the base currency that needs to be estimated.",
+                            "example": "TON",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specify the target currency.",
+                        "in": "query",
+                        "name": "to_currency",
+                        "required": true,
+                        "schema": {
+                            "description": "Specify the target currency.",
+                            "example": "NOT",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    },
+                    {
+                        "description": "Specify the amount of base currency that need to be estimated.",
+                        "in": "query",
+                        "name": "base_amount",
+                        "required": true,
+                        "schema": {
+                            "description": "Specify the amount of base currency that need to be estimated.",
+                            "example": "100",
+                            "type": "string"
+                        },
+                        "style": "form"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEstimateOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Internal Server Error"
+                    }
+                },
+                "summary": "Estimate the amount of currency exchange.",
+                "tags": [
+                    "Rate"
+                ]
+            }
+        },
+        "/api/v1/apps/{appId}/rates": {
+            "post": {
+                "description": "Query exchange rates between different currencies.",
+                "operationId": "v1.rate.get_rates",
+                "parameters": [
+                    {
+                        "description": "Specified the app id.",
+                        "in": "path",
+                        "name": "appId",
+                        "required": true,
+                        "schema": {
+                            "description": "Specified the app id.",
+                            "example": "app_12345xsfei",
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GetRatesIn"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseRatesOut"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Bad request"
+                    },
+                    "401": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Not Found"
+                    },
+                    "409": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Conflict"
+                    },
+                    "429": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    },
+                    "500": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseError"
+                                }
+                            }
+                        },
+                        "description": "Too Many Requests"
+                    }
+                },
+                "summary": "Query exchange rates between different currencies. ",
+                "tags": [
+                    "Rate"
+                ],
+                "x-readme": {
+                    "code-samples": []
+                }
+            }
+        },
+
         "/api/v1/apps/{appId}/transfers": {
             "post": {
                 "description": "Create a new transfer.",
@@ -415,7 +666,7 @@
                     "code-samples": []
                 }
             }
-        },        
+        },
         "/api/v1/apps/{appId}/refunds": {
             "get": {
                 "description": "List refunds.",
@@ -676,7 +927,7 @@
                     "code-samples": []
                 }
             }
-        },        
+        },
         "/api/v1/apps/{appId}/refunds/{idOrUid}": {
             "get": {
                 "description": "Get specified refund.",
@@ -870,7 +1121,13 @@
                             "description": "Optional order status",
                             "example": "PENDING",
                             "type": "string",
-                            "enum": ["PENDING", "PAID", "EXPIRED", "FAILED", "COMPLETED"],
+                            "enum": [
+                                "PENDING",
+                                "PAID",
+                                "EXPIRED",
+                                "FAILED",
+                                "COMPLETED"
+                            ],
                             "nullable": true
                         },
                         "style": "form"
@@ -1199,7 +1456,7 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/webhooks/endpoints" : {
+        "/api/v1/apps/{appId}/webhooks/endpoints": {
             "get": {
                 "description": "List endpoints.",
                 "operationId": "v1.endpoint.list",
@@ -1447,7 +1704,7 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}": {          
+        "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}": {
             "delete": {
                 "description": "delete the specified webhook endpoint.",
                 "operationId": "v1.endpoint.delete",
@@ -1563,7 +1820,7 @@
                 "tags": [
                     "Webhook Endpoint"
                 ]
-            },        
+            },
             "get": {
                 "description": "get the specified webhook endpoint.",
                 "operationId": "v1.endpoint.get",
@@ -1724,7 +1981,7 @@
                 }
             },
             "ResponseCurrencyOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The currency info data",
                         "$ref": "#/components/schemas/CurrencyOut"
@@ -1736,6 +1993,60 @@
                 "title": "ResponseCurrencyOut",
                 "type": "object"
             },
+            "ResponseEstimateOut": {
+                "properties": {
+                    "data": {
+                        "description": "Estimated data",
+                        "$ref": "#/components/schemas/EstimateOut"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "EstimateOut",
+                "type": "object"
+            },
+            "EstimateOut": {
+                "properties": {
+                    "from": {
+                        "description": "The base currency.",
+                        "example": "TON",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "base_amount": {
+                        "description": "The base currency amount.",
+                        "example": "10",
+                        "type": "string"
+                    },
+                    "to_currency": {
+                        "description": "The target currency",
+                        "example": "NOT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "to_amount": {
+                        "description": "The estimated amount in the target currency",
+                        "example": "98.8",
+                        "type": "string"
+                    },
+                    "rate": {
+                        "description": "The conversion rate from the base currency to the target currency.",
+                        "example": 6.78,
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "from",
+                    "base_amount",
+                    "to_currency",
+                    "to_amount",
+                    "rate"
+                ],
+                "type": "object"
+            },
             "CurrencyOut": {
                 "properties": {
                     "code": {
@@ -1743,7 +2054,7 @@
                         "example": "USDT",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string" 
+                        "type": "string"
                     },
                     "symbol": {
                         "description": "Currency symbol",
@@ -1769,44 +2080,43 @@
                     "can_deposit": {
                         "description": "Is it posible to deposit on blockchain",
                         "example": "false",
-                        "type": "boolean" 
+                        "type": "boolean"
                     },
                     "can_withdraw": {
                         "description": "Is it posible to withdraw to blockchain",
                         "example": "false",
-                        "type": "boolean" 
+                        "type": "boolean"
                     },
                     "can_transfer": {
                         "description": "Is it posible to transfer in custody wallet",
                         "example": "false",
-                        "type": "boolean" 
+                        "type": "boolean"
                     },
                     "min_deposit_amount": {
                         "description": "Big decimal string representation. The min amount to deposit.",
                         "example": "0.0012345",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string" 
+                        "type": "string"
                     },
                     "min_withdraw_amount": {
                         "description": "Big decimal string representation. The min amount to withdraw.",
                         "example": "0.0012345",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string" 
+                        "type": "string"
                     },
                     "max_withdraw_amount": {
                         "description": "Big decimal string representation. The max amount to withdraw.",
                         "example": "0.0012345",
                         "maxLength": 256,
                         "minLength": 1,
-                        "type": "string" 
+                        "type": "string"
                     },
                     "precision": {
                         "description": "Currency precision",
                         "example": 6,
                         "type": "integer"
-
                     },
                     "decimals": {
                         "description": "Currency decimals",
@@ -1854,7 +2164,7 @@
                 "type": "object"
             },
             "ResponseListCurrencyOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The currency list",
                         "$ref": "#/components/schemas/ListResponse_CurrencyOut_"
@@ -1934,8 +2244,90 @@
                 ],
                 "type": "object"
             },
+            "GetRatesIn": {
+                "properties": {
+                    "pairs": {
+                        "items": {
+                            "$ref": "#/components/schemas/CurrencyPair"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "pairs"
+                ],
+                "type": "object"
+            },
+            "ResponseRatesOut": {
+                "properties": {
+                    "data": {
+                        "description": "The exchange rates data",
+                        "$ref": "#/components/schemas/RatesOut"
+                    }
+                },
+                "required": [
+                    "data"
+                ],
+                "title": "ResponseRatesOut",
+                "type": "object"
+            },
+            "RatesOut": {
+                "properties": {
+                    "rates": {
+                        "items": {
+                            "$ref": "#/components/schemas/RateData"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "rates"
+                ],
+                "type": "object"
+            },
+            "RateData": {
+                "properties": {
+                    "pair": {
+                        "$ref": "#/components/schemas/CurrencyPair",
+                        "description": "currency pair"
+                    },
+                    "rate": {
+                        "description": "The current exchange rate for the specified pair",
+                        "example": 10.3,
+                        "type": "number"
+                    }
+                },
+                "required": [
+                    "pair",
+                    "rate"
+                ],
+                "type": "object"
+            },
+            "CurrencyPair": {
+                "properties": {
+                    "base_currency": {
+                        "description": "The code of the currency you are converting from.",
+                        "example": "TON",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "to_currency": {
+                        "description": "The code of the currency you are converting to.",
+                        "example": "NOT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "base_currency",
+                    "to_currency"
+                ],
+                "type": "object"
+            },
             "ResponseTransferOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The transfer result data",
                         "$ref": "#/components/schemas/TransferOut"
@@ -2023,7 +2415,11 @@
                     },
                     "status": {
                         "type": "string",
-                        "enum": ["PENDING", "FAILED", "COMPLETED"],
+                        "enum": [
+                            "PENDING",
+                            "FAILED",
+                            "COMPLETED"
+                        ],
                         "description": "The refund's status"
                     },
                     "note": {
@@ -2081,7 +2477,7 @@
                 "type": "object"
             },
             "ResponseRefundOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The refund info data",
                         "$ref": "#/components/schemas/RefundOut"
@@ -2094,7 +2490,7 @@
                 "type": "object"
             },
             "ResponseListRefundOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The refund list",
                         "$ref": "#/components/schemas/ListResponse_RefundOut_"
@@ -2222,7 +2618,13 @@
                     },
                     "status": {
                         "type": "string",
-                        "enum": ["PENDING", "PAID", "FAILED", "EXPIRED", "COMPLETED"],
+                        "enum": [
+                            "PENDING",
+                            "PAID",
+                            "FAILED",
+                            "EXPIRED",
+                            "COMPLETED"
+                        ],
                         "description": "The order's status"
                     },
                     "failed_message": {
@@ -2277,7 +2679,7 @@
                 "type": "object"
             },
             "ResponseOrderOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The order info data",
                         "$ref": "#/components/schemas/OrderOut"
@@ -2290,7 +2692,7 @@
                 "type": "object"
             },
             "ResponseListOrderOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The order list",
                         "$ref": "#/components/schemas/ListResponse_OrderOut_"
@@ -2328,14 +2730,13 @@
                         "example": "http://example.com/endpoint",
                         "type": "string"
                     },
-                    "disabled":{
+                    "disabled": {
                         "description": "indicate whether to disable the webhook endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
                     "metadata": {
-                        "additionalProperties": {
-                        },
+                        "additionalProperties": {},
                         "default": {},
                         "type": "object",
                         "nullable": true,
@@ -2405,14 +2806,13 @@
                         },
                         "type": "array"
                     },
-                    "disabled":{
+                    "disabled": {
                         "description": "indicate whether to disable the webhook endpoint",
                         "example": "false",
                         "type": "boolean"
                     },
                     "metadata": {
-                        "additionalProperties": {
-                        },
+                        "additionalProperties": {},
                         "default": {},
                         "type": "object",
                         "nullable": true,
@@ -2458,7 +2858,7 @@
                         "type": "string"
                     },
                     "has_next": {
-                        "type":"boolean"
+                        "type": "boolean"
                     }
                 },
                 "required": [
@@ -2467,7 +2867,7 @@
                 "type": "object"
             },
             "ResponseEndpointOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The webhook endpoint info data",
                         "$ref": "#/components/schemas/EndpointOut"
@@ -2480,7 +2880,7 @@
                 "type": "object"
             },
             "ResponseListEndpointOut": {
-                "properties":{
+                "properties": {
                     "data": {
                         "description": "The webhook endpoint list",
                         "$ref": "#/components/schemas/ListResponse_EndpointOut_"

@@ -3,8 +3,11 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
 import { CurrencyOut } from '../models/CurrencyOut';
+import { CurrencyPair } from '../models/CurrencyPair';
 import { EndpointIn } from '../models/EndpointIn';
 import { EndpointOut } from '../models/EndpointOut';
+import { EstimateOut } from '../models/EstimateOut';
+import { GetRatesIn } from '../models/GetRatesIn';
 import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
 import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
@@ -12,16 +15,20 @@ import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
 import { OrderIn } from '../models/OrderIn';
 import { OrderOut } from '../models/OrderOut';
 import { Ordering } from '../models/Ordering';
+import { RateData } from '../models/RateData';
+import { RatesOut } from '../models/RatesOut';
 import { RefundIn } from '../models/RefundIn';
 import { RefundOut } from '../models/RefundOut';
 import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
 import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
 import { ResponseError } from '../models/ResponseError';
+import { ResponseEstimateOut } from '../models/ResponseEstimateOut';
 import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
 import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
 import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
 import { ResponseOrderOut } from '../models/ResponseOrderOut';
+import { ResponseRatesOut } from '../models/ResponseRatesOut';
 import { ResponseRefundOut } from '../models/ResponseRefundOut';
 import { ResponseTransferOut } from '../models/ResponseTransferOut';
 import { TransferIn } from '../models/TransferIn';
@@ -204,6 +211,78 @@ export class ObjectOrderApi {
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
         return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.currency, param.status,  options).toPromise();
+    }
+
+}
+
+import { ObservableRateApi } from "./ObservableAPI";
+import { RateApiRequestFactory, RateApiResponseProcessor} from "../apis/RateApi";
+
+export interface RateApiV1RateEstimateRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof RateApiv1RateEstimate
+     */
+    appId: string
+    /**
+     * Specified the base currency that needs to be estimated
+     * @type string
+     * @memberof RateApiv1RateEstimate
+     */
+    from: string
+    /**
+     * Specify the target currency.
+     * @type string
+     * @memberof RateApiv1RateEstimate
+     */
+    toCurrency: string
+    /**
+     * Specify the amount of base currency that need to be estimated.
+     * @type string
+     * @memberof RateApiv1RateEstimate
+     */
+    baseAmount: string
+}
+
+export interface RateApiV1RateGetRatesRequest {
+    /**
+     * Specified the app id.
+     * @type string
+     * @memberof RateApiv1RateGetRates
+     */
+    appId: string
+    /**
+     * 
+     * @type GetRatesIn
+     * @memberof RateApiv1RateGetRates
+     */
+    getRatesIn: GetRatesIn
+}
+
+export class ObjectRateApi {
+    private api: ObservableRateApi
+
+    public constructor(configuration: Configuration, requestFactory?: RateApiRequestFactory, responseProcessor?: RateApiResponseProcessor) {
+        this.api = new ObservableRateApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Estimate the amount of currency exchange.
+     * Estimate the amount of currency exchange.
+     * @param param the request object
+     */
+    public v1RateEstimate(param: RateApiV1RateEstimateRequest, options?: Configuration): Promise<ResponseEstimateOut> {
+        return this.api.v1RateEstimate(param.appId, param.from, param.toCurrency, param.baseAmount,  options).toPromise();
+    }
+
+    /**
+     * Query exchange rates between different currencies.
+     * Query exchange rates between different currencies. 
+     * @param param the request object
+     */
+    public v1RateGetRates(param: RateApiV1RateGetRatesRequest, options?: Configuration): Promise<ResponseRatesOut> {
+        return this.api.v1RateGetRates(param.appId, param.getRatesIn,  options).toPromise();
     }
 
 }

@@ -1,6 +1,9 @@
 export * from './CurrencyOut';
+export * from './CurrencyPair';
 export * from './EndpointIn';
 export * from './EndpointOut';
+export * from './EstimateOut';
+export * from './GetRatesIn';
 export * from './ListResponseCurrencyOut';
 export * from './ListResponseEndpointOut';
 export * from './ListResponseOrderOut';
@@ -8,16 +11,20 @@ export * from './ListResponseRefundOut';
 export * from './OrderIn';
 export * from './OrderOut';
 export * from './Ordering';
+export * from './RateData';
+export * from './RatesOut';
 export * from './RefundIn';
 export * from './RefundOut';
 export * from './ResponseCurrencyOut';
 export * from './ResponseEndpointOut';
 export * from './ResponseError';
+export * from './ResponseEstimateOut';
 export * from './ResponseListCurrencyOut';
 export * from './ResponseListEndpointOut';
 export * from './ResponseListOrderOut';
 export * from './ResponseListRefundOut';
 export * from './ResponseOrderOut';
+export * from './ResponseRatesOut';
 export * from './ResponseRefundOut';
 export * from './ResponseTransferOut';
 export * from './TransferIn';
@@ -25,8 +32,11 @@ export * from './TransferOut';
 export * from './WebhookMessage';
 
 import { CurrencyOut } from './CurrencyOut';
+import { CurrencyPair } from './CurrencyPair';
 import { EndpointIn } from './EndpointIn';
 import { EndpointOut } from './EndpointOut';
+import { EstimateOut } from './EstimateOut';
+import { GetRatesIn } from './GetRatesIn';
 import { ListResponseCurrencyOut } from './ListResponseCurrencyOut';
 import { ListResponseEndpointOut } from './ListResponseEndpointOut';
 import { ListResponseOrderOut } from './ListResponseOrderOut';
@@ -34,16 +44,20 @@ import { ListResponseRefundOut } from './ListResponseRefundOut';
 import { OrderIn } from './OrderIn';
 import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
 import { Ordering } from './Ordering';
+import { RateData } from './RateData';
+import { RatesOut } from './RatesOut';
 import { RefundIn } from './RefundIn';
 import { RefundOut     , RefundOutStatusEnum        } from './RefundOut';
 import { ResponseCurrencyOut } from './ResponseCurrencyOut';
 import { ResponseEndpointOut } from './ResponseEndpointOut';
 import { ResponseError } from './ResponseError';
+import { ResponseEstimateOut } from './ResponseEstimateOut';
 import { ResponseListCurrencyOut } from './ResponseListCurrencyOut';
 import { ResponseListEndpointOut } from './ResponseListEndpointOut';
 import { ResponseListOrderOut } from './ResponseListOrderOut';
 import { ResponseListRefundOut } from './ResponseListRefundOut';
 import { ResponseOrderOut } from './ResponseOrderOut';
+import { ResponseRatesOut } from './ResponseRatesOut';
 import { ResponseRefundOut } from './ResponseRefundOut';
 import { ResponseTransferOut } from './ResponseTransferOut';
 import { TransferIn } from './TransferIn';
@@ -76,24 +90,31 @@ let enumsMap: Set<string> = new Set<string>([
 
 let typeMap: {[index: string]: any} = {
     "CurrencyOut": CurrencyOut,
+    "CurrencyPair": CurrencyPair,
     "EndpointIn": EndpointIn,
     "EndpointOut": EndpointOut,
+    "EstimateOut": EstimateOut,
+    "GetRatesIn": GetRatesIn,
     "ListResponseCurrencyOut": ListResponseCurrencyOut,
     "ListResponseEndpointOut": ListResponseEndpointOut,
     "ListResponseOrderOut": ListResponseOrderOut,
     "ListResponseRefundOut": ListResponseRefundOut,
     "OrderIn": OrderIn,
     "OrderOut": OrderOut,
+    "RateData": RateData,
+    "RatesOut": RatesOut,
     "RefundIn": RefundIn,
     "RefundOut": RefundOut,
     "ResponseCurrencyOut": ResponseCurrencyOut,
     "ResponseEndpointOut": ResponseEndpointOut,
     "ResponseError": ResponseError,
+    "ResponseEstimateOut": ResponseEstimateOut,
     "ResponseListCurrencyOut": ResponseListCurrencyOut,
     "ResponseListEndpointOut": ResponseListEndpointOut,
     "ResponseListOrderOut": ResponseListOrderOut,
     "ResponseListRefundOut": ResponseListRefundOut,
     "ResponseOrderOut": ResponseOrderOut,
+    "ResponseRatesOut": ResponseRatesOut,
     "ResponseRefundOut": ResponseRefundOut,
     "ResponseTransferOut": ResponseTransferOut,
     "TransferIn": TransferIn,

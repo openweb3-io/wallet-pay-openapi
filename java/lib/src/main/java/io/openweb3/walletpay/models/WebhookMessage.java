@@ -29,7 +29,7 @@ import java.io.IOException;
  * The request body of the webhook POST request.
  */
 @ApiModel(description = "The request body of the webhook POST request.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-22T23:11:19.415718+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-26T14:11:06.646071+08:00[Asia/Shanghai]")
 public class WebhookMessage {
   public static final String SERIALIZED_NAME_EVENT_TYPE = "event_type";
   @SerializedName(SERIALIZED_NAME_EVENT_TYPE)

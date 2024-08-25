@@ -83,6 +83,8 @@ Class | Method | HTTP request | Description
 *OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
 *OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
 *OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
+*RateApi* | [**V1RateEstimate**](docs/RateApi.md#v1rateestimate) | **Get** /api/v1/apps/{appId}/rates/estimate | Estimate the amount of currency exchange.
+*RateApi* | [**V1RateGetRates**](docs/RateApi.md#v1rategetrates) | **Post** /api/v1/apps/{appId}/rates | Query exchange rates between different currencies. 
 *RefundApi* | [**V1RefundCreate**](docs/RefundApi.md#v1refundcreate) | **Post** /api/v1/apps/{appId}/refunds | Create Refund
 *RefundApi* | [**V1RefundGet**](docs/RefundApi.md#v1refundget) | **Get** /api/v1/apps/{appId}/refunds/{idOrUid} | Get Refund
 *RefundApi* | [**V1RefundList**](docs/RefundApi.md#v1refundlist) | **Get** /api/v1/apps/{appId}/refunds | List Refunds
@@ -96,8 +98,11 @@ Class | Method | HTTP request | Description
 ## Documentation For Models
 
  - [CurrencyOut](docs/CurrencyOut.md)
+ - [CurrencyPair](docs/CurrencyPair.md)
  - [EndpointIn](docs/EndpointIn.md)
  - [EndpointOut](docs/EndpointOut.md)
+ - [EstimateOut](docs/EstimateOut.md)
+ - [GetRatesIn](docs/GetRatesIn.md)
  - [ListResponseCurrencyOut](docs/ListResponseCurrencyOut.md)
  - [ListResponseEndpointOut](docs/ListResponseEndpointOut.md)
  - [ListResponseOrderOut](docs/ListResponseOrderOut.md)
@@ -105,16 +110,20 @@ Class | Method | HTTP request | Description
  - [OrderIn](docs/OrderIn.md)
  - [OrderOut](docs/OrderOut.md)
  - [Ordering](docs/Ordering.md)
+ - [RateData](docs/RateData.md)
+ - [RatesOut](docs/RatesOut.md)
  - [RefundIn](docs/RefundIn.md)
  - [RefundOut](docs/RefundOut.md)
  - [ResponseCurrencyOut](docs/ResponseCurrencyOut.md)
  - [ResponseEndpointOut](docs/ResponseEndpointOut.md)
  - [ResponseError](docs/ResponseError.md)
+ - [ResponseEstimateOut](docs/ResponseEstimateOut.md)
  - [ResponseListCurrencyOut](docs/ResponseListCurrencyOut.md)
  - [ResponseListEndpointOut](docs/ResponseListEndpointOut.md)
  - [ResponseListOrderOut](docs/ResponseListOrderOut.md)
  - [ResponseListRefundOut](docs/ResponseListRefundOut.md)
  - [ResponseOrderOut](docs/ResponseOrderOut.md)
+ - [ResponseRatesOut](docs/ResponseRatesOut.md)
  - [ResponseRefundOut](docs/ResponseRefundOut.md)
  - [ResponseTransferOut](docs/ResponseTransferOut.md)
  - [TransferIn](docs/TransferIn.md)

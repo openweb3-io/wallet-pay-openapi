@@ -20,6 +20,10 @@ import {
   TransferApi,
   TransferIn,
   TransferOut,
+  RateApi,
+  GetRatesIn,
+  RatesOut,
+  EstimateOut,
   RefundApi,
   RefundIn,
   RefundOut,
@@ -86,6 +90,7 @@ export class walletpay {
   public readonly Endpoint: Endpoint;
   public readonly Currency: Currency;
   public readonly Transfer: Transfer;
+  public readonly Rate: Rate;
   // public readonly Refund: Refund;
 
   public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
@@ -106,6 +111,7 @@ export class walletpay {
     this.Endpoint = new Endpoint(config);
     this.Currency = new Currency(config);
     this.Transfer = new Transfer(config);
+    this.Rate = new Rate(config)
     // this.Refund = new Refund(config);
   }
 }
@@ -117,6 +123,7 @@ interface ListOptions {
   page?: number;
   size?: number;
 }
+
 
 export interface OrderListOptions extends ListOptions {
   walletId?:string;
@@ -159,6 +166,30 @@ class Currency {
 
   public async findByCode(appId:string, code: string): Promise<CurrencyOut> {
     return (await this.api.v1CurrencyFindByCode({appId, code})).data
+  }
+}
+
+interface EstimateOptions {
+  from: string;
+  toCurrency: string;
+  baseAmount: string;
+}
+
+
+
+class Rate {
+  private readonly api: RateApi;
+
+  public constructor(config: Configuration) {
+    this.api = new RateApi(config);
+  }
+
+  public async estimate(appId: string, options: EstimateOptions): Promise<EstimateOut> {
+    return (await this.api.v1RateEstimate({appId,...options})).data;
+  }
+
+  public async getRates(appId: string,  getRatesIn: GetRatesIn): Promise<RatesOut> {
+    return (await this.api.v1RateGetRates({appId, getRatesIn})).data;
   }
 }
 

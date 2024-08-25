@@ -175,6 +175,172 @@ paths:
       summary: Find currency by code
       tags:
       - Currency
+  /api/v1/apps/{appId}/rates/estimate:
+    get:
+      description: Estimate the amount of currency exchange.
+      operationId: v1.rate.estimate
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      - description: Specified the base currency that needs to be estimated
+        explode: true
+        in: query
+        name: from
+        required: true
+        schema:
+          description: Specified the base currency that needs to be estimated.
+          example: TON
+          type: string
+        style: form
+      - description: Specify the target currency.
+        explode: true
+        in: query
+        name: to_currency
+        required: true
+        schema:
+          description: Specify the target currency.
+          example: NOT
+          type: string
+        style: form
+      - description: Specify the amount of base currency that need to be estimated.
+        explode: true
+        in: query
+        name: base_amount
+        required: true
+        schema:
+          description: Specify the amount of base currency that need to be estimated.
+          example: "100"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseEstimateOut'
+          description: OK
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Internal Server Error
+      summary: Estimate the amount of currency exchange.
+      tags:
+      - Rate
+  /api/v1/apps/{appId}/rates:
+    post:
+      description: Query exchange rates between different currencies.
+      operationId: v1.rate.get_rates
+      parameters:
+      - description: Specified the app id.
+        explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          description: Specified the app id.
+          example: app_12345xsfei
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRatesIn'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRatesOut'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Not Found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Conflict
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseError'
+          description: Too Many Requests
+      summary: 'Query exchange rates between different currencies. '
+      tags:
+      - Rate
+      x-readme:
+        code-samples: []
   /api/v1/apps/{appId}/transfers:
     post:
       description: Create a new transfer.
@@ -1149,6 +1315,60 @@ components:
       - data
       title: ResponseCurrencyOut
       type: object
+    ResponseEstimateOut:
+      example:
+        data:
+          to_amount: "98.8"
+          rate: 6.78
+          base_amount: "10"
+          from: TON
+          to_currency: NOT
+      properties:
+        data:
+          $ref: '#/components/schemas/EstimateOut'
+      required:
+      - data
+      title: EstimateOut
+      type: object
+    EstimateOut:
+      example:
+        to_amount: "98.8"
+        rate: 6.78
+        base_amount: "10"
+        from: TON
+        to_currency: NOT
+      properties:
+        from:
+          description: The base currency.
+          example: TON
+          maxLength: 256
+          minLength: 1
+          type: string
+        base_amount:
+          description: The base currency amount.
+          example: "10"
+          type: string
+        to_currency:
+          description: The target currency
+          example: NOT
+          maxLength: 256
+          minLength: 1
+          type: string
+        to_amount:
+          description: The estimated amount in the target currency
+          example: "98.8"
+          type: string
+        rate:
+          description: The conversion rate from the base currency to the target currency.
+          example: 6.78
+          type: number
+      required:
+      - base_amount
+      - from
+      - rate
+      - to_amount
+      - to_currency
+      type: object
     CurrencyOut:
       example:
         max_withdraw_amount: "0.0012345"
@@ -1386,6 +1606,97 @@ components:
           type: string
       required:
       - transfer_id
+      type: object
+    GetRatesIn:
+      example:
+        pairs:
+        - base_currency: TON
+          to_currency: NOT
+        - base_currency: TON
+          to_currency: NOT
+      properties:
+        pairs:
+          items:
+            $ref: '#/components/schemas/CurrencyPair'
+          type: array
+      required:
+      - pairs
+      type: object
+    ResponseRatesOut:
+      example:
+        data:
+          rates:
+          - rate: 10.3
+            pair:
+              base_currency: TON
+              to_currency: NOT
+          - rate: 10.3
+            pair:
+              base_currency: TON
+              to_currency: NOT
+      properties:
+        data:
+          $ref: '#/components/schemas/RatesOut'
+      required:
+      - data
+      title: ResponseRatesOut
+      type: object
+    RatesOut:
+      example:
+        rates:
+        - rate: 10.3
+          pair:
+            base_currency: TON
+            to_currency: NOT
+        - rate: 10.3
+          pair:
+            base_currency: TON
+            to_currency: NOT
+      properties:
+        rates:
+          items:
+            $ref: '#/components/schemas/RateData'
+          type: array
+      required:
+      - rates
+      type: object
+    RateData:
+      example:
+        rate: 10.3
+        pair:
+          base_currency: TON
+          to_currency: NOT
+      properties:
+        pair:
+          $ref: '#/components/schemas/CurrencyPair'
+        rate:
+          description: The current exchange rate for the specified pair
+          example: 10.3
+          type: number
+      required:
+      - pair
+      - rate
+      type: object
+    CurrencyPair:
+      example:
+        base_currency: TON
+        to_currency: NOT
+      properties:
+        base_currency:
+          description: The code of the currency you are converting from.
+          example: TON
+          maxLength: 256
+          minLength: 1
+          type: string
+        to_currency:
+          description: The code of the currency you are converting to.
+          example: NOT
+          maxLength: 256
+          minLength: 1
+          type: string
+      required:
+      - base_currency
+      - to_currency
       type: object
     ResponseTransferOut:
       example:
