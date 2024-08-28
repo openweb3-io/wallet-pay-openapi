@@ -188,9 +188,18 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 
 	var resp *http.Response
 	var err error
+	// 读取并保存请求的body内容
+	var requestBody []byte
+	if request.Body != nil {
+		requestBody, err = ioutil.ReadAll(request.Body)
+		if err != nil {
+			return nil, err
+		}
+	}
 	sleepTime := time.Millisecond * 50
 	retryCount := 0
 	for try := 0; try < NumTries; try++ {
+		request.Body = ioutil.NopCloser(bytes.NewReader(requestBody))
 		resp, err = c.cfg.HTTPClient.Do(request)
 		if err == nil && resp.StatusCode < 500 {
 			break
