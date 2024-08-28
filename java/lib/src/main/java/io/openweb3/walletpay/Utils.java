@@ -86,7 +86,7 @@ final class Utils {
     public static boolean verify(String dataString, String signature, String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException, InvalidKeyException, SignatureException {
         // 开头行和结束行，以及所有换行字符
 
-        String stripPublicKey = publicKey.replaceAll("(-+BEGIN.*-+\\r?\\n|-+END.*-+\\r?\\n?|\\n|\\r)", "");
+        String stripPublicKey = publicKey.replaceAll("(-+BEGIN.*?-+|-+END.*?-+|\\n?|\\r?)", "");
 
             Base64.Decoder decoder = Base64.getDecoder();
             byte[] pkcs1Bytes = decoder.decode(stripPublicKey);
