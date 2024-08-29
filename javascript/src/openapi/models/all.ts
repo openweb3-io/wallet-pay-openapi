@@ -1,3 +1,4 @@
+export * from './CurrencyNetwork'
 export * from './CurrencyOut'
 export * from './CurrencyPair'
 export * from './EndpointIn'

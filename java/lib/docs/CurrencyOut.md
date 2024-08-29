@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **maxWithdrawAmount** | **String** | Big decimal string representation. The max amount to withdraw. | 
 **precision** | **Integer** | Currency precision | 
 **decimals** | **Integer** | Currency decimals | 
+**items** | [**List&lt;CurrencyNetwork&gt;**](CurrencyNetwork.md) |  |  [optional]
 
 
 

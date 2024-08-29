@@ -2,6 +2,7 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
+import { CurrencyNetwork } from '../models/CurrencyNetwork';
 import { CurrencyOut } from '../models/CurrencyOut';
 import { CurrencyPair } from '../models/CurrencyPair';
 import { EndpointIn } from '../models/EndpointIn';

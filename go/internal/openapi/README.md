@@ -97,6 +97,7 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [CurrencyNetwork](docs/CurrencyNetwork.md)
  - [CurrencyOut](docs/CurrencyOut.md)
  - [CurrencyPair](docs/CurrencyPair.md)
  - [EndpointIn](docs/EndpointIn.md)

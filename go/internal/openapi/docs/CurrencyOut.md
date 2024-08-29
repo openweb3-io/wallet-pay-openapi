@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **MaxWithdrawAmount** | **string** | Big decimal string representation. The max amount to withdraw. | 
 **Precision** | **int32** | Currency precision | 
 **Decimals** | **int32** | Currency decimals | 
+**Items** | Pointer to [**[]CurrencyNetwork**](CurrencyNetwork.md) |  | [optional] 
 
 ## Methods
 
@@ -275,6 +276,31 @@ and a boolean to check if the value has been set.
 
 SetDecimals sets Decimals field to given value.
 
+
+### GetItems
+
+`func (o *CurrencyOut) GetItems() []CurrencyNetwork`
+
+GetItems returns the Items field if non-nil, zero value otherwise.
+
+### GetItemsOk
+
+`func (o *CurrencyOut) GetItemsOk() (*[]CurrencyNetwork, bool)`
+
+GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetItems
+
+`func (o *CurrencyOut) SetItems(v []CurrencyNetwork)`
+
+SetItems sets Items field to given value.
+
+### HasItems
+
+`func (o *CurrencyOut) HasItems() bool`
+
+HasItems returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -2047,6 +2047,117 @@
                 ],
                 "type": "object"
             },
+            "CurrencyNetwork": {
+                "properties": {
+                    "code": {
+                        "description": "Currency code",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "network": {
+                        "description": "blockchain network",
+                        "example": "ERC-20",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Currency name",
+                        "example": "USDT",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "min_deposit_amount": {
+                        "description": "Big decimal string representation. The min amount to deposit.",
+                        "example": "0.0012345",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "min_withdraw_amount": {
+                        "description": "Big decimal string representation. The min amount to withdraw.",
+                        "example": "0.0012345",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "max_withdraw_amount": {
+                        "description": "Big decimal string representation. The max amount to withdraw.",
+                        "example": "0.0012345",
+                        "maxLength": 256,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "can_deposit": {
+                        "description": "Is it posible to deposit on blockchain",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "can_withdraw": {
+                        "description": "Is it posible to withdraw to blockchain",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "can_transfer": {
+                        "description": "Is it posible to transfer in custody wallet",
+                        "example": "false",
+                        "type": "boolean"
+                    },
+                    "contract_address": {
+                        "description": "Contract address",
+                        "type": "string"
+                    },
+                    "need_memo": {
+                        "description": "Indicates if additional Memo information is required, as needed by some currencies or exchanges",
+                        "type": "boolean"
+                    },
+                    "min_fee": {
+                        "description": "Minimum transaction fee",
+                        "type": "string"
+                    },
+                    "max_fee": {
+                        "description": "Maximum transaction fee",
+                        "type": "string"
+                    },
+                    "min_fee_for_ct_addr": {
+                        "description": "Minimum transaction fee for contract addresses",
+                        "type": "string"
+                    },
+                    "max_fee_for_ct_addr": {
+                        "description": "Maximum transaction fee for contract addresses",
+                        "type": "string"
+                    },
+                    "min_confirmations": {
+                        "description": "Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid",
+                        "type": "integer"
+                    },
+                    "min_collect_amount": {
+                        "description": "Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "id",
+                    "code",
+                    "network",
+                    "name",
+                    "min_deposit_amount",
+                    "min_withdraw_amount",
+                    "max_withdraw_amount",
+                    "can_deposit",
+                    "can_withdraw",
+                    "can_transfer",
+                    "need_memo",
+                    "min_fee",
+                    "max_fee",
+                    "min_fee_for_ct_addr",
+                    "max_fee_for_ct_addr"
+                ],
+                "type": "object"
+            },
             "CurrencyOut": {
                 "properties": {
                     "code": {
@@ -2122,6 +2233,12 @@
                         "description": "Currency decimals",
                         "example": 12,
                         "type": "integer"
+                    },
+                    "items": {
+                        "items": {
+                            "$ref": "#/components/schemas/CurrencyNetwork"
+                        },
+                        "type": "array"
                     }
                 },
                 "required": [

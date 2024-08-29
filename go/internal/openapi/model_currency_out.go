@@ -40,6 +40,7 @@ type CurrencyOut struct {
 	Precision int32 `json:"precision"`
 	// Currency decimals
 	Decimals int32 `json:"decimals"`
+	Items *[]CurrencyNetwork `json:"items,omitempty"`
 }
 
 // NewCurrencyOut instantiates a new CurrencyOut object
@@ -359,6 +360,38 @@ func (o *CurrencyOut) SetDecimals(v int32) {
 	o.Decimals = v
 }
 
+// GetItems returns the Items field value if set, zero value otherwise.
+func (o *CurrencyOut) GetItems() []CurrencyNetwork {
+	if o == nil || o.Items == nil {
+		var ret []CurrencyNetwork
+		return ret
+	}
+	return *o.Items
+}
+
+// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CurrencyOut) GetItemsOk() (*[]CurrencyNetwork, bool) {
+	if o == nil || o.Items == nil {
+		return nil, false
+	}
+	return o.Items, true
+}
+
+// HasItems returns a boolean if a field has been set.
+func (o *CurrencyOut) HasItems() bool {
+	if o != nil && o.Items != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetItems gets a reference to the given []CurrencyNetwork and assigns it to the Items field.
+func (o *CurrencyOut) SetItems(v []CurrencyNetwork) {
+	o.Items = &v
+}
+
 func (o CurrencyOut) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
@@ -396,6 +429,9 @@ func (o CurrencyOut) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["decimals"] = o.Decimals
+	}
+	if o.Items != nil {
+		toSerialize["items"] = o.Items
 	}
 	return json.Marshal(toSerialize)
 }

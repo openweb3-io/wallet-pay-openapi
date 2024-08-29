@@ -28,7 +28,7 @@ import java.time.OffsetDateTime;
 /**
  * RefundOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-26T14:11:06.646071+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-30T00:31:27.115955+08:00[Asia/Shanghai]")
 public class RefundOut {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)

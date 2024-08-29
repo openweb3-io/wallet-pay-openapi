@@ -11,6 +11,7 @@ api_webhook_endpoint.go
 client.go
 configuration.go
 docs/CurrencyApi.md
+docs/CurrencyNetwork.md
 docs/CurrencyOut.md
 docs/CurrencyPair.md
 docs/EndpointIn.md
@@ -51,6 +52,7 @@ docs/WebhookMessage.md
 git_push.sh
 go.mod
 go.sum
+model_currency_network.go
 model_currency_out.go
 model_currency_pair.go
 model_endpoint_in.go

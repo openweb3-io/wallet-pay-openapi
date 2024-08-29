@@ -20,14 +20,17 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.openweb3.walletpay.models.CurrencyNetwork;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-26T14:11:06.646071+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-08-30T00:31:27.115955+08:00[Asia/Shanghai]")
 public class CurrencyOut {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -76,6 +79,10 @@ public class CurrencyOut {
   public static final String SERIALIZED_NAME_DECIMALS = "decimals";
   @SerializedName(SERIALIZED_NAME_DECIMALS)
   private Integer decimals;
+
+  public static final String SERIALIZED_NAME_ITEMS = "items";
+  @SerializedName(SERIALIZED_NAME_ITEMS)
+  private List<CurrencyNetwork> items = null;
 
 
   public CurrencyOut code(String code) {
@@ -342,6 +349,37 @@ public class CurrencyOut {
   }
 
 
+  public CurrencyOut items(List<CurrencyNetwork> items) {
+    
+    this.items = items;
+    return this;
+  }
+
+  public CurrencyOut addItemsItem(CurrencyNetwork itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
+    return this;
+  }
+
+   /**
+   * Get items
+   * @return items
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "")
+
+  public List<CurrencyNetwork> getItems() {
+    return items;
+  }
+
+
+  public void setItems(List<CurrencyNetwork> items) {
+    this.items = items;
+  }
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -362,12 +400,13 @@ public class CurrencyOut {
         Objects.equals(this.minWithdrawAmount, currencyOut.minWithdrawAmount) &&
         Objects.equals(this.maxWithdrawAmount, currencyOut.maxWithdrawAmount) &&
         Objects.equals(this.precision, currencyOut.precision) &&
-        Objects.equals(this.decimals, currencyOut.decimals);
+        Objects.equals(this.decimals, currencyOut.decimals) &&
+        Objects.equals(this.items, currencyOut.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals);
+    return Objects.hash(code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals, items);
   }
 
   @Override
@@ -386,6 +425,7 @@ public class CurrencyOut {
     sb.append("    maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
     sb.append("    precision: ").append(toIndentedString(precision)).append("\n");
     sb.append("    decimals: ").append(toIndentedString(decimals)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

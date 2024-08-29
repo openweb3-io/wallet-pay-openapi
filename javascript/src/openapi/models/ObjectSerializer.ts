@@ -1,3 +1,4 @@
+export * from './CurrencyNetwork';
 export * from './CurrencyOut';
 export * from './CurrencyPair';
 export * from './EndpointIn';
@@ -31,6 +32,7 @@ export * from './TransferIn';
 export * from './TransferOut';
 export * from './WebhookMessage';
 
+import { CurrencyNetwork } from './CurrencyNetwork';
 import { CurrencyOut } from './CurrencyOut';
 import { CurrencyPair } from './CurrencyPair';
 import { EndpointIn } from './EndpointIn';
@@ -89,6 +91,7 @@ let enumsMap: Set<string> = new Set<string>([
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "CurrencyNetwork": CurrencyNetwork,
     "CurrencyOut": CurrencyOut,
     "CurrencyPair": CurrencyPair,
     "EndpointIn": EndpointIn,

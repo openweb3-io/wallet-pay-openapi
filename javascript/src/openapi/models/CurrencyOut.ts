@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { CurrencyNetwork } from './CurrencyNetwork';
 import { HttpFile } from '../http/http';
 
 export class CurrencyOut {
@@ -61,6 +62,7 @@ export class CurrencyOut {
     * Currency decimals
     */
     'decimals': number;
+    'items'?: Array<CurrencyNetwork>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -135,6 +137,12 @@ export class CurrencyOut {
             "name": "decimals",
             "baseName": "decimals",
             "type": "number",
+            "format": ""
+        },
+        {
+            "name": "items",
+            "baseName": "items",
+            "type": "Array<CurrencyNetwork>",
             "format": ""
         }    ];
 

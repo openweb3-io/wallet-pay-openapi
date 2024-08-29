@@ -15,6 +15,7 @@ http/http.ts
 http/isomorphic-fetch.ts
 index.ts
 middleware.ts
+models/CurrencyNetwork.ts
 models/CurrencyOut.ts
 models/CurrencyPair.ts
 models/EndpointIn.ts

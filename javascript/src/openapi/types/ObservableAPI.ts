@@ -3,6 +3,7 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
+import { CurrencyNetwork } from '../models/CurrencyNetwork';
 import { CurrencyOut } from '../models/CurrencyOut';
 import { CurrencyPair } from '../models/CurrencyPair';
 import { EndpointIn } from '../models/EndpointIn';
