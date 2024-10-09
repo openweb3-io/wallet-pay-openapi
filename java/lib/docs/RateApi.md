@@ -4,13 +4,13 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1RateEstimate**](RateApi.md#v1RateEstimate) | **GET** /api/v1/apps/{appId}/rates/estimate | Estimate the amount of currency exchange.
-[**v1RateGetRates**](RateApi.md#v1RateGetRates) | **POST** /api/v1/apps/{appId}/rates | Query exchange rates between different currencies. 
+[**v1RateEstimate**](RateApi.md#v1RateEstimate) | **GET** /api/v1/rates/estimate | Estimate the amount of currency exchange.
+[**v1RateGetRates**](RateApi.md#v1RateGetRates) | **POST** /api/v1/rates | Query exchange rates between different currencies. 
 
 
 <a name="v1RateEstimate"></a>
 # **v1RateEstimate**
-> ResponseEstimateOut v1RateEstimate(appId, from, toCurrency, baseAmount)
+> ResponseEstimateOut v1RateEstimate(from, toCurrency, baseAmount)
 
 Estimate the amount of currency exchange.
 
@@ -38,12 +38,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RateApi apiInstance = new RateApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     String from = "TON"; // String | Specified the base currency that needs to be estimated
     String toCurrency = "NOT"; // String | Specify the target currency.
     String baseAmount = "100"; // String | Specify the amount of base currency that need to be estimated.
     try {
-      ResponseEstimateOut result = apiInstance.v1RateEstimate(appId, from, toCurrency, baseAmount);
+      ResponseEstimateOut result = apiInstance.v1RateEstimate(from, toCurrency, baseAmount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RateApi#v1RateEstimate");
@@ -60,7 +59,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **from** | **String**| Specified the base currency that needs to be estimated |
  **toCurrency** | **String**| Specify the target currency. |
  **baseAmount** | **String**| Specify the amount of base currency that need to be estimated. |
@@ -91,7 +89,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RateGetRates"></a>
 # **v1RateGetRates**
-> ResponseRatesOut v1RateGetRates(appId, getRatesIn)
+> ResponseRatesOut v1RateGetRates(getRatesIn)
 
 Query exchange rates between different currencies. 
 
@@ -119,10 +117,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RateApi apiInstance = new RateApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     GetRatesIn getRatesIn = new GetRatesIn(); // GetRatesIn | 
     try {
-      ResponseRatesOut result = apiInstance.v1RateGetRates(appId, getRatesIn);
+      ResponseRatesOut result = apiInstance.v1RateGetRates(getRatesIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RateApi#v1RateGetRates");
@@ -139,7 +136,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **getRatesIn** | [**GetRatesIn**](GetRatesIn.md)|  |
 
 ### Return type

@@ -90,6 +90,14 @@ public class RefundOutTest {
     }
 
     /**
+     * Test the property 'note'
+     */
+    @Test
+    public void noteTest() {
+        // TODO: test note
+    }
+
+    /**
      * Test the property 'failedAt'
      */
     @Test

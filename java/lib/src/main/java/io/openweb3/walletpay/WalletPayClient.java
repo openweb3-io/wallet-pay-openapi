@@ -21,7 +21,7 @@ import java.util.Base64;
 import io.openweb3.walletpay.exceptions.SigningException;
 import java.io.IOException;
 
-public final class Pay {
+public final class WalletPayClient {
 	public static final String VERSION = "0.2.0";
 	private final Order order;
 	private final Endpoint endpoint;
@@ -30,11 +30,7 @@ public final class Pay {
 	private final Rate  rate;
 	// private final Refund refund;
 
-	public Pay(final String apikey, final String privateKeyPath) throws Exception {
-		this(apikey, privateKeyPath, new PayOptions());
-	}
-
-	public Pay(final String apikey, final String privateKey, final PayOptions options) throws Exception {
+	public WalletPayClient(final WalletPayClientOptions options) throws Exception {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.addNetworkInterceptor(getProgressInterceptor());
 		builder.addInterceptor(new Interceptor() {
@@ -70,7 +66,7 @@ public final class Pay {
 				String signature = null;
 				try {
 					String content = String.format("%s%s%s", body, uri, timestamp);
-					signature = Utils.calculateSignature(privateKey, content);
+					signature = Utils.signWithEd25519(options.getPrivateKey(), content);
 				} catch (SigningException e) {
 					throw new RuntimeException(e);
 				}
@@ -88,9 +84,9 @@ public final class Pay {
 
 		ApiClient apiClient = new ApiClient(httpClient);
 		apiClient.setBasePath(options.getServerUrl());
-		apiClient.setUserAgent(String.format("pay-libs/%s/java", Pay.VERSION));
+		apiClient.setUserAgent(String.format("pay-libs/%s/java", VERSION));
 		ApiKeyAuth apiKeyAuth = (ApiKeyAuth) apiClient.getAuthentication("ApiKeyAuth");
-		apiKeyAuth.setApiKey(apikey);
+		apiKeyAuth.setApiKey(options.getApiKey());
 
 		Configuration.setDefaultApiClient(apiClient);
 

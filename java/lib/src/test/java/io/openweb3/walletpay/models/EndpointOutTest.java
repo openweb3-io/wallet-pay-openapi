@@ -45,6 +45,22 @@ public class EndpointOutTest {
     }
 
     /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'uid'
+     */
+    @Test
+    public void uidTest() {
+        // TODO: test uid
+    }
+
+    /**
      * Test the property 'description'
      */
     @Test

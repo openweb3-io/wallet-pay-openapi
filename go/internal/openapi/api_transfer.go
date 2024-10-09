@@ -16,7 +16,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -30,7 +29,6 @@ type TransferApiService service
 type ApiV1TransferCreateRequest struct {
 	ctx _context.Context
 	ApiService *TransferApiService
-	appId string
 	transferIn *TransferIn
 }
 
@@ -47,14 +45,12 @@ func (r ApiV1TransferCreateRequest) Execute() (ResponseTransferOut, *_nethttp.Re
  * V1TransferCreate Create Transfer
  * Create a new transfer.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1TransferCreateRequest
  */
-func (a *TransferApiService) V1TransferCreate(ctx _context.Context, appId string) ApiV1TransferCreateRequest {
+func (a *TransferApiService) V1TransferCreate(ctx _context.Context) ApiV1TransferCreateRequest {
 	return ApiV1TransferCreateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -77,8 +73,7 @@ func (a *TransferApiService) V1TransferCreateExecute(r ApiV1TransferCreateReques
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/transfers"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/transfers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

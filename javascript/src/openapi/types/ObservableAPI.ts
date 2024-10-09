@@ -56,11 +56,10 @@ export class ObservableCurrencyApi {
     /**
      * Get specified currency.
      * Find currency by code
-     * @param appId Specified the app id.
      * @param code Specified currency code.
      */
-    public v1CurrencyFindByCode(appId: string, code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(appId, code, _options);
+    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(code, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -81,13 +80,12 @@ export class ObservableCurrencyApi {
     /**
      * List currencies.
      * List currencies
-     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      * @param rated Specifying if currency supports fetching rates
      */
-    public v1CurrencyList(appId: string, limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Observable<ResponseListCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyList(appId, limit, cursor, rated, _options);
+    public v1CurrencyList(limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Observable<ResponseListCurrencyOut> {
+        const requestContextPromise = this.requestFactory.v1CurrencyList(limit, cursor, rated, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -126,11 +124,10 @@ export class ObservableOrderApi {
     /**
      * Create a new order.
      * Create Order
-     * @param appId Specified the app id.
      * @param orderIn 
      */
-    public v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Observable<ResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderCreate(appId, orderIn, _options);
+    public v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Observable<ResponseOrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderCreate(orderIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -151,11 +148,10 @@ export class ObservableOrderApi {
     /**
      * Get specified order.
      * Get order
-     * @param appId Specified the app id.
      * @param idOrUid Specified the order id or order uid.
      */
-    public v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Observable<ResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderGet(appId, idOrUid, _options);
+    public v1OrderGet(idOrUid: string, _options?: Configuration): Observable<ResponseOrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderGet(idOrUid, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -176,15 +172,14 @@ export class ObservableOrderApi {
     /**
      * List orders.
      * List Orders
-     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
      * @param currency Optional currency code
      * @param status Optional order status
      */
-    public v1OrderList(appId: string, size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Observable<ResponseListOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderList(appId, size, page, walletId, currency, status, _options);
+    public v1OrderList(size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Observable<ResponseListOrderOut> {
+        const requestContextPromise = this.requestFactory.v1OrderList(size, page, walletId, currency, status, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -223,13 +218,12 @@ export class ObservableRateApi {
     /**
      * Estimate the amount of currency exchange.
      * Estimate the amount of currency exchange.
-     * @param appId Specified the app id.
      * @param from Specified the base currency that needs to be estimated
      * @param toCurrency Specify the target currency.
      * @param baseAmount Specify the amount of base currency that need to be estimated.
      */
-    public v1RateEstimate(appId: string, from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
-        const requestContextPromise = this.requestFactory.v1RateEstimate(appId, from, toCurrency, baseAmount, _options);
+    public v1RateEstimate(from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
+        const requestContextPromise = this.requestFactory.v1RateEstimate(from, toCurrency, baseAmount, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -250,11 +244,10 @@ export class ObservableRateApi {
     /**
      * Query exchange rates between different currencies.
      * Query exchange rates between different currencies. 
-     * @param appId Specified the app id.
      * @param getRatesIn 
      */
-    public v1RateGetRates(appId: string, getRatesIn: GetRatesIn, _options?: Configuration): Observable<ResponseRatesOut> {
-        const requestContextPromise = this.requestFactory.v1RateGetRates(appId, getRatesIn, _options);
+    public v1RateGetRates(getRatesIn: GetRatesIn, _options?: Configuration): Observable<ResponseRatesOut> {
+        const requestContextPromise = this.requestFactory.v1RateGetRates(getRatesIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -293,11 +286,10 @@ export class ObservableRefundApi {
     /**
      * Create a refund.
      * Create Refund
-     * @param appId Specified the app id.
      * @param refundIn 
      */
-    public v1RefundCreate(appId: string, refundIn: RefundIn, _options?: Configuration): Observable<ResponseRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundCreate(appId, refundIn, _options);
+    public v1RefundCreate(refundIn: RefundIn, _options?: Configuration): Observable<ResponseRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundCreate(refundIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -318,11 +310,10 @@ export class ObservableRefundApi {
     /**
      * Get specified refund.
      * Get Refund
-     * @param appId Specified the app id.
      * @param idOrUid Specified the refund id or refund uid.
      */
-    public v1RefundGet(appId: string, idOrUid: string, _options?: Configuration): Observable<ResponseRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundGet(appId, idOrUid, _options);
+    public v1RefundGet(idOrUid: string, _options?: Configuration): Observable<ResponseRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundGet(idOrUid, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -343,13 +334,12 @@ export class ObservableRefundApi {
     /**
      * List refunds.
      * List Refunds
-     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param orderId Optional order id
      */
-    public v1RefundList(appId: string, size?: number, page?: number, orderId?: string, _options?: Configuration): Observable<ResponseListRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundList(appId, size, page, orderId, _options);
+    public v1RefundList(size?: number, page?: number, orderId?: string, _options?: Configuration): Observable<ResponseListRefundOut> {
+        const requestContextPromise = this.requestFactory.v1RefundList(size, page, orderId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -388,11 +378,10 @@ export class ObservableTransferApi {
     /**
      * Create a new transfer.
      * Create Transfer
-     * @param appId Specified the app id.
      * @param transferIn 
      */
-    public v1TransferCreate(appId: string, transferIn: TransferIn, _options?: Configuration): Observable<ResponseTransferOut> {
-        const requestContextPromise = this.requestFactory.v1TransferCreate(appId, transferIn, _options);
+    public v1TransferCreate(transferIn: TransferIn, _options?: Configuration): Observable<ResponseTransferOut> {
+        const requestContextPromise = this.requestFactory.v1TransferCreate(transferIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -431,11 +420,10 @@ export class ObservableWebhookEndpointApi {
     /**
      * Create a webhook endpoint.
      * Create endpoint
-     * @param appId Specified the app id.
      * @param endpointIn 
      */
-    public v1EndpointCreate(appId: string, endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointCreate(appId, endpointIn, _options);
+    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -456,11 +444,10 @@ export class ObservableWebhookEndpointApi {
     /**
      * delete the specified webhook endpoint.
      * Delete endpoint
-     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id.
      */
-    public v1EndpointDelete(appId: string, endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointDelete(appId, endpointId, _options);
+    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -481,11 +468,10 @@ export class ObservableWebhookEndpointApi {
     /**
      * get the specified webhook endpoint.
      * Delete endpoint
-     * @param appId Specified the app id.
      * @param endpointId Specified the endpoint id or endpoint uid.
      */
-    public v1EndpointGet(appId: string, endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointGet(appId, endpointId, _options);
+    public v1EndpointGet(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointGet(endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -506,13 +492,12 @@ export class ObservableWebhookEndpointApi {
     /**
      * List endpoints.
      * List endpoints
-     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      * @param ordering The sorting order of the returned items
      */
-    public v1EndpointList(appId: string, limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointList(appId, limit, cursor, ordering, _options);
+    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
+        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, ordering, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

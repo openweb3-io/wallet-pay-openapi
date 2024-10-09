@@ -37,23 +37,11 @@
         ]
     },
     "paths": {
-        "/api/v1/apps/{appId}/currencies": {
+        "/api/v1/currencies": {
             "get": {
                 "description": "List currencies.",
                 "operationId": "v1.currency.list",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -168,23 +156,11 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/currencies/{code}": {
+        "/api/v1/currencies/{code}": {
             "get": {
                 "description": "Get specified currency.",
                 "operationId": "v1.currency.findByCode",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified currency code.",
                         "in": "path",
@@ -286,23 +262,11 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/rates/estimate": {
+        "/api/v1/rates/estimate": {
             "get": {
                 "description": "Estimate the amount of currency exchange.",
                 "operationId": "v1.rate.estimate",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified the base currency that needs to be estimated",
                         "in": "query",
@@ -418,23 +382,11 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/rates": {
+        "/api/v1/rates": {
             "post": {
                 "description": "Query exchange rates between different currencies.",
                 "operationId": "v1.rate.get_rates",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -538,23 +490,11 @@
             }
         },
 
-        "/api/v1/apps/{appId}/transfers": {
+        "/api/v1/transfers": {
             "post": {
                 "description": "Create a new transfer.",
                 "operationId": "v1.transfer.create",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -667,23 +607,11 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/refunds": {
+        "/api/v1/refunds": {
             "get": {
                 "description": "List refunds.",
                 "operationId": "v1.refund.list",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -804,18 +732,6 @@
                 "description": "Create a refund.",
                 "operationId": "v1.refund.create",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -928,23 +844,11 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/refunds/{idOrUid}": {
+        "/api/v1/refunds/{idOrUid}": {
             "get": {
                 "description": "Get specified refund.",
                 "operationId": "v1.refund.get",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified the refund id or refund uid.",
                         "in": "path",
@@ -1046,23 +950,11 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/orders": {
+        "/api/v1/orders": {
             "get": {
                 "description": "List orders.",
                 "operationId": "v1.order.list",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -1214,18 +1106,6 @@
                 "description": "Create a new order.",
                 "operationId": "v1.order.create",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -1338,23 +1218,11 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/orders/{idOrUid}": {
+        "/api/v1/orders/{idOrUid}": {
             "get": {
                 "description": "Get specified order.",
                 "operationId": "v1.order.get",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified the order id or order uid.",
                         "in": "path",
@@ -1456,23 +1324,11 @@
                 ]
             }
         },
-        "/api/v1/apps/{appId}/webhooks/endpoints": {
+        "/api/v1/webhooks/endpoints": {
             "get": {
                 "description": "List endpoints.",
                 "operationId": "v1.endpoint.list",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Limit the number of returned items",
                         "in": "query",
@@ -1580,18 +1436,6 @@
                 "description": "Create a webhook endpoint.",
                 "operationId": "v1.endpoint.create",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    }
                 ],
                 "requestBody": {
                     "content": {
@@ -1704,23 +1548,11 @@
                 }
             }
         },
-        "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}": {
+        "/api/v1/webhooks/endpoints/{endpointId}": {
             "delete": {
                 "description": "delete the specified webhook endpoint.",
                 "operationId": "v1.endpoint.delete",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified the endpoint id.",
                         "in": "path",
@@ -1825,18 +1657,6 @@
                 "description": "get the specified webhook endpoint.",
                 "operationId": "v1.endpoint.get",
                 "parameters": [
-                    {
-                        "description": "Specified the app id.",
-                        "in": "path",
-                        "name": "appId",
-                        "required": true,
-                        "schema": {
-                            "description": "Specified the app id.",
-                            "example": "app_12345xsfei",
-                            "type": "string"
-                        },
-                        "style": "simple"
-                    },
                     {
                         "description": "Specified the endpoint id or endpoint uid.",
                         "in": "path",

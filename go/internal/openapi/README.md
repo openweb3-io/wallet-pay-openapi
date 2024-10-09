@@ -78,21 +78,21 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*CurrencyApi* | [**V1CurrencyFindByCode**](docs/CurrencyApi.md#v1currencyfindbycode) | **Get** /api/v1/apps/{appId}/currencies/{code} | Find currency by code
-*CurrencyApi* | [**V1CurrencyList**](docs/CurrencyApi.md#v1currencylist) | **Get** /api/v1/apps/{appId}/currencies | List currencies
-*OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/apps/{appId}/orders | Create Order
-*OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
-*OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/apps/{appId}/orders | List Orders
-*RateApi* | [**V1RateEstimate**](docs/RateApi.md#v1rateestimate) | **Get** /api/v1/apps/{appId}/rates/estimate | Estimate the amount of currency exchange.
-*RateApi* | [**V1RateGetRates**](docs/RateApi.md#v1rategetrates) | **Post** /api/v1/apps/{appId}/rates | Query exchange rates between different currencies. 
-*RefundApi* | [**V1RefundCreate**](docs/RefundApi.md#v1refundcreate) | **Post** /api/v1/apps/{appId}/refunds | Create Refund
-*RefundApi* | [**V1RefundGet**](docs/RefundApi.md#v1refundget) | **Get** /api/v1/apps/{appId}/refunds/{idOrUid} | Get Refund
-*RefundApi* | [**V1RefundList**](docs/RefundApi.md#v1refundlist) | **Get** /api/v1/apps/{appId}/refunds | List Refunds
-*TransferApi* | [**V1TransferCreate**](docs/TransferApi.md#v1transfercreate) | **Post** /api/v1/apps/{appId}/transfers | Create Transfer
-*WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/apps/{appId}/webhooks/endpoints | Create endpoint
-*WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
-*WebhookEndpointApi* | [**V1EndpointGet**](docs/WebhookEndpointApi.md#v1endpointget) | **Get** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
-*WebhookEndpointApi* | [**V1EndpointList**](docs/WebhookEndpointApi.md#v1endpointlist) | **Get** /api/v1/apps/{appId}/webhooks/endpoints | List endpoints
+*CurrencyApi* | [**V1CurrencyFindByCode**](docs/CurrencyApi.md#v1currencyfindbycode) | **Get** /api/v1/currencies/{code} | Find currency by code
+*CurrencyApi* | [**V1CurrencyList**](docs/CurrencyApi.md#v1currencylist) | **Get** /api/v1/currencies | List currencies
+*OrderApi* | [**V1OrderCreate**](docs/OrderApi.md#v1ordercreate) | **Post** /api/v1/orders | Create Order
+*OrderApi* | [**V1OrderGet**](docs/OrderApi.md#v1orderget) | **Get** /api/v1/orders/{idOrUid} | Get order
+*OrderApi* | [**V1OrderList**](docs/OrderApi.md#v1orderlist) | **Get** /api/v1/orders | List Orders
+*RateApi* | [**V1RateEstimate**](docs/RateApi.md#v1rateestimate) | **Get** /api/v1/rates/estimate | Estimate the amount of currency exchange.
+*RateApi* | [**V1RateGetRates**](docs/RateApi.md#v1rategetrates) | **Post** /api/v1/rates | Query exchange rates between different currencies. 
+*RefundApi* | [**V1RefundCreate**](docs/RefundApi.md#v1refundcreate) | **Post** /api/v1/refunds | Create Refund
+*RefundApi* | [**V1RefundGet**](docs/RefundApi.md#v1refundget) | **Get** /api/v1/refunds/{idOrUid} | Get Refund
+*RefundApi* | [**V1RefundList**](docs/RefundApi.md#v1refundlist) | **Get** /api/v1/refunds | List Refunds
+*TransferApi* | [**V1TransferCreate**](docs/TransferApi.md#v1transfercreate) | **Post** /api/v1/transfers | Create Transfer
+*WebhookEndpointApi* | [**V1EndpointCreate**](docs/WebhookEndpointApi.md#v1endpointcreate) | **Post** /api/v1/webhooks/endpoints | Create endpoint
+*WebhookEndpointApi* | [**V1EndpointDelete**](docs/WebhookEndpointApi.md#v1endpointdelete) | **Delete** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+*WebhookEndpointApi* | [**V1EndpointGet**](docs/WebhookEndpointApi.md#v1endpointget) | **Get** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+*WebhookEndpointApi* | [**V1EndpointList**](docs/WebhookEndpointApi.md#v1endpointlist) | **Get** /api/v1/webhooks/endpoints | List endpoints
 
 
 ## Documentation For Models

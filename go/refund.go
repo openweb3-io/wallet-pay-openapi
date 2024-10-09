@@ -22,8 +22,8 @@ type RefundListOptions struct {
 	OrderId *string
 }
 
-func (e *Refund) List(ctx context.Context, appId string, options *RefundListOptions) (*ListResponseRefundOut, error) {
-	req := e.api.RefundApi.V1RefundList(ctx, appId)
+func (e *Refund) List(ctx context.Context, options *RefundListOptions) (*ListResponseRefundOut, error) {
+	req := e.api.RefundApi.V1RefundList(ctx)
 	if options != nil {
 		if options.Size != nil {
 			req = req.Size(*options.Size)
@@ -43,13 +43,13 @@ func (e *Refund) List(ctx context.Context, appId string, options *RefundListOpti
 	return &ret, nil
 }
 
-func (e *Refund) Create(ctx context.Context, appId string, RefundIn *RefundIn) (*RefundOut, error) {
-	return e.CreateWithOptions(ctx, appId, RefundIn, nil)
+func (e *Refund) Create(ctx context.Context, refundIn *RefundIn) (*RefundOut, error) {
+	return e.CreateWithOptions(ctx, refundIn, nil)
 }
 
-func (e *Refund) CreateWithOptions(ctx context.Context, appId string, RefundIn *RefundIn, options *PostOptions) (*RefundOut, error) {
-	req := e.api.RefundApi.V1RefundCreate(ctx, appId)
-	req = req.RefundIn(openapi.RefundIn(*RefundIn))
+func (e *Refund) CreateWithOptions(ctx context.Context, refundIn *RefundIn, options *PostOptions) (*RefundOut, error) {
+	req := e.api.RefundApi.V1RefundCreate(ctx)
+	req = req.RefundIn(openapi.RefundIn(*refundIn))
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -59,8 +59,8 @@ func (e *Refund) CreateWithOptions(ctx context.Context, appId string, RefundIn *
 	return &ret, nil
 }
 
-func (e *Refund) Get(ctx context.Context, appId string, orderId string) (*RefundOut, error) {
-	req := e.api.RefundApi.V1RefundGet(ctx, appId, orderId)
+func (e *Refund) Get(ctx context.Context, orderId string) (*RefundOut, error) {
+	req := e.api.RefundApi.V1RefundGet(ctx, orderId)
 
 	out, res, err := req.Execute()
 	if err != nil {

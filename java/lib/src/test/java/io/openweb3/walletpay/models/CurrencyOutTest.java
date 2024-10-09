@@ -18,9 +18,12 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.openweb3.walletpay.models.CurrencyNetwork;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -134,6 +137,14 @@ public class CurrencyOutTest {
     @Test
     public void decimalsTest() {
         // TODO: test decimals
+    }
+
+    /**
+     * Test the property 'items'
+     */
+    @Test
+    public void itemsTest() {
+        // TODO: test items
     }
 
 }

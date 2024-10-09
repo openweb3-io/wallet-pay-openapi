@@ -24,8 +24,8 @@ type OrderListOptions struct {
 	Currency *string
 }
 
-func (e *Order) List(ctx context.Context, appId string, options *OrderListOptions) (*ListResponseOrderOut, error) {
-	req := e.api.OrderApi.V1OrderList(ctx, appId)
+func (e *Order) List(ctx context.Context, options *OrderListOptions) (*ListResponseOrderOut, error) {
+	req := e.api.OrderApi.V1OrderList(ctx)
 	if options != nil {
 		if options.Size != nil {
 			req = req.Size(*options.Size)
@@ -51,13 +51,13 @@ func (e *Order) List(ctx context.Context, appId string, options *OrderListOption
 	return &ret, nil
 }
 
-func (e *Order) Create(ctx context.Context, appId string, OrderIn *OrderIn) (*OrderOut, error) {
-	return e.CreateWithOptions(ctx, appId, OrderIn, nil)
+func (e *Order) Create(ctx context.Context, orderIn *OrderIn) (*OrderOut, error) {
+	return e.CreateWithOptions(ctx, orderIn, nil)
 }
 
-func (e *Order) CreateWithOptions(ctx context.Context, appId string, OrderIn *OrderIn, options *PostOptions) (*OrderOut, error) {
-	req := e.api.OrderApi.V1OrderCreate(ctx, appId)
-	req = req.OrderIn(openapi.OrderIn(*OrderIn))
+func (e *Order) CreateWithOptions(ctx context.Context, orderIn *OrderIn, options *PostOptions) (*OrderOut, error) {
+	req := e.api.OrderApi.V1OrderCreate(ctx)
+	req = req.OrderIn(openapi.OrderIn(*orderIn))
 
 	out, res, err := req.Execute()
 	if err != nil {
@@ -67,8 +67,8 @@ func (e *Order) CreateWithOptions(ctx context.Context, appId string, OrderIn *Or
 	return &ret, nil
 }
 
-func (e *Order) Get(ctx context.Context, appId string, orderId string) (*OrderOut, error) {
-	req := e.api.OrderApi.V1OrderGet(ctx, appId, orderId)
+func (e *Order) Get(ctx context.Context, orderId string) (*OrderOut, error) {
+	req := e.api.OrderApi.V1OrderGet(ctx, orderId)
 
 	out, res, err := req.Execute()
 	if err != nil {

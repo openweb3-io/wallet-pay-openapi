@@ -16,7 +16,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -30,7 +29,6 @@ type RateApiService service
 type ApiV1RateEstimateRequest struct {
 	ctx _context.Context
 	ApiService *RateApiService
-	appId string
 	from *string
 	toCurrency *string
 	baseAmount *string
@@ -57,14 +55,12 @@ func (r ApiV1RateEstimateRequest) Execute() (ResponseEstimateOut, *_nethttp.Resp
  * V1RateEstimate Estimate the amount of currency exchange.
  * Estimate the amount of currency exchange.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1RateEstimateRequest
  */
-func (a *RateApiService) V1RateEstimate(ctx _context.Context, appId string) ApiV1RateEstimateRequest {
+func (a *RateApiService) V1RateEstimate(ctx _context.Context) ApiV1RateEstimateRequest {
 	return ApiV1RateEstimateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -87,8 +83,7 @@ func (a *RateApiService) V1RateEstimateExecute(r ApiV1RateEstimateRequest) (Resp
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/rates/estimate"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/rates/estimate"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -236,7 +231,6 @@ func (a *RateApiService) V1RateEstimateExecute(r ApiV1RateEstimateRequest) (Resp
 type ApiV1RateGetRatesRequest struct {
 	ctx _context.Context
 	ApiService *RateApiService
-	appId string
 	getRatesIn *GetRatesIn
 }
 
@@ -253,14 +247,12 @@ func (r ApiV1RateGetRatesRequest) Execute() (ResponseRatesOut, *_nethttp.Respons
  * V1RateGetRates Query exchange rates between different currencies. 
  * Query exchange rates between different currencies.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1RateGetRatesRequest
  */
-func (a *RateApiService) V1RateGetRates(ctx _context.Context, appId string) ApiV1RateGetRatesRequest {
+func (a *RateApiService) V1RateGetRates(ctx _context.Context) ApiV1RateGetRatesRequest {
 	return ApiV1RateGetRatesRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -283,8 +275,7 @@ func (a *RateApiService) V1RateGetRatesExecute(r ApiV1RateGetRatesRequest) (Resp
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/rates"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/rates"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

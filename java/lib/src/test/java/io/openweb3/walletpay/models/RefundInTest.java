@@ -64,4 +64,12 @@ public class RefundInTest {
         // TODO: test amount
     }
 
+    /**
+     * Test the property 'note'
+     */
+    @Test
+    public void noteTest() {
+        // TODO: test note
+    }
+
 }

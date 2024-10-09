@@ -2,6 +2,7 @@ package walletpay
 
 import (
 	"bytes"
+	"encoding/hex"
 	"fmt"
 	"io"
 	"log"
@@ -11,12 +12,16 @@ import (
 	"time"
 
 	"github.com/openweb3-io/wallet-pay-openapi/go/internal/openapi"
+	"github.com/openweb3-io/wallet-pay-openapi/go/internal/signature"
 	"github.com/openweb3-io/wallet-pay-openapi/go/internal/version"
 )
 
 type (
 	WalletPayOptions struct {
 		Debug bool
+
+		ApiKey     string
+		PrivateKey string
 
 		// Overrides the base URL (protocol + hostname) used for all requests sent by this walletpay client. (Useful for testing)
 		ServerUrl  *url.URL
@@ -36,7 +41,7 @@ var defaultHTTPClient = &http.Client{
 	Timeout: 60 * time.Second,
 }
 
-func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay {
+func New(options *WalletPayOptions) *WalletPay {
 	conf := openapi.NewConfiguration()
 	conf.Scheme = "https"
 	conf.Host = "api.wallet-pay.openweb3.io"
@@ -63,12 +68,17 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 		}
 		dataToBeSignature = dataToBeSignature + req.URL.RequestURI() + requestTime
 
-		signature, err := genSign([]byte(dataToBeSignature), []byte(privateKey))
+		signer := signature.Get(signature.SigningMethodEd25519)
+		priKey, err := hex.DecodeString(options.PrivateKey + options.ApiKey)
+		if err != nil {
+			log.Printf("Error decoding private key: %v", err)
+		}
+		signature, err := signer.Sign(priKey, []byte(dataToBeSignature))
 		if err != nil {
 			log.Printf("Error generating signature: %v", err)
 		}
 
-		req.Header.Set("X-Signature", signature)
+		req.Header.Set("X-Signature", hex.EncodeToString(signature))
 	}
 
 	if options != nil {
@@ -81,7 +91,7 @@ func New(apikey string, privateKey string, options *WalletPayOptions) *WalletPay
 			conf.HTTPClient = options.HTTPClient
 		}
 	}
-	conf.AddDefaultHeader("x-api-key", apikey)
+	conf.AddDefaultHeader("x-api-key", options.ApiKey)
 	conf.UserAgent = fmt.Sprintf("walletpay-libs/%s/go", version.Version)
 	apiClient := openapi.NewAPIClient(conf)
 	return &WalletPay{

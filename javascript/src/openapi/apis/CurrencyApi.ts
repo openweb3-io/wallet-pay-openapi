@@ -18,17 +18,10 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Get specified currency.
      * Find currency by code
-     * @param appId Specified the app id.
      * @param code Specified currency code.
      */
-    public async v1CurrencyFindByCode(appId: string, code: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1CurrencyFindByCode(code: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1CurrencyFindByCode.');
-        }
-
 
         // verify required parameter 'code' is not null or undefined
         if (code === null || code === undefined) {
@@ -37,8 +30,7 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/currencies/{code}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+        const localVarPath = '/api/v1/currencies/{code}'
             .replace('{' + 'code' + '}', encodeURIComponent(String(code)));
 
         // Make Request Context
@@ -69,26 +61,18 @@ export class CurrencyApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * List currencies.
      * List currencies
-     * @param appId Specified the app id.
      * @param limit Limit the number of returned items
      * @param cursor Specifying the start cursor position
      * @param rated Specifying if currency supports fetching rates
      */
-    public async v1CurrencyList(appId: string, limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async v1CurrencyList(limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1CurrencyList.');
-        }
-
 
 
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/currencies'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/currencies';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

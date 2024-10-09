@@ -67,4 +67,12 @@ public class ListResponseEndpointOutTest {
         // TODO: test nextCursor
     }
 
+    /**
+     * Test the property 'hasNext'
+     */
+    @Test
+    public void hasNextTest() {
+        // TODO: test hasNext
+    }
+
 }

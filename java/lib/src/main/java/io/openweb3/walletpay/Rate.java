@@ -13,17 +13,17 @@ public final class Rate {
 		api = new RateApi();
 	}
 
-	public EstimateOut estimate(final String appId, final RatesOptions options) throws ApiException {
+	public EstimateOut estimate(final RatesOptions options) throws ApiException {
 		try {
-			return api.v1RateEstimate(appId, options.getFrom(), options.getToCurrency(), options.getBaseAmount()).getData();
+			return api.v1RateEstimate(options.getFrom(), options.getToCurrency(), options.getBaseAmount()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	public RatesOut getRates(final String appId, final GetRatesIn ratesIn) throws ApiException {
+	public RatesOut getRates(final GetRatesIn ratesIn) throws ApiException {
 		try {
-			return api.v1RateGetRates(appId, ratesIn).getData();
+			return api.v1RateGetRates(ratesIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

@@ -36,6 +36,38 @@ public class RefundApiTest {
 
     
     /**
+     * Create Refund
+     *
+     * Create a refund.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1RefundCreateTest() throws ApiException {
+        RefundIn refundIn = null;
+        ResponseRefundOut response = api.v1RefundCreate(refundIn);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get Refund
+     *
+     * Get specified refund.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void v1RefundGetTest() throws ApiException {
+        String idOrUid = null;
+        ResponseRefundOut response = api.v1RefundGet(idOrUid);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List Refunds
      *
      * List refunds.
@@ -45,28 +77,10 @@ public class RefundApiTest {
      */
     @Test
     public void v1RefundListTest() throws ApiException {
-        String appId = null;
         Integer size = null;
         Integer page = null;
         String orderId = null;
-        ResponseListRefundOut response = api.v1RefundList(appId, size, page, orderId);
-
-        // TODO: test validations
-    }
-    
-    /**
-     * Create Refund
-     *
-     * Create a refunds.
-     *
-     * @throws ApiException
-     *          if the Api call fails
-     */
-    @Test
-    public void v1RefundsCreateTest() throws ApiException {
-        String appId = null;
-        RefundIn refundIn = null;
-        ResponseRefundOut response = api.v1RefundCreate(appId, refundIn);
+        ResponseListRefundOut response = api.v1RefundList(size, page, orderId);
 
         // TODO: test validations
     }

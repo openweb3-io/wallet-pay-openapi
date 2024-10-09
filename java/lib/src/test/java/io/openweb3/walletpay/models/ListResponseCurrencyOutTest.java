@@ -52,11 +52,27 @@ public class ListResponseCurrencyOutTest {
     }
 
     /**
-     * Test the property 'total'
+     * Test the property 'nextCursor'
      */
     @Test
-    public void totalTest() {
-        // TODO: test total
+    public void nextCursorTest() {
+        // TODO: test nextCursor
+    }
+
+    /**
+     * Test the property 'prevCursor'
+     */
+    @Test
+    public void prevCursorTest() {
+        // TODO: test prevCursor
+    }
+
+    /**
+     * Test the property 'hasNext'
+     */
+    @Test
+    public void hasNextTest() {
+        // TODO: test hasNext
     }
 
 }

@@ -21,8 +21,8 @@ type CurrencyListOptions struct {
 	Rated  *bool
 }
 
-func (e *Currency) List(ctx context.Context, appId string, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
-	req := e.api.CurrencyApi.V1CurrencyList(ctx, appId)
+func (e *Currency) List(ctx context.Context, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
+	req := e.api.CurrencyApi.V1CurrencyList(ctx)
 	if options != nil {
 		if options.Cursor != nil {
 			req = req.Cursor(*options.Cursor)
@@ -42,8 +42,8 @@ func (e *Currency) List(ctx context.Context, appId string, options *CurrencyList
 	return &ret, nil
 }
 
-func (e *Currency) FindByCode(ctx context.Context, appId, code string) (*CurrencyOut, error) {
-	req := e.api.CurrencyApi.V1CurrencyFindByCode(ctx, appId, code)
+func (e *Currency) FindByCode(ctx context.Context, code string) (*CurrencyOut, error) {
+	req := e.api.CurrencyApi.V1CurrencyFindByCode(ctx, code)
 
 	out, res, err := req.Execute()
 	if err != nil {

@@ -30,7 +30,6 @@ type OrderApiService service
 type ApiV1OrderCreateRequest struct {
 	ctx _context.Context
 	ApiService *OrderApiService
-	appId string
 	orderIn *OrderIn
 }
 
@@ -47,14 +46,12 @@ func (r ApiV1OrderCreateRequest) Execute() (ResponseOrderOut, *_nethttp.Response
  * V1OrderCreate Create Order
  * Create a new order.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1OrderCreateRequest
  */
-func (a *OrderApiService) V1OrderCreate(ctx _context.Context, appId string) ApiV1OrderCreateRequest {
+func (a *OrderApiService) V1OrderCreate(ctx _context.Context) ApiV1OrderCreateRequest {
 	return ApiV1OrderCreateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -77,8 +74,7 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Respo
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/orders"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/orders"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -229,7 +225,6 @@ func (a *OrderApiService) V1OrderCreateExecute(r ApiV1OrderCreateRequest) (Respo
 type ApiV1OrderGetRequest struct {
 	ctx _context.Context
 	ApiService *OrderApiService
-	appId string
 	idOrUid string
 }
 
@@ -242,15 +237,13 @@ func (r ApiV1OrderGetRequest) Execute() (ResponseOrderOut, *_nethttp.Response, e
  * V1OrderGet Get order
  * Get specified order.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @param idOrUid Specified the order id or order uid.
  * @return ApiV1OrderGetRequest
  */
-func (a *OrderApiService) V1OrderGet(ctx _context.Context, appId string, idOrUid string) ApiV1OrderGetRequest {
+func (a *OrderApiService) V1OrderGet(ctx _context.Context, idOrUid string) ApiV1OrderGetRequest {
 	return ApiV1OrderGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		idOrUid: idOrUid,
 	}
 }
@@ -274,8 +267,7 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (ResponseOrd
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/orders/{idOrUid}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/orders/{idOrUid}"
 	localVarPath = strings.Replace(localVarPath, "{"+"idOrUid"+"}", _neturl.PathEscape(parameterToString(r.idOrUid, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -412,7 +404,6 @@ func (a *OrderApiService) V1OrderGetExecute(r ApiV1OrderGetRequest) (ResponseOrd
 type ApiV1OrderListRequest struct {
 	ctx _context.Context
 	ApiService *OrderApiService
-	appId string
 	size *int32
 	page *int32
 	walletId *string
@@ -449,14 +440,12 @@ func (r ApiV1OrderListRequest) Execute() (ResponseListOrderOut, *_nethttp.Respon
  * V1OrderList List Orders
  * List orders.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1OrderListRequest
  */
-func (a *OrderApiService) V1OrderList(ctx _context.Context, appId string) ApiV1OrderListRequest {
+func (a *OrderApiService) V1OrderList(ctx _context.Context) ApiV1OrderListRequest {
 	return ApiV1OrderListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -479,8 +468,7 @@ func (a *OrderApiService) V1OrderListExecute(r ApiV1OrderListRequest) (ResponseL
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/orders"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/orders"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

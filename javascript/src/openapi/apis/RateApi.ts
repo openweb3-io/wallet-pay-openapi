@@ -19,19 +19,12 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Estimate the amount of currency exchange.
      * Estimate the amount of currency exchange.
-     * @param appId Specified the app id.
      * @param from Specified the base currency that needs to be estimated
      * @param toCurrency Specify the target currency.
      * @param baseAmount Specify the amount of base currency that need to be estimated.
      */
-    public async v1RateEstimate(appId: string, from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RateEstimate(from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1RateEstimate.');
-        }
-
 
         // verify required parameter 'from' is not null or undefined
         if (from === null || from === undefined) {
@@ -52,8 +45,7 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/rates/estimate'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/rates/estimate';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -92,17 +84,10 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Query exchange rates between different currencies.
      * Query exchange rates between different currencies. 
-     * @param appId Specified the app id.
      * @param getRatesIn 
      */
-    public async v1RateGetRates(appId: string, getRatesIn: GetRatesIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1RateGetRates(getRatesIn: GetRatesIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1RateGetRates.');
-        }
-
 
         // verify required parameter 'getRatesIn' is not null or undefined
         if (getRatesIn === null || getRatesIn === undefined) {
@@ -111,8 +96,7 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/rates'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/rates';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

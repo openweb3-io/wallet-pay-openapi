@@ -4,15 +4,15 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1EndpointCreate**](WebhookEndpointApi.md#v1EndpointCreate) | **POST** /api/v1/apps/{appId}/webhooks/endpoints | Create endpoint
-[**v1EndpointDelete**](WebhookEndpointApi.md#v1EndpointDelete) | **DELETE** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
-[**v1EndpointGet**](WebhookEndpointApi.md#v1EndpointGet) | **GET** /api/v1/apps/{appId}/webhooks/endpoints/{endpointId} | Delete endpoint
-[**v1EndpointList**](WebhookEndpointApi.md#v1EndpointList) | **GET** /api/v1/apps/{appId}/webhooks/endpoints | List endpoints
+[**v1EndpointCreate**](WebhookEndpointApi.md#v1EndpointCreate) | **POST** /api/v1/webhooks/endpoints | Create endpoint
+[**v1EndpointDelete**](WebhookEndpointApi.md#v1EndpointDelete) | **DELETE** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+[**v1EndpointGet**](WebhookEndpointApi.md#v1EndpointGet) | **GET** /api/v1/webhooks/endpoints/{endpointId} | Delete endpoint
+[**v1EndpointList**](WebhookEndpointApi.md#v1EndpointList) | **GET** /api/v1/webhooks/endpoints | List endpoints
 
 
 <a name="v1EndpointCreate"></a>
 # **v1EndpointCreate**
-> ResponseEndpointOut v1EndpointCreate(appId, endpointIn)
+> ResponseEndpointOut v1EndpointCreate(endpointIn)
 
 Create endpoint
 
@@ -40,10 +40,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     EndpointIn endpointIn = new EndpointIn(); // EndpointIn | 
     try {
-      ResponseEndpointOut result = apiInstance.v1EndpointCreate(appId, endpointIn);
+      ResponseEndpointOut result = apiInstance.v1EndpointCreate(endpointIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointCreate");
@@ -60,7 +59,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **endpointIn** | [**EndpointIn**](EndpointIn.md)|  |
 
 ### Return type
@@ -91,7 +89,7 @@ Name | Type | Description  | Notes
 
 <a name="v1EndpointDelete"></a>
 # **v1EndpointDelete**
-> ResponseEndpointOut v1EndpointDelete(appId, endpointId)
+> ResponseEndpointOut v1EndpointDelete(endpointId)
 
 Delete endpoint
 
@@ -119,10 +117,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id.
     try {
-      ResponseEndpointOut result = apiInstance.v1EndpointDelete(appId, endpointId);
+      ResponseEndpointOut result = apiInstance.v1EndpointDelete(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointDelete");
@@ -139,7 +136,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **endpointId** | **String**| Specified the endpoint id. |
 
 ### Return type
@@ -169,7 +165,7 @@ Name | Type | Description  | Notes
 
 <a name="v1EndpointGet"></a>
 # **v1EndpointGet**
-> ResponseEndpointOut v1EndpointGet(appId, endpointId)
+> ResponseEndpointOut v1EndpointGet(endpointId)
 
 Delete endpoint
 
@@ -197,10 +193,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     String endpointId = "wb_12345xsfei"; // String | Specified the endpoint id or endpoint uid.
     try {
-      ResponseEndpointOut result = apiInstance.v1EndpointGet(appId, endpointId);
+      ResponseEndpointOut result = apiInstance.v1EndpointGet(endpointId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointGet");
@@ -217,7 +212,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **endpointId** | **String**| Specified the endpoint id or endpoint uid. |
 
 ### Return type
@@ -247,7 +241,7 @@ Name | Type | Description  | Notes
 
 <a name="v1EndpointList"></a>
 # **v1EndpointList**
-> ResponseListEndpointOut v1EndpointList(appId, limit, cursor, ordering)
+> ResponseListEndpointOut v1EndpointList(limit, cursor, ordering)
 
 List endpoints
 
@@ -275,12 +269,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointApi apiInstance = new WebhookEndpointApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     Integer limit = 20; // Integer | Limit the number of returned items
     String cursor = "cursor_example"; // String | Specifying the start cursor position
     Ordering ordering = Ordering.fromValue("asc"); // Ordering | The sorting order of the returned items
     try {
-      ResponseListEndpointOut result = apiInstance.v1EndpointList(appId, limit, cursor, ordering);
+      ResponseListEndpointOut result = apiInstance.v1EndpointList(limit, cursor, ordering);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling WebhookEndpointApi#v1EndpointList");
@@ -297,7 +290,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **limit** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **cursor** | **String**| Specifying the start cursor position | [optional]
  **ordering** | [**Ordering**](.md)| The sorting order of the returned items | [optional] [enum: asc, desc]

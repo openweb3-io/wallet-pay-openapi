@@ -59,7 +59,6 @@ public class RefundApi {
 
     /**
      * Build call for v1RefundCreate
-     * @param appId Specified the app id. (required)
      * @param refundIn  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -78,12 +77,11 @@ public class RefundApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundCreateCall(String appId, RefundIn refundIn, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RefundCreateCall(RefundIn refundIn, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = refundIn;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/refunds";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -110,12 +108,7 @@ public class RefundApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RefundCreateValidateBeforeCall(String appId, RefundIn refundIn, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1RefundCreate(Async)");
-        }
+    private okhttp3.Call v1RefundCreateValidateBeforeCall(RefundIn refundIn, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'refundIn' is set
         if (refundIn == null) {
@@ -123,7 +116,7 @@ public class RefundApi {
         }
         
 
-        okhttp3.Call localVarCall = v1RefundCreateCall(appId, refundIn, _callback);
+        okhttp3.Call localVarCall = v1RefundCreateCall(refundIn, _callback);
         return localVarCall;
 
     }
@@ -131,7 +124,6 @@ public class RefundApi {
     /**
      * Create Refund
      * Create a refund.
-     * @param appId Specified the app id. (required)
      * @param refundIn  (required)
      * @return ResponseRefundOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -149,15 +141,14 @@ public class RefundApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseRefundOut v1RefundCreate(String appId, RefundIn refundIn) throws ApiException {
-        ApiResponse<ResponseRefundOut> localVarResp = v1RefundCreateWithHttpInfo(appId, refundIn);
+    public ResponseRefundOut v1RefundCreate(RefundIn refundIn) throws ApiException {
+        ApiResponse<ResponseRefundOut> localVarResp = v1RefundCreateWithHttpInfo(refundIn);
         return localVarResp.getData();
     }
 
     /**
      * Create Refund
      * Create a refund.
-     * @param appId Specified the app id. (required)
      * @param refundIn  (required)
      * @return ApiResponse&lt;ResponseRefundOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -175,8 +166,8 @@ public class RefundApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseRefundOut> v1RefundCreateWithHttpInfo(String appId, RefundIn refundIn) throws ApiException {
-        okhttp3.Call localVarCall = v1RefundCreateValidateBeforeCall(appId, refundIn, null);
+    public ApiResponse<ResponseRefundOut> v1RefundCreateWithHttpInfo(RefundIn refundIn) throws ApiException {
+        okhttp3.Call localVarCall = v1RefundCreateValidateBeforeCall(refundIn, null);
         Type localVarReturnType = new TypeToken<ResponseRefundOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -184,7 +175,6 @@ public class RefundApi {
     /**
      * Create Refund (asynchronously)
      * Create a refund.
-     * @param appId Specified the app id. (required)
      * @param refundIn  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -203,16 +193,15 @@ public class RefundApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundCreateAsync(String appId, RefundIn refundIn, final ApiCallback<ResponseRefundOut> _callback) throws ApiException {
+    public okhttp3.Call v1RefundCreateAsync(RefundIn refundIn, final ApiCallback<ResponseRefundOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RefundCreateValidateBeforeCall(appId, refundIn, _callback);
+        okhttp3.Call localVarCall = v1RefundCreateValidateBeforeCall(refundIn, _callback);
         Type localVarReturnType = new TypeToken<ResponseRefundOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1RefundGet
-     * @param appId Specified the app id. (required)
      * @param idOrUid Specified the refund id or refund uid. (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -230,12 +219,11 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundGetCall(String appId, String idOrUid, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RefundGetCall(String idOrUid, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds/{idOrUid}"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()))
+        String localVarPath = "/api/v1/refunds/{idOrUid}"
             .replaceAll("\\{" + "idOrUid" + "\\}", localVarApiClient.escapeString(idOrUid.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -263,12 +251,7 @@ public class RefundApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RefundGetValidateBeforeCall(String appId, String idOrUid, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1RefundGet(Async)");
-        }
+    private okhttp3.Call v1RefundGetValidateBeforeCall(String idOrUid, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'idOrUid' is set
         if (idOrUid == null) {
@@ -276,7 +259,7 @@ public class RefundApi {
         }
         
 
-        okhttp3.Call localVarCall = v1RefundGetCall(appId, idOrUid, _callback);
+        okhttp3.Call localVarCall = v1RefundGetCall(idOrUid, _callback);
         return localVarCall;
 
     }
@@ -284,7 +267,6 @@ public class RefundApi {
     /**
      * Get Refund
      * Get specified refund.
-     * @param appId Specified the app id. (required)
      * @param idOrUid Specified the refund id or refund uid. (required)
      * @return ResponseRefundOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -301,15 +283,14 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseRefundOut v1RefundGet(String appId, String idOrUid) throws ApiException {
-        ApiResponse<ResponseRefundOut> localVarResp = v1RefundGetWithHttpInfo(appId, idOrUid);
+    public ResponseRefundOut v1RefundGet(String idOrUid) throws ApiException {
+        ApiResponse<ResponseRefundOut> localVarResp = v1RefundGetWithHttpInfo(idOrUid);
         return localVarResp.getData();
     }
 
     /**
      * Get Refund
      * Get specified refund.
-     * @param appId Specified the app id. (required)
      * @param idOrUid Specified the refund id or refund uid. (required)
      * @return ApiResponse&lt;ResponseRefundOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -326,8 +307,8 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseRefundOut> v1RefundGetWithHttpInfo(String appId, String idOrUid) throws ApiException {
-        okhttp3.Call localVarCall = v1RefundGetValidateBeforeCall(appId, idOrUid, null);
+    public ApiResponse<ResponseRefundOut> v1RefundGetWithHttpInfo(String idOrUid) throws ApiException {
+        okhttp3.Call localVarCall = v1RefundGetValidateBeforeCall(idOrUid, null);
         Type localVarReturnType = new TypeToken<ResponseRefundOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -335,7 +316,6 @@ public class RefundApi {
     /**
      * Get Refund (asynchronously)
      * Get specified refund.
-     * @param appId Specified the app id. (required)
      * @param idOrUid Specified the refund id or refund uid. (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -353,16 +333,15 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundGetAsync(String appId, String idOrUid, final ApiCallback<ResponseRefundOut> _callback) throws ApiException {
+    public okhttp3.Call v1RefundGetAsync(String idOrUid, final ApiCallback<ResponseRefundOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RefundGetValidateBeforeCall(appId, idOrUid, _callback);
+        okhttp3.Call localVarCall = v1RefundGetValidateBeforeCall(idOrUid, _callback);
         Type localVarReturnType = new TypeToken<ResponseRefundOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
     /**
      * Build call for v1RefundList
-     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param orderId Optional order id (optional)
@@ -381,12 +360,11 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundListCall(String appId, Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RefundListCall(Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/refunds"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/refunds";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -425,15 +403,10 @@ public class RefundApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RefundListValidateBeforeCall(String appId, Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1RefundList(Async)");
-        }
+    private okhttp3.Call v1RefundListValidateBeforeCall(Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
         
 
-        okhttp3.Call localVarCall = v1RefundListCall(appId, size, page, orderId, _callback);
+        okhttp3.Call localVarCall = v1RefundListCall(size, page, orderId, _callback);
         return localVarCall;
 
     }
@@ -441,7 +414,6 @@ public class RefundApi {
     /**
      * List Refunds
      * List refunds.
-     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param orderId Optional order id (optional)
@@ -459,15 +431,14 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseListRefundOut v1RefundList(String appId, Integer size, Integer page, String orderId) throws ApiException {
-        ApiResponse<ResponseListRefundOut> localVarResp = v1RefundListWithHttpInfo(appId, size, page, orderId);
+    public ResponseListRefundOut v1RefundList(Integer size, Integer page, String orderId) throws ApiException {
+        ApiResponse<ResponseListRefundOut> localVarResp = v1RefundListWithHttpInfo(size, page, orderId);
         return localVarResp.getData();
     }
 
     /**
      * List Refunds
      * List refunds.
-     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param orderId Optional order id (optional)
@@ -485,8 +456,8 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseListRefundOut> v1RefundListWithHttpInfo(String appId, Integer size, Integer page, String orderId) throws ApiException {
-        okhttp3.Call localVarCall = v1RefundListValidateBeforeCall(appId, size, page, orderId, null);
+    public ApiResponse<ResponseListRefundOut> v1RefundListWithHttpInfo(Integer size, Integer page, String orderId) throws ApiException {
+        okhttp3.Call localVarCall = v1RefundListValidateBeforeCall(size, page, orderId, null);
         Type localVarReturnType = new TypeToken<ResponseListRefundOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -494,7 +465,6 @@ public class RefundApi {
     /**
      * List Refunds (asynchronously)
      * List refunds.
-     * @param appId Specified the app id. (required)
      * @param size Limit the number of returned items (optional, default to 20)
      * @param page Specifying the page index (optional, default to 0)
      * @param orderId Optional order id (optional)
@@ -513,9 +483,9 @@ public class RefundApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundListAsync(String appId, Integer size, Integer page, String orderId, final ApiCallback<ResponseListRefundOut> _callback) throws ApiException {
+    public okhttp3.Call v1RefundListAsync(Integer size, Integer page, String orderId, final ApiCallback<ResponseListRefundOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RefundListValidateBeforeCall(appId, size, page, orderId, _callback);
+        okhttp3.Call localVarCall = v1RefundListValidateBeforeCall(size, page, orderId, _callback);
         Type localVarReturnType = new TypeToken<ResponseListRefundOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

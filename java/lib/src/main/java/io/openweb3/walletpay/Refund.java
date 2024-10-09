@@ -13,29 +13,29 @@ public final class Refund {
 		api = new RefundApi();
 	}
 
-	public ListResponseRefundOut list(final String appId, final RefundListOptions options) throws ApiException {
+	public ListResponseRefundOut list(final RefundListOptions options) throws ApiException {
 		try {
-			return api.v1RefundList(appId, options.getSize(), 
+			return api.v1RefundList(options.getSize(), 
 			options.getPage(), options.getOrderId()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
-	public RefundOut create(final String appId, final RefundIn RefundIn) throws ApiException {
-		return this.create(appId, RefundIn, new PostOptions());
+	public RefundOut create(final RefundIn refundIn) throws ApiException {
+		return this.create(refundIn, new PostOptions());
 	}
 
-	public RefundOut create(final String appId, final RefundIn RefundIn, final PostOptions options) throws ApiException {
+	public RefundOut create(final RefundIn refundIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1RefundCreate(appId, RefundIn).getData();
+			return api.v1RefundCreate(refundIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
-	public RefundOut retrieve(final String appId, final String idOrUid) throws ApiException {
+	public RefundOut retrieve(final String idOrUid) throws ApiException {
 		try {
-			return api.v1RefundGet(appId, idOrUid).getData();
+			return api.v1RefundGet(idOrUid).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

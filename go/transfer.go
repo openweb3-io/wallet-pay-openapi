@@ -15,8 +15,8 @@ type Transfer struct {
 	api *openapi.APIClient
 }
 
-func (e *Transfer) Create(ctx context.Context, appId string, transferIn *TransferIn) (*TransferOut, error) {
-	req := e.api.TransferApi.V1TransferCreate(ctx, appId)
+func (e *Transfer) Create(ctx context.Context, transferIn *TransferIn) (*TransferOut, error) {
+	req := e.api.TransferApi.V1TransferCreate(ctx)
 	req = req.TransferIn(openapi.TransferIn(*transferIn))
 
 	out, res, err := req.Execute()

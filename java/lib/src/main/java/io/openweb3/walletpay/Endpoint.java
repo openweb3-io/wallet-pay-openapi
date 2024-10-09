@@ -13,39 +13,39 @@ public final class Endpoint {
 		api = new WebhookEndpointApi();
 	}
 
-	public ListResponseEndpointOut list(final String appId, final EndpointListOptions options) throws ApiException {
+	public ListResponseEndpointOut list(final EndpointListOptions options) throws ApiException {
 		try {
-			return api.v1EndpointList(appId, options.getLimit(),  options.getCursor(), options.getOrder()).getData();
+			return api.v1EndpointList(options.getLimit(),  options.getCursor(), options.getOrder()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
             throw new RuntimeException(e);
         }
     }
 
-	public EndpointOut create(final String appId, final EndpointIn EndpointIn) throws ApiException {
-		return this.create(appId, EndpointIn, new PostOptions());
+	public EndpointOut create(final EndpointIn endpointIn) throws ApiException {
+		return this.create(endpointIn, new PostOptions());
 	}
 
-	public EndpointOut create(final String appId, final EndpointIn EndpointIn, final PostOptions options) throws ApiException {
+	public EndpointOut create(final EndpointIn endpointIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1EndpointCreate(appId, EndpointIn).getData();
+			return api.v1EndpointCreate(endpointIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// delete
-	public EndpointOut get(final String appId, final String endpointId) throws ApiException {
+	public EndpointOut get(final String endpointId) throws ApiException {
 		try {
-			return api.v1EndpointGet(appId, endpointId).getData();
+			return api.v1EndpointGet(endpointId).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
 
 	// delete
-	public EndpointOut delete(final String appId, final String endpointId) throws ApiException {
+	public EndpointOut delete(final String endpointId) throws ApiException {
 		try {
-			return api.v1EndpointDelete(appId, endpointId).getData();
+			return api.v1EndpointDelete(endpointId).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

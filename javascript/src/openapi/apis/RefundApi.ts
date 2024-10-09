@@ -19,17 +19,10 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a refund.
      * Create Refund
-     * @param appId Specified the app id.
      * @param refundIn 
      */
-    public async v1RefundCreate(appId: string, refundIn: RefundIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1RefundCreate(refundIn: RefundIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1RefundCreate.');
-        }
-
 
         // verify required parameter 'refundIn' is not null or undefined
         if (refundIn === null || refundIn === undefined) {
@@ -38,8 +31,7 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/refunds';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -78,17 +70,10 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Get specified refund.
      * Get Refund
-     * @param appId Specified the app id.
      * @param idOrUid Specified the refund id or refund uid.
      */
-    public async v1RefundGet(appId: string, idOrUid: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RefundGet(idOrUid: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1RefundGet.');
-        }
-
 
         // verify required parameter 'idOrUid' is not null or undefined
         if (idOrUid === null || idOrUid === undefined) {
@@ -97,8 +82,7 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds/{idOrUid}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+        const localVarPath = '/api/v1/refunds/{idOrUid}'
             .replace('{' + 'idOrUid' + '}', encodeURIComponent(String(idOrUid)));
 
         // Make Request Context
@@ -129,26 +113,18 @@ export class RefundApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * List refunds.
      * List Refunds
-     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param orderId Optional order id
      */
-    public async v1RefundList(appId: string, size?: number, page?: number, orderId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RefundList(size?: number, page?: number, orderId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1RefundList.');
-        }
-
 
 
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/refunds'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/refunds';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

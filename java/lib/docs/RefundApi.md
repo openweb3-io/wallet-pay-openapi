@@ -4,14 +4,14 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1RefundCreate**](RefundApi.md#v1RefundCreate) | **POST** /api/v1/apps/{appId}/refunds | Create Refund
-[**v1RefundGet**](RefundApi.md#v1RefundGet) | **GET** /api/v1/apps/{appId}/refunds/{idOrUid} | Get Refund
-[**v1RefundList**](RefundApi.md#v1RefundList) | **GET** /api/v1/apps/{appId}/refunds | List Refunds
+[**v1RefundCreate**](RefundApi.md#v1RefundCreate) | **POST** /api/v1/refunds | Create Refund
+[**v1RefundGet**](RefundApi.md#v1RefundGet) | **GET** /api/v1/refunds/{idOrUid} | Get Refund
+[**v1RefundList**](RefundApi.md#v1RefundList) | **GET** /api/v1/refunds | List Refunds
 
 
 <a name="v1RefundCreate"></a>
 # **v1RefundCreate**
-> ResponseRefundOut v1RefundCreate(appId, refundIn)
+> ResponseRefundOut v1RefundCreate(refundIn)
 
 Create Refund
 
@@ -39,10 +39,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RefundApi apiInstance = new RefundApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     RefundIn refundIn = new RefundIn(); // RefundIn | 
     try {
-      ResponseRefundOut result = apiInstance.v1RefundCreate(appId, refundIn);
+      ResponseRefundOut result = apiInstance.v1RefundCreate(refundIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RefundApi#v1RefundCreate");
@@ -59,7 +58,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **refundIn** | [**RefundIn**](RefundIn.md)|  |
 
 ### Return type
@@ -90,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RefundGet"></a>
 # **v1RefundGet**
-> ResponseRefundOut v1RefundGet(appId, idOrUid)
+> ResponseRefundOut v1RefundGet(idOrUid)
 
 Get Refund
 
@@ -118,10 +116,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RefundApi apiInstance = new RefundApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     String idOrUid = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the refund id or refund uid.
     try {
-      ResponseRefundOut result = apiInstance.v1RefundGet(appId, idOrUid);
+      ResponseRefundOut result = apiInstance.v1RefundGet(idOrUid);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RefundApi#v1RefundGet");
@@ -138,7 +135,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **idOrUid** | **String**| Specified the refund id or refund uid. |
 
 ### Return type
@@ -168,7 +164,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RefundList"></a>
 # **v1RefundList**
-> ResponseListRefundOut v1RefundList(appId, size, page, orderId)
+> ResponseListRefundOut v1RefundList(size, page, orderId)
 
 List Refunds
 
@@ -196,12 +192,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RefundApi apiInstance = new RefundApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
     String orderId = "923be366-51d1-447f-a0e8-db4c75dffae5"; // String | Optional order id
     try {
-      ResponseListRefundOut result = apiInstance.v1RefundList(appId, size, page, orderId);
+      ResponseListRefundOut result = apiInstance.v1RefundList(size, page, orderId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RefundApi#v1RefundList");
@@ -218,7 +213,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **page** | **Integer**| Specifying the page index | [optional] [default to 0]
  **orderId** | **String**| Optional order id | [optional]

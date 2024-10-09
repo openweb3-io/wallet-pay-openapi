@@ -2,5 +2,17 @@
 vendor
 .idea
 node_modules
+examples
 
 .vscode
+.env
+
+*.pem
+*.crt
+*.key
+*.csr
+*.der
+*.p12
+*.jks
+*.cer
+*.ca-bundle

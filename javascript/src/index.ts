@@ -58,7 +58,6 @@ class SignatureMiddleware implements Middleware {
     const timestamp = new Date().toString();
     context.setHeaderParam("x-request-time", timestamp);
 
-    // TODO: 计算签名
     let source = "";
     const method = context.getHttpMethod();
     if (method === "POST" || method === "PUT") {
@@ -68,6 +67,7 @@ class SignatureMiddleware implements Middleware {
     source += url.pathname;
     source += timestamp;
 
+    // TODO: calculate signature with ed25519
     const sign = hmacSha256(source, this.privateKey);
     context.setHeaderParam("x-signature", sign);
 
@@ -138,12 +138,12 @@ class Order {
     this.api = new OrderApi(config);
   }
 
-  public async list(appId: string, options?: OrderListOptions): Promise<ListResponseOrderOut> {
-    return (await this.api.v1OrderList({ appId, ...options })).data;
+  public async list(options?: OrderListOptions): Promise<ListResponseOrderOut> {
+    return (await this.api.v1OrderList({ ...options })).data;
   }
 
-  public async create(appId: string, orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
-    return (await this.api.v1OrderCreate({ appId, orderIn, ...options })).data;
+  public async create(orderIn: OrderIn, options?: PostOptions): Promise<OrderOut> {
+    return (await this.api.v1OrderCreate({ orderIn, ...options })).data;
   }
 }
 
@@ -160,12 +160,12 @@ class Currency {
     this.api = new CurrencyApi(config);
   }
 
-  public async list(appId: string, options?: CurrencyListOptions): Promise<ListResponseCurrencyOut> {
-    return (await this.api.v1CurrencyList({ appId, ...options })).data;
+  public async list(options?: CurrencyListOptions): Promise<ListResponseCurrencyOut> {
+    return (await this.api.v1CurrencyList({ ...options })).data;
   }
 
-  public async findByCode(appId:string, code: string): Promise<CurrencyOut> {
-    return (await this.api.v1CurrencyFindByCode({appId, code})).data
+  public async findByCode(code: string): Promise<CurrencyOut> {
+    return (await this.api.v1CurrencyFindByCode({ code })).data
   }
 }
 
@@ -184,12 +184,12 @@ class Rate {
     this.api = new RateApi(config);
   }
 
-  public async estimate(appId: string, options: EstimateOptions): Promise<EstimateOut> {
-    return (await this.api.v1RateEstimate({appId,...options})).data;
+  public async estimate(options: EstimateOptions): Promise<EstimateOut> {
+    return (await this.api.v1RateEstimate({...options})).data;
   }
 
-  public async getRates(appId: string,  getRatesIn: GetRatesIn): Promise<RatesOut> {
-    return (await this.api.v1RateGetRates({appId, getRatesIn})).data;
+  public async getRates(getRatesIn: GetRatesIn): Promise<RatesOut> {
+    return (await this.api.v1RateGetRates({getRatesIn})).data;
   }
 }
 
@@ -200,8 +200,8 @@ class Transfer {
     this.api = new TransferApi(config);
   }
 
-  public async create(appId:string, transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
-    return (await this.api.v1TransferCreate({ appId, transferIn, ...options })).data;
+  public async create(transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
+    return (await this.api.v1TransferCreate({ transferIn, ...options })).data;
   }
 }
 
@@ -218,20 +218,20 @@ class Endpoint {
     this.api = new WebhookEndpointApi(config);
   }
 
-  public async create(appId:string, endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
-    return (await this.api.v1EndpointCreate({ appId, endpointIn, ...options })).data;
+  public async create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+    return (await this.api.v1EndpointCreate({ endpointIn, ...options })).data;
   }
 
-  public async delete(appId: string, endpointId: string): Promise<EndpointOut> {
-    return (await this.api.v1EndpointDelete({ appId, endpointId })).data;
+  public async delete(endpointId: string): Promise<EndpointOut> {
+    return (await this.api.v1EndpointDelete({ endpointId })).data;
   }
 
-  public async get(appId: string, endpointId: string): Promise<EndpointOut> {
-    return (await this.api.v1EndpointGet({ appId, endpointId })).data;
+  public async get(endpointId: string): Promise<EndpointOut> {
+    return (await this.api.v1EndpointGet({ endpointId })).data;
   }
 
-  public async list(appId:string, options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
-    return (await this.api.v1EndpointList({ appId, ...options })).data;
+  public async list(options?: EndpointListOptions): Promise<ListResponseEndpointOut> {
+    return (await this.api.v1EndpointList({ ...options })).data;
   }
 }
 

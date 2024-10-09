@@ -19,17 +19,10 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a new order.
      * Create Order
-     * @param appId Specified the app id.
      * @param orderIn 
      */
-    public async v1OrderCreate(appId: string, orderIn: OrderIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderCreate.');
-        }
-
 
         // verify required parameter 'orderIn' is not null or undefined
         if (orderIn === null || orderIn === undefined) {
@@ -38,8 +31,7 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/orders'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/orders';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -78,17 +70,10 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Get specified order.
      * Get order
-     * @param appId Specified the app id.
      * @param idOrUid Specified the order id or order uid.
      */
-    public async v1OrderGet(appId: string, idOrUid: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderGet(idOrUid: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderGet.');
-        }
-
 
         // verify required parameter 'idOrUid' is not null or undefined
         if (idOrUid === null || idOrUid === undefined) {
@@ -97,8 +82,7 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/orders/{idOrUid}'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)))
+        const localVarPath = '/api/v1/orders/{idOrUid}'
             .replace('{' + 'idOrUid' + '}', encodeURIComponent(String(idOrUid)));
 
         // Make Request Context
@@ -129,21 +113,14 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * List orders.
      * List Orders
-     * @param appId Specified the app id.
      * @param size Limit the number of returned items
      * @param page Specifying the page index
      * @param walletId Optional wallet id
      * @param currency Optional currency code
      * @param status Optional order status
      */
-    public async v1OrderList(appId: string, size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Promise<RequestContext> {
+    public async v1OrderList(size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1OrderList.');
-        }
-
 
 
 
@@ -151,8 +128,7 @@ export class OrderApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/orders'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/orders';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

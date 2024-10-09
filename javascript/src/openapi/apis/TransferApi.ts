@@ -18,17 +18,10 @@ export class TransferApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Create a new transfer.
      * Create Transfer
-     * @param appId Specified the app id.
      * @param transferIn 
      */
-    public async v1TransferCreate(appId: string, transferIn: TransferIn, _options?: Configuration): Promise<RequestContext> {
+    public async v1TransferCreate(transferIn: TransferIn, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'appId' is not null or undefined
-        if (appId === null || appId === undefined) {
-            throw new RequiredError('Required parameter appId was null or undefined when calling v1TransferCreate.');
-        }
-
 
         // verify required parameter 'transferIn' is not null or undefined
         if (transferIn === null || transferIn === undefined) {
@@ -37,8 +30,7 @@ export class TransferApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/api/v1/apps/{appId}/transfers'
-            .replace('{' + 'appId' + '}', encodeURIComponent(String(appId)));
+        const localVarPath = '/api/v1/transfers';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

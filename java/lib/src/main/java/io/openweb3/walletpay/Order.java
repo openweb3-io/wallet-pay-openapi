@@ -13,9 +13,9 @@ public final class Order {
 		api = new OrderApi();
 	}
 
-	public ListResponseOrderOut list(final String appId, final OrderListOptions options) throws ApiException {
+	public ListResponseOrderOut list(final OrderListOptions options) throws ApiException {
 		try {
-			return api.v1OrderList(appId, options.getSize(), 
+			return api.v1OrderList(options.getSize(), 
 			options.getPage(), options.getWalletId(), 
 			options.getCurrency(), options.getStatus()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
@@ -23,20 +23,20 @@ public final class Order {
 		}
 	}
 
-	public OrderOut create(final String appId, final OrderIn OrderIn) throws ApiException {
-		return this.create(appId, OrderIn, new PostOptions());
+	public OrderOut create(final OrderIn orderIn) throws ApiException {
+		return this.create(orderIn, new PostOptions());
 	}
 
-	public OrderOut create(final String appId, final OrderIn OrderIn, final PostOptions options) throws ApiException {
+	public OrderOut create(final OrderIn orderIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1OrderCreate(appId, OrderIn).getData();
+			return api.v1OrderCreate(orderIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}
 	}
-	public OrderOut retrieve(final String appId, final String idOrUid) throws ApiException {
+	public OrderOut retrieve(final String idOrUid) throws ApiException {
 		try {
-			return api.v1OrderGet(appId, idOrUid).getData();
+			return api.v1OrderGet(idOrUid).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

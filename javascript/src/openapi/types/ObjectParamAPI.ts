@@ -41,12 +41,6 @@ import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/
 
 export interface CurrencyApiV1CurrencyFindByCodeRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof CurrencyApiv1CurrencyFindByCode
-     */
-    appId: string
-    /**
      * Specified currency code.
      * @type string
      * @memberof CurrencyApiv1CurrencyFindByCode
@@ -55,12 +49,6 @@ export interface CurrencyApiV1CurrencyFindByCodeRequest {
 }
 
 export interface CurrencyApiV1CurrencyListRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof CurrencyApiv1CurrencyList
-     */
-    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -94,7 +82,7 @@ export class ObjectCurrencyApi {
      * @param param the request object
      */
     public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<ResponseCurrencyOut> {
-        return this.api.v1CurrencyFindByCode(param.appId, param.code,  options).toPromise();
+        return this.api.v1CurrencyFindByCode(param.code,  options).toPromise();
     }
 
     /**
@@ -103,7 +91,7 @@ export class ObjectCurrencyApi {
      * @param param the request object
      */
     public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ResponseListCurrencyOut> {
-        return this.api.v1CurrencyList(param.appId, param.limit, param.cursor, param.rated,  options).toPromise();
+        return this.api.v1CurrencyList(param.limit, param.cursor, param.rated,  options).toPromise();
     }
 
 }
@@ -112,12 +100,6 @@ import { ObservableOrderApi } from "./ObservableAPI";
 import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
 
 export interface OrderApiV1OrderCreateRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof OrderApiv1OrderCreate
-     */
-    appId: string
     /**
      * 
      * @type OrderIn
@@ -128,12 +110,6 @@ export interface OrderApiV1OrderCreateRequest {
 
 export interface OrderApiV1OrderGetRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof OrderApiv1OrderGet
-     */
-    appId: string
-    /**
      * Specified the order id or order uid.
      * @type string
      * @memberof OrderApiv1OrderGet
@@ -142,12 +118,6 @@ export interface OrderApiV1OrderGetRequest {
 }
 
 export interface OrderApiV1OrderListRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof OrderApiv1OrderList
-     */
-    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -193,7 +163,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<ResponseOrderOut> {
-        return this.api.v1OrderCreate(param.appId, param.orderIn,  options).toPromise();
+        return this.api.v1OrderCreate(param.orderIn,  options).toPromise();
     }
 
     /**
@@ -202,7 +172,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<ResponseOrderOut> {
-        return this.api.v1OrderGet(param.appId, param.idOrUid,  options).toPromise();
+        return this.api.v1OrderGet(param.idOrUid,  options).toPromise();
     }
 
     /**
@@ -211,7 +181,7 @@ export class ObjectOrderApi {
      * @param param the request object
      */
     public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
-        return this.api.v1OrderList(param.appId, param.size, param.page, param.walletId, param.currency, param.status,  options).toPromise();
+        return this.api.v1OrderList(param.size, param.page, param.walletId, param.currency, param.status,  options).toPromise();
     }
 
 }
@@ -220,12 +190,6 @@ import { ObservableRateApi } from "./ObservableAPI";
 import { RateApiRequestFactory, RateApiResponseProcessor} from "../apis/RateApi";
 
 export interface RateApiV1RateEstimateRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof RateApiv1RateEstimate
-     */
-    appId: string
     /**
      * Specified the base currency that needs to be estimated
      * @type string
@@ -248,12 +212,6 @@ export interface RateApiV1RateEstimateRequest {
 
 export interface RateApiV1RateGetRatesRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof RateApiv1RateGetRates
-     */
-    appId: string
-    /**
      * 
      * @type GetRatesIn
      * @memberof RateApiv1RateGetRates
@@ -274,7 +232,7 @@ export class ObjectRateApi {
      * @param param the request object
      */
     public v1RateEstimate(param: RateApiV1RateEstimateRequest, options?: Configuration): Promise<ResponseEstimateOut> {
-        return this.api.v1RateEstimate(param.appId, param.from, param.toCurrency, param.baseAmount,  options).toPromise();
+        return this.api.v1RateEstimate(param.from, param.toCurrency, param.baseAmount,  options).toPromise();
     }
 
     /**
@@ -283,7 +241,7 @@ export class ObjectRateApi {
      * @param param the request object
      */
     public v1RateGetRates(param: RateApiV1RateGetRatesRequest, options?: Configuration): Promise<ResponseRatesOut> {
-        return this.api.v1RateGetRates(param.appId, param.getRatesIn,  options).toPromise();
+        return this.api.v1RateGetRates(param.getRatesIn,  options).toPromise();
     }
 
 }
@@ -292,12 +250,6 @@ import { ObservableRefundApi } from "./ObservableAPI";
 import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
 
 export interface RefundApiV1RefundCreateRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof RefundApiv1RefundCreate
-     */
-    appId: string
     /**
      * 
      * @type RefundIn
@@ -308,12 +260,6 @@ export interface RefundApiV1RefundCreateRequest {
 
 export interface RefundApiV1RefundGetRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof RefundApiv1RefundGet
-     */
-    appId: string
-    /**
      * Specified the refund id or refund uid.
      * @type string
      * @memberof RefundApiv1RefundGet
@@ -322,12 +268,6 @@ export interface RefundApiV1RefundGetRequest {
 }
 
 export interface RefundApiV1RefundListRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof RefundApiv1RefundList
-     */
-    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -361,7 +301,7 @@ export class ObjectRefundApi {
      * @param param the request object
      */
     public v1RefundCreate(param: RefundApiV1RefundCreateRequest, options?: Configuration): Promise<ResponseRefundOut> {
-        return this.api.v1RefundCreate(param.appId, param.refundIn,  options).toPromise();
+        return this.api.v1RefundCreate(param.refundIn,  options).toPromise();
     }
 
     /**
@@ -370,7 +310,7 @@ export class ObjectRefundApi {
      * @param param the request object
      */
     public v1RefundGet(param: RefundApiV1RefundGetRequest, options?: Configuration): Promise<ResponseRefundOut> {
-        return this.api.v1RefundGet(param.appId, param.idOrUid,  options).toPromise();
+        return this.api.v1RefundGet(param.idOrUid,  options).toPromise();
     }
 
     /**
@@ -379,7 +319,7 @@ export class ObjectRefundApi {
      * @param param the request object
      */
     public v1RefundList(param: RefundApiV1RefundListRequest, options?: Configuration): Promise<ResponseListRefundOut> {
-        return this.api.v1RefundList(param.appId, param.size, param.page, param.orderId,  options).toPromise();
+        return this.api.v1RefundList(param.size, param.page, param.orderId,  options).toPromise();
     }
 
 }
@@ -388,12 +328,6 @@ import { ObservableTransferApi } from "./ObservableAPI";
 import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
 
 export interface TransferApiV1TransferCreateRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof TransferApiv1TransferCreate
-     */
-    appId: string
     /**
      * 
      * @type TransferIn
@@ -415,7 +349,7 @@ export class ObjectTransferApi {
      * @param param the request object
      */
     public v1TransferCreate(param: TransferApiV1TransferCreateRequest, options?: Configuration): Promise<ResponseTransferOut> {
-        return this.api.v1TransferCreate(param.appId, param.transferIn,  options).toPromise();
+        return this.api.v1TransferCreate(param.transferIn,  options).toPromise();
     }
 
 }
@@ -424,12 +358,6 @@ import { ObservableWebhookEndpointApi } from "./ObservableAPI";
 import { WebhookEndpointApiRequestFactory, WebhookEndpointApiResponseProcessor} from "../apis/WebhookEndpointApi";
 
 export interface WebhookEndpointApiV1EndpointCreateRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof WebhookEndpointApiv1EndpointCreate
-     */
-    appId: string
     /**
      * 
      * @type EndpointIn
@@ -440,12 +368,6 @@ export interface WebhookEndpointApiV1EndpointCreateRequest {
 
 export interface WebhookEndpointApiV1EndpointDeleteRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof WebhookEndpointApiv1EndpointDelete
-     */
-    appId: string
-    /**
      * Specified the endpoint id.
      * @type string
      * @memberof WebhookEndpointApiv1EndpointDelete
@@ -455,12 +377,6 @@ export interface WebhookEndpointApiV1EndpointDeleteRequest {
 
 export interface WebhookEndpointApiV1EndpointGetRequest {
     /**
-     * Specified the app id.
-     * @type string
-     * @memberof WebhookEndpointApiv1EndpointGet
-     */
-    appId: string
-    /**
      * Specified the endpoint id or endpoint uid.
      * @type string
      * @memberof WebhookEndpointApiv1EndpointGet
@@ -469,12 +385,6 @@ export interface WebhookEndpointApiV1EndpointGetRequest {
 }
 
 export interface WebhookEndpointApiV1EndpointListRequest {
-    /**
-     * Specified the app id.
-     * @type string
-     * @memberof WebhookEndpointApiv1EndpointList
-     */
-    appId: string
     /**
      * Limit the number of returned items
      * @type number
@@ -508,7 +418,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointCreate(param: WebhookEndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointCreate(param.appId, param.endpointIn,  options).toPromise();
+        return this.api.v1EndpointCreate(param.endpointIn,  options).toPromise();
     }
 
     /**
@@ -517,7 +427,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointDelete(param.appId, param.endpointId,  options).toPromise();
+        return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
     }
 
     /**
@@ -526,7 +436,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointGet(param.appId, param.endpointId,  options).toPromise();
+        return this.api.v1EndpointGet(param.endpointId,  options).toPromise();
     }
 
     /**
@@ -535,7 +445,7 @@ export class ObjectWebhookEndpointApi {
      * @param param the request object
      */
     public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ResponseListEndpointOut> {
-        return this.api.v1EndpointList(param.appId, param.limit, param.cursor, param.ordering,  options).toPromise();
+        return this.api.v1EndpointList(param.limit, param.cursor, param.ordering,  options).toPromise();
     }
 
 }

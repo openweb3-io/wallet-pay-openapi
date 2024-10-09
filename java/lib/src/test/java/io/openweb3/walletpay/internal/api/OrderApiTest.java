@@ -45,9 +45,8 @@ public class OrderApiTest {
      */
     @Test
     public void v1OrderCreateTest() throws ApiException {
-        String appId = null;
         OrderIn orderIn = null;
-        ResponseOrderOut response = api.v1OrderCreate(appId, orderIn);
+        ResponseOrderOut response = api.v1OrderCreate(orderIn);
 
         // TODO: test validations
     }
@@ -62,9 +61,8 @@ public class OrderApiTest {
      */
     @Test
     public void v1OrderGetTest() throws ApiException {
-        String appId = null;
         String idOrUid = null;
-        ResponseOrderOut response = api.v1OrderGet(appId, idOrUid);
+        ResponseOrderOut response = api.v1OrderGet(idOrUid);
 
         // TODO: test validations
     }
@@ -79,13 +77,12 @@ public class OrderApiTest {
      */
     @Test
     public void v1OrderListTest() throws ApiException {
-        String appId = null;
         Integer size = null;
         Integer page = null;
         String walletId = null;
-        String status = null;
         String currency = null;
-        ResponseListOrderOut response = api.v1OrderList(appId, size, page, walletId, currency, status);
+        String status = null;
+        ResponseListOrderOut response = api.v1OrderList(size, page, walletId, currency, status);
 
         // TODO: test validations
     }

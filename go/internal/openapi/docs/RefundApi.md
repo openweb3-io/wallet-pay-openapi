@@ -4,15 +4,15 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**V1RefundCreate**](RefundApi.md#V1RefundCreate) | **Post** /api/v1/apps/{appId}/refunds | Create Refund
-[**V1RefundGet**](RefundApi.md#V1RefundGet) | **Get** /api/v1/apps/{appId}/refunds/{idOrUid} | Get Refund
-[**V1RefundList**](RefundApi.md#V1RefundList) | **Get** /api/v1/apps/{appId}/refunds | List Refunds
+[**V1RefundCreate**](RefundApi.md#V1RefundCreate) | **Post** /api/v1/refunds | Create Refund
+[**V1RefundGet**](RefundApi.md#V1RefundGet) | **Get** /api/v1/refunds/{idOrUid} | Get Refund
+[**V1RefundList**](RefundApi.md#V1RefundList) | **Get** /api/v1/refunds | List Refunds
 
 
 
 ## V1RefundCreate
 
-> ResponseRefundOut V1RefundCreate(ctx, appId).RefundIn(refundIn).Execute()
+> ResponseRefundOut V1RefundCreate(ctx).RefundIn(refundIn).Execute()
 
 Create Refund
 
@@ -31,12 +31,11 @@ import (
 )
 
 func main() {
-    appId := "app_12345xsfei" // string | Specified the app id.
     refundIn := *openapiclient.NewRefundIn("fdcefb20-1994-417a-8c6a-0648b841c266", "123450000") // RefundIn | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RefundApi.V1RefundCreate(context.Background(), appId).RefundIn(refundIn).Execute()
+    resp, r, err := api_client.RefundApi.V1RefundCreate(context.Background()).RefundIn(refundIn).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RefundApi.V1RefundCreate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -49,10 +48,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | Specified the app id. | 
 
 ### Other Parameters
 
@@ -61,7 +56,6 @@ Other parameters are passed through a pointer to a apiV1RefundCreateRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **refundIn** | [**RefundIn**](RefundIn.md) |  | 
 
 ### Return type
@@ -84,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## V1RefundGet
 
-> ResponseRefundOut V1RefundGet(ctx, appId, idOrUid).Execute()
+> ResponseRefundOut V1RefundGet(ctx, idOrUid).Execute()
 
 Get Refund
 
@@ -103,12 +97,11 @@ import (
 )
 
 func main() {
-    appId := "app_12345xsfei" // string | Specified the app id.
     idOrUid := "11b9ca57-0559-403a-bf8e-7bd1a31aff45" // string | Specified the refund id or refund uid.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RefundApi.V1RefundGet(context.Background(), appId, idOrUid).Execute()
+    resp, r, err := api_client.RefundApi.V1RefundGet(context.Background(), idOrUid).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RefundApi.V1RefundGet``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,7 +117,6 @@ func main() {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 **ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | Specified the app id. | 
 **idOrUid** | **string** | Specified the refund id or refund uid. | 
 
 ### Other Parameters
@@ -134,7 +126,6 @@ Other parameters are passed through a pointer to a apiV1RefundGetRequest struct 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
 
 
 ### Return type
@@ -157,7 +148,7 @@ Name | Type | Description  | Notes
 
 ## V1RefundList
 
-> ResponseListRefundOut V1RefundList(ctx, appId).Size(size).Page(page).OrderId(orderId).Execute()
+> ResponseListRefundOut V1RefundList(ctx).Size(size).Page(page).OrderId(orderId).Execute()
 
 List Refunds
 
@@ -176,14 +167,13 @@ import (
 )
 
 func main() {
-    appId := "app_12345xsfei" // string | Specified the app id.
     size := int32(100) // int32 | Limit the number of returned items (optional) (default to 20)
     page := int32(0) // int32 | Specifying the page index (optional) (default to 0)
     orderId := "923be366-51d1-447f-a0e8-db4c75dffae5" // string | Optional order id (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RefundApi.V1RefundList(context.Background(), appId).Size(size).Page(page).OrderId(orderId).Execute()
+    resp, r, err := api_client.RefundApi.V1RefundList(context.Background()).Size(size).Page(page).OrderId(orderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RefundApi.V1RefundList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -196,10 +186,6 @@ func main() {
 ### Path Parameters
 
 
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**appId** | **string** | Specified the app id. | 
 
 ### Other Parameters
 
@@ -208,7 +194,6 @@ Other parameters are passed through a pointer to a apiV1RefundListRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
-
  **size** | **int32** | Limit the number of returned items | [default to 20]
  **page** | **int32** | Specifying the page index | [default to 0]
  **orderId** | **string** | Optional order id | 

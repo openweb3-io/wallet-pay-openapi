@@ -58,7 +58,6 @@ public class TransferApi {
 
     /**
      * Build call for v1TransferCreate
-     * @param appId Specified the app id. (required)
      * @param transferIn  (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -77,12 +76,11 @@ public class TransferApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransferCreateCall(String appId, TransferIn transferIn, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1TransferCreateCall(TransferIn transferIn, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = transferIn;
 
         // create path and map variables
-        String localVarPath = "/api/v1/apps/{appId}/transfers"
-            .replaceAll("\\{" + "appId" + "\\}", localVarApiClient.escapeString(appId.toString()));
+        String localVarPath = "/api/v1/transfers";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -109,12 +107,7 @@ public class TransferApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1TransferCreateValidateBeforeCall(String appId, TransferIn transferIn, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'appId' is set
-        if (appId == null) {
-            throw new ApiException("Missing the required parameter 'appId' when calling v1TransferCreate(Async)");
-        }
+    private okhttp3.Call v1TransferCreateValidateBeforeCall(TransferIn transferIn, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'transferIn' is set
         if (transferIn == null) {
@@ -122,7 +115,7 @@ public class TransferApi {
         }
         
 
-        okhttp3.Call localVarCall = v1TransferCreateCall(appId, transferIn, _callback);
+        okhttp3.Call localVarCall = v1TransferCreateCall(transferIn, _callback);
         return localVarCall;
 
     }
@@ -130,7 +123,6 @@ public class TransferApi {
     /**
      * Create Transfer
      * Create a new transfer.
-     * @param appId Specified the app id. (required)
      * @param transferIn  (required)
      * @return ResponseTransferOut
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -148,15 +140,14 @@ public class TransferApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ResponseTransferOut v1TransferCreate(String appId, TransferIn transferIn) throws ApiException {
-        ApiResponse<ResponseTransferOut> localVarResp = v1TransferCreateWithHttpInfo(appId, transferIn);
+    public ResponseTransferOut v1TransferCreate(TransferIn transferIn) throws ApiException {
+        ApiResponse<ResponseTransferOut> localVarResp = v1TransferCreateWithHttpInfo(transferIn);
         return localVarResp.getData();
     }
 
     /**
      * Create Transfer
      * Create a new transfer.
-     * @param appId Specified the app id. (required)
      * @param transferIn  (required)
      * @return ApiResponse&lt;ResponseTransferOut&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -174,8 +165,8 @@ public class TransferApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ResponseTransferOut> v1TransferCreateWithHttpInfo(String appId, TransferIn transferIn) throws ApiException {
-        okhttp3.Call localVarCall = v1TransferCreateValidateBeforeCall(appId, transferIn, null);
+    public ApiResponse<ResponseTransferOut> v1TransferCreateWithHttpInfo(TransferIn transferIn) throws ApiException {
+        okhttp3.Call localVarCall = v1TransferCreateValidateBeforeCall(transferIn, null);
         Type localVarReturnType = new TypeToken<ResponseTransferOut>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -183,7 +174,6 @@ public class TransferApi {
     /**
      * Create Transfer (asynchronously)
      * Create a new transfer.
-     * @param appId Specified the app id. (required)
      * @param transferIn  (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -202,9 +192,9 @@ public class TransferApi {
         <tr><td> 500 </td><td> Too Many Requests </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1TransferCreateAsync(String appId, TransferIn transferIn, final ApiCallback<ResponseTransferOut> _callback) throws ApiException {
+    public okhttp3.Call v1TransferCreateAsync(TransferIn transferIn, final ApiCallback<ResponseTransferOut> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1TransferCreateValidateBeforeCall(appId, transferIn, _callback);
+        okhttp3.Call localVarCall = v1TransferCreateValidateBeforeCall(transferIn, _callback);
         Type localVarReturnType = new TypeToken<ResponseTransferOut>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

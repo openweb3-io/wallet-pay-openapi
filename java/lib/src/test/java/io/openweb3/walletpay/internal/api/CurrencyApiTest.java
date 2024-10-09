@@ -44,9 +44,8 @@ public class CurrencyApiTest {
      */
     @Test
     public void v1CurrencyFindByCodeTest() throws ApiException {
-        String appId = null;
         String code = null;
-        ResponseCurrencyOut response = api.v1CurrencyFindByCode(appId, code);
+        ResponseCurrencyOut response = api.v1CurrencyFindByCode(code);
 
         // TODO: test validations
     }
@@ -61,11 +60,10 @@ public class CurrencyApiTest {
      */
     @Test
     public void v1CurrencyListTest() throws ApiException {
-        String appId = null;
-        String cursor= null;
         Integer limit = null;
+        String cursor = null;
         Boolean rated = null;
-        ResponseListCurrencyOut response = api.v1CurrencyList(appId, limit, cursor, rated);
+        ResponseListCurrencyOut response = api.v1CurrencyList(limit, cursor, rated);
 
         // TODO: test validations
     }

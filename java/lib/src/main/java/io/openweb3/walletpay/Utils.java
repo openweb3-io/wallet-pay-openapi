@@ -4,6 +4,10 @@ import io.openweb3.walletpay.exceptions.ApiException;
 import io.openweb3.walletpay.exceptions.SigningException;
 import org.bouncycastle.asn1.ASN1Integer;
 import org.bouncycastle.asn1.ASN1Sequence;
+import org.bouncycastle.crypto.params.Ed25519PrivateKeyParameters;
+import org.bouncycastle.crypto.signers.Ed25519Signer;
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+import org.bouncycastle.util.encoders.Hex;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -126,5 +130,28 @@ final class Utils {
         return pkcs8Bytes;
     }
 
+    public static String signWithEd25519(final String hexPrivateKey, final String content) throws SigningException {
 
+        try {
+            // add BouncyCastle security provider
+            Security.addProvider(new BouncyCastleProvider());
+
+            // from OpenSSL hexadecimal private key string
+            byte[] privateKeyBytes = Hex.decode(hexPrivateKey);
+
+            var digest = MessageDigest.getInstance("SHA-256");
+            digest.update(content.getBytes(StandardCharsets.UTF_8));
+            var contentBytes = digest.digest();
+
+            Ed25519PrivateKeyParameters keyParameters = new Ed25519PrivateKeyParameters(privateKeyBytes, 0);
+            Ed25519Signer signer = new Ed25519Signer();
+            signer.init(true, keyParameters);
+            signer.update(contentBytes, 0, contentBytes.length);
+            var signedData = signer.generateSignature();
+
+            return Hex.toHexString(signedData);
+        } catch (Exception e) {
+            throw new SigningException(e.getMessage());
+        }
+    }
 }

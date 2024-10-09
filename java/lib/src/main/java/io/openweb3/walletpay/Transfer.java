@@ -12,13 +12,13 @@ public final class Transfer {
 		api = new TransferApi();
 	}
 
-	public TransferOut create(final String appId, final TransferIn TransferIn) throws ApiException {
-		return this.create(appId, TransferIn, new PostOptions());
+	public TransferOut create(final TransferIn transferIn) throws ApiException {
+		return this.create(transferIn, new PostOptions());
 	}
 
-	public TransferOut create(final String appId, final TransferIn TransferIn, final PostOptions options) throws ApiException {
+	public TransferOut create(final TransferIn transferIn, final PostOptions options) throws ApiException {
 		try {
-			return api.v1TransferCreate(appId, TransferIn).getData();
+			return api.v1TransferCreate(transferIn).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

@@ -44,9 +44,8 @@ public class TransferApiTest {
      */
     @Test
     public void v1TransferCreateTest() throws ApiException {
-        String appId = null;
         TransferIn transferIn = null;
-        ResponseTransferOut response = api.v1TransferCreate(appId, transferIn);
+        ResponseTransferOut response = api.v1TransferCreate(transferIn);
 
         // TODO: test validations
     }

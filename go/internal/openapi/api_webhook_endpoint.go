@@ -30,7 +30,6 @@ type WebhookEndpointApiService service
 type ApiV1EndpointCreateRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointApiService
-	appId string
 	endpointIn *EndpointIn
 }
 
@@ -47,14 +46,12 @@ func (r ApiV1EndpointCreateRequest) Execute() (ResponseEndpointOut, *_nethttp.Re
  * V1EndpointCreate Create endpoint
  * Create a webhook endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1EndpointCreateRequest
  */
-func (a *WebhookEndpointApiService) V1EndpointCreate(ctx _context.Context, appId string) ApiV1EndpointCreateRequest {
+func (a *WebhookEndpointApiService) V1EndpointCreate(ctx _context.Context) ApiV1EndpointCreateRequest {
 	return ApiV1EndpointCreateRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -77,8 +74,7 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/webhooks/endpoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/webhooks/endpoints"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -229,7 +225,6 @@ func (a *WebhookEndpointApiService) V1EndpointCreateExecute(r ApiV1EndpointCreat
 type ApiV1EndpointDeleteRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointApiService
-	appId string
 	endpointId string
 }
 
@@ -242,15 +237,13 @@ func (r ApiV1EndpointDeleteRequest) Execute() (ResponseEndpointOut, *_nethttp.Re
  * V1EndpointDelete Delete endpoint
  * delete the specified webhook endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @param endpointId Specified the endpoint id.
  * @return ApiV1EndpointDeleteRequest
  */
-func (a *WebhookEndpointApiService) V1EndpointDelete(ctx _context.Context, appId string, endpointId string) ApiV1EndpointDeleteRequest {
+func (a *WebhookEndpointApiService) V1EndpointDelete(ctx _context.Context, endpointId string) ApiV1EndpointDeleteRequest {
 	return ApiV1EndpointDeleteRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		endpointId: endpointId,
 	}
 }
@@ -274,8 +267,7 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/webhooks/endpoints/{endpointId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -412,7 +404,6 @@ func (a *WebhookEndpointApiService) V1EndpointDeleteExecute(r ApiV1EndpointDelet
 type ApiV1EndpointGetRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointApiService
-	appId string
 	endpointId string
 }
 
@@ -425,15 +416,13 @@ func (r ApiV1EndpointGetRequest) Execute() (ResponseEndpointOut, *_nethttp.Respo
  * V1EndpointGet Delete endpoint
  * get the specified webhook endpoint.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @param endpointId Specified the endpoint id or endpoint uid.
  * @return ApiV1EndpointGetRequest
  */
-func (a *WebhookEndpointApiService) V1EndpointGet(ctx _context.Context, appId string, endpointId string) ApiV1EndpointGetRequest {
+func (a *WebhookEndpointApiService) V1EndpointGet(ctx _context.Context, endpointId string) ApiV1EndpointGetRequest {
 	return ApiV1EndpointGetRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 		endpointId: endpointId,
 	}
 }
@@ -457,8 +446,7 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/webhooks/endpoints/{endpointId}"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/webhooks/endpoints/{endpointId}"
 	localVarPath = strings.Replace(localVarPath, "{"+"endpointId"+"}", _neturl.PathEscape(parameterToString(r.endpointId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -595,7 +583,6 @@ func (a *WebhookEndpointApiService) V1EndpointGetExecute(r ApiV1EndpointGetReque
 type ApiV1EndpointListRequest struct {
 	ctx _context.Context
 	ApiService *WebhookEndpointApiService
-	appId string
 	limit *int32
 	cursor *string
 	ordering *Ordering
@@ -622,14 +609,12 @@ func (r ApiV1EndpointListRequest) Execute() (ResponseListEndpointOut, *_nethttp.
  * V1EndpointList List endpoints
  * List endpoints.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param appId Specified the app id.
  * @return ApiV1EndpointListRequest
  */
-func (a *WebhookEndpointApiService) V1EndpointList(ctx _context.Context, appId string) ApiV1EndpointListRequest {
+func (a *WebhookEndpointApiService) V1EndpointList(ctx _context.Context) ApiV1EndpointListRequest {
 	return ApiV1EndpointListRequest{
 		ApiService: a,
 		ctx: ctx,
-		appId: appId,
 	}
 }
 
@@ -652,8 +637,7 @@ func (a *WebhookEndpointApiService) V1EndpointListExecute(r ApiV1EndpointListReq
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v1/apps/{appId}/webhooks/endpoints"
-	localVarPath = strings.Replace(localVarPath, "{"+"appId"+"}", _neturl.PathEscape(parameterToString(r.appId, "")), -1)
+	localVarPath := localBasePath + "/api/v1/webhooks/endpoints"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

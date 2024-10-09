@@ -4,12 +4,12 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1TransferCreate**](TransferApi.md#v1TransferCreate) | **POST** /api/v1/apps/{appId}/transfers | Create Transfer
+[**v1TransferCreate**](TransferApi.md#v1TransferCreate) | **POST** /api/v1/transfers | Create Transfer
 
 
 <a name="v1TransferCreate"></a>
 # **v1TransferCreate**
-> ResponseTransferOut v1TransferCreate(appId, transferIn)
+> ResponseTransferOut v1TransferCreate(transferIn)
 
 Create Transfer
 
@@ -37,10 +37,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     TransferApi apiInstance = new TransferApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     TransferIn transferIn = new TransferIn(); // TransferIn | 
     try {
-      ResponseTransferOut result = apiInstance.v1TransferCreate(appId, transferIn);
+      ResponseTransferOut result = apiInstance.v1TransferCreate(transferIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling TransferApi#v1TransferCreate");
@@ -57,7 +56,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **transferIn** | [**TransferIn**](TransferIn.md)|  |
 
 ### Return type

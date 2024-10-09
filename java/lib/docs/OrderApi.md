@@ -4,14 +4,14 @@ All URIs are relative to *https://api.wallet-pay.openweb3.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/apps/{appId}/orders | Create Order
-[**v1OrderGet**](OrderApi.md#v1OrderGet) | **GET** /api/v1/apps/{appId}/orders/{idOrUid} | Get order
-[**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/apps/{appId}/orders | List Orders
+[**v1OrderCreate**](OrderApi.md#v1OrderCreate) | **POST** /api/v1/orders | Create Order
+[**v1OrderGet**](OrderApi.md#v1OrderGet) | **GET** /api/v1/orders/{idOrUid} | Get order
+[**v1OrderList**](OrderApi.md#v1OrderList) | **GET** /api/v1/orders | List Orders
 
 
 <a name="v1OrderCreate"></a>
 # **v1OrderCreate**
-> ResponseOrderOut v1OrderCreate(appId, orderIn)
+> ResponseOrderOut v1OrderCreate(orderIn)
 
 Create Order
 
@@ -39,10 +39,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrderApi apiInstance = new OrderApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     OrderIn orderIn = new OrderIn(); // OrderIn | 
     try {
-      ResponseOrderOut result = apiInstance.v1OrderCreate(appId, orderIn);
+      ResponseOrderOut result = apiInstance.v1OrderCreate(orderIn);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderCreate");
@@ -59,7 +58,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **orderIn** | [**OrderIn**](OrderIn.md)|  |
 
 ### Return type
@@ -90,7 +88,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderGet"></a>
 # **v1OrderGet**
-> ResponseOrderOut v1OrderGet(appId, idOrUid)
+> ResponseOrderOut v1OrderGet(idOrUid)
 
 Get order
 
@@ -118,10 +116,9 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrderApi apiInstance = new OrderApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     String idOrUid = "11b9ca57-0559-403a-bf8e-7bd1a31aff45"; // String | Specified the order id or order uid.
     try {
-      ResponseOrderOut result = apiInstance.v1OrderGet(appId, idOrUid);
+      ResponseOrderOut result = apiInstance.v1OrderGet(idOrUid);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderGet");
@@ -138,7 +135,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **idOrUid** | **String**| Specified the order id or order uid. |
 
 ### Return type
@@ -168,7 +164,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrderList"></a>
 # **v1OrderList**
-> ResponseListOrderOut v1OrderList(appId, size, page, walletId, currency, status)
+> ResponseListOrderOut v1OrderList(size, page, walletId, currency, status)
 
 List Orders
 
@@ -196,14 +192,13 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrderApi apiInstance = new OrderApi(defaultClient);
-    String appId = "app_12345xsfei"; // String | Specified the app id.
     Integer size = 20; // Integer | Limit the number of returned items
     Integer page = 0; // Integer | Specifying the page index
     String walletId = "wallet_id"; // String | Optional wallet id
     String currency = "USDT"; // String | Optional currency code
     String status = "PENDING"; // String | Optional order status
     try {
-      ResponseListOrderOut result = apiInstance.v1OrderList(appId, size, page, walletId, currency, status);
+      ResponseListOrderOut result = apiInstance.v1OrderList(size, page, walletId, currency, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrderApi#v1OrderList");
@@ -220,7 +215,6 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **appId** | **String**| Specified the app id. |
  **size** | **Integer**| Limit the number of returned items | [optional] [default to 20]
  **page** | **Integer**| Specifying the page index | [optional] [default to 0]
  **walletId** | **String**| Optional wallet id | [optional]
