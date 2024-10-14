@@ -270,7 +270,7 @@
                     {
                         "description": "Specified the base currency that needs to be estimated",
                         "in": "query",
-                        "name": "from",
+                        "name": "base_currency",
                         "required": true,
                         "schema": {
                             "description": "Specified the base currency that needs to be estimated.",

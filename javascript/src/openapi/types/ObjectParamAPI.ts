@@ -195,7 +195,7 @@ export interface RateApiV1RateEstimateRequest {
      * @type string
      * @memberof RateApiv1RateEstimate
      */
-    from: string
+    baseCurrency: string
     /**
      * Specify the target currency.
      * @type string
@@ -232,7 +232,7 @@ export class ObjectRateApi {
      * @param param the request object
      */
     public v1RateEstimate(param: RateApiV1RateEstimateRequest, options?: Configuration): Promise<ResponseEstimateOut> {
-        return this.api.v1RateEstimate(param.from, param.toCurrency, param.baseAmount,  options).toPromise();
+        return this.api.v1RateEstimate(param.baseCurrency, param.toCurrency, param.baseAmount,  options).toPromise();
     }
 
     /**

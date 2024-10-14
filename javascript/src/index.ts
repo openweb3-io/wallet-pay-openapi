@@ -32,6 +32,7 @@ import {
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
 import { createHash } from "crypto";
+import * as nacl from "tweetnacl";
 
 const VERSION = "0.2.0";
 
@@ -46,29 +47,30 @@ class UserAgentMiddleware implements Middleware {
   }
 }
 
-function hmacSha256(data: string, secret: string): string {
-  const hmac = createHash("sha256").update(data).update(secret).digest("hex");
-  return hmac;
+function signEd25519(data: string, privateKey: string) : string {
+  const hash = createHash("sha256");
+  hash.update(Buffer.from(data, "utf-8"));
+  const hashBuffer = hash.digest(); 
+  const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(privateKey, "hex"));
+  const signedData = nacl.sign.detached(hashBuffer, keyPair.secretKey);
+  const sign = Buffer.from(signedData).toString("hex");
+  return sign;
 }
 
 class SignatureMiddleware implements Middleware {
   public constructor(private privateKey: string) {}
 
   public pre(context: RequestContext): Promise<RequestContext> {
-    const timestamp = new Date().toString();
+    const timestamp = new Date().getTime().toString();
     context.setHeaderParam("x-request-time", timestamp);
 
     let source = "";
-    const method = context.getHttpMethod();
-    if (method === "POST" || method === "PUT") {
-      source += context.getBody()?.toString();
-    }
+    source += context.getBody()?.toString() || "";
     const url = new URL(context.getUrl());
-    source += url.pathname;
+    source += url.pathname + url.search;
     source += timestamp;
 
-    // TODO: calculate signature with ed25519
-    const sign = hmacSha256(source, this.privateKey);
+    const sign = signEd25519(source, this.privateKey);
     context.setHeaderParam("x-signature", sign);
 
     return Promise.resolve(context);
@@ -79,12 +81,12 @@ class SignatureMiddleware implements Middleware {
   }
 }
 
-export interface walletpayOptions {
+export interface WalletPayOptions {
   debug?: boolean;
   serverUrl?: string;
 }
 
-export class walletpay {
+export class WalletPay {
   public readonly _configuration: Configuration;
   public readonly Order: Order;
   public readonly Endpoint: Endpoint;
@@ -93,7 +95,7 @@ export class walletpay {
   public readonly Rate: Rate;
   // public readonly Refund: Refund;
 
-  public constructor(apikey: string, privateKey: string, options: walletpayOptions = {}) {
+  public constructor(apikey: string, privateKey: string, options: WalletPayOptions = {}) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
@@ -111,7 +113,7 @@ export class walletpay {
     this.Endpoint = new Endpoint(config);
     this.Currency = new Currency(config);
     this.Transfer = new Transfer(config);
-    this.Rate = new Rate(config)
+    this.Rate = new Rate(config);
     // this.Refund = new Refund(config);
   }
 }
@@ -170,7 +172,7 @@ class Currency {
 }
 
 interface EstimateOptions {
-  from: string;
+  baseCurrency: string;
   toCurrency: string;
   baseAmount: string;
 }

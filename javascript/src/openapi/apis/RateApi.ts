@@ -19,16 +19,16 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Estimate the amount of currency exchange.
      * Estimate the amount of currency exchange.
-     * @param from Specified the base currency that needs to be estimated
+     * @param baseCurrency Specified the base currency that needs to be estimated
      * @param toCurrency Specify the target currency.
      * @param baseAmount Specify the amount of base currency that need to be estimated.
      */
-    public async v1RateEstimate(from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RateEstimate(baseCurrency: string, toCurrency: string, baseAmount: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'from' is not null or undefined
-        if (from === null || from === undefined) {
-            throw new RequiredError('Required parameter from was null or undefined when calling v1RateEstimate.');
+        // verify required parameter 'baseCurrency' is not null or undefined
+        if (baseCurrency === null || baseCurrency === undefined) {
+            throw new RequiredError('Required parameter baseCurrency was null or undefined when calling v1RateEstimate.');
         }
 
 
@@ -54,8 +54,8 @@ export class RateApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (from !== undefined) {
-            requestContext.setQueryParam("from", ObjectSerializer.serialize(from, "string", ""));
+        if (baseCurrency !== undefined) {
+            requestContext.setQueryParam("base_currency", ObjectSerializer.serialize(baseCurrency, "string", ""));
         }
         if (toCurrency !== undefined) {
             requestContext.setQueryParam("to_currency", ObjectSerializer.serialize(toCurrency, "string", ""));

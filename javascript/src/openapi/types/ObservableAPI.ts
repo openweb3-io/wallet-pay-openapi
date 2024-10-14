@@ -218,12 +218,12 @@ export class ObservableRateApi {
     /**
      * Estimate the amount of currency exchange.
      * Estimate the amount of currency exchange.
-     * @param from Specified the base currency that needs to be estimated
+     * @param baseCurrency Specified the base currency that needs to be estimated
      * @param toCurrency Specify the target currency.
      * @param baseAmount Specify the amount of base currency that need to be estimated.
      */
-    public v1RateEstimate(from: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
-        const requestContextPromise = this.requestFactory.v1RateEstimate(from, toCurrency, baseAmount, _options);
+    public v1RateEstimate(baseCurrency: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
+        const requestContextPromise = this.requestFactory.v1RateEstimate(baseCurrency, toCurrency, baseAmount, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
