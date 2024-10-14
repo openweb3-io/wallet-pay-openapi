@@ -17,7 +17,7 @@ Typescript/Javascript library for interacting with the pay API and verifying pay
 
 # Usage Documentation
 
-You can find general usage documentation at <https://docs.pay.openweb3.io>.  For complete API documentation with code examples for each endpoint in all of our official client libraries head over to our API documentation site at <https://api.wallet-pay.openweb3.io>.
+You can find general usage documentation at <https://docs.pay.openweb3.io>. For complete API documentation with code examples for each endpoint in all of our official client libraries head over to our API documentation site at <https://api.wallet-pay.openweb3.io>.
 
 # Language Support
 
@@ -44,30 +44,31 @@ You can find general usage documentation at <https://docs.pay.openweb3.io>.  For
 # Installation
 
 ```sh
-npm install @openweb3-io/pay 
+npm install @openweb3-io/wallet-pay
 # or
-yarn add @openweb3-io/pay
+yarn add @openweb3-io/wallet-pay
 ```
 
 # Usage
 
 ```js
-import { Pay } from "@openweb3-io/pay";
+import { WalletPay } from "@openweb3-io/wallet-pay";
 
-const pay = new Pay("API-KEY", "RSA PRIVATE KEY");
-const order = await pay.Order.create({ channel: "ton-connect", chain:"ton", amount: "0.11", currency: "USDT"});
+const walletPay = new WalletPay("API-KEY", "PRIVATE KEY");
+const order = await walletPay.Order.create({ currency: "ton", amount: "1000000000" });
 ```
-# Development
 
+# Development
 
 First checkout the [core README](../README.md#development) for details on how to generate our API bindings, then follow the steps below.
 
 ## Requirements
 
- - node
- - yarn
+- node
+- yarn
 
 ## Building the library
+
 ```sh
 yarn
 yarn build

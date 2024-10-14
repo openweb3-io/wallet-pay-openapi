@@ -24,10 +24,10 @@ import {
   GetRatesIn,
   RatesOut,
   EstimateOut,
-  RefundApi,
-  RefundIn,
-  RefundOut,
-  ListResponseRefundOut,
+  // RefundApi,
+  // RefundIn,
+  // RefundOut,
+  // ListResponseRefundOut,
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
@@ -47,10 +47,10 @@ class UserAgentMiddleware implements Middleware {
   }
 }
 
-function signEd25519(data: string, privateKey: string) : string {
+function signEd25519(data: string, privateKey: string): string {
   const hash = createHash("sha256");
   hash.update(Buffer.from(data, "utf-8"));
-  const hashBuffer = hash.digest(); 
+  const hashBuffer = hash.digest();
   const keyPair = nacl.sign.keyPair.fromSeed(Buffer.from(privateKey, "hex"));
   const signedData = nacl.sign.detached(hashBuffer, keyPair.secretKey);
   const sign = Buffer.from(signedData).toString("hex");
@@ -126,11 +126,10 @@ interface ListOptions {
   size?: number;
 }
 
-
 export interface OrderListOptions extends ListOptions {
-  walletId?:string;
-  currency?:string;
-  status?:'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED';
+  walletId?: string;
+  currency?: string;
+  status?: "PENDING" | "PAID" | "EXPIRED" | "FAILED" | "COMPLETED";
 }
 
 class Order {
@@ -151,7 +150,7 @@ class Order {
 
 export interface CurrencyListOptions {
   cursor?: string;
-  limit?:number;
+  limit?: number;
   rated?: boolean;
 }
 
@@ -167,7 +166,7 @@ class Currency {
   }
 
   public async findByCode(code: string): Promise<CurrencyOut> {
-    return (await this.api.v1CurrencyFindByCode({ code })).data
+    return (await this.api.v1CurrencyFindByCode({ code })).data;
   }
 }
 
@@ -177,8 +176,6 @@ interface EstimateOptions {
   baseAmount: string;
 }
 
-
-
 class Rate {
   private readonly api: RateApi;
 
@@ -187,11 +184,11 @@ class Rate {
   }
 
   public async estimate(options: EstimateOptions): Promise<EstimateOut> {
-    return (await this.api.v1RateEstimate({...options})).data;
+    return (await this.api.v1RateEstimate({ ...options })).data;
   }
 
   public async getRates(getRatesIn: GetRatesIn): Promise<RatesOut> {
-    return (await this.api.v1RateGetRates({getRatesIn})).data;
+    return (await this.api.v1RateGetRates({ getRatesIn })).data;
   }
 }
 
@@ -202,7 +199,10 @@ class Transfer {
     this.api = new TransferApi(config);
   }
 
-  public async create(transferIn: TransferIn, options?: PostOptions): Promise<TransferOut> {
+  public async create(
+    transferIn: TransferIn,
+    options?: PostOptions
+  ): Promise<TransferOut> {
     return (await this.api.v1TransferCreate({ transferIn, ...options })).data;
   }
 }
@@ -220,7 +220,10 @@ class Endpoint {
     this.api = new WebhookEndpointApi(config);
   }
 
-  public async create(endpointIn: EndpointIn, options?: PostOptions): Promise<EndpointOut> {
+  public async create(
+    endpointIn: EndpointIn,
+    options?: PostOptions
+  ): Promise<EndpointOut> {
     return (await this.api.v1EndpointCreate({ endpointIn, ...options })).data;
   }
 
