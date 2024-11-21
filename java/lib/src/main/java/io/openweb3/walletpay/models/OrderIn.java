@@ -30,7 +30,7 @@ import java.util.Map;
 /**
  * OrderIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T02:53:44.256449+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T19:23:02.216639+08:00[Asia/Shanghai]")
 public class OrderIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -112,7 +112,7 @@ public class OrderIn {
    * Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.
    * @return amount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.")
+  @ApiModelProperty(example = "12345000", required = true, value = "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.")
 
   public String getAmount() {
     return amount;

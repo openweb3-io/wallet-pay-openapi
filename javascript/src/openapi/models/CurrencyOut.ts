@@ -43,15 +43,15 @@ export class CurrencyOut {
     */
     'canTransfer': boolean;
     /**
-    * Big decimal string representation. The min amount to deposit.
+    * Big integer string representation. The min amount to deposit.
     */
     'minDepositAmount': string;
     /**
-    * Big decimal string representation. The min amount to withdraw.
+    * Big integer string representation. The min amount to withdraw.
     */
     'minWithdrawAmount': string;
     /**
-    * Big decimal string representation. The max amount to withdraw.
+    * Big integer string representation. The max amount to withdraw.
     */
     'maxWithdrawAmount': string;
     /**
@@ -62,7 +62,7 @@ export class CurrencyOut {
     * Currency decimals
     */
     'decimals': number;
-    'items'?: Array<CurrencyNetwork>;
+    'networks'?: Array<CurrencyNetwork>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -140,8 +140,8 @@ export class CurrencyOut {
             "format": ""
         },
         {
-            "name": "items",
-            "baseName": "items",
+            "name": "networks",
+            "baseName": "networks",
             "type": "Array<CurrencyNetwork>",
             "format": ""
         }    ];

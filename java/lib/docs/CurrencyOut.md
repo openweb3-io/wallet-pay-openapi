@@ -14,12 +14,12 @@ Name | Type | Description | Notes
 **canDeposit** | **Boolean** | Is it posible to deposit on blockchain | 
 **canWithdraw** | **Boolean** | Is it posible to withdraw to blockchain | 
 **canTransfer** | **Boolean** | Is it posible to transfer in custody wallet | 
-**minDepositAmount** | **String** | Big decimal string representation. The min amount to deposit. | 
-**minWithdrawAmount** | **String** | Big decimal string representation. The min amount to withdraw. | 
-**maxWithdrawAmount** | **String** | Big decimal string representation. The max amount to withdraw. | 
+**minDepositAmount** | **String** | Big integer string representation. The min amount to deposit. | 
+**minWithdrawAmount** | **String** | Big integer string representation. The min amount to withdraw. | 
+**maxWithdrawAmount** | **String** | Big integer string representation. The max amount to withdraw. | 
 **precision** | **Integer** | Currency precision | 
 **decimals** | **Integer** | Currency decimals | 
-**items** | [**List&lt;CurrencyNetwork&gt;**](CurrencyNetwork.md) |  |  [optional]
+**networks** | [**List&lt;CurrencyNetwork&gt;**](CurrencyNetwork.md) |  |  [optional]
 
 
 

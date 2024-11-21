@@ -22,11 +22,11 @@ type CurrencyNetwork struct {
 	Network string `json:"network"`
 	// Currency name
 	Name string `json:"name"`
-	// Big decimal string representation. The min amount to deposit.
+	// Big integer string representation. The min amount to deposit.
 	MinDepositAmount string `json:"min_deposit_amount"`
-	// Big decimal string representation. The min amount to withdraw.
+	// Big integer string representation. The min amount to withdraw.
 	MinWithdrawAmount string `json:"min_withdraw_amount"`
-	// Big decimal string representation. The max amount to withdraw.
+	// Big integer string representation. The max amount to withdraw.
 	MaxWithdrawAmount string `json:"max_withdraw_amount"`
 	// Is it posible to deposit on blockchain
 	CanDeposit bool `json:"can_deposit"`

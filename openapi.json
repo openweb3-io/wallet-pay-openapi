@@ -2054,7 +2054,7 @@
                         "example": 12,
                         "type": "integer"
                     },
-                    "items": {
+                    "networks": {
                         "items": {
                             "$ref": "#/components/schemas/CurrencyNetwork"
                         },

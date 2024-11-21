@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    orderIn := *openapiclient.NewOrderIn("USDT", "0.0012345") // OrderIn | 
+    orderIn := *openapiclient.NewOrderIn("USDT", "12345000") // OrderIn | 
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)

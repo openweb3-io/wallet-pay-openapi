@@ -11,12 +11,12 @@ Name | Type | Description | Notes
 **CanDeposit** | **bool** | Is it posible to deposit on blockchain | 
 **CanWithdraw** | **bool** | Is it posible to withdraw to blockchain | 
 **CanTransfer** | **bool** | Is it posible to transfer in custody wallet | 
-**MinDepositAmount** | **string** | Big decimal string representation. The min amount to deposit. | 
-**MinWithdrawAmount** | **string** | Big decimal string representation. The min amount to withdraw. | 
-**MaxWithdrawAmount** | **string** | Big decimal string representation. The max amount to withdraw. | 
+**MinDepositAmount** | **string** | Big integer string representation. The min amount to deposit. | 
+**MinWithdrawAmount** | **string** | Big integer string representation. The min amount to withdraw. | 
+**MaxWithdrawAmount** | **string** | Big integer string representation. The max amount to withdraw. | 
 **Precision** | **int32** | Currency precision | 
 **Decimals** | **int32** | Currency decimals | 
-**Items** | Pointer to [**[]CurrencyNetwork**](CurrencyNetwork.md) |  | [optional] 
+**Networks** | Pointer to [**[]CurrencyNetwork**](CurrencyNetwork.md) |  | [optional] 
 
 ## Methods
 
@@ -277,30 +277,30 @@ and a boolean to check if the value has been set.
 SetDecimals sets Decimals field to given value.
 
 
-### GetItems
+### GetNetworks
 
-`func (o *CurrencyOut) GetItems() []CurrencyNetwork`
+`func (o *CurrencyOut) GetNetworks() []CurrencyNetwork`
 
-GetItems returns the Items field if non-nil, zero value otherwise.
+GetNetworks returns the Networks field if non-nil, zero value otherwise.
 
-### GetItemsOk
+### GetNetworksOk
 
-`func (o *CurrencyOut) GetItemsOk() (*[]CurrencyNetwork, bool)`
+`func (o *CurrencyOut) GetNetworksOk() (*[]CurrencyNetwork, bool)`
 
-GetItemsOk returns a tuple with the Items field if it's non-nil, zero value otherwise
+GetNetworksOk returns a tuple with the Networks field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetItems
+### SetNetworks
 
-`func (o *CurrencyOut) SetItems(v []CurrencyNetwork)`
+`func (o *CurrencyOut) SetNetworks(v []CurrencyNetwork)`
 
-SetItems sets Items field to given value.
+SetNetworks sets Networks field to given value.
 
-### HasItems
+### HasNetworks
 
-`func (o *CurrencyOut) HasItems() bool`
+`func (o *CurrencyOut) HasNetworks() bool`
 
-HasItems returns a boolean if a field has been set.
+HasNetworks returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

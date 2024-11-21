@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * CurrencyOut
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T02:53:44.256449+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T19:23:02.216639+08:00[Asia/Shanghai]")
 public class CurrencyOut {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -80,9 +80,9 @@ public class CurrencyOut {
   @SerializedName(SERIALIZED_NAME_DECIMALS)
   private Integer decimals;
 
-  public static final String SERIALIZED_NAME_ITEMS = "items";
-  @SerializedName(SERIALIZED_NAME_ITEMS)
-  private List<CurrencyNetwork> items = null;
+  public static final String SERIALIZED_NAME_NETWORKS = "networks";
+  @SerializedName(SERIALIZED_NAME_NETWORKS)
+  private List<CurrencyNetwork> networks = null;
 
 
   public CurrencyOut code(String code) {
@@ -246,10 +246,10 @@ public class CurrencyOut {
   }
 
    /**
-   * Big decimal string representation. The min amount to deposit.
+   * Big integer string representation. The min amount to deposit.
    * @return minDepositAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The min amount to deposit.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The min amount to deposit.")
 
   public String getMinDepositAmount() {
     return minDepositAmount;
@@ -268,10 +268,10 @@ public class CurrencyOut {
   }
 
    /**
-   * Big decimal string representation. The min amount to withdraw.
+   * Big integer string representation. The min amount to withdraw.
    * @return minWithdrawAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The min amount to withdraw.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The min amount to withdraw.")
 
   public String getMinWithdrawAmount() {
     return minWithdrawAmount;
@@ -290,10 +290,10 @@ public class CurrencyOut {
   }
 
    /**
-   * Big decimal string representation. The max amount to withdraw.
+   * Big integer string representation. The max amount to withdraw.
    * @return maxWithdrawAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The max amount to withdraw.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The max amount to withdraw.")
 
   public String getMaxWithdrawAmount() {
     return maxWithdrawAmount;
@@ -349,34 +349,34 @@ public class CurrencyOut {
   }
 
 
-  public CurrencyOut items(List<CurrencyNetwork> items) {
+  public CurrencyOut networks(List<CurrencyNetwork> networks) {
     
-    this.items = items;
+    this.networks = networks;
     return this;
   }
 
-  public CurrencyOut addItemsItem(CurrencyNetwork itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
+  public CurrencyOut addNetworksItem(CurrencyNetwork networksItem) {
+    if (this.networks == null) {
+      this.networks = new ArrayList<>();
     }
-    this.items.add(itemsItem);
+    this.networks.add(networksItem);
     return this;
   }
 
    /**
-   * Get items
-   * @return items
+   * Get networks
+   * @return networks
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(value = "")
 
-  public List<CurrencyNetwork> getItems() {
-    return items;
+  public List<CurrencyNetwork> getNetworks() {
+    return networks;
   }
 
 
-  public void setItems(List<CurrencyNetwork> items) {
-    this.items = items;
+  public void setNetworks(List<CurrencyNetwork> networks) {
+    this.networks = networks;
   }
 
 
@@ -401,12 +401,12 @@ public class CurrencyOut {
         Objects.equals(this.maxWithdrawAmount, currencyOut.maxWithdrawAmount) &&
         Objects.equals(this.precision, currencyOut.precision) &&
         Objects.equals(this.decimals, currencyOut.decimals) &&
-        Objects.equals(this.items, currencyOut.items);
+        Objects.equals(this.networks, currencyOut.networks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals, items);
+    return Objects.hash(code, symbol, logo, name, canDeposit, canWithdraw, canTransfer, minDepositAmount, minWithdrawAmount, maxWithdrawAmount, precision, decimals, networks);
   }
 
   @Override
@@ -425,7 +425,7 @@ public class CurrencyOut {
     sb.append("    maxWithdrawAmount: ").append(toIndentedString(maxWithdrawAmount)).append("\n");
     sb.append("    precision: ").append(toIndentedString(precision)).append("\n");
     sb.append("    decimals: ").append(toIndentedString(decimals)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    networks: ").append(toIndentedString(networks)).append("\n");
     sb.append("}");
     return sb.toString();
   }

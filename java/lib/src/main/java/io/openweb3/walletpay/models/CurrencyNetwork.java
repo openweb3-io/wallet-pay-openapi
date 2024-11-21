@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CurrencyNetwork
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T02:53:44.256449+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T19:23:02.216639+08:00[Asia/Shanghai]")
 public class CurrencyNetwork {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
@@ -171,10 +171,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Big decimal string representation. The min amount to deposit.
+   * Big integer string representation. The min amount to deposit.
    * @return minDepositAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The min amount to deposit.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The min amount to deposit.")
 
   public String getMinDepositAmount() {
     return minDepositAmount;
@@ -193,10 +193,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Big decimal string representation. The min amount to withdraw.
+   * Big integer string representation. The min amount to withdraw.
    * @return minWithdrawAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The min amount to withdraw.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The min amount to withdraw.")
 
   public String getMinWithdrawAmount() {
     return minWithdrawAmount;
@@ -215,10 +215,10 @@ public class CurrencyNetwork {
   }
 
    /**
-   * Big decimal string representation. The max amount to withdraw.
+   * Big integer string representation. The max amount to withdraw.
    * @return maxWithdrawAmount
   **/
-  @ApiModelProperty(example = "0.0012345", required = true, value = "Big decimal string representation. The max amount to withdraw.")
+  @ApiModelProperty(example = "12345", required = true, value = "Big integer string representation. The max amount to withdraw.")
 
   public String getMaxWithdrawAmount() {
     return maxWithdrawAmount;

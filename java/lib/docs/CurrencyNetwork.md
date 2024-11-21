@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **code** | **String** | Currency code | 
 **network** | **String** | blockchain network | 
 **name** | **String** | Currency name | 
-**minDepositAmount** | **String** | Big decimal string representation. The min amount to deposit. | 
-**minWithdrawAmount** | **String** | Big decimal string representation. The min amount to withdraw. | 
-**maxWithdrawAmount** | **String** | Big decimal string representation. The max amount to withdraw. | 
+**minDepositAmount** | **String** | Big integer string representation. The min amount to deposit. | 
+**minWithdrawAmount** | **String** | Big integer string representation. The min amount to withdraw. | 
+**maxWithdrawAmount** | **String** | Big integer string representation. The max amount to withdraw. | 
 **canDeposit** | **Boolean** | Is it posible to deposit on blockchain | 
 **canWithdraw** | **Boolean** | Is it posible to withdraw to blockchain | 
 **canTransfer** | **Boolean** | Is it posible to transfer in custody wallet | 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## V1RateEstimate
 
-> ResponseEstimateOut V1RateEstimate(ctx).From(from).ToCurrency(toCurrency).BaseAmount(baseAmount).Execute()
+> ResponseEstimateOut V1RateEstimate(ctx).BaseCurrency(baseCurrency).ToCurrency(toCurrency).BaseAmount(baseAmount).Execute()
 
 Estimate the amount of currency exchange.
 
@@ -30,13 +30,13 @@ import (
 )
 
 func main() {
-    from := "TON" // string | Specified the base currency that needs to be estimated
+    baseCurrency := "TON" // string | Specified the base currency that needs to be estimated
     toCurrency := "NOT" // string | Specify the target currency.
     baseAmount := "100" // string | Specify the amount of base currency that need to be estimated.
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RateApi.V1RateEstimate(context.Background()).From(from).ToCurrency(toCurrency).BaseAmount(baseAmount).Execute()
+    resp, r, err := api_client.RateApi.V1RateEstimate(context.Background()).BaseCurrency(baseCurrency).ToCurrency(toCurrency).BaseAmount(baseAmount).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RateApi.V1RateEstimate``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -57,7 +57,7 @@ Other parameters are passed through a pointer to a apiV1RateEstimateRequest stru
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **string** | Specified the base currency that needs to be estimated | 
+ **baseCurrency** | **string** | Specified the base currency that needs to be estimated | 
  **toCurrency** | **string** | Specify the target currency. | 
  **baseAmount** | **string** | Specify the amount of base currency that need to be estimated. | 
 

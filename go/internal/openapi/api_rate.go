@@ -29,13 +29,13 @@ type RateApiService service
 type ApiV1RateEstimateRequest struct {
 	ctx _context.Context
 	ApiService *RateApiService
-	from *string
+	baseCurrency *string
 	toCurrency *string
 	baseAmount *string
 }
 
-func (r ApiV1RateEstimateRequest) From(from string) ApiV1RateEstimateRequest {
-	r.from = &from
+func (r ApiV1RateEstimateRequest) BaseCurrency(baseCurrency string) ApiV1RateEstimateRequest {
+	r.baseCurrency = &baseCurrency
 	return r
 }
 func (r ApiV1RateEstimateRequest) ToCurrency(toCurrency string) ApiV1RateEstimateRequest {
@@ -88,8 +88,8 @@ func (a *RateApiService) V1RateEstimateExecute(r ApiV1RateEstimateRequest) (Resp
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.from == nil {
-		return localVarReturnValue, nil, reportError("from is required and must be specified")
+	if r.baseCurrency == nil {
+		return localVarReturnValue, nil, reportError("baseCurrency is required and must be specified")
 	}
 	if r.toCurrency == nil {
 		return localVarReturnValue, nil, reportError("toCurrency is required and must be specified")
@@ -98,7 +98,7 @@ func (a *RateApiService) V1RateEstimateExecute(r ApiV1RateEstimateRequest) (Resp
 		return localVarReturnValue, nil, reportError("baseAmount is required and must be specified")
 	}
 
-	localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	localVarQueryParams.Add("base_currency", parameterToString(*r.baseCurrency, ""))
 	localVarQueryParams.Add("to_currency", parameterToString(*r.toCurrency, ""))
 	localVarQueryParams.Add("base_amount", parameterToString(*r.baseAmount, ""))
 	// to determine the Content-Type header

@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="v1RateEstimate"></a>
 # **v1RateEstimate**
-> ResponseEstimateOut v1RateEstimate(from, toCurrency, baseAmount)
+> ResponseEstimateOut v1RateEstimate(baseCurrency, toCurrency, baseAmount)
 
 Estimate the amount of currency exchange.
 
@@ -38,11 +38,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RateApi apiInstance = new RateApi(defaultClient);
-    String from = "TON"; // String | Specified the base currency that needs to be estimated
+    String baseCurrency = "TON"; // String | Specified the base currency that needs to be estimated
     String toCurrency = "NOT"; // String | Specify the target currency.
     String baseAmount = "100"; // String | Specify the amount of base currency that need to be estimated.
     try {
-      ResponseEstimateOut result = apiInstance.v1RateEstimate(from, toCurrency, baseAmount);
+      ResponseEstimateOut result = apiInstance.v1RateEstimate(baseCurrency, toCurrency, baseAmount);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RateApi#v1RateEstimate");
@@ -59,7 +59,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **from** | **String**| Specified the base currency that needs to be estimated |
+ **baseCurrency** | **String**| Specified the base currency that needs to be estimated |
  **toCurrency** | **String**| Specify the target currency. |
  **baseAmount** | **String**| Specify the amount of base currency that need to be estimated. |
 

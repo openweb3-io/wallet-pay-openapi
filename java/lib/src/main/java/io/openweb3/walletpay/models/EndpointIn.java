@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * EndpointIn
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-10-10T02:53:44.256449+08:00[Asia/Shanghai]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2024-11-21T19:23:02.216639+08:00[Asia/Shanghai]")
 public class EndpointIn {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
@@ -100,7 +100,7 @@ public class EndpointIn {
    * The webhook endpoint expected event types
    * @return filterTypes
   **/
-  @ApiModelProperty(example = "[\"order_expired\"]", required = true, value = "The webhook endpoint expected event types")
+  @ApiModelProperty(example = "[\"order.expired\"]", required = true, value = "The webhook endpoint expected event types")
 
   public List<String> getFilterTypes() {
     return filterTypes;

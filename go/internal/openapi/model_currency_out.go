@@ -30,17 +30,17 @@ type CurrencyOut struct {
 	CanWithdraw bool `json:"can_withdraw"`
 	// Is it posible to transfer in custody wallet
 	CanTransfer bool `json:"can_transfer"`
-	// Big decimal string representation. The min amount to deposit.
+	// Big integer string representation. The min amount to deposit.
 	MinDepositAmount string `json:"min_deposit_amount"`
-	// Big decimal string representation. The min amount to withdraw.
+	// Big integer string representation. The min amount to withdraw.
 	MinWithdrawAmount string `json:"min_withdraw_amount"`
-	// Big decimal string representation. The max amount to withdraw.
+	// Big integer string representation. The max amount to withdraw.
 	MaxWithdrawAmount string `json:"max_withdraw_amount"`
 	// Currency precision
 	Precision int32 `json:"precision"`
 	// Currency decimals
 	Decimals int32 `json:"decimals"`
-	Items *[]CurrencyNetwork `json:"items,omitempty"`
+	Networks *[]CurrencyNetwork `json:"networks,omitempty"`
 }
 
 // NewCurrencyOut instantiates a new CurrencyOut object
@@ -360,36 +360,36 @@ func (o *CurrencyOut) SetDecimals(v int32) {
 	o.Decimals = v
 }
 
-// GetItems returns the Items field value if set, zero value otherwise.
-func (o *CurrencyOut) GetItems() []CurrencyNetwork {
-	if o == nil || o.Items == nil {
+// GetNetworks returns the Networks field value if set, zero value otherwise.
+func (o *CurrencyOut) GetNetworks() []CurrencyNetwork {
+	if o == nil || o.Networks == nil {
 		var ret []CurrencyNetwork
 		return ret
 	}
-	return *o.Items
+	return *o.Networks
 }
 
-// GetItemsOk returns a tuple with the Items field value if set, nil otherwise
+// GetNetworksOk returns a tuple with the Networks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CurrencyOut) GetItemsOk() (*[]CurrencyNetwork, bool) {
-	if o == nil || o.Items == nil {
+func (o *CurrencyOut) GetNetworksOk() (*[]CurrencyNetwork, bool) {
+	if o == nil || o.Networks == nil {
 		return nil, false
 	}
-	return o.Items, true
+	return o.Networks, true
 }
 
-// HasItems returns a boolean if a field has been set.
-func (o *CurrencyOut) HasItems() bool {
-	if o != nil && o.Items != nil {
+// HasNetworks returns a boolean if a field has been set.
+func (o *CurrencyOut) HasNetworks() bool {
+	if o != nil && o.Networks != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetItems gets a reference to the given []CurrencyNetwork and assigns it to the Items field.
-func (o *CurrencyOut) SetItems(v []CurrencyNetwork) {
-	o.Items = &v
+// SetNetworks gets a reference to the given []CurrencyNetwork and assigns it to the Networks field.
+func (o *CurrencyOut) SetNetworks(v []CurrencyNetwork) {
+	o.Networks = &v
 }
 
 func (o CurrencyOut) MarshalJSON() ([]byte, error) {
@@ -430,8 +430,8 @@ func (o CurrencyOut) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["decimals"] = o.Decimals
 	}
-	if o.Items != nil {
-		toSerialize["items"] = o.Items
+	if o.Networks != nil {
+		toSerialize["networks"] = o.Networks
 	}
 	return json.Marshal(toSerialize)
 }

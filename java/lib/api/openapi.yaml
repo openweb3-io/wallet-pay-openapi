@@ -165,7 +165,7 @@ paths:
       - description: Specified the base currency that needs to be estimated
         explode: true
         in: query
-        name: from
+        name: base_currency
         required: true
         schema:
           description: Specified the base currency that needs to be estimated.
@@ -1157,7 +1157,7 @@ components:
       properties:
         event_type:
           description: Message event type
-          example: order_paid
+          example: order.paid
           maxLength: 256
           minLength: 1
           type: string
@@ -1170,49 +1170,49 @@ components:
           code: USDT
           precision: 6
           can_deposit: false
-          min_withdraw_amount: "0.0012345"
-          max_withdraw_amount: "0.0012345"
+          networks:
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          min_withdraw_amount: "12345"
+          max_withdraw_amount: "12345"
           decimals: 12
           name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_transfer: false
-          min_deposit_amount: "0.0012345"
-          items:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
+          min_deposit_amount: "12345"
       properties:
         data:
           $ref: '#/components/schemas/CurrencyOut'
@@ -1281,15 +1281,15 @@ components:
         can_deposit: false
         contract_address: contract_address
         min_fee_for_ct_addr: min_fee_for_ct_addr
-        min_withdraw_amount: "0.0012345"
+        min_withdraw_amount: "12345"
         network: ERC-20
-        max_withdraw_amount: "0.0012345"
+        max_withdraw_amount: "12345"
         min_collect_amount: min_collect_amount
         min_fee: min_fee
         max_fee_for_ct_addr: max_fee_for_ct_addr
         name: USDT
         can_withdraw: false
-        min_deposit_amount: "0.0012345"
+        min_deposit_amount: "12345"
         can_transfer: false
         max_fee: max_fee
         min_confirmations: 0
@@ -1313,20 +1313,20 @@ components:
           minLength: 1
           type: string
         min_deposit_amount:
-          description: Big decimal string representation. The min amount to deposit.
-          example: "0.0012345"
+          description: Big integer string representation. The min amount to deposit.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
         min_withdraw_amount:
-          description: Big decimal string representation. The min amount to withdraw.
-          example: "0.0012345"
+          description: Big integer string representation. The min amount to withdraw.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
         max_withdraw_amount:
-          description: Big decimal string representation. The max amount to withdraw.
-          example: "0.0012345"
+          description: Big integer string representation. The max amount to withdraw.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
@@ -1392,49 +1392,49 @@ components:
         code: USDT
         precision: 6
         can_deposit: false
-        min_withdraw_amount: "0.0012345"
-        max_withdraw_amount: "0.0012345"
+        networks:
+        - code: USDT
+          need_memo: true
+          can_deposit: false
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: "12345"
+          network: ERC-20
+          max_withdraw_amount: "12345"
+          min_collect_amount: min_collect_amount
+          min_fee: min_fee
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          name: USDT
+          can_withdraw: false
+          min_deposit_amount: "12345"
+          can_transfer: false
+          max_fee: max_fee
+          min_confirmations: 0
+        - code: USDT
+          need_memo: true
+          can_deposit: false
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: "12345"
+          network: ERC-20
+          max_withdraw_amount: "12345"
+          min_collect_amount: min_collect_amount
+          min_fee: min_fee
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          name: USDT
+          can_withdraw: false
+          min_deposit_amount: "12345"
+          can_transfer: false
+          max_fee: max_fee
+          min_confirmations: 0
+        min_withdraw_amount: "12345"
+        max_withdraw_amount: "12345"
         decimals: 12
         name: USDT
         logo: http://logo.jpg
         can_withdraw: false
         can_transfer: false
-        min_deposit_amount: "0.0012345"
-        items:
-        - code: USDT
-          need_memo: true
-          can_deposit: false
-          contract_address: contract_address
-          min_fee_for_ct_addr: min_fee_for_ct_addr
-          min_withdraw_amount: "0.0012345"
-          network: ERC-20
-          max_withdraw_amount: "0.0012345"
-          min_collect_amount: min_collect_amount
-          min_fee: min_fee
-          max_fee_for_ct_addr: max_fee_for_ct_addr
-          name: USDT
-          can_withdraw: false
-          min_deposit_amount: "0.0012345"
-          can_transfer: false
-          max_fee: max_fee
-          min_confirmations: 0
-        - code: USDT
-          need_memo: true
-          can_deposit: false
-          contract_address: contract_address
-          min_fee_for_ct_addr: min_fee_for_ct_addr
-          min_withdraw_amount: "0.0012345"
-          network: ERC-20
-          max_withdraw_amount: "0.0012345"
-          min_collect_amount: min_collect_amount
-          min_fee: min_fee
-          max_fee_for_ct_addr: max_fee_for_ct_addr
-          name: USDT
-          can_withdraw: false
-          min_deposit_amount: "0.0012345"
-          can_transfer: false
-          max_fee: max_fee
-          min_confirmations: 0
+        min_deposit_amount: "12345"
       properties:
         code:
           description: Currency code
@@ -1473,20 +1473,20 @@ components:
           example: false
           type: boolean
         min_deposit_amount:
-          description: Big decimal string representation. The min amount to deposit.
-          example: "0.0012345"
+          description: Big integer string representation. The min amount to deposit.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
         min_withdraw_amount:
-          description: Big decimal string representation. The min amount to withdraw.
-          example: "0.0012345"
+          description: Big integer string representation. The min amount to withdraw.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
         max_withdraw_amount:
-          description: Big decimal string representation. The max amount to withdraw.
-          example: "0.0012345"
+          description: Big integer string representation. The max amount to withdraw.
+          example: "12345"
           maxLength: 256
           minLength: 1
           type: string
@@ -1498,7 +1498,7 @@ components:
           description: Currency decimals
           example: 12
           type: integer
-        items:
+        networks:
           items:
             $ref: '#/components/schemas/CurrencyNetwork'
           type: array
@@ -1526,96 +1526,96 @@ components:
           code: USDT
           precision: 6
           can_deposit: false
-          min_withdraw_amount: "0.0012345"
-          max_withdraw_amount: "0.0012345"
+          networks:
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          min_withdraw_amount: "12345"
+          max_withdraw_amount: "12345"
           decimals: 12
           name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_transfer: false
-          min_deposit_amount: "0.0012345"
-          items:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
+          min_deposit_amount: "12345"
         - symbol: USDT
           code: USDT
           precision: 6
           can_deposit: false
-          min_withdraw_amount: "0.0012345"
-          max_withdraw_amount: "0.0012345"
+          networks:
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          - code: USDT
+            need_memo: true
+            can_deposit: false
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: "12345"
+            network: ERC-20
+            max_withdraw_amount: "12345"
+            min_collect_amount: min_collect_amount
+            min_fee: min_fee
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            name: USDT
+            can_withdraw: false
+            min_deposit_amount: "12345"
+            can_transfer: false
+            max_fee: max_fee
+            min_confirmations: 0
+          min_withdraw_amount: "12345"
+          max_withdraw_amount: "12345"
           decimals: 12
           name: USDT
           logo: http://logo.jpg
           can_withdraw: false
           can_transfer: false
-          min_deposit_amount: "0.0012345"
-          items:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "0.0012345"
-            network: ERC-20
-            max_withdraw_amount: "0.0012345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "0.0012345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
+          min_deposit_amount: "12345"
       properties:
         items:
           items:
@@ -1641,96 +1641,96 @@ components:
             code: USDT
             precision: 6
             can_deposit: false
-            min_withdraw_amount: "0.0012345"
-            max_withdraw_amount: "0.0012345"
+            networks:
+            - code: USDT
+              need_memo: true
+              can_deposit: false
+              contract_address: contract_address
+              min_fee_for_ct_addr: min_fee_for_ct_addr
+              min_withdraw_amount: "12345"
+              network: ERC-20
+              max_withdraw_amount: "12345"
+              min_collect_amount: min_collect_amount
+              min_fee: min_fee
+              max_fee_for_ct_addr: max_fee_for_ct_addr
+              name: USDT
+              can_withdraw: false
+              min_deposit_amount: "12345"
+              can_transfer: false
+              max_fee: max_fee
+              min_confirmations: 0
+            - code: USDT
+              need_memo: true
+              can_deposit: false
+              contract_address: contract_address
+              min_fee_for_ct_addr: min_fee_for_ct_addr
+              min_withdraw_amount: "12345"
+              network: ERC-20
+              max_withdraw_amount: "12345"
+              min_collect_amount: min_collect_amount
+              min_fee: min_fee
+              max_fee_for_ct_addr: max_fee_for_ct_addr
+              name: USDT
+              can_withdraw: false
+              min_deposit_amount: "12345"
+              can_transfer: false
+              max_fee: max_fee
+              min_confirmations: 0
+            min_withdraw_amount: "12345"
+            max_withdraw_amount: "12345"
             decimals: 12
             name: USDT
             logo: http://logo.jpg
             can_withdraw: false
             can_transfer: false
-            min_deposit_amount: "0.0012345"
-            items:
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "0.0012345"
-              network: ERC-20
-              max_withdraw_amount: "0.0012345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "0.0012345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "0.0012345"
-              network: ERC-20
-              max_withdraw_amount: "0.0012345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "0.0012345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
+            min_deposit_amount: "12345"
           - symbol: USDT
             code: USDT
             precision: 6
             can_deposit: false
-            min_withdraw_amount: "0.0012345"
-            max_withdraw_amount: "0.0012345"
+            networks:
+            - code: USDT
+              need_memo: true
+              can_deposit: false
+              contract_address: contract_address
+              min_fee_for_ct_addr: min_fee_for_ct_addr
+              min_withdraw_amount: "12345"
+              network: ERC-20
+              max_withdraw_amount: "12345"
+              min_collect_amount: min_collect_amount
+              min_fee: min_fee
+              max_fee_for_ct_addr: max_fee_for_ct_addr
+              name: USDT
+              can_withdraw: false
+              min_deposit_amount: "12345"
+              can_transfer: false
+              max_fee: max_fee
+              min_confirmations: 0
+            - code: USDT
+              need_memo: true
+              can_deposit: false
+              contract_address: contract_address
+              min_fee_for_ct_addr: min_fee_for_ct_addr
+              min_withdraw_amount: "12345"
+              network: ERC-20
+              max_withdraw_amount: "12345"
+              min_collect_amount: min_collect_amount
+              min_fee: min_fee
+              max_fee_for_ct_addr: max_fee_for_ct_addr
+              name: USDT
+              can_withdraw: false
+              min_deposit_amount: "12345"
+              can_transfer: false
+              max_fee: max_fee
+              min_confirmations: 0
+            min_withdraw_amount: "12345"
+            max_withdraw_amount: "12345"
             decimals: 12
             name: USDT
             logo: http://logo.jpg
             can_withdraw: false
             can_transfer: false
-            min_deposit_amount: "0.0012345"
-            items:
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "0.0012345"
-              network: ERC-20
-              max_withdraw_amount: "0.0012345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "0.0012345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "0.0012345"
-              network: ERC-20
-              max_withdraw_amount: "0.0012345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "0.0012345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
+            min_deposit_amount: "12345"
       properties:
         data:
           $ref: '#/components/schemas/ListResponse_CurrencyOut_'
@@ -2119,7 +2119,7 @@ components:
       example:
         uid: unique-order-identifier
         note: note example
-        amount: "0.0012345"
+        amount: "12345000"
         metadata:
           key: metadata
         currency: USDT
@@ -2143,7 +2143,7 @@ components:
           description: Big integer string representation, whose meaning is the value
             of absolute floating-point number multiplied by the corresponding decimals
             of the cryptocurrency.
-          example: "0.0012345"
+          example: "12345000"
           maxLength: 256
           minLength: 1
           type: string
@@ -2400,7 +2400,7 @@ components:
           tag: node
         description: The description for endpoint
         filter_types:
-        - order_expired
+        - order.expired
         disabled: false
         url: http://example.com/endpoint
       properties:
@@ -2415,7 +2415,7 @@ components:
         filter_types:
           description: The webhook endpoint expected event types
           example:
-          - order_expired
+          - order.expired
           items:
             type: string
           type: array
@@ -2465,7 +2465,7 @@ components:
           tag: node
         description: The description for endpoint
         filter_types:
-        - order_expired
+        - order.expired
         disabled: false
         id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
         url: http://example.com/endpoint
@@ -2492,7 +2492,7 @@ components:
         filter_types:
           description: The webhook endpoint expected event types
           example:
-          - order_expired
+          - order.expired
           items:
             type: string
           type: array
@@ -2539,7 +2539,7 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - order_expired
+          - order.expired
           disabled: false
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
@@ -2552,7 +2552,7 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - order_expired
+          - order.expired
           disabled: false
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
@@ -2582,7 +2582,7 @@ components:
             tag: node
           description: The description for endpoint
           filter_types:
-          - order_expired
+          - order.expired
           disabled: false
           id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
           url: http://example.com/endpoint
@@ -2609,7 +2609,7 @@ components:
               tag: node
             description: The description for endpoint
             filter_types:
-            - order_expired
+            - order.expired
             disabled: false
             id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
             url: http://example.com/endpoint
@@ -2622,7 +2622,7 @@ components:
               tag: node
             description: The description for endpoint
             filter_types:
-            - order_expired
+            - order.expired
             disabled: false
             id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
             url: http://example.com/endpoint

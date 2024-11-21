@@ -26,15 +26,15 @@ export class CurrencyNetwork {
     */
     'name': string;
     /**
-    * Big decimal string representation. The min amount to deposit.
+    * Big integer string representation. The min amount to deposit.
     */
     'minDepositAmount': string;
     /**
-    * Big decimal string representation. The min amount to withdraw.
+    * Big integer string representation. The min amount to withdraw.
     */
     'minWithdrawAmount': string;
     /**
-    * Big decimal string representation. The max amount to withdraw.
+    * Big integer string representation. The max amount to withdraw.
     */
     'maxWithdrawAmount': string;
     /**
