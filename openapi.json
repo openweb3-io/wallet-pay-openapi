@@ -1791,7 +1791,7 @@
                     "event_type": {
                         "description": "Message event type",
                         "type": "string",
-                        "example": "order_paid",
+                        "example": "order.paid",
                         "maxLength": 256,
                         "minLength": 1
                     },
@@ -1891,22 +1891,22 @@
                         "type": "string"
                     },
                     "min_deposit_amount": {
-                        "description": "Big decimal string representation. The min amount to deposit.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The min amount to deposit.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     },
                     "min_withdraw_amount": {
-                        "description": "Big decimal string representation. The min amount to withdraw.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The min amount to withdraw.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     },
                     "max_withdraw_amount": {
-                        "description": "Big decimal string representation. The max amount to withdraw.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The max amount to withdraw.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
@@ -2024,22 +2024,22 @@
                         "type": "boolean"
                     },
                     "min_deposit_amount": {
-                        "description": "Big decimal string representation. The min amount to deposit.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The min amount to deposit.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     },
                     "min_withdraw_amount": {
-                        "description": "Big decimal string representation. The min amount to withdraw.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The min amount to withdraw.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
                     },
                     "max_withdraw_amount": {
-                        "description": "Big decimal string representation. The max amount to withdraw.",
-                        "example": "0.0012345",
+                        "description": "Big integer string representation. The max amount to withdraw.",
+                        "example": "12345",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
@@ -2459,7 +2459,7 @@
                     },
                     "amount": {
                         "description": "Big integer string representation, whose meaning is the value of absolute floating-point number multiplied by the corresponding decimals of the cryptocurrency.",
-                        "example": "0.0012345",
+                        "example": "12345000",
                         "maxLength": 256,
                         "minLength": 1,
                         "type": "string"
@@ -2655,7 +2655,7 @@
                     "filter_types": {
                         "description": "The webhook endpoint expected event types",
                         "example": [
-                            "order_expired"
+                            "order.expired"
                         ],
                         "items": {
                             "type": "string"
@@ -2736,7 +2736,7 @@
                     "filter_types": {
                         "description": "The webhook endpoint expected event types",
                         "example": [
-                            "order_expired"
+                            "order.expired"
                         ],
                         "items": {
                             "type": "string"
