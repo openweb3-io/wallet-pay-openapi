@@ -1,16 +1,16 @@
 package io.openweb3.walletpay;
 
 public class RatesOptions {
-    private String from;
+    private String base_currency;
     private String to_currency;
     private String base_amount;
 
-    public void setFrom(final String from) {
-        this.from = from;
+    public void setBaseCurrency(final String base_currency) {
+        this.base_currency = base_currency;
     }
 
-    public String getFrom() {
-        return from;
+    public String getBaseCurrency() {
+        return base_currency;
     }
 
 

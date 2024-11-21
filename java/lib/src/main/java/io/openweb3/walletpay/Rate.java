@@ -15,7 +15,7 @@ public final class Rate {
 
 	public EstimateOut estimate(final RatesOptions options) throws ApiException {
 		try {
-			return api.v1RateEstimate(options.getFrom(), options.getToCurrency(), options.getBaseAmount()).getData();
+			return api.v1RateEstimate(options.getBaseCurrency(), options.getToCurrency(), options.getBaseAmount()).getData();
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

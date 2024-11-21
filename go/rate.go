@@ -19,14 +19,14 @@ type Rate struct {
 }
 
 type EstimateOptions struct {
-	From       string
-	BaseAmount string
-	ToCurrency string
+	BaseCurrency string
+	BaseAmount   string
+	ToCurrency   string
 }
 
 func (e *Rate) Estimate(ctx context.Context, options *EstimateOptions) (*EstimateOut, error) {
 	req := e.api.RateApi.V1RateEstimate(ctx)
-	req = req.From(options.From)
+	req = req.BaseCurrency(options.BaseCurrency)
 	req = req.BaseAmount(options.BaseAmount)
 	req = req.ToCurrency(options.ToCurrency)
 	out, res, err := req.Execute()
