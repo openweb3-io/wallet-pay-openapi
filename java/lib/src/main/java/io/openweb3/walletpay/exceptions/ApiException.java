@@ -6,14 +6,14 @@ import com.google.gson.Gson;
 
 class APIError {
     private String code;
-    private String detail;
+    private String msg;
 
     public String getCode() {
         return this.code;
     }
 
-    public String getDetail() {
-        return this.detail;
+    public String getMsg() {
+        return this.msg;
     }
 }
 
@@ -28,7 +28,7 @@ public class ApiException extends io.openweb3.walletpay.internal.ApiException {
             try {
                 Gson gson = new Gson();
                 APIError error = gson.fromJson(responseBody, APIError.class);
-                this.message = String.format("%s (%s)", error.getDetail(), error.getCode());
+                this.message = String.format("%s (%s)", error.getMsg(), error.getCode());
             } catch (Exception e) {
                 this.message = responseBody;
             }
