@@ -81,9 +81,6 @@ class SignatureMiddleware implements Middleware {
 }
 
 export interface ApiClientOptions {
-  apiKey: string;
-  secret: string;
-
   debug?: boolean;
   serverUrl?: string;
 }
@@ -97,16 +94,16 @@ export class ApiClient {
   public readonly Rates: Rates;
   public readonly Refunds: Refunds;
 
-  public constructor(options: ApiClientOptions) {
+  public constructor(apiKey: string, secret: string, options: ApiClientOptions) {
     const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
 
     const config = createConfiguration({
       baseServer,
-      promiseMiddleware: [new UserAgentMiddleware(), new SignatureMiddleware(options.secret)],
+      promiseMiddleware: [new UserAgentMiddleware(), new SignatureMiddleware(secret)],
       authMethods: {
-        ApiKeyAuth: options.apiKey,
+        ApiKeyAuth: apiKey,
       },
     });
 
@@ -142,11 +139,14 @@ class Orders {
   }
 
   public async list(options: OrderListOptions): Promise<PageOrder> {
-    return (await this.api.v1OrdersList({ ...options }));
+    return await this.api.v1OrdersList({ ...options });
   }
 
-  public async create(createOrderRequest: CreateOrderRequest, options?: PostOptions): Promise<Order> {
-    return (await this.api.v1OrdersCreate({ createOrderRequest, ...options }));
+  public async create(
+    createOrderRequest: CreateOrderRequest,
+    options?: PostOptions
+  ): Promise<Order> {
+    return await this.api.v1OrdersCreate({ createOrderRequest, ...options });
   }
 }
 
@@ -164,11 +164,11 @@ class Currencies {
   }
 
   public async list(options: CurrencyListOptions): Promise<CursorPageCurrency> {
-    return (await this.api.v1CurrenciesList({ ...options }));
+    return await this.api.v1CurrenciesList({ ...options });
   }
 
   public async findByCode(code: string): Promise<Currency> {
-    return (await this.api.v1CurrenciesRetrieve({ code }));
+    return await this.api.v1CurrenciesRetrieve({ code });
   }
 }
 
@@ -186,11 +186,11 @@ class Rates {
   }
 
   public async estimate(options: EstimateOptions): Promise<EstimateResponse> {
-    return (await this.api.v1RatesEstimate({ ...options }));
+    return await this.api.v1RatesEstimate({ ...options });
   }
 
   public async getRates(getRatesRequest: GetRatesRequest): Promise<GetRatesResponse> {
-    return (await this.api.v1RatesList({ getRatesRequest }));
+    return await this.api.v1RatesList({ getRatesRequest });
   }
 }
 
@@ -205,7 +205,7 @@ class Transfers {
     transferRequest: TransferRequest,
     options?: PostOptions
   ): Promise<TransferResponse> {
-    return (await this.api.v1TransfersTransfer({ transferRequest, ...options }));
+    return await this.api.v1TransfersTransfer({ transferRequest, ...options });
   }
 }
 
@@ -225,7 +225,7 @@ class Endpoints {
     createEndpointRequest: CreateEndpointRequest,
     options?: PostOptions
   ): Promise<Endpoint> {
-    return (await this.api.v1WebhookEndpointsCreate({ createEndpointRequest, ...options }));
+    return await this.api.v1WebhookEndpointsCreate({ createEndpointRequest, ...options });
   }
 
   public async delete(endpointId: string) {
@@ -233,11 +233,11 @@ class Endpoints {
   }
 
   public async retrieve(endpointId: string): Promise<Endpoint> {
-    return (await this.api.v1WebhookEndpointsRetrieve({ endpointId }));
+    return await this.api.v1WebhookEndpointsRetrieve({ endpointId });
   }
 
   public async list(options: EndpointListOptions): Promise<CursorPageEndpoint> {
-    return (await this.api.v1WebhookEndpointsList({ ...options }));
+    return await this.api.v1WebhookEndpointsList({ ...options });
   }
 }
 
@@ -253,14 +253,17 @@ class Refunds {
   }
 
   public async list(options: RefundListOptions): Promise<PageRefund> {
-    return (await this.api.v1RefundsList({ ...options }));
+    return await this.api.v1RefundsList({ ...options });
   }
 
-  public async create(createRefundRequest: CreateRefundRequest, options?: PostOptions): Promise<Refund> {
-    return (await this.api.v1RefundsCreate({ createRefundRequest, ...options }));
+  public async create(
+    createRefundRequest: CreateRefundRequest,
+    options?: PostOptions
+  ): Promise<Refund> {
+    return await this.api.v1RefundsCreate({ createRefundRequest, ...options });
   }
 
   public async retrieve(idOrUid: string): Promise<Refund> {
-    return (await this.api.v1RefundsRetrieve({ idOrUid }));
+    return await this.api.v1RefundsRetrieve({ idOrUid });
   }
 }
