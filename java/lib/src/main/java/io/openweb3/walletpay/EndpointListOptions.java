@@ -1,19 +1,9 @@
 package io.openweb3.walletpay;
 
-import io.openweb3.walletpay.models.Ordering;
 
 public class EndpointListOptions  {
-    private Ordering order;
     private String cursor;
     private Integer limit;
-
-    public void setOrder(final Ordering order) {
-        this.order = order;
-    }
-
-    public Ordering getOrder() {
-        return this.order;
-    }
 
     public void setCursor(final String cursor) {
         this.cursor = cursor;
@@ -29,11 +19,6 @@ public class EndpointListOptions  {
 	public Integer getLimit() {
 		return limit;
 	}
-
-    public EndpointListOptions order(final Ordering order) {
-        this.order = order;
-        return this;
-    }
 
     public EndpointListOptions cursor(final String cursor) {
         this.cursor = cursor;

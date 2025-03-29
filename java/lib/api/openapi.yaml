@@ -1,1085 +1,795 @@
 openapi: 3.0.2
 info:
-  title: Wallet-Pay API Documentations
+  description: This is a custody wallet pay service openapi server.
+  title: WalletPay API Documentation
   version: "1.0"
+externalDocs: {}
 servers:
-- url: https://api.wallet-pay.openweb3.io
-security:
-- ApiKeyAuth: []
+- description: WalletPay OpenAPI Server
+  url: https://api.wallet-pay.openweb3.io
 paths:
   /api/v1/currencies:
     get:
-      description: List currencies.
-      operationId: v1.currency.list
+      description: Retrieve a list of all available currencies.
+      operationId: v1.currencies.list
       parameters:
-      - description: Limit the number of returned items
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 20
-          description: Limit the number of returned items
-          example: 100
-          format: uint64
-          minimum: 0
-          type: integer
-        style: form
-      - description: Specifying the start cursor position
-        explode: true
-        in: query
-        name: cursor
-        required: false
-        schema:
-          description: Specifying the start cursor position
-          type: string
-        style: form
-      - description: Specifying if currency supports fetching rates
+      - description: Filter currencies by rated status
         explode: true
         in: query
         name: rated
         required: false
         schema:
-          description: Specifying if currency supports fetching rates
-          example: true
+          description: Filter currencies by rated status
           type: boolean
         style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseListCurrencyOut'
-          description: OK
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: List currencies
-      tags:
-      - Currency
-      x-accepts: application/json
-  /api/v1/currencies/{code}:
-    get:
-      description: Get specified currency.
-      operationId: v1.currency.findByCode
-      parameters:
-      - description: Specified currency code.
-        explode: false
-        in: path
-        name: code
-        required: true
-        schema:
-          description: Specified currency code.
-          example: USDT
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseCurrencyOut'
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseCurrencyOut'
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: Find currency by code
-      tags:
-      - Currency
-      x-accepts: application/json
-  /api/v1/rates/estimate:
-    get:
-      description: Estimate the amount of currency exchange.
-      operationId: v1.rate.estimate
-      parameters:
-      - description: Specified the base currency that needs to be estimated
-        explode: true
-        in: query
-        name: base_currency
-        required: true
-        schema:
-          description: Specified the base currency that needs to be estimated.
-          example: TON
-          type: string
-        style: form
-      - description: Specify the target currency.
-        explode: true
-        in: query
-        name: to_currency
-        required: true
-        schema:
-          description: Specify the target currency.
-          example: NOT
-          type: string
-        style: form
-      - description: Specify the amount of base currency that need to be estimated.
-        explode: true
-        in: query
-        name: base_amount
-        required: true
-        schema:
-          description: Specify the amount of base currency that need to be estimated.
-          example: "100"
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseEstimateOut'
-          description: OK
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: Estimate the amount of currency exchange.
-      tags:
-      - Rate
-      x-accepts: application/json
-  /api/v1/rates:
-    post:
-      description: Query exchange rates between different currencies.
-      operationId: v1.rate.get_rates
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/GetRatesIn'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseRatesOut'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-      summary: 'Query exchange rates between different currencies. '
-      tags:
-      - Rate
-      x-readme:
-        code-samples: []
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/transfers:
-    post:
-      description: Create a new transfer.
-      operationId: v1.transfer.create
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/TransferIn'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseTransferOut'
-          description: OK
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseTransferOut'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-      summary: Create Transfer
-      tags:
-      - Transfer
-      x-readme:
-        code-samples: []
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/refunds:
-    get:
-      description: List refunds.
-      operationId: v1.refund.list
-      parameters:
-      - description: Limit the number of returned items
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          default: 20
-          description: Limit the number of returned items
-          example: 100
-          format: uint64
-          minimum: 0
-          type: integer
-        style: form
-      - description: Specifying the page index
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          default: 0
-          description: Specifying the page index
-          example: 0
-          type: integer
-        style: form
-      - description: Optional order id
-        explode: true
-        in: query
-        name: order_id
-        required: false
-        schema:
-          description: Optional order id
-          example: 923be366-51d1-447f-a0e8-db4c75dffae5
-          nullable: true
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseListRefundOut'
-          description: OK
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: List Refunds
-      tags:
-      - Refund
-      x-accepts: application/json
-    post:
-      description: Create a refund.
-      operationId: v1.refund.create
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/RefundIn'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseRefundOut'
-          description: OK
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseRefundOut'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-      summary: Create Refund
-      tags:
-      - Refund
-      x-readme:
-        code-samples: []
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/refunds/{idOrUid}:
-    get:
-      description: Get specified refund.
-      operationId: v1.refund.get
-      parameters:
-      - description: Specified the refund id or refund uid.
-        explode: false
-        in: path
-        name: idOrUid
-        required: true
-        schema:
-          description: Specified the refund id or refund uid.
-          example: 11b9ca57-0559-403a-bf8e-7bd1a31aff45
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseRefundOut'
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseRefundOut'
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: Get Refund
-      tags:
-      - Refund
-      x-accepts: application/json
-  /api/v1/orders:
-    get:
-      description: List orders.
-      operationId: v1.order.list
-      parameters:
-      - description: Limit the number of returned items
-        explode: true
-        in: query
-        name: size
-        required: false
-        schema:
-          default: 20
-          description: Limit the number of returned items
-          example: 100
-          format: uint64
-          minimum: 0
-          type: integer
-        style: form
-      - description: Specifying the page index
-        explode: true
-        in: query
-        name: page
-        required: false
-        schema:
-          default: 0
-          description: Specifying the page index
-          example: 0
-          type: integer
-        style: form
-      - description: Optional wallet id
-        explode: true
-        in: query
-        name: wallet_id
-        required: false
-        schema:
-          description: Optional wallet id
-          example: wallet_id
-          nullable: true
-          type: string
-        style: form
-      - description: Optional currency code
-        explode: true
-        in: query
-        name: currency
-        required: false
-        schema:
-          description: Optional currency code
-          example: USDT
-          nullable: true
-          type: string
-        style: form
-      - description: Optional order status
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          description: Optional order status
-          enum:
-          - PENDING
-          - PAID
-          - EXPIRED
-          - FAILED
-          - COMPLETED
-          example: PENDING
-          nullable: true
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseListOrderOut'
-          description: OK
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: List Orders
-      tags:
-      - Order
-      x-accepts: application/json
-    post:
-      description: Create a new order.
-      operationId: v1.order.create
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/OrderIn'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseOrderOut'
-          description: OK
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseOrderOut'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-      summary: Create Order
-      tags:
-      - Order
-      x-readme:
-        code-samples: []
-      x-contentType: application/json
-      x-accepts: application/json
-  /api/v1/orders/{idOrUid}:
-    get:
-      description: Get specified order.
-      operationId: v1.order.get
-      parameters:
-      - description: Specified the order id or order uid.
-        explode: false
-        in: path
-        name: idOrUid
-        required: true
-        schema:
-          description: Specified the order id or order uid.
-          example: 11b9ca57-0559-403a-bf8e-7bd1a31aff45
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseOrderOut'
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseOrderOut'
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Internal Server Error
-      summary: Get order
-      tags:
-      - Order
-      x-accepts: application/json
-  /api/v1/webhooks/endpoints:
-    get:
-      description: List endpoints.
-      operationId: v1.endpoint.list
-      parameters:
-      - description: Limit the number of returned items
-        explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          default: 20
-          description: Limit the number of returned items
-          example: 100
-          format: uint64
-          minimum: 0
-          type: integer
-        style: form
-      - description: Specifying the start cursor position
+      - description: Pagination cursor for fetching next page
         explode: true
         in: query
         name: cursor
         required: false
         schema:
-          description: Specifying the start cursor position
+          description: Pagination cursor for fetching next page
           type: string
         style: form
-      - description: The sorting order of the returned items
+      - description: Number of records to return per page
         explode: true
         in: query
-        name: ordering
+        name: limit
+        required: true
+        schema:
+          description: Number of records to return per page
+          type: integer
+        style: form
+      - description: Filter currencies by application ID
+        explode: true
+        in: query
+        name: app_id
         required: false
         schema:
-          $ref: '#/components/schemas/Ordering'
+          description: Filter currencies by application ID
+          type: string
         style: form
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseListEndpointOut'
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
-      summary: List endpoints
-      tags:
-      - Webhook Endpoint
-      x-accepts: application/json
-    post:
-      description: Create a webhook endpoint.
-      operationId: v1.endpoint.create
-      parameters: []
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EndpointIn'
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
+                $ref: '#/components/schemas/CursorPage-Currency'
+          description: OK
         "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Bad request
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Internal Server Error
-      summary: Create endpoint
+      security:
+      - ApiKeyAuth: []
+      summary: List currencies
       tags:
-      - Webhook Endpoint
-      x-readme:
-        code-samples: []
+      - currencies
+      x-accepts: application/json
+  /api/v1/currencies/{code}:
+    get:
+      description: Get currency info by currency code
+      operationId: v1.currencies.retrieve
+      parameters:
+      - description: Currency code
+        explode: false
+        in: path
+        name: code
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Currency'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Get Currency
+      tags:
+      - currencies
+      x-accepts: application/json
+  /api/v1/orders:
+    get:
+      description: Retrieve a list of orders with pagination
+      operationId: v1.orders.list
+      parameters:
+      - description: Filter orders by wallet ID
+        explode: true
+        in: query
+        name: wallet_id
+        required: false
+        schema:
+          description: Filter orders by wallet ID
+          type: string
+        style: form
+      - description: Filter orders by currency
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          description: Filter orders by currency
+          type: string
+        style: form
+      - description: Order status enum
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Order status enum
+          type: string
+          x-enum-varnames:
+          - OrderStatusPending
+          - OrderStatusPaid
+          - OrderStatusFailed
+          - OrderStatusExpired
+          - OrderStatusCompleted
+        style: form
+      - description: Page number for pagination, starting from 0
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          description: Page number for pagination, starting from 0
+          type: integer
+        style: form
+      - description: Number of items per page
+        explode: true
+        in: query
+        name: size
+        required: true
+        schema:
+          description: Number of items per page
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Order'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List Orders
+      tags:
+      - orders
+      x-accepts: application/json
+    post:
+      description: Create a new payment order
+      operationId: v1.orders.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+        description: Order details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Create Order
+      tags:
+      - orders
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/orders/{idOrUid}:
+    get:
+      description: Get order details by ID or UID
+      operationId: v1.orders.retrieve
+      parameters:
+      - description: Order ID or UID
+        explode: false
+        in: path
+        name: idOrUid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve Order
+      tags:
+      - orders
+      x-accepts: application/json
+  /api/v1/rates:
+    post:
+      description: Get exchange rates for multiple currency pairs.
+      operationId: v1.rates.list
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GetRatesRequest'
+        description: Currency pairs to get rates for
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRatesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List exchange rates
+      tags:
+      - rates
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/rates/estimate:
+    get:
+      description: Convert an amount from one currency to another using current exchange
+        rates.
+      operationId: v1.rates.estimate
+      parameters:
+      - description: Source currency code
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          description: Source currency code
+          minLength: 1
+          type: string
+        style: form
+      - description: Amount in source currency to convert
+        explode: true
+        in: query
+        name: base_amount
+        required: true
+        schema:
+          description: Amount in source currency to convert
+          type: string
+        style: form
+      - description: Target currency code
+        explode: true
+        in: query
+        name: to_currency
+        required: true
+        schema:
+          description: Target currency code
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EstimateResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Estimate currency conversion
+      tags:
+      - rates
+      x-accepts: application/json
+  /api/v1/refunds:
+    get:
+      description: Retrieve a list of refunds with pagination
+      operationId: v1.refunds.list
+      parameters:
+      - description: Filter refunds by order ID
+        explode: true
+        in: query
+        name: order_id
+        required: false
+        schema:
+          description: Filter refunds by order ID
+          type: string
+        style: form
+      - description: Page number for pagination, starting from 0
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          description: Page number for pagination, starting from 0
+          type: integer
+        style: form
+      - description: Number of items per page
+        explode: true
+        in: query
+        name: size
+        required: true
+        schema:
+          description: Number of items per page
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Page-Refund'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List Refunds
+      tags:
+      - refunds
+      x-accepts: application/json
+    post:
+      description: Create a new refund for an order
+      operationId: v1.refunds.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRefundRequest'
+        description: Refund details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Create Refund
+      tags:
+      - refunds
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/refunds/{idOrUid}:
+    get:
+      description: Get refund details by ID or UID
+      operationId: v1.refunds.retrieve
+      parameters:
+      - description: Refund ID or UID
+        explode: false
+        in: path
+        name: idOrUid
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Refund'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Not Found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve Refund
+      tags:
+      - refunds
+      x-accepts: application/json
+  /api/v1/transfers:
+    post:
+      description: Transfer funds from merchant wallet to another wallet
+      operationId: v1.transfers.transfer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransferRequest'
+        description: Transfer details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransferResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Transfer Funds
+      tags:
+      - transfers
+      x-contentType: application/json
+      x-accepts: application/json
+  /api/v1/webhooks/endpoints:
+    get:
+      description: Retrieve a list of webhook endpoints with cursor-based pagination
+      operationId: v1.webhook-endpoints.list
+      parameters:
+      - description: The cursor for pagination
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          description: The cursor for pagination
+          type: string
+        style: form
+      - description: The limit of items per page
+        explode: true
+        in: query
+        name: limit
+        required: true
+        schema:
+          description: The limit of items per page
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CursorPage-Endpoint'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List Webhook Endpoints
+      tags:
+      - webhook-endpoints
+      x-accepts: application/json
+    post:
+      description: Create a new webhook endpoint for receiving event notifications
+      operationId: v1.webhook-endpoints.create
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEndpointRequest'
+        description: Webhook endpoint details
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Endpoint'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Unauthorized
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Create Webhook Endpoint
+      tags:
+      - webhook-endpoints
       x-contentType: application/json
       x-accepts: application/json
   /api/v1/webhooks/endpoints/{endpointId}:
     delete:
-      description: delete the specified webhook endpoint.
-      operationId: v1.endpoint.delete
+      description: Delete a webhook endpoint by ID
+      operationId: v1.webhook-endpoints.delete
       parameters:
-      - description: Specified the endpoint id.
+      - description: Webhook endpoint ID
         explode: false
         in: path
         name: endpointId
         required: true
         schema:
-          description: Specified the endpoint id.
-          example: wb_12345xsfei
           type: string
         style: simple
       responses:
         "200":
           content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
-        "201":
+            application/json: {}
+          description: OK
+        "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Internal Server Error
-      summary: Delete endpoint
+      security:
+      - ApiKeyAuth: []
+      summary: Delete Webhook Endpoint
       tags:
-      - Webhook Endpoint
+      - webhook-endpoints
       x-accepts: application/json
     get:
-      description: get the specified webhook endpoint.
-      operationId: v1.endpoint.get
+      description: Get webhook endpoint details by ID
+      operationId: v1.webhook-endpoints.retrieve
       parameters:
-      - description: Specified the endpoint id or endpoint uid.
+      - description: Webhook endpoint ID
         explode: false
         in: path
         name: endpointId
         required: true
         schema:
-          description: Specified the endpoint id.
-          example: wb_12345xsfei
           type: string
         style: simple
       responses:
@@ -1087,287 +797,368 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
-        "201":
+                $ref: '#/components/schemas/Endpoint'
+          description: OK
+        "400":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseEndpointOut'
+                $ref: '#/components/schemas/Error'
+          description: Bad Request
         "401":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Forbidden
         "404":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Not Found
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Conflict
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ResponseError'
-          description: Too Many Requests
         "500":
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ResponseError'
+                $ref: '#/components/schemas/Error'
           description: Internal Server Error
-      summary: Delete endpoint
+      security:
+      - ApiKeyAuth: []
+      summary: Retrieve Webhook Endpoint
       tags:
-      - Webhook Endpoint
+      - webhook-endpoints
       x-accepts: application/json
 components:
   schemas:
-    ResponseError:
-      properties:
-        msg:
-          type: string
-        code:
-          type: integer
-      required:
-      - code
-      - msg
-      title: ResponseError
-      type: object
-    Ordering:
-      description: Defines the ordering in a listing of results.
-      enum:
-      - asc
-      - desc
-      type: string
-    WebhookMessage:
-      description: The request body of the webhook POST request.
-      properties:
-        event_type:
-          description: Message event type
-          example: order.paid
-          maxLength: 256
-          minLength: 1
-          type: string
-        payload:
-          $ref: '#/components/schemas/OrderOut'
-    ResponseCurrencyOut:
+    CreateEndpointRequest:
       example:
-        data:
-          symbol: USDT
-          code: USDT
-          precision: 6
-          can_deposit: false
-          networks:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          min_withdraw_amount: "12345"
-          max_withdraw_amount: "12345"
-          decimals: 12
-          name: USDT
-          logo: http://logo.jpg
-          can_withdraw: false
-          can_transfer: false
-          min_deposit_amount: "12345"
+        headers:
+          key: headers
+        uid: uid
+        metadata:
+          key: ""
+        description: description
+        disabled: true
+        filter_types:
+        - filter_types
+        - filter_types
+        url: url
       properties:
-        data:
-          $ref: '#/components/schemas/CurrencyOut'
-      required:
-      - data
-      title: ResponseCurrencyOut
-      type: object
-    ResponseEstimateOut:
-      example:
-        data:
-          to_amount: "98.8"
-          rate: 6.78
-          base_amount: "10"
-          from: TON
-          to_currency: NOT
-      properties:
-        data:
-          $ref: '#/components/schemas/EstimateOut'
-      required:
-      - data
-      title: EstimateOut
-      type: object
-    EstimateOut:
-      example:
-        to_amount: "98.8"
-        rate: 6.78
-        base_amount: "10"
-        from: TON
-        to_currency: NOT
-      properties:
-        from:
-          description: The base currency.
-          example: TON
-          maxLength: 256
-          minLength: 1
+        description:
+          description: The description of the endpoint
           type: string
-        base_amount:
-          description: The base currency amount.
-          example: "10"
-          type: string
-        to_currency:
-          description: The target currency
-          example: NOT
-          maxLength: 256
-          minLength: 1
-          type: string
-        to_amount:
-          description: The estimated amount in the target currency
-          example: "98.8"
-          type: string
-        rate:
-          description: The conversion rate from the base currency to the target currency.
-          example: 6.78
-          type: number
-      required:
-      - base_amount
-      - from
-      - rate
-      - to_amount
-      - to_currency
-      type: object
-    CurrencyNetwork:
-      example:
-        code: USDT
-        need_memo: true
-        can_deposit: false
-        contract_address: contract_address
-        min_fee_for_ct_addr: min_fee_for_ct_addr
-        min_withdraw_amount: "12345"
-        network: ERC-20
-        max_withdraw_amount: "12345"
-        min_collect_amount: min_collect_amount
-        min_fee: min_fee
-        max_fee_for_ct_addr: max_fee_for_ct_addr
-        name: USDT
-        can_withdraw: false
-        min_deposit_amount: "12345"
-        can_transfer: false
-        max_fee: max_fee
-        min_confirmations: 0
-      properties:
-        code:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        network:
-          description: blockchain network
-          example: ERC-20
-          maxLength: 256
-          minLength: 1
-          type: string
-        name:
-          description: Currency name
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        min_deposit_amount:
-          description: Big integer string representation. The min amount to deposit.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        min_withdraw_amount:
-          description: Big integer string representation. The min amount to withdraw.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        max_withdraw_amount:
-          description: Big integer string representation. The max amount to withdraw.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        can_deposit:
-          description: Is it posible to deposit on blockchain
-          example: false
+        disabled:
+          description: The disabled status of the endpoint
           type: boolean
-        can_withdraw:
-          description: Is it posible to withdraw to blockchain
-          example: false
+        filter_types:
+          description: The filter event types of the endpoint
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        headers:
+          additionalProperties:
+            type: string
+          description: The headers of the endpoint
+          nullable: true
+          type: object
+        metadata:
+          additionalProperties: {}
+          description: The metadata of the endpoint
+          nullable: true
+          type: object
+        uid:
+          description: The uid of the endpoint
+          type: string
+        url:
+          description: The url of the endpoint
+          type: string
+      required:
+      - filter_types
+      - url
+      type: object
+    CreateOrderRequest:
+      example:
+        note: note
+        uid: uid
+        amount: amount
+        metadata:
+          key: metadata
+        user_id: user_id
+        currency: currency
+        expiration: 0
+      properties:
+        amount:
+          description: Amount, supports decimal values
+          type: string
+        currency:
+          description: 'Currency code. e.g.: USDT, TON, ETH'
+          type: string
+        expiration:
+          description: Expiration time in seconds. If payment is not completed within
+            the given time, the order will be automatically canceled
+          type: integer
+        metadata:
+          additionalProperties:
+            type: string
+          description: Order metadata
+          nullable: true
+          type: object
+        note:
+          description: Order description from merchant
+          type: string
+        uid:
+          description: External ID, the order ID in the merchant system
+          type: string
+        user_id:
+          description: ID of the user who needs to make the payment
+          type: string
+      required:
+      - amount
+      - currency
+      - user_id
+      type: object
+    CreateRefundRequest:
+      example:
+        note: note
+        uid: uid
+        amount: amount
+        order_id: order_id
+      properties:
+        amount:
+          description: Amount to refund
+          type: string
+        note:
+          description: Refund description from merchant
+          type: string
+        order_id:
+          description: ID of the order to be refunded
+          type: string
+        uid:
+          description: External ID, the refund ID in the merchant system
+          type: string
+      required:
+      - amount
+      - order_id
+      type: object
+    Currency:
+      example:
+        symbol: symbol
+        code: code
+        need_memo: true
+        precision: 1
+        can_deposit: true
+        contract_address: contract_address
+        networks:
+        - code: code
+          need_memo: true
+          can_deposit: true
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          network: network
+          max_withdraw_amount: max_withdraw_amount
+          min_collect_amount: min_collect_amount
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          can_withdraw: true
+          id: id
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+          min_confirmations: 6
+        - code: code
+          need_memo: true
+          can_deposit: true
+          contract_address: contract_address
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          network: network
+          max_withdraw_amount: max_withdraw_amount
+          min_collect_amount: min_collect_amount
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          can_withdraw: true
+          id: id
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+          min_confirmations: 6
+        min_fee_for_ct_addr: min_fee_for_ct_addr
+        min_withdraw_amount: min_withdraw_amount
+        max_withdraw_amount: max_withdraw_amount
+        rated: true
+        decimals: 0
+        max_fee_for_ct_addr: max_fee_for_ct_addr
+        min_fee: min_fee
+        name: name
+        logo: logo
+        can_withdraw: true
+        can_transfer: true
+        min_deposit_amount: min_deposit_amount
+        max_fee: max_fee
+      properties:
+        can_deposit:
+          description: Whether on-chain deposits are allowed
           type: boolean
         can_transfer:
-          description: Is it posible to transfer in custody wallet
-          example: false
+          description: Whether internal transfers are allowed
           type: boolean
+        can_withdraw:
+          description: Whether on-chain withdrawals are allowed
+          type: boolean
+        code:
+          description: Currency code identifier
+          type: string
         contract_address:
           description: Contract address
           type: string
-        need_memo:
-          description: Indicates if additional Memo information is required, as needed
-            by some currencies or exchanges
-          type: boolean
+        decimals:
+          description: Decimal precision
+          type: integer
+        logo:
+          description: Logo URL
+          type: string
+        max_fee:
+          description: Maximum fee
+          type: string
+        max_fee_for_ct_addr:
+          description: Maximum fee for contract address
+          type: string
+        max_withdraw_amount:
+          description: Maximum on-chain withdrawal amount per transaction
+          type: string
+        min_deposit_amount:
+          description: Minimum deposit amount per transaction
+          type: string
         min_fee:
-          description: Minimum transaction fee
+          description: Minimum fee
+          type: string
+        min_fee_for_ct_addr:
+          description: Minimum fee for contract address
+          type: string
+        min_withdraw_amount:
+          description: Minimum on-chain withdrawal amount per transaction
+          type: string
+        name:
+          description: Currency name
+          type: string
+        need_memo:
+          description: Whether memo is required
+          type: boolean
+        networks:
+          description: Currency networks information
+          items:
+            $ref: '#/components/schemas/CurrencyNetwork'
+          nullable: true
+          type: array
+          uniqueItems: false
+        precision:
+          description: Number of decimal places
+          type: integer
+        rated:
+          description: Whether it participates in exchange rate calculations
+          type: boolean
+        symbol:
+          description: Currency symbol
+          type: string
+      required:
+      - can_deposit
+      - can_transfer
+      - can_withdraw
+      - code
+      - decimals
+      - logo
+      - max_fee
+      - max_fee_for_ct_addr
+      - max_withdraw_amount
+      - min_deposit_amount
+      - min_fee
+      - min_fee_for_ct_addr
+      - min_withdraw_amount
+      - name
+      - need_memo
+      - precision
+      - rated
+      - symbol
+      type: object
+    CurrencyNetwork:
+      example:
+        code: code
+        need_memo: true
+        can_deposit: true
+        contract_address: contract_address
+        min_fee_for_ct_addr: min_fee_for_ct_addr
+        min_withdraw_amount: min_withdraw_amount
+        network: network
+        max_withdraw_amount: max_withdraw_amount
+        min_collect_amount: min_collect_amount
+        max_fee_for_ct_addr: max_fee_for_ct_addr
+        min_fee: min_fee
+        name: name
+        can_withdraw: true
+        id: id
+        can_transfer: true
+        min_deposit_amount: min_deposit_amount
+        max_fee: max_fee
+        min_confirmations: 6
+      properties:
+        can_deposit:
+          description: Whether deposits are enabled for this network
+          type: boolean
+        can_transfer:
+          description: Whether transfers are enabled for this network
+          type: boolean
+        can_withdraw:
+          description: Whether withdrawals are enabled for this network
+          type: boolean
+        code:
+          description: Associated with Currency by code
+          type: string
+        contract_address:
+          description: Smart contract address for token (if applicable)
+          type: string
+        id:
+          description: Unique identifier for the currency network
           type: string
         max_fee:
           description: Maximum transaction fee
           type: string
-        min_fee_for_ct_addr:
-          description: Minimum transaction fee for contract addresses
-          type: string
         max_fee_for_ct_addr:
-          description: Maximum transaction fee for contract addresses
+          description: Maximum fee for contract address transactions
+          type: string
+        max_withdraw_amount:
+          description: Maximum on-chain withdrawal amount per transaction
+          type: string
+        min_collect_amount:
+          description: Minimum collection amount
           type: string
         min_confirmations:
-          description: Minimum number of confirmations required, indicating the number
-            of block confirmations needed for a transaction to be considered valid
+          description: Required number of confirmations for transactions
           type: integer
-        min_collect_amount:
-          description: Minimum amount for collection, i.e., the minimum amount to
-            aggregate small balances to a single address
+        min_deposit_amount:
+          description: Minimum deposit amount per transaction
+          type: string
+        min_fee:
+          description: Minimum transaction fee
+          type: string
+        min_fee_for_ct_addr:
+          description: Minimum fee for contract address transactions
+          type: string
+        min_withdraw_amount:
+          description: Minimum on-chain withdrawal amount per transaction
+          type: string
+        name:
+          description: Display name of the network
+          type: string
+        need_memo:
+          description: Whether memo/tag is required for transactions
+          type: boolean
+        network:
+          description: Network identifier (e.g., ETH, BTC)
           type: string
       required:
       - can_deposit
@@ -1378,6 +1169,7 @@ components:
       - max_fee
       - max_fee_for_ct_addr
       - max_withdraw_amount
+      - min_confirmations
       - min_deposit_amount
       - min_fee
       - min_fee_for_ct_addr
@@ -1386,1275 +1178,677 @@ components:
       - need_memo
       - network
       type: object
-    CurrencyOut:
-      example:
-        symbol: USDT
-        code: USDT
-        precision: 6
-        can_deposit: false
-        networks:
-        - code: USDT
-          need_memo: true
-          can_deposit: false
-          contract_address: contract_address
-          min_fee_for_ct_addr: min_fee_for_ct_addr
-          min_withdraw_amount: "12345"
-          network: ERC-20
-          max_withdraw_amount: "12345"
-          min_collect_amount: min_collect_amount
-          min_fee: min_fee
-          max_fee_for_ct_addr: max_fee_for_ct_addr
-          name: USDT
-          can_withdraw: false
-          min_deposit_amount: "12345"
-          can_transfer: false
-          max_fee: max_fee
-          min_confirmations: 0
-        - code: USDT
-          need_memo: true
-          can_deposit: false
-          contract_address: contract_address
-          min_fee_for_ct_addr: min_fee_for_ct_addr
-          min_withdraw_amount: "12345"
-          network: ERC-20
-          max_withdraw_amount: "12345"
-          min_collect_amount: min_collect_amount
-          min_fee: min_fee
-          max_fee_for_ct_addr: max_fee_for_ct_addr
-          name: USDT
-          can_withdraw: false
-          min_deposit_amount: "12345"
-          can_transfer: false
-          max_fee: max_fee
-          min_confirmations: 0
-        min_withdraw_amount: "12345"
-        max_withdraw_amount: "12345"
-        decimals: 12
-        name: USDT
-        logo: http://logo.jpg
-        can_withdraw: false
-        can_transfer: false
-        min_deposit_amount: "12345"
-      properties:
-        code:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        symbol:
-          description: Currency symbol
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        logo:
-          description: Currency logo url
-          example: http://logo.jpg
-          maxLength: 256
-          minLength: 1
-          type: string
-        name:
-          description: Currency name
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        can_deposit:
-          description: Is it posible to deposit on blockchain
-          example: false
-          type: boolean
-        can_withdraw:
-          description: Is it posible to withdraw to blockchain
-          example: false
-          type: boolean
-        can_transfer:
-          description: Is it posible to transfer in custody wallet
-          example: false
-          type: boolean
-        min_deposit_amount:
-          description: Big integer string representation. The min amount to deposit.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        min_withdraw_amount:
-          description: Big integer string representation. The min amount to withdraw.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        max_withdraw_amount:
-          description: Big integer string representation. The max amount to withdraw.
-          example: "12345"
-          maxLength: 256
-          minLength: 1
-          type: string
-        precision:
-          description: Currency precision
-          example: 6
-          type: integer
-        decimals:
-          description: Currency decimals
-          example: 12
-          type: integer
-        networks:
-          items:
-            $ref: '#/components/schemas/CurrencyNetwork'
-          type: array
-      required:
-      - can_deposit
-      - can_transfer
-      - can_withdraw
-      - code
-      - decimals
-      - logo
-      - max_withdraw_amount
-      - min_deposit_amount
-      - min_withdraw_amount
-      - name
-      - precision
-      - symbol
-      type: object
-    ListResponse_CurrencyOut_:
-      example:
-        prev_cursor: prev_cursor
-        next_cursor: next_cursor
-        has_next: true
-        items:
-        - symbol: USDT
-          code: USDT
-          precision: 6
-          can_deposit: false
-          networks:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          min_withdraw_amount: "12345"
-          max_withdraw_amount: "12345"
-          decimals: 12
-          name: USDT
-          logo: http://logo.jpg
-          can_withdraw: false
-          can_transfer: false
-          min_deposit_amount: "12345"
-        - symbol: USDT
-          code: USDT
-          precision: 6
-          can_deposit: false
-          networks:
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          - code: USDT
-            need_memo: true
-            can_deposit: false
-            contract_address: contract_address
-            min_fee_for_ct_addr: min_fee_for_ct_addr
-            min_withdraw_amount: "12345"
-            network: ERC-20
-            max_withdraw_amount: "12345"
-            min_collect_amount: min_collect_amount
-            min_fee: min_fee
-            max_fee_for_ct_addr: max_fee_for_ct_addr
-            name: USDT
-            can_withdraw: false
-            min_deposit_amount: "12345"
-            can_transfer: false
-            max_fee: max_fee
-            min_confirmations: 0
-          min_withdraw_amount: "12345"
-          max_withdraw_amount: "12345"
-          decimals: 12
-          name: USDT
-          logo: http://logo.jpg
-          can_withdraw: false
-          can_transfer: false
-          min_deposit_amount: "12345"
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/CurrencyOut'
-          type: array
-        next_cursor:
-          type: string
-        prev_cursor:
-          type: string
-        has_next:
-          type: boolean
-      required:
-      - items
-      type: object
-    ResponseListCurrencyOut:
-      example:
-        data:
-          prev_cursor: prev_cursor
-          next_cursor: next_cursor
-          has_next: true
-          items:
-          - symbol: USDT
-            code: USDT
-            precision: 6
-            can_deposit: false
-            networks:
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "12345"
-              network: ERC-20
-              max_withdraw_amount: "12345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "12345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "12345"
-              network: ERC-20
-              max_withdraw_amount: "12345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "12345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            min_withdraw_amount: "12345"
-            max_withdraw_amount: "12345"
-            decimals: 12
-            name: USDT
-            logo: http://logo.jpg
-            can_withdraw: false
-            can_transfer: false
-            min_deposit_amount: "12345"
-          - symbol: USDT
-            code: USDT
-            precision: 6
-            can_deposit: false
-            networks:
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "12345"
-              network: ERC-20
-              max_withdraw_amount: "12345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "12345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            - code: USDT
-              need_memo: true
-              can_deposit: false
-              contract_address: contract_address
-              min_fee_for_ct_addr: min_fee_for_ct_addr
-              min_withdraw_amount: "12345"
-              network: ERC-20
-              max_withdraw_amount: "12345"
-              min_collect_amount: min_collect_amount
-              min_fee: min_fee
-              max_fee_for_ct_addr: max_fee_for_ct_addr
-              name: USDT
-              can_withdraw: false
-              min_deposit_amount: "12345"
-              can_transfer: false
-              max_fee: max_fee
-              min_confirmations: 0
-            min_withdraw_amount: "12345"
-            max_withdraw_amount: "12345"
-            decimals: 12
-            name: USDT
-            logo: http://logo.jpg
-            can_withdraw: false
-            can_transfer: false
-            min_deposit_amount: "12345"
-      properties:
-        data:
-          $ref: '#/components/schemas/ListResponse_CurrencyOut_'
-      required:
-      - data
-      title: ResponseEndpointOut
-      type: object
-    TransferIn:
-      example:
-        to_wallet_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
-        amount: "10000"
-        description: Distribute prizes
-        currency: USDT
-        auto_commit: true
-        tags:
-        - tags
-        - tags
-      properties:
-        to_wallet_id:
-          description: the target wallet id
-          example: 7e5c8e13-0573-472e-9e34-fe779c618fcf
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        currency:
-          description: currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        amount:
-          description: big integer string representation
-          example: "10000"
-          maxLength: 256
-          minLength: 1
-          type: string
-        auto_commit:
-          description: auto commit, default is true
-          example: true
-          type: boolean
-        description:
-          description: transfer description
-          example: Distribute prizes
-          maxLength: 256
-          minLength: 1
-          type: string
-        tags:
-          description: transfer tags
-          items:
-            type: string
-          nullable: true
-          type: array
-      required:
-      - amount
-      - currency
-      - to_wallet_id
-      type: object
-    TransferOut:
-      example:
-        transfer_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
-      properties:
-        transfer_id:
-          description: the transfer id
-          example: 7e5c8e13-0573-472e-9e34-fe779c618fcf
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-      required:
-      - transfer_id
-      type: object
-    GetRatesIn:
-      example:
-        pairs:
-        - base_currency: TON
-          to_currency: NOT
-        - base_currency: TON
-          to_currency: NOT
-      properties:
-        pairs:
-          items:
-            $ref: '#/components/schemas/CurrencyPair'
-          type: array
-      required:
-      - pairs
-      type: object
-    ResponseRatesOut:
-      example:
-        data:
-          rates:
-          - rate: 10.3
-            pair:
-              base_currency: TON
-              to_currency: NOT
-          - rate: 10.3
-            pair:
-              base_currency: TON
-              to_currency: NOT
-      properties:
-        data:
-          $ref: '#/components/schemas/RatesOut'
-      required:
-      - data
-      title: ResponseRatesOut
-      type: object
-    RatesOut:
-      example:
-        rates:
-        - rate: 10.3
-          pair:
-            base_currency: TON
-            to_currency: NOT
-        - rate: 10.3
-          pair:
-            base_currency: TON
-            to_currency: NOT
-      properties:
-        rates:
-          items:
-            $ref: '#/components/schemas/RateData'
-          type: array
-      required:
-      - rates
-      type: object
-    RateData:
-      example:
-        rate: 10.3
-        pair:
-          base_currency: TON
-          to_currency: NOT
-      properties:
-        pair:
-          $ref: '#/components/schemas/CurrencyPair'
-        rate:
-          description: The current exchange rate for the specified pair
-          example: 10.3
-          type: number
-      required:
-      - pair
-      - rate
-      type: object
     CurrencyPair:
+      description: Currency pair for this rate
       example:
-        base_currency: TON
-        to_currency: NOT
+        base_currency: base_currency
+        to_currency: to_currency
       properties:
         base_currency:
-          description: The code of the currency you are converting from.
-          example: TON
-          maxLength: 256
+          description: Source currency code
+          maxLength: 100
           minLength: 1
           type: string
         to_currency:
-          description: The code of the currency you are converting to.
-          example: NOT
-          maxLength: 256
+          description: Target currency code
+          maxLength: 100
           minLength: 1
           type: string
       required:
       - base_currency
       - to_currency
       type: object
-    ResponseTransferOut:
-      example:
-        data:
-          transfer_id: 7e5c8e13-0573-472e-9e34-fe779c618fcf
-      properties:
-        data:
-          $ref: '#/components/schemas/TransferOut'
-      required:
-      - data
-      title: ResponseTransferOut
-      type: object
-    RefundIn:
-      example:
-        uid: unique-identifier
-        note: note example
-        amount: "123450000"
-        order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-      properties:
-        uid:
-          description: Optional unique identifier for the refund
-          example: unique-identifier
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        order_id:
-          description: The order's ID
-          example: fdcefb20-1994-417a-8c6a-0648b841c266
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        amount:
-          description: Big integer string representation, whose meaning is the value
-            of absolute floating-point number multiplied by the corresponding decimals
-            of the cryptocurrency.
-          example: "123450000"
-          maxLength: 256
-          minLength: 1
-          type: string
-        note:
-          description: Optional refund note
-          example: note example
-          maxLength: 256
-          minLength: 1
-          type: string
-      required:
-      - amount
-      - order_id
-      type: object
-    RefundOut:
-      example:
-        uid: unique-identifier
-        note: note example
-        completed_at: 2000-01-23T04:56:07.000+00:00
-        amount: "12345000"
-        created_at: 2000-01-23T04:56:07.000+00:00
-        currency: USDT
-        id: fdcefb20-1994-417a-8c6a-0648b841c266
-        failed_at: 2000-01-23T04:56:07.000+00:00
-        order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-        failed_message: failed_message
-        status: PENDING
-      properties:
-        id:
-          description: The refund's ID
-          example: fdcefb20-1994-417a-8c6a-0648b841c266
-          type: string
-        uid:
-          description: The refund's UID
-          example: unique-identifier
-          maxLength: 256
-          minLength: 1
-          nullable: true
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        order_id:
-          description: The relative order id
-          example: fdcefb20-1994-417a-8c6a-0648b841c266
-          type: string
-        currency:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        amount:
-          description: Big integer string representation, whose meaning is the value
-            of absolute floating-point number multiplied by the corresponding decimals
-            of the cryptocurrency.
-          example: "12345000"
-          maxLength: 256
-          minLength: 1
-          type: string
-        status:
-          description: The refund's status
-          enum:
-          - PENDING
-          - FAILED
-          - COMPLETED
-          type: string
-        note:
-          description: Optional refund note
-          example: note example
-          maxLength: 256
-          minLength: 1
-          type: string
-        failed_at:
-          description: The refund's failure time
-          format: date-time
-          type: string
-        failed_message:
-          description: The message when refund failed
-          type: string
-        created_at:
-          description: The refund's created time
-          format: date-time
-          type: string
-        completed_at:
-          description: The refund's completed time
-          format: date-time
-          type: string
-      required:
-      - amount
-      - created_at
-      - currency
-      - id
-      - order_id
-      - status
-      type: object
-    ListResponse_RefundOut_:
-      example:
-        total: 0
-        items:
-        - uid: unique-identifier
-          note: note example
-          completed_at: 2000-01-23T04:56:07.000+00:00
-          amount: "12345000"
-          created_at: 2000-01-23T04:56:07.000+00:00
-          currency: USDT
-          id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_message: failed_message
-          status: PENDING
-        - uid: unique-identifier
-          note: note example
-          completed_at: 2000-01-23T04:56:07.000+00:00
-          amount: "12345000"
-          created_at: 2000-01-23T04:56:07.000+00:00
-          currency: USDT
-          id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_message: failed_message
-          status: PENDING
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/RefundOut'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      type: object
-    ResponseRefundOut:
-      example:
-        data:
-          uid: unique-identifier
-          note: note example
-          completed_at: 2000-01-23T04:56:07.000+00:00
-          amount: "12345000"
-          created_at: 2000-01-23T04:56:07.000+00:00
-          currency: USDT
-          id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-          failed_message: failed_message
-          status: PENDING
-      properties:
-        data:
-          $ref: '#/components/schemas/RefundOut'
-      required:
-      - data
-      title: ResponseRefundOut
-      type: object
-    ResponseListRefundOut:
-      example:
-        data:
-          total: 0
-          items:
-          - uid: unique-identifier
-            note: note example
-            completed_at: 2000-01-23T04:56:07.000+00:00
-            amount: "12345000"
-            created_at: 2000-01-23T04:56:07.000+00:00
-            currency: USDT
-            id: fdcefb20-1994-417a-8c6a-0648b841c266
-            failed_at: 2000-01-23T04:56:07.000+00:00
-            order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-            failed_message: failed_message
-            status: PENDING
-          - uid: unique-identifier
-            note: note example
-            completed_at: 2000-01-23T04:56:07.000+00:00
-            amount: "12345000"
-            created_at: 2000-01-23T04:56:07.000+00:00
-            currency: USDT
-            id: fdcefb20-1994-417a-8c6a-0648b841c266
-            failed_at: 2000-01-23T04:56:07.000+00:00
-            order_id: fdcefb20-1994-417a-8c6a-0648b841c266
-            failed_message: failed_message
-            status: PENDING
-      properties:
-        data:
-          $ref: '#/components/schemas/ListResponse_RefundOut_'
-      required:
-      - data
-      title: ResponseListRefundOut
-      type: object
-    OrderIn:
-      example:
-        uid: unique-order-identifier
-        note: note example
-        amount: "12345000"
-        metadata:
-          key: metadata
-        currency: USDT
-        expiration: 600
-      properties:
-        uid:
-          description: Optional unique identifier for the order
-          example: unique-order-identifier
-          maxLength: 256
-          minLength: 1
-          nullable: true
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        currency:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        amount:
-          description: Big integer string representation, whose meaning is the value
-            of absolute floating-point number multiplied by the corresponding decimals
-            of the cryptocurrency.
-          example: "12345000"
-          maxLength: 256
-          minLength: 1
-          type: string
-        note:
-          description: Optional order note
-          example: note example
-          maxLength: 256
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            type: string
-          default: {}
-          description: Optional metadata
-          nullable: true
-          type: object
-        expiration:
-          description: The expiration seconds
-          example: 600
-          type: integer
-      required:
-      - amount
-      - currency
-      type: object
-    OrderOut:
-      example:
-        note: note example
-        amount: "1"
-        metadata:
-          key: metadata
-        created_at: 2000-01-23T04:56:07.000+00:00
-        expired_at: 2000-01-23T04:56:07.000+00:00
-        failed_message: failed_message
-        uid: unique-order-identifier
-        wallet_id: wallet_id
-        payed_at: 2000-01-23T04:56:07.000+00:00
-        user_id: user_id
-        currency: USDT
-        expiration: 600
-        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-        failed_at: 2000-01-23T04:56:07.000+00:00
-        status: PENDING
-      properties:
-        id:
-          description: The order's ID
-          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          type: string
-        uid:
-          description: The order's UID
-          example: unique-order-identifier
-          maxLength: 256
-          minLength: 1
-          nullable: true
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        currency:
-          description: Currency code
-          example: USDT
-          maxLength: 256
-          minLength: 1
-          type: string
-        amount:
-          description: Big integer string representation, whose meaning is the value
-            of absolute floating-point number multiplied by the corresponding decimals
-            of the cryptocurrency.
-          example: "1"
-          maxLength: 256
-          minLength: 1
-          type: string
-        user_id:
-          description: The order's creator
-          nullable: true
-          type: string
-        wallet_id:
-          description: wallet id
-          example: wallet_id
-          maxLength: 256
-          minLength: 1
-          type: string
-        note:
-          description: Optional order notes
-          example: note example
-          maxLength: 256
-          minLength: 1
-          type: string
-        metadata:
-          additionalProperties:
-            type: string
-          nullable: true
-          type: object
-        expiration:
-          description: The expiration seconds
-          example: 600
-          type: integer
-        status:
-          description: The order's status
-          enum:
-          - PENDING
-          - PAID
-          - FAILED
-          - EXPIRED
-          - COMPLETED
-          type: string
-        failed_message:
-          description: The message when order failed
-          type: string
-        created_at:
-          description: The order's creation time
-          format: date-time
-          type: string
-        payed_at:
-          description: The order's paid time
-          format: date-time
-          type: string
-        expired_at:
-          description: The order's expiration time
-          format: date-time
-          type: string
-        failed_at:
-          description: The order's failure time
-          format: date-time
-          type: string
-      required:
-      - amount
-      - created_at
-      - currency
-      - id
-      - status
-      type: object
-    ListResponse_OrderOut_:
-      example:
-        total: 0
-        items:
-        - note: note example
-          amount: "1"
-          metadata:
-            key: metadata
-          created_at: 2000-01-23T04:56:07.000+00:00
-          expired_at: 2000-01-23T04:56:07.000+00:00
-          failed_message: failed_message
-          uid: unique-order-identifier
-          wallet_id: wallet_id
-          payed_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          currency: USDT
-          expiration: 600
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          status: PENDING
-        - note: note example
-          amount: "1"
-          metadata:
-            key: metadata
-          created_at: 2000-01-23T04:56:07.000+00:00
-          expired_at: 2000-01-23T04:56:07.000+00:00
-          failed_message: failed_message
-          uid: unique-order-identifier
-          wallet_id: wallet_id
-          payed_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          currency: USDT
-          expiration: 600
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          status: PENDING
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/OrderOut'
-          type: array
-        total:
-          type: integer
-      required:
-      - items
-      type: object
-    ResponseOrderOut:
-      example:
-        data:
-          note: note example
-          amount: "1"
-          metadata:
-            key: metadata
-          created_at: 2000-01-23T04:56:07.000+00:00
-          expired_at: 2000-01-23T04:56:07.000+00:00
-          failed_message: failed_message
-          uid: unique-order-identifier
-          wallet_id: wallet_id
-          payed_at: 2000-01-23T04:56:07.000+00:00
-          user_id: user_id
-          currency: USDT
-          expiration: 600
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          failed_at: 2000-01-23T04:56:07.000+00:00
-          status: PENDING
-      properties:
-        data:
-          $ref: '#/components/schemas/OrderOut'
-      required:
-      - data
-      title: ResponseOrderOut
-      type: object
-    ResponseListOrderOut:
-      example:
-        data:
-          total: 0
-          items:
-          - note: note example
-            amount: "1"
-            metadata:
-              key: metadata
-            created_at: 2000-01-23T04:56:07.000+00:00
-            expired_at: 2000-01-23T04:56:07.000+00:00
-            failed_message: failed_message
-            uid: unique-order-identifier
-            wallet_id: wallet_id
-            payed_at: 2000-01-23T04:56:07.000+00:00
-            user_id: user_id
-            currency: USDT
-            expiration: 600
-            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-            failed_at: 2000-01-23T04:56:07.000+00:00
-            status: PENDING
-          - note: note example
-            amount: "1"
-            metadata:
-              key: metadata
-            created_at: 2000-01-23T04:56:07.000+00:00
-            expired_at: 2000-01-23T04:56:07.000+00:00
-            failed_message: failed_message
-            uid: unique-order-identifier
-            wallet_id: wallet_id
-            payed_at: 2000-01-23T04:56:07.000+00:00
-            user_id: user_id
-            currency: USDT
-            expiration: 600
-            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-            failed_at: 2000-01-23T04:56:07.000+00:00
-            status: PENDING
-      properties:
-        data:
-          $ref: '#/components/schemas/ListResponse_OrderOut_'
-      required:
-      - data
-      title: ResponseListOrderOut
-      type: object
-    EndpointIn:
-      example:
-        uid: unique-endpoint-identifier
-        headers:
-          x-user-id: user1
-          x-org-id: org_xdwfeees1xfeg
-        metadata:
-          node: http://dashboard.com/node1
-          tag: node
-        description: The description for endpoint
-        filter_types:
-        - order.expired
-        disabled: false
-        url: http://example.com/endpoint
-      properties:
-        uid:
-          description: Optional unique identifier for the endpoint
-          example: unique-endpoint-identifier
-          maxLength: 256
-          minLength: 1
-          nullable: true
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        filter_types:
-          description: The webhook endpoint expected event types
-          example:
-          - order.expired
-          items:
-            type: string
-          type: array
-        url:
-          description: The webhook endpoint url
-          example: http://example.com/endpoint
-          type: string
-        disabled:
-          description: indicate whether to disable the webhook endpoint
-          example: false
-          type: boolean
-        metadata:
-          additionalProperties: {}
-          default: {}
-          description: Optional metadata
-          example:
-            node: http://dashboard.com/node1
-            tag: node
-          nullable: true
-          type: object
-        headers:
-          additionalProperties:
-            type: string
-          default: {}
-          description: Optional headers
-          example:
-            x-user-id: user1
-            x-org-id: org_xdwfeees1xfeg
-          nullable: true
-          type: object
-        description:
-          description: The endpoint's description
-          example: The description for endpoint
-          type: string
-      required:
-      - filter_types
-      - url
-      type: object
-    EndpointOut:
-      example:
-        uid: unique-endpoint-identifier
-        headers:
-          x-user-id: user1
-          x-org-id: org_xdwfeees1xfeg
-        metadata:
-          node: http://dashboard.com/node1
-          tag: node
-        description: The description for endpoint
-        filter_types:
-        - order.expired
-        disabled: false
-        id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-        url: http://example.com/endpoint
-      properties:
-        id:
-          description: The order's ID
-          example: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          type: string
-        uid:
-          description: Optional unique identifier for the endpoint
-          example: unique-endpoint-identifier
-          maxLength: 256
-          minLength: 1
-          pattern: ^[a-zA-Z0-9\-_.]+$
-          type: string
-        description:
-          description: The endpoint's description
-          example: The description for endpoint
-          type: string
-        url:
-          description: The webhook endpoint url
-          example: http://example.com/endpoint
-          type: string
-        filter_types:
-          description: The webhook endpoint expected event types
-          example:
-          - order.expired
-          items:
-            type: string
-          type: array
-        disabled:
-          description: indicate whether to disable the webhook endpoint
-          example: false
-          type: boolean
-        metadata:
-          additionalProperties: {}
-          default: {}
-          description: Optional metadata
-          example:
-            node: http://dashboard.com/node1
-            tag: node
-          nullable: true
-          type: object
-        headers:
-          additionalProperties:
-            type: string
-          default: {}
-          description: Optional headers
-          example:
-            x-user-id: user1
-            x-org-id: org_xdwfeees1xfeg
-          nullable: true
-          type: object
-      required:
-      - filter_types
-      - id
-      - url
-      type: object
-    ListResponse_EndpointOut_:
+    CursorPage-Currency:
       example:
         prev_cursor: prev_cursor
         next_cursor: next_cursor
         has_next: true
         items:
-        - uid: unique-endpoint-identifier
-          headers:
-            x-user-id: user1
-            x-org-id: org_xdwfeees1xfeg
-          metadata:
-            node: http://dashboard.com/node1
-            tag: node
-          description: The description for endpoint
-          filter_types:
-          - order.expired
-          disabled: false
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          url: http://example.com/endpoint
-        - uid: unique-endpoint-identifier
-          headers:
-            x-user-id: user1
-            x-org-id: org_xdwfeees1xfeg
-          metadata:
-            node: http://dashboard.com/node1
-            tag: node
-          description: The description for endpoint
-          filter_types:
-          - order.expired
-          disabled: false
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          url: http://example.com/endpoint
+        - symbol: symbol
+          code: code
+          need_memo: true
+          precision: 1
+          can_deposit: true
+          contract_address: contract_address
+          networks:
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          max_withdraw_amount: max_withdraw_amount
+          rated: true
+          decimals: 0
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          logo: logo
+          can_withdraw: true
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
+        - symbol: symbol
+          code: code
+          need_memo: true
+          precision: 1
+          can_deposit: true
+          contract_address: contract_address
+          networks:
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          - code: code
+            need_memo: true
+            can_deposit: true
+            contract_address: contract_address
+            min_fee_for_ct_addr: min_fee_for_ct_addr
+            min_withdraw_amount: min_withdraw_amount
+            network: network
+            max_withdraw_amount: max_withdraw_amount
+            min_collect_amount: min_collect_amount
+            max_fee_for_ct_addr: max_fee_for_ct_addr
+            min_fee: min_fee
+            name: name
+            can_withdraw: true
+            id: id
+            can_transfer: true
+            min_deposit_amount: min_deposit_amount
+            max_fee: max_fee
+            min_confirmations: 6
+          min_fee_for_ct_addr: min_fee_for_ct_addr
+          min_withdraw_amount: min_withdraw_amount
+          max_withdraw_amount: max_withdraw_amount
+          rated: true
+          decimals: 0
+          max_fee_for_ct_addr: max_fee_for_ct_addr
+          min_fee: min_fee
+          name: name
+          logo: logo
+          can_withdraw: true
+          can_transfer: true
+          min_deposit_amount: min_deposit_amount
+          max_fee: max_fee
       properties:
-        items:
-          items:
-            $ref: '#/components/schemas/EndpointOut'
-          type: array
-        prev_cursor:
-          type: string
-        next_cursor:
-          type: string
         has_next:
+          description: Whether there are more items available in the next page
           type: boolean
+        items:
+          description: List of items in the current page
+          items:
+            $ref: '#/components/schemas/Currency'
+          type: array
+          uniqueItems: false
+        next_cursor:
+          description: Cursor for fetching the next page of items
+          type: string
+        prev_cursor:
+          description: Cursor for fetching the previous page of items
+          type: string
       required:
+      - has_next
       - items
       type: object
-    ResponseEndpointOut:
+    CursorPage-Endpoint:
       example:
-        data:
-          uid: unique-endpoint-identifier
-          headers:
-            x-user-id: user1
-            x-org-id: org_xdwfeees1xfeg
+        prev_cursor: prev_cursor
+        next_cursor: next_cursor
+        has_next: true
+        items:
+        - headers:
+            key: headers
+          uid: uid
           metadata:
-            node: http://dashboard.com/node1
-            tag: node
-          description: The description for endpoint
+            key: ""
+          created_at: created_at
+          description: description
+          disabled: true
           filter_types:
-          - order.expired
-          disabled: false
-          id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-          url: http://example.com/endpoint
+          - filter_types
+          - filter_types
+          id: id
+          url: url
+        - headers:
+            key: headers
+          uid: uid
+          metadata:
+            key: ""
+          created_at: created_at
+          description: description
+          disabled: true
+          filter_types:
+          - filter_types
+          - filter_types
+          id: id
+          url: url
       properties:
-        data:
-          $ref: '#/components/schemas/EndpointOut'
-      required:
-      - data
-      title: ResponseEndpointOut
-      type: object
-    ResponseListEndpointOut:
-      example:
-        data:
-          prev_cursor: prev_cursor
-          next_cursor: next_cursor
-          has_next: true
+        has_next:
+          description: Whether there are more items available in the next page
+          type: boolean
+        items:
+          description: List of items in the current page
           items:
-          - uid: unique-endpoint-identifier
-            headers:
-              x-user-id: user1
-              x-org-id: org_xdwfeees1xfeg
-            metadata:
-              node: http://dashboard.com/node1
-              tag: node
-            description: The description for endpoint
-            filter_types:
-            - order.expired
-            disabled: false
-            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-            url: http://example.com/endpoint
-          - uid: unique-endpoint-identifier
-            headers:
-              x-user-id: user1
-              x-org-id: org_xdwfeees1xfeg
-            metadata:
-              node: http://dashboard.com/node1
-              tag: node
-            description: The description for endpoint
-            filter_types:
-            - order.expired
-            disabled: false
-            id: 1brOrx2ZWZBpBUvZwXKQmoEYga2
-            url: http://example.com/endpoint
-      properties:
-        data:
-          $ref: '#/components/schemas/ListResponse_EndpointOut_'
+            $ref: '#/components/schemas/Endpoint'
+          type: array
+          uniqueItems: false
+        next_cursor:
+          description: Cursor for fetching the next page of items
+          type: string
+        prev_cursor:
+          description: Cursor for fetching the previous page of items
+          type: string
       required:
-      - data
-      title: ResponseListEndpointOut
+      - has_next
+      - items
+      type: object
+    Endpoint:
+      example:
+        headers:
+          key: headers
+        uid: uid
+        metadata:
+          key: ""
+        created_at: created_at
+        description: description
+        disabled: true
+        filter_types:
+        - filter_types
+        - filter_types
+        id: id
+        url: url
+      properties:
+        created_at:
+          description: The creation time of the endpoint
+          type: string
+        description:
+          description: The description of the endpoint
+          type: string
+        disabled:
+          description: The disabled status of the endpoint
+          type: boolean
+        filter_types:
+          description: The filter event types of the endpoint
+          items:
+            type: string
+          type: array
+          uniqueItems: false
+        headers:
+          additionalProperties:
+            type: string
+          description: The headers of the endpoint
+          nullable: true
+          type: object
+        id:
+          description: The id of the endpoint
+          type: string
+        metadata:
+          additionalProperties: {}
+          description: The metadata of the endpoint
+          nullable: true
+          type: object
+        uid:
+          description: The uid of the endpoint
+          type: string
+        url:
+          description: The url of the endpoint
+          type: string
+      required:
+      - created_at
+      - description
+      - filter_types
+      - id
+      - url
+      type: object
+    Error:
+      properties:
+        code:
+          description: Error code for the specific error
+          type: integer
+        msg:
+          description: Human-readable error message
+          type: string
+      required:
+      - code
+      - msg
+      type: object
+    EstimateResponse:
+      example:
+        base_currency: base_currency
+        to_amount: to_amount
+        rate: 0.8008281904610115
+        base_amount: base_amount
+        to_currency: to_currency
+      properties:
+        base_amount:
+          description: Amount in source currency
+          type: string
+        base_currency:
+          description: Source currency code
+          type: string
+        rate:
+          description: Exchange rate used for conversion
+          type: number
+        to_amount:
+          description: Converted amount in target currency
+          type: string
+        to_currency:
+          description: Target currency code
+          type: string
+      required:
+      - base_amount
+      - base_currency
+      - rate
+      - to_amount
+      - to_currency
+      type: object
+    GetRatesRequest:
+      example:
+        pairs:
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+        - base_currency: base_currency
+          to_currency: to_currency
+      properties:
+        pairs:
+          description: List of currency pairs to get rates for
+          items:
+            $ref: '#/components/schemas/CurrencyPair'
+          maxItems: 100
+          minItems: 1
+          type: array
+          uniqueItems: false
+      required:
+      - pairs
+      type: object
+    GetRatesResponse:
+      example:
+        rates:
+        - rate: 0.8008281904610115
+          pair:
+            base_currency: base_currency
+            to_currency: to_currency
+        - rate: 0.8008281904610115
+          pair:
+            base_currency: base_currency
+            to_currency: to_currency
+      properties:
+        rates:
+          description: List of exchange rates for requested currency pairs
+          items:
+            $ref: '#/components/schemas/Rate'
+          type: array
+          uniqueItems: false
+      required:
+      - rates
+      type: object
+    Order:
+      example:
+        note: note
+        amount: amount
+        metadata:
+          key: metadata
+        created_at: created_at
+        expired_at: expired_at
+        failed_message: failed_message
+        paid_at: paid_at
+        uid: uid
+        wallet_id: wallet_id
+        user_id: user_id
+        currency: currency
+        expiration: 0
+        failed_at: failed_at
+        id: id
+        status: status
+      properties:
+        amount:
+          description: Amount
+          type: string
+        created_at:
+          description: Order creation time
+          type: string
+        currency:
+          description: Currency symbol
+          type: string
+        expiration:
+          description: Expiration time in seconds. If payment is not completed within
+            the given time, the order will be automatically canceled
+          type: integer
+        expired_at:
+          description: Order expiration time
+          type: string
+        failed_at:
+          description: Order failure time
+          type: string
+        failed_message:
+          description: Error message when order fails
+          type: string
+        id:
+          description: System unique ID of the order
+          type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Order metadata
+          nullable: true
+          type: object
+        note:
+          description: Order description from merchant
+          type: string
+        paid_at:
+          description: Order payment time
+          type: string
+        status:
+          description: Order status enum
+          type: string
+          x-enum-varnames:
+          - OrderStatusPending
+          - OrderStatusPaid
+          - OrderStatusFailed
+          - OrderStatusExpired
+          - OrderStatusCompleted
+        uid:
+          description: External ID, the order ID in the merchant system
+          type: string
+        user_id:
+          description: ID of the user who made the payment
+          type: string
+        wallet_id:
+          description: ID of the wallet used for payment
+          type: string
+      required:
+      - amount
+      - created_at
+      - currency
+      - expiration
+      - id
+      - note
+      - status
+      - wallet_id
+      type: object
+    OrderStatus:
+      description: Order status enum
+      type: string
+      x-enum-varnames:
+      - OrderStatusPending
+      - OrderStatusPaid
+      - OrderStatusFailed
+      - OrderStatusExpired
+      - OrderStatusCompleted
+    Page-Order:
+      example:
+        total: 6
+        items:
+        - note: note
+          amount: amount
+          metadata:
+            key: metadata
+          created_at: created_at
+          expired_at: expired_at
+          failed_message: failed_message
+          paid_at: paid_at
+          uid: uid
+          wallet_id: wallet_id
+          user_id: user_id
+          currency: currency
+          expiration: 0
+          failed_at: failed_at
+          id: id
+          status: status
+        - note: note
+          amount: amount
+          metadata:
+            key: metadata
+          created_at: created_at
+          expired_at: expired_at
+          failed_message: failed_message
+          paid_at: paid_at
+          uid: uid
+          wallet_id: wallet_id
+          user_id: user_id
+          currency: currency
+          expiration: 0
+          failed_at: failed_at
+          id: id
+          status: status
+      properties:
+        items:
+          description: List of items in the current page
+          items:
+            $ref: '#/components/schemas/Order'
+          type: array
+          uniqueItems: false
+        total:
+          description: Total number of items across all pages
+          type: integer
+      required:
+      - items
+      - total
+      type: object
+    Page-Refund:
+      example:
+        total: 0
+        items:
+        - completed_at: completed_at
+          note: note
+          uid: uid
+          amount: amount
+          created_at: created_at
+          currency: currency
+          failed_at: failed_at
+          id: id
+          order_id: order_id
+          failed_message: failed_message
+          status: status
+        - completed_at: completed_at
+          note: note
+          uid: uid
+          amount: amount
+          created_at: created_at
+          currency: currency
+          failed_at: failed_at
+          id: id
+          order_id: order_id
+          failed_message: failed_message
+          status: status
+      properties:
+        items:
+          description: List of items in the current page
+          items:
+            $ref: '#/components/schemas/Refund'
+          type: array
+          uniqueItems: false
+        total:
+          description: Total number of items across all pages
+          type: integer
+      required:
+      - items
+      - total
+      type: object
+    Rate:
+      example:
+        rate: 0.8008281904610115
+        pair:
+          base_currency: base_currency
+          to_currency: to_currency
+      properties:
+        pair:
+          $ref: '#/components/schemas/CurrencyPair'
+        rate:
+          description: Exchange rate value
+          type: number
+      required:
+      - rate
+      type: object
+    Refund:
+      example:
+        completed_at: completed_at
+        note: note
+        uid: uid
+        amount: amount
+        created_at: created_at
+        currency: currency
+        failed_at: failed_at
+        id: id
+        order_id: order_id
+        failed_message: failed_message
+        status: status
+      properties:
+        amount:
+          description: Amount being refunded
+          type: string
+        completed_at:
+          description: Time when the refund was completed
+          type: string
+        created_at:
+          description: Time when the refund was created
+          type: string
+        currency:
+          description: Currency code of the refund
+          type: string
+        failed_at:
+          description: Time when the refund failed
+          type: string
+        failed_message:
+          description: Error message when refund fails
+          type: string
+        id:
+          description: System unique ID of the refund
+          type: string
+        note:
+          description: Refund description from merchant
+          type: string
+        order_id:
+          description: ID of the order being refunded
+          type: string
+        status:
+          description: The status of the refund
+          type: string
+          x-enum-varnames:
+          - RefundStatusPending
+          - RefundStatusFailed
+          - RefundStatusCompleted
+        uid:
+          description: External ID, the refund ID in the merchant system
+          type: string
+      required:
+      - amount
+      - created_at
+      - currency
+      - id
+      - order_id
+      - status
+      type: object
+    RefundStatus:
+      description: The status of the refund
+      type: string
+      x-enum-varnames:
+      - RefundStatusPending
+      - RefundStatusFailed
+      - RefundStatusCompleted
+    TransferRequest:
+      example:
+        to_wallet_id: to_wallet_id
+        amount: amount
+        description: description
+        currency: currency
+        auto_commit: true
+        tags:
+        - tags
+        - tags
+      properties:
+        amount:
+          description: Amount to transfer, supports decimal values
+          type: string
+        auto_commit:
+          description: Whether to automatically commit the transfer
+          type: boolean
+        currency:
+          description: Currency code for the transfer (e.g., TON, USDT, ETH)
+          type: string
+        description:
+          description: Optional description for the transfer
+          type: string
+        tags:
+          description: Optional tags for categorizing the transfer
+          items:
+            type: string
+          nullable: true
+          type: array
+          uniqueItems: false
+        to_wallet_id:
+          description: Destination wallet ID to transfer funds to
+          type: string
+      required:
+      - amount
+      - currency
+      - to_wallet_id
+      type: object
+    TransferResponse:
+      example:
+        transfer_id: transfer_id
+      properties:
+        transfer_id:
+          description: Unique identifier for the created transfer
+          type: string
+      required:
+      - transfer_id
       type: object
   securitySchemes:
     ApiKeyAuth:
       in: header
-      name: x-api-key
+      name: X-Api-Key
       type: apiKey
-x-readme:
-  samples-languages:
-  - python
-  - node
-  - csharp
-  - java
-  - go
-  - kotlin
-  - ruby
-  - rust
-  - java
-  - shell
-  parameter-ordering:
-  - path
-  - query
-  - header
-  - cookie
-  - body
-  - form
 

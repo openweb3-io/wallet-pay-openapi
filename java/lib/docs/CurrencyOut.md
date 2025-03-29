@@ -7,19 +7,26 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **String** | Currency code | 
-**symbol** | **String** | Currency symbol | 
-**logo** | **String** | Currency logo url | 
-**name** | **String** | Currency name | 
-**canDeposit** | **Boolean** | Is it posible to deposit on blockchain | 
-**canWithdraw** | **Boolean** | Is it posible to withdraw to blockchain | 
-**canTransfer** | **Boolean** | Is it posible to transfer in custody wallet | 
-**minDepositAmount** | **String** | Big integer string representation. The min amount to deposit. | 
-**minWithdrawAmount** | **String** | Big integer string representation. The min amount to withdraw. | 
-**maxWithdrawAmount** | **String** | Big integer string representation. The max amount to withdraw. | 
-**precision** | **Integer** | Currency precision | 
-**decimals** | **Integer** | Currency decimals | 
-**networks** | [**List&lt;CurrencyNetwork&gt;**](CurrencyNetwork.md) |  |  [optional]
+**canDeposit** | **Boolean** | Whether on-chain deposits are allowed |  [optional]
+**canTransfer** | **Boolean** | Whether internal transfers are allowed |  [optional]
+**canWithdraw** | **Boolean** | Whether on-chain withdrawals are allowed |  [optional]
+**code** | **String** | Currency code identifier |  [optional]
+**contractAddress** | **String** | Contract address |  [optional]
+**decimals** | **Integer** | Decimal precision |  [optional]
+**logo** | **String** | Logo URL |  [optional]
+**maxFee** | **String** | Maximum fee |  [optional]
+**maxFeeForCtAddr** | **String** | Maximum fee for contract address |  [optional]
+**maxWithdrawAmount** | **String** | Maximum on-chain withdrawal amount per transaction |  [optional]
+**minDepositAmount** | **String** | Minimum deposit amount per transaction |  [optional]
+**minFee** | **String** | Minimum fee |  [optional]
+**minFeeForCtAddr** | **String** | Minimum fee for contract address |  [optional]
+**minWithdrawAmount** | **String** | Minimum on-chain withdrawal amount per transaction |  [optional]
+**name** | **String** | Currency name |  [optional]
+**needMemo** | **Boolean** | Whether memo is required |  [optional]
+**networks** | [**List&lt;CurrencyNetwork&gt;**](CurrencyNetwork.md) | Currency networks information |  [optional]
+**precision** | **Integer** | Number of decimal places |  [optional]
+**rated** | **Boolean** | Whether it participates in exchange rate calculations |  [optional]
+**symbol** | **String** | Currency symbol |  [optional]
 
 
 

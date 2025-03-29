@@ -2,450 +2,437 @@ import { ResponseContext, RequestContext, HttpFile } from '../http/http';
 import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
+import { CreateEndpointRequest } from '../models/CreateEndpointRequest';
+import { CreateOrderRequest } from '../models/CreateOrderRequest';
+import { CreateRefundRequest } from '../models/CreateRefundRequest';
+import { Currency } from '../models/Currency';
 import { CurrencyNetwork } from '../models/CurrencyNetwork';
-import { CurrencyOut } from '../models/CurrencyOut';
 import { CurrencyPair } from '../models/CurrencyPair';
-import { EndpointIn } from '../models/EndpointIn';
-import { EndpointOut } from '../models/EndpointOut';
-import { EstimateOut } from '../models/EstimateOut';
-import { GetRatesIn } from '../models/GetRatesIn';
-import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
-import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
-import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
-import { OrderIn } from '../models/OrderIn';
-import { OrderOut } from '../models/OrderOut';
-import { Ordering } from '../models/Ordering';
-import { RateData } from '../models/RateData';
-import { RatesOut } from '../models/RatesOut';
-import { RefundIn } from '../models/RefundIn';
-import { RefundOut } from '../models/RefundOut';
-import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
-import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
-import { ResponseError } from '../models/ResponseError';
-import { ResponseEstimateOut } from '../models/ResponseEstimateOut';
-import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
-import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
-import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
-import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
-import { ResponseOrderOut } from '../models/ResponseOrderOut';
-import { ResponseRatesOut } from '../models/ResponseRatesOut';
-import { ResponseRefundOut } from '../models/ResponseRefundOut';
-import { ResponseTransferOut } from '../models/ResponseTransferOut';
-import { TransferIn } from '../models/TransferIn';
-import { TransferOut } from '../models/TransferOut';
-import { WebhookMessage } from '../models/WebhookMessage';
+import { CursorPageCurrency } from '../models/CursorPageCurrency';
+import { CursorPageEndpoint } from '../models/CursorPageEndpoint';
+import { Endpoint } from '../models/Endpoint';
+import { EstimateResponse } from '../models/EstimateResponse';
+import { GetRatesRequest } from '../models/GetRatesRequest';
+import { GetRatesResponse } from '../models/GetRatesResponse';
+import { ModelError } from '../models/ModelError';
+import { Order } from '../models/Order';
+import { PageOrder } from '../models/PageOrder';
+import { PageRefund } from '../models/PageRefund';
+import { Rate } from '../models/Rate';
+import { Refund } from '../models/Refund';
+import { TransferRequest } from '../models/TransferRequest';
+import { TransferResponse } from '../models/TransferResponse';
 
-import { ObservableCurrencyApi } from "./ObservableAPI";
-import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
+import { ObservableCurrenciesApi } from "./ObservableAPI";
+import { CurrenciesApiRequestFactory, CurrenciesApiResponseProcessor} from "../apis/CurrenciesApi";
 
-export interface CurrencyApiV1CurrencyFindByCodeRequest {
+export interface CurrenciesApiV1CurrenciesListRequest {
     /**
-     * Specified currency code.
+     * Number of records to return per page
+     * @type number
+     * @memberof CurrenciesApiv1CurrenciesList
+     */
+    limit: number
+    /**
+     * Filter currencies by rated status
+     * @type boolean
+     * @memberof CurrenciesApiv1CurrenciesList
+     */
+    rated?: boolean
+    /**
+     * Pagination cursor for fetching next page
      * @type string
-     * @memberof CurrencyApiv1CurrencyFindByCode
+     * @memberof CurrenciesApiv1CurrenciesList
+     */
+    cursor?: string
+    /**
+     * Filter currencies by application ID
+     * @type string
+     * @memberof CurrenciesApiv1CurrenciesList
+     */
+    appId?: string
+}
+
+export interface CurrenciesApiV1CurrenciesRetrieveRequest {
+    /**
+     * Currency code
+     * @type string
+     * @memberof CurrenciesApiv1CurrenciesRetrieve
      */
     code: string
 }
 
-export interface CurrencyApiV1CurrencyListRequest {
-    /**
-     * Limit the number of returned items
-     * @type number
-     * @memberof CurrencyApiv1CurrencyList
-     */
-    limit?: number
-    /**
-     * Specifying the start cursor position
-     * @type string
-     * @memberof CurrencyApiv1CurrencyList
-     */
-    cursor?: string
-    /**
-     * Specifying if currency supports fetching rates
-     * @type boolean
-     * @memberof CurrencyApiv1CurrencyList
-     */
-    rated?: boolean
-}
+export class ObjectCurrenciesApi {
+    private api: ObservableCurrenciesApi
 
-export class ObjectCurrencyApi {
-    private api: ObservableCurrencyApi
-
-    public constructor(configuration: Configuration, requestFactory?: CurrencyApiRequestFactory, responseProcessor?: CurrencyApiResponseProcessor) {
-        this.api = new ObservableCurrencyApi(configuration, requestFactory, responseProcessor);
+    public constructor(configuration: Configuration, requestFactory?: CurrenciesApiRequestFactory, responseProcessor?: CurrenciesApiResponseProcessor) {
+        this.api = new ObservableCurrenciesApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Get specified currency.
-     * Find currency by code
-     * @param param the request object
-     */
-    public v1CurrencyFindByCode(param: CurrencyApiV1CurrencyFindByCodeRequest, options?: Configuration): Promise<ResponseCurrencyOut> {
-        return this.api.v1CurrencyFindByCode(param.code,  options).toPromise();
-    }
-
-    /**
-     * List currencies.
+     * Retrieve a list of all available currencies.
      * List currencies
      * @param param the request object
      */
-    public v1CurrencyList(param: CurrencyApiV1CurrencyListRequest, options?: Configuration): Promise<ResponseListCurrencyOut> {
-        return this.api.v1CurrencyList(param.limit, param.cursor, param.rated,  options).toPromise();
+    public v1CurrenciesList(param: CurrenciesApiV1CurrenciesListRequest, options?: Configuration): Promise<CursorPageCurrency> {
+        return this.api.v1CurrenciesList(param.limit, param.rated, param.cursor, param.appId,  options).toPromise();
+    }
+
+    /**
+     * Get currency info by currency code
+     * Get Currency
+     * @param param the request object
+     */
+    public v1CurrenciesRetrieve(param: CurrenciesApiV1CurrenciesRetrieveRequest, options?: Configuration): Promise<Currency> {
+        return this.api.v1CurrenciesRetrieve(param.code,  options).toPromise();
     }
 
 }
 
-import { ObservableOrderApi } from "./ObservableAPI";
-import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
+import { ObservableOrdersApi } from "./ObservableAPI";
+import { OrdersApiRequestFactory, OrdersApiResponseProcessor} from "../apis/OrdersApi";
 
-export interface OrderApiV1OrderCreateRequest {
+export interface OrdersApiV1OrdersCreateRequest {
     /**
-     * 
-     * @type OrderIn
-     * @memberof OrderApiv1OrderCreate
+     * Order details
+     * @type CreateOrderRequest
+     * @memberof OrdersApiv1OrdersCreate
      */
-    orderIn: OrderIn
+    createOrderRequest: CreateOrderRequest
 }
 
-export interface OrderApiV1OrderGetRequest {
+export interface OrdersApiV1OrdersListRequest {
     /**
-     * Specified the order id or order uid.
-     * @type string
-     * @memberof OrderApiv1OrderGet
-     */
-    idOrUid: string
-}
-
-export interface OrderApiV1OrderListRequest {
-    /**
-     * Limit the number of returned items
+     * Page number for pagination, starting from 0
      * @type number
-     * @memberof OrderApiv1OrderList
+     * @memberof OrdersApiv1OrdersList
      */
-    size?: number
+    page: number
     /**
-     * Specifying the page index
+     * Number of items per page
      * @type number
-     * @memberof OrderApiv1OrderList
+     * @memberof OrdersApiv1OrdersList
      */
-    page?: number
+    size: number
     /**
-     * Optional wallet id
+     * Filter orders by wallet ID
      * @type string
-     * @memberof OrderApiv1OrderList
+     * @memberof OrdersApiv1OrdersList
      */
     walletId?: string
     /**
-     * Optional currency code
+     * Filter orders by currency
      * @type string
-     * @memberof OrderApiv1OrderList
+     * @memberof OrdersApiv1OrdersList
      */
     currency?: string
     /**
-     * Optional order status
-     * @type &#39;PENDING&#39; | &#39;PAID&#39; | &#39;EXPIRED&#39; | &#39;FAILED&#39; | &#39;COMPLETED&#39;
-     * @memberof OrderApiv1OrderList
-     */
-    status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED'
-}
-
-export class ObjectOrderApi {
-    private api: ObservableOrderApi
-
-    public constructor(configuration: Configuration, requestFactory?: OrderApiRequestFactory, responseProcessor?: OrderApiResponseProcessor) {
-        this.api = new ObservableOrderApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Create a new order.
-     * Create Order
-     * @param param the request object
-     */
-    public v1OrderCreate(param: OrderApiV1OrderCreateRequest, options?: Configuration): Promise<ResponseOrderOut> {
-        return this.api.v1OrderCreate(param.orderIn,  options).toPromise();
-    }
-
-    /**
-     * Get specified order.
-     * Get order
-     * @param param the request object
-     */
-    public v1OrderGet(param: OrderApiV1OrderGetRequest, options?: Configuration): Promise<ResponseOrderOut> {
-        return this.api.v1OrderGet(param.idOrUid,  options).toPromise();
-    }
-
-    /**
-     * List orders.
-     * List Orders
-     * @param param the request object
-     */
-    public v1OrderList(param: OrderApiV1OrderListRequest, options?: Configuration): Promise<ResponseListOrderOut> {
-        return this.api.v1OrderList(param.size, param.page, param.walletId, param.currency, param.status,  options).toPromise();
-    }
-
-}
-
-import { ObservableRateApi } from "./ObservableAPI";
-import { RateApiRequestFactory, RateApiResponseProcessor} from "../apis/RateApi";
-
-export interface RateApiV1RateEstimateRequest {
-    /**
-     * Specified the base currency that needs to be estimated
+     * Order status enum
      * @type string
-     * @memberof RateApiv1RateEstimate
+     * @memberof OrdersApiv1OrdersList
      */
-    baseCurrency: string
+    status?: string
+}
+
+export interface OrdersApiV1OrdersRetrieveRequest {
     /**
-     * Specify the target currency.
+     * Order ID or UID
      * @type string
-     * @memberof RateApiv1RateEstimate
-     */
-    toCurrency: string
-    /**
-     * Specify the amount of base currency that need to be estimated.
-     * @type string
-     * @memberof RateApiv1RateEstimate
-     */
-    baseAmount: string
-}
-
-export interface RateApiV1RateGetRatesRequest {
-    /**
-     * 
-     * @type GetRatesIn
-     * @memberof RateApiv1RateGetRates
-     */
-    getRatesIn: GetRatesIn
-}
-
-export class ObjectRateApi {
-    private api: ObservableRateApi
-
-    public constructor(configuration: Configuration, requestFactory?: RateApiRequestFactory, responseProcessor?: RateApiResponseProcessor) {
-        this.api = new ObservableRateApi(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * Estimate the amount of currency exchange.
-     * Estimate the amount of currency exchange.
-     * @param param the request object
-     */
-    public v1RateEstimate(param: RateApiV1RateEstimateRequest, options?: Configuration): Promise<ResponseEstimateOut> {
-        return this.api.v1RateEstimate(param.baseCurrency, param.toCurrency, param.baseAmount,  options).toPromise();
-    }
-
-    /**
-     * Query exchange rates between different currencies.
-     * Query exchange rates between different currencies. 
-     * @param param the request object
-     */
-    public v1RateGetRates(param: RateApiV1RateGetRatesRequest, options?: Configuration): Promise<ResponseRatesOut> {
-        return this.api.v1RateGetRates(param.getRatesIn,  options).toPromise();
-    }
-
-}
-
-import { ObservableRefundApi } from "./ObservableAPI";
-import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
-
-export interface RefundApiV1RefundCreateRequest {
-    /**
-     * 
-     * @type RefundIn
-     * @memberof RefundApiv1RefundCreate
-     */
-    refundIn: RefundIn
-}
-
-export interface RefundApiV1RefundGetRequest {
-    /**
-     * Specified the refund id or refund uid.
-     * @type string
-     * @memberof RefundApiv1RefundGet
+     * @memberof OrdersApiv1OrdersRetrieve
      */
     idOrUid: string
 }
 
-export interface RefundApiV1RefundListRequest {
+export class ObjectOrdersApi {
+    private api: ObservableOrdersApi
+
+    public constructor(configuration: Configuration, requestFactory?: OrdersApiRequestFactory, responseProcessor?: OrdersApiResponseProcessor) {
+        this.api = new ObservableOrdersApi(configuration, requestFactory, responseProcessor);
+    }
+
     /**
-     * Limit the number of returned items
-     * @type number
-     * @memberof RefundApiv1RefundList
+     * Create a new payment order
+     * Create Order
+     * @param param the request object
      */
-    size?: number
+    public v1OrdersCreate(param: OrdersApiV1OrdersCreateRequest, options?: Configuration): Promise<Order> {
+        return this.api.v1OrdersCreate(param.createOrderRequest,  options).toPromise();
+    }
+
     /**
-     * Specifying the page index
-     * @type number
-     * @memberof RefundApiv1RefundList
+     * Retrieve a list of orders with pagination
+     * List Orders
+     * @param param the request object
      */
-    page?: number
+    public v1OrdersList(param: OrdersApiV1OrdersListRequest, options?: Configuration): Promise<PageOrder> {
+        return this.api.v1OrdersList(param.page, param.size, param.walletId, param.currency, param.status,  options).toPromise();
+    }
+
     /**
-     * Optional order id
+     * Get order details by ID or UID
+     * Retrieve Order
+     * @param param the request object
+     */
+    public v1OrdersRetrieve(param: OrdersApiV1OrdersRetrieveRequest, options?: Configuration): Promise<Order> {
+        return this.api.v1OrdersRetrieve(param.idOrUid,  options).toPromise();
+    }
+
+}
+
+import { ObservableRatesApi } from "./ObservableAPI";
+import { RatesApiRequestFactory, RatesApiResponseProcessor} from "../apis/RatesApi";
+
+export interface RatesApiV1RatesEstimateRequest {
+    /**
+     * Source currency code
      * @type string
-     * @memberof RefundApiv1RefundList
+     * @memberof RatesApiv1RatesEstimate
+     */
+    baseCurrency: string
+    /**
+     * Amount in source currency to convert
+     * @type string
+     * @memberof RatesApiv1RatesEstimate
+     */
+    baseAmount: string
+    /**
+     * Target currency code
+     * @type string
+     * @memberof RatesApiv1RatesEstimate
+     */
+    toCurrency: string
+}
+
+export interface RatesApiV1RatesListRequest {
+    /**
+     * Currency pairs to get rates for
+     * @type GetRatesRequest
+     * @memberof RatesApiv1RatesList
+     */
+    getRatesRequest: GetRatesRequest
+}
+
+export class ObjectRatesApi {
+    private api: ObservableRatesApi
+
+    public constructor(configuration: Configuration, requestFactory?: RatesApiRequestFactory, responseProcessor?: RatesApiResponseProcessor) {
+        this.api = new ObservableRatesApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Convert an amount from one currency to another using current exchange rates.
+     * Estimate currency conversion
+     * @param param the request object
+     */
+    public v1RatesEstimate(param: RatesApiV1RatesEstimateRequest, options?: Configuration): Promise<EstimateResponse> {
+        return this.api.v1RatesEstimate(param.baseCurrency, param.baseAmount, param.toCurrency,  options).toPromise();
+    }
+
+    /**
+     * Get exchange rates for multiple currency pairs.
+     * List exchange rates
+     * @param param the request object
+     */
+    public v1RatesList(param: RatesApiV1RatesListRequest, options?: Configuration): Promise<GetRatesResponse> {
+        return this.api.v1RatesList(param.getRatesRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableRefundsApi } from "./ObservableAPI";
+import { RefundsApiRequestFactory, RefundsApiResponseProcessor} from "../apis/RefundsApi";
+
+export interface RefundsApiV1RefundsCreateRequest {
+    /**
+     * Refund details
+     * @type CreateRefundRequest
+     * @memberof RefundsApiv1RefundsCreate
+     */
+    createRefundRequest: CreateRefundRequest
+}
+
+export interface RefundsApiV1RefundsListRequest {
+    /**
+     * Page number for pagination, starting from 0
+     * @type number
+     * @memberof RefundsApiv1RefundsList
+     */
+    page: number
+    /**
+     * Number of items per page
+     * @type number
+     * @memberof RefundsApiv1RefundsList
+     */
+    size: number
+    /**
+     * Filter refunds by order ID
+     * @type string
+     * @memberof RefundsApiv1RefundsList
      */
     orderId?: string
 }
 
-export class ObjectRefundApi {
-    private api: ObservableRefundApi
+export interface RefundsApiV1RefundsRetrieveRequest {
+    /**
+     * Refund ID or UID
+     * @type string
+     * @memberof RefundsApiv1RefundsRetrieve
+     */
+    idOrUid: string
+}
 
-    public constructor(configuration: Configuration, requestFactory?: RefundApiRequestFactory, responseProcessor?: RefundApiResponseProcessor) {
-        this.api = new ObservableRefundApi(configuration, requestFactory, responseProcessor);
+export class ObjectRefundsApi {
+    private api: ObservableRefundsApi
+
+    public constructor(configuration: Configuration, requestFactory?: RefundsApiRequestFactory, responseProcessor?: RefundsApiResponseProcessor) {
+        this.api = new ObservableRefundsApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Create a refund.
+     * Create a new refund for an order
      * Create Refund
      * @param param the request object
      */
-    public v1RefundCreate(param: RefundApiV1RefundCreateRequest, options?: Configuration): Promise<ResponseRefundOut> {
-        return this.api.v1RefundCreate(param.refundIn,  options).toPromise();
+    public v1RefundsCreate(param: RefundsApiV1RefundsCreateRequest, options?: Configuration): Promise<Refund> {
+        return this.api.v1RefundsCreate(param.createRefundRequest,  options).toPromise();
     }
 
     /**
-     * Get specified refund.
-     * Get Refund
-     * @param param the request object
-     */
-    public v1RefundGet(param: RefundApiV1RefundGetRequest, options?: Configuration): Promise<ResponseRefundOut> {
-        return this.api.v1RefundGet(param.idOrUid,  options).toPromise();
-    }
-
-    /**
-     * List refunds.
+     * Retrieve a list of refunds with pagination
      * List Refunds
      * @param param the request object
      */
-    public v1RefundList(param: RefundApiV1RefundListRequest, options?: Configuration): Promise<ResponseListRefundOut> {
-        return this.api.v1RefundList(param.size, param.page, param.orderId,  options).toPromise();
-    }
-
-}
-
-import { ObservableTransferApi } from "./ObservableAPI";
-import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
-
-export interface TransferApiV1TransferCreateRequest {
-    /**
-     * 
-     * @type TransferIn
-     * @memberof TransferApiv1TransferCreate
-     */
-    transferIn: TransferIn
-}
-
-export class ObjectTransferApi {
-    private api: ObservableTransferApi
-
-    public constructor(configuration: Configuration, requestFactory?: TransferApiRequestFactory, responseProcessor?: TransferApiResponseProcessor) {
-        this.api = new ObservableTransferApi(configuration, requestFactory, responseProcessor);
+    public v1RefundsList(param: RefundsApiV1RefundsListRequest, options?: Configuration): Promise<PageRefund> {
+        return this.api.v1RefundsList(param.page, param.size, param.orderId,  options).toPromise();
     }
 
     /**
-     * Create a new transfer.
-     * Create Transfer
+     * Get refund details by ID or UID
+     * Retrieve Refund
      * @param param the request object
      */
-    public v1TransferCreate(param: TransferApiV1TransferCreateRequest, options?: Configuration): Promise<ResponseTransferOut> {
-        return this.api.v1TransferCreate(param.transferIn,  options).toPromise();
+    public v1RefundsRetrieve(param: RefundsApiV1RefundsRetrieveRequest, options?: Configuration): Promise<Refund> {
+        return this.api.v1RefundsRetrieve(param.idOrUid,  options).toPromise();
     }
 
 }
 
-import { ObservableWebhookEndpointApi } from "./ObservableAPI";
-import { WebhookEndpointApiRequestFactory, WebhookEndpointApiResponseProcessor} from "../apis/WebhookEndpointApi";
+import { ObservableTransfersApi } from "./ObservableAPI";
+import { TransfersApiRequestFactory, TransfersApiResponseProcessor} from "../apis/TransfersApi";
 
-export interface WebhookEndpointApiV1EndpointCreateRequest {
+export interface TransfersApiV1TransfersTransferRequest {
     /**
-     * 
-     * @type EndpointIn
-     * @memberof WebhookEndpointApiv1EndpointCreate
+     * Transfer details
+     * @type TransferRequest
+     * @memberof TransfersApiv1TransfersTransfer
      */
-    endpointIn: EndpointIn
+    transferRequest: TransferRequest
 }
 
-export interface WebhookEndpointApiV1EndpointDeleteRequest {
+export class ObjectTransfersApi {
+    private api: ObservableTransfersApi
+
+    public constructor(configuration: Configuration, requestFactory?: TransfersApiRequestFactory, responseProcessor?: TransfersApiResponseProcessor) {
+        this.api = new ObservableTransfersApi(configuration, requestFactory, responseProcessor);
+    }
+
     /**
-     * Specified the endpoint id.
+     * Transfer funds from merchant wallet to another wallet
+     * Transfer Funds
+     * @param param the request object
+     */
+    public v1TransfersTransfer(param: TransfersApiV1TransfersTransferRequest, options?: Configuration): Promise<TransferResponse> {
+        return this.api.v1TransfersTransfer(param.transferRequest,  options).toPromise();
+    }
+
+}
+
+import { ObservableWebhookEndpointsApi } from "./ObservableAPI";
+import { WebhookEndpointsApiRequestFactory, WebhookEndpointsApiResponseProcessor} from "../apis/WebhookEndpointsApi";
+
+export interface WebhookEndpointsApiV1WebhookEndpointsCreateRequest {
+    /**
+     * Webhook endpoint details
+     * @type CreateEndpointRequest
+     * @memberof WebhookEndpointsApiv1WebhookEndpointsCreate
+     */
+    createEndpointRequest: CreateEndpointRequest
+}
+
+export interface WebhookEndpointsApiV1WebhookEndpointsDeleteRequest {
+    /**
+     * Webhook endpoint ID
      * @type string
-     * @memberof WebhookEndpointApiv1EndpointDelete
+     * @memberof WebhookEndpointsApiv1WebhookEndpointsDelete
      */
     endpointId: string
 }
 
-export interface WebhookEndpointApiV1EndpointGetRequest {
+export interface WebhookEndpointsApiV1WebhookEndpointsListRequest {
     /**
-     * Specified the endpoint id or endpoint uid.
-     * @type string
-     * @memberof WebhookEndpointApiv1EndpointGet
-     */
-    endpointId: string
-}
-
-export interface WebhookEndpointApiV1EndpointListRequest {
-    /**
-     * Limit the number of returned items
+     * The limit of items per page
      * @type number
-     * @memberof WebhookEndpointApiv1EndpointList
+     * @memberof WebhookEndpointsApiv1WebhookEndpointsList
      */
-    limit?: number
+    limit: number
     /**
-     * Specifying the start cursor position
+     * The cursor for pagination
      * @type string
-     * @memberof WebhookEndpointApiv1EndpointList
+     * @memberof WebhookEndpointsApiv1WebhookEndpointsList
      */
     cursor?: string
-    /**
-     * The sorting order of the returned items
-     * @type Ordering
-     * @memberof WebhookEndpointApiv1EndpointList
-     */
-    ordering?: Ordering
 }
 
-export class ObjectWebhookEndpointApi {
-    private api: ObservableWebhookEndpointApi
+export interface WebhookEndpointsApiV1WebhookEndpointsRetrieveRequest {
+    /**
+     * Webhook endpoint ID
+     * @type string
+     * @memberof WebhookEndpointsApiv1WebhookEndpointsRetrieve
+     */
+    endpointId: string
+}
 
-    public constructor(configuration: Configuration, requestFactory?: WebhookEndpointApiRequestFactory, responseProcessor?: WebhookEndpointApiResponseProcessor) {
-        this.api = new ObservableWebhookEndpointApi(configuration, requestFactory, responseProcessor);
+export class ObjectWebhookEndpointsApi {
+    private api: ObservableWebhookEndpointsApi
+
+    public constructor(configuration: Configuration, requestFactory?: WebhookEndpointsApiRequestFactory, responseProcessor?: WebhookEndpointsApiResponseProcessor) {
+        this.api = new ObservableWebhookEndpointsApi(configuration, requestFactory, responseProcessor);
     }
 
     /**
-     * Create a webhook endpoint.
-     * Create endpoint
+     * Create a new webhook endpoint for receiving event notifications
+     * Create Webhook Endpoint
      * @param param the request object
      */
-    public v1EndpointCreate(param: WebhookEndpointApiV1EndpointCreateRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointCreate(param.endpointIn,  options).toPromise();
+    public v1WebhookEndpointsCreate(param: WebhookEndpointsApiV1WebhookEndpointsCreateRequest, options?: Configuration): Promise<Endpoint> {
+        return this.api.v1WebhookEndpointsCreate(param.createEndpointRequest,  options).toPromise();
     }
 
     /**
-     * delete the specified webhook endpoint.
-     * Delete endpoint
+     * Delete a webhook endpoint by ID
+     * Delete Webhook Endpoint
      * @param param the request object
      */
-    public v1EndpointDelete(param: WebhookEndpointApiV1EndpointDeleteRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointDelete(param.endpointId,  options).toPromise();
+    public v1WebhookEndpointsDelete(param: WebhookEndpointsApiV1WebhookEndpointsDeleteRequest, options?: Configuration): Promise<void> {
+        return this.api.v1WebhookEndpointsDelete(param.endpointId,  options).toPromise();
     }
 
     /**
-     * get the specified webhook endpoint.
-     * Delete endpoint
+     * Retrieve a list of webhook endpoints with cursor-based pagination
+     * List Webhook Endpoints
      * @param param the request object
      */
-    public v1EndpointGet(param: WebhookEndpointApiV1EndpointGetRequest, options?: Configuration): Promise<ResponseEndpointOut> {
-        return this.api.v1EndpointGet(param.endpointId,  options).toPromise();
+    public v1WebhookEndpointsList(param: WebhookEndpointsApiV1WebhookEndpointsListRequest, options?: Configuration): Promise<CursorPageEndpoint> {
+        return this.api.v1WebhookEndpointsList(param.limit, param.cursor,  options).toPromise();
     }
 
     /**
-     * List endpoints.
-     * List endpoints
+     * Get webhook endpoint details by ID
+     * Retrieve Webhook Endpoint
      * @param param the request object
      */
-    public v1EndpointList(param: WebhookEndpointApiV1EndpointListRequest, options?: Configuration): Promise<ResponseListEndpointOut> {
-        return this.api.v1EndpointList(param.limit, param.cursor, param.ordering,  options).toPromise();
+    public v1WebhookEndpointsRetrieve(param: WebhookEndpointsApiV1WebhookEndpointsRetrieveRequest, options?: Configuration): Promise<Endpoint> {
+        return this.api.v1WebhookEndpointsRetrieve(param.endpointId,  options).toPromise();
     }
 
 }

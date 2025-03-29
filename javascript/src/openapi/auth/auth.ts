@@ -38,7 +38,7 @@ export class ApiKeyAuthAuthentication implements SecurityAuthentication {
     }
 
     public applySecurityAuthentication(context: RequestContext) {
-        context.setHeaderParam("x-api-key", this.apiKey);
+        context.setHeaderParam("X-Api-Key", this.apiKey);
     }
 }
 

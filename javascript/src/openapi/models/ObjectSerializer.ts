@@ -1,70 +1,44 @@
+export * from './CreateEndpointRequest';
+export * from './CreateOrderRequest';
+export * from './CreateRefundRequest';
+export * from './Currency';
 export * from './CurrencyNetwork';
-export * from './CurrencyOut';
 export * from './CurrencyPair';
-export * from './EndpointIn';
-export * from './EndpointOut';
-export * from './EstimateOut';
-export * from './GetRatesIn';
-export * from './ListResponseCurrencyOut';
-export * from './ListResponseEndpointOut';
-export * from './ListResponseOrderOut';
-export * from './ListResponseRefundOut';
-export * from './OrderIn';
-export * from './OrderOut';
-export * from './Ordering';
-export * from './RateData';
-export * from './RatesOut';
-export * from './RefundIn';
-export * from './RefundOut';
-export * from './ResponseCurrencyOut';
-export * from './ResponseEndpointOut';
-export * from './ResponseError';
-export * from './ResponseEstimateOut';
-export * from './ResponseListCurrencyOut';
-export * from './ResponseListEndpointOut';
-export * from './ResponseListOrderOut';
-export * from './ResponseListRefundOut';
-export * from './ResponseOrderOut';
-export * from './ResponseRatesOut';
-export * from './ResponseRefundOut';
-export * from './ResponseTransferOut';
-export * from './TransferIn';
-export * from './TransferOut';
-export * from './WebhookMessage';
+export * from './CursorPageCurrency';
+export * from './CursorPageEndpoint';
+export * from './Endpoint';
+export * from './EstimateResponse';
+export * from './GetRatesRequest';
+export * from './GetRatesResponse';
+export * from './ModelError';
+export * from './Order';
+export * from './PageOrder';
+export * from './PageRefund';
+export * from './Rate';
+export * from './Refund';
+export * from './TransferRequest';
+export * from './TransferResponse';
 
+import { CreateEndpointRequest } from './CreateEndpointRequest';
+import { CreateOrderRequest } from './CreateOrderRequest';
+import { CreateRefundRequest } from './CreateRefundRequest';
+import { Currency } from './Currency';
 import { CurrencyNetwork } from './CurrencyNetwork';
-import { CurrencyOut } from './CurrencyOut';
 import { CurrencyPair } from './CurrencyPair';
-import { EndpointIn } from './EndpointIn';
-import { EndpointOut } from './EndpointOut';
-import { EstimateOut } from './EstimateOut';
-import { GetRatesIn } from './GetRatesIn';
-import { ListResponseCurrencyOut } from './ListResponseCurrencyOut';
-import { ListResponseEndpointOut } from './ListResponseEndpointOut';
-import { ListResponseOrderOut } from './ListResponseOrderOut';
-import { ListResponseRefundOut } from './ListResponseRefundOut';
-import { OrderIn } from './OrderIn';
-import { OrderOut         , OrderOutStatusEnum        } from './OrderOut';
-import { Ordering } from './Ordering';
-import { RateData } from './RateData';
-import { RatesOut } from './RatesOut';
-import { RefundIn } from './RefundIn';
-import { RefundOut     , RefundOutStatusEnum        } from './RefundOut';
-import { ResponseCurrencyOut } from './ResponseCurrencyOut';
-import { ResponseEndpointOut } from './ResponseEndpointOut';
-import { ResponseError } from './ResponseError';
-import { ResponseEstimateOut } from './ResponseEstimateOut';
-import { ResponseListCurrencyOut } from './ResponseListCurrencyOut';
-import { ResponseListEndpointOut } from './ResponseListEndpointOut';
-import { ResponseListOrderOut } from './ResponseListOrderOut';
-import { ResponseListRefundOut } from './ResponseListRefundOut';
-import { ResponseOrderOut } from './ResponseOrderOut';
-import { ResponseRatesOut } from './ResponseRatesOut';
-import { ResponseRefundOut } from './ResponseRefundOut';
-import { ResponseTransferOut } from './ResponseTransferOut';
-import { TransferIn } from './TransferIn';
-import { TransferOut } from './TransferOut';
-import { WebhookMessage } from './WebhookMessage';
+import { CursorPageCurrency } from './CursorPageCurrency';
+import { CursorPageEndpoint } from './CursorPageEndpoint';
+import { Endpoint } from './Endpoint';
+import { EstimateResponse } from './EstimateResponse';
+import { GetRatesRequest } from './GetRatesRequest';
+import { GetRatesResponse } from './GetRatesResponse';
+import { ModelError } from './ModelError';
+import { Order } from './Order';
+import { PageOrder } from './PageOrder';
+import { PageRefund } from './PageRefund';
+import { Rate } from './Rate';
+import { Refund } from './Refund';
+import { TransferRequest } from './TransferRequest';
+import { TransferResponse } from './TransferResponse';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -85,44 +59,29 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 
                  
 let enumsMap: Set<string> = new Set<string>([
-    "OrderOutStatusEnum",
-    "Ordering",
-    "RefundOutStatusEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
+    "CreateEndpointRequest": CreateEndpointRequest,
+    "CreateOrderRequest": CreateOrderRequest,
+    "CreateRefundRequest": CreateRefundRequest,
+    "Currency": Currency,
     "CurrencyNetwork": CurrencyNetwork,
-    "CurrencyOut": CurrencyOut,
     "CurrencyPair": CurrencyPair,
-    "EndpointIn": EndpointIn,
-    "EndpointOut": EndpointOut,
-    "EstimateOut": EstimateOut,
-    "GetRatesIn": GetRatesIn,
-    "ListResponseCurrencyOut": ListResponseCurrencyOut,
-    "ListResponseEndpointOut": ListResponseEndpointOut,
-    "ListResponseOrderOut": ListResponseOrderOut,
-    "ListResponseRefundOut": ListResponseRefundOut,
-    "OrderIn": OrderIn,
-    "OrderOut": OrderOut,
-    "RateData": RateData,
-    "RatesOut": RatesOut,
-    "RefundIn": RefundIn,
-    "RefundOut": RefundOut,
-    "ResponseCurrencyOut": ResponseCurrencyOut,
-    "ResponseEndpointOut": ResponseEndpointOut,
-    "ResponseError": ResponseError,
-    "ResponseEstimateOut": ResponseEstimateOut,
-    "ResponseListCurrencyOut": ResponseListCurrencyOut,
-    "ResponseListEndpointOut": ResponseListEndpointOut,
-    "ResponseListOrderOut": ResponseListOrderOut,
-    "ResponseListRefundOut": ResponseListRefundOut,
-    "ResponseOrderOut": ResponseOrderOut,
-    "ResponseRatesOut": ResponseRatesOut,
-    "ResponseRefundOut": ResponseRefundOut,
-    "ResponseTransferOut": ResponseTransferOut,
-    "TransferIn": TransferIn,
-    "TransferOut": TransferOut,
-    "WebhookMessage": WebhookMessage,
+    "CursorPageCurrency": CursorPageCurrency,
+    "CursorPageEndpoint": CursorPageEndpoint,
+    "Endpoint": Endpoint,
+    "EstimateResponse": EstimateResponse,
+    "GetRatesRequest": GetRatesRequest,
+    "GetRatesResponse": GetRatesResponse,
+    "ModelError": ModelError,
+    "Order": Order,
+    "PageOrder": PageOrder,
+    "PageRefund": PageRefund,
+    "Rate": Rate,
+    "Refund": Refund,
+    "TransferRequest": TransferRequest,
+    "TransferResponse": TransferResponse,
 }
 
 export class ObjectSerializer {

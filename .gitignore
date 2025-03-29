@@ -16,3 +16,7 @@ examples
 *.jks
 *.cer
 *.ca-bundle
+
+tests
+
+gradle.properties.env

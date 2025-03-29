@@ -5,9 +5,9 @@
 ## Enum
 
 
-* `ASC` (value: `"asc"`)
+* `ORDERING_ASC` (value: `"asc"`)
 
-* `DESC` (value: `"desc"`)
+* `ORDERING_DESC` (value: `"desc"`)
 
 
 

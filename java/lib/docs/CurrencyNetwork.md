@@ -7,23 +7,24 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**code** | **String** | Currency code | 
-**network** | **String** | blockchain network | 
-**name** | **String** | Currency name | 
-**minDepositAmount** | **String** | Big integer string representation. The min amount to deposit. | 
-**minWithdrawAmount** | **String** | Big integer string representation. The min amount to withdraw. | 
-**maxWithdrawAmount** | **String** | Big integer string representation. The max amount to withdraw. | 
-**canDeposit** | **Boolean** | Is it posible to deposit on blockchain | 
-**canWithdraw** | **Boolean** | Is it posible to withdraw to blockchain | 
-**canTransfer** | **Boolean** | Is it posible to transfer in custody wallet | 
-**contractAddress** | **String** | Contract address |  [optional]
-**needMemo** | **Boolean** | Indicates if additional Memo information is required, as needed by some currencies or exchanges | 
-**minFee** | **String** | Minimum transaction fee | 
+**canDeposit** | **Boolean** | Whether deposits are enabled for this network | 
+**canTransfer** | **Boolean** | Whether transfers are enabled for this network | 
+**canWithdraw** | **Boolean** | Whether withdrawals are enabled for this network | 
+**code** | **String** | Associated with Currency by code | 
+**contractAddress** | **String** | Smart contract address for token (if applicable) |  [optional]
+**id** | **String** | Unique identifier for the currency network | 
 **maxFee** | **String** | Maximum transaction fee | 
-**minFeeForCtAddr** | **String** | Minimum transaction fee for contract addresses | 
-**maxFeeForCtAddr** | **String** | Maximum transaction fee for contract addresses | 
-**minConfirmations** | **Integer** | Minimum number of confirmations required, indicating the number of block confirmations needed for a transaction to be considered valid |  [optional]
-**minCollectAmount** | **String** | Minimum amount for collection, i.e., the minimum amount to aggregate small balances to a single address |  [optional]
+**maxFeeForCtAddr** | **String** | Maximum fee for contract address transactions | 
+**maxWithdrawAmount** | **String** | Maximum on-chain withdrawal amount per transaction | 
+**minCollectAmount** | **String** | Minimum collection amount |  [optional]
+**minConfirmations** | **Integer** | Required number of confirmations for transactions | 
+**minDepositAmount** | **String** | Minimum deposit amount per transaction | 
+**minFee** | **String** | Minimum transaction fee | 
+**minFeeForCtAddr** | **String** | Minimum fee for contract address transactions | 
+**minWithdrawAmount** | **String** | Minimum on-chain withdrawal amount per transaction | 
+**name** | **String** | Display name of the network | 
+**needMemo** | **Boolean** | Whether memo/tag is required for transactions | 
+**network** | **String** | Network identifier (e.g., ETH, BTC) | 
 
 
 

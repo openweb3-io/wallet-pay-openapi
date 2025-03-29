@@ -18,7 +18,7 @@ def isReleaseBuild() {
 
 def getReleaseRepositoryUrl() {
     return hasProperty("RELEASE_REPOSITORY_URL") ? RELEASE_REPOSITORY_URL
-            : "https://s01.oss.sonatype.org/service/local/"
+            : "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
 }
 
 def getSnapshotRepositoryUrl() {
@@ -64,7 +64,7 @@ artifacts {
 
 publishing {
     publications {
-        maven(MavenPublication) {
+        mavenJava(MavenPublication) {
             groupId = GROUP
             version = VERSION_NAME
 
@@ -106,10 +106,34 @@ publishing {
             }
         }
     }
+    repositories {
+        maven {
+
+            name = 'central'
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+        //    def releasesRepoUrl = "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            credentials {
+                username = project.findProperty("sonatypeUsername") ?: System.getenv("SONATYPE_USERNAME")
+                password = project.findProperty("sonatypePassword") ?: System.getenv("SONATYPE_PASSWORD")
+            }
+
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
 }
 
 signing {
     required { !project.version.endsWith("-SNAPSHOT") && !project.hasProperty("skipSigning") }
-    useGpgCmd()
-    sign publishing.publications.maven
+//    useGpgCmd()
+    sign publishing.publications.mavenJava
+}
+
+javadoc {
+    // 防止本地打开中文乱码
+    options.addStringOption("charset", "UTF-8")
 }

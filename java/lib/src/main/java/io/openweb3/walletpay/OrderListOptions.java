@@ -1,7 +1,5 @@
 package io.openweb3.walletpay;
 
-import io.openweb3.walletpay.models.OrderOut.StatusEnum;
-
 public class OrderListOptions extends ListOptions {
     private String walletId;
     private String status;
@@ -10,7 +8,6 @@ public class OrderListOptions extends ListOptions {
     public void setWalletId(final String walletId) {
         this.walletId = walletId;
     }
-
     public String getWalletId() {
         return walletId;
     }

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseCurrency** | **string** | The code of the currency you are converting from. | 
-**ToCurrency** | **string** | The code of the currency you are converting to. | 
+**BaseCurrency** | **string** | Source currency code | 
+**ToCurrency** | **string** | Target currency code | 
 
 ## Methods
 

@@ -3,89 +3,53 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
+import { CreateEndpointRequest } from '../models/CreateEndpointRequest';
+import { CreateOrderRequest } from '../models/CreateOrderRequest';
+import { CreateRefundRequest } from '../models/CreateRefundRequest';
+import { Currency } from '../models/Currency';
 import { CurrencyNetwork } from '../models/CurrencyNetwork';
-import { CurrencyOut } from '../models/CurrencyOut';
 import { CurrencyPair } from '../models/CurrencyPair';
-import { EndpointIn } from '../models/EndpointIn';
-import { EndpointOut } from '../models/EndpointOut';
-import { EstimateOut } from '../models/EstimateOut';
-import { GetRatesIn } from '../models/GetRatesIn';
-import { ListResponseCurrencyOut } from '../models/ListResponseCurrencyOut';
-import { ListResponseEndpointOut } from '../models/ListResponseEndpointOut';
-import { ListResponseOrderOut } from '../models/ListResponseOrderOut';
-import { ListResponseRefundOut } from '../models/ListResponseRefundOut';
-import { OrderIn } from '../models/OrderIn';
-import { OrderOut } from '../models/OrderOut';
-import { Ordering } from '../models/Ordering';
-import { RateData } from '../models/RateData';
-import { RatesOut } from '../models/RatesOut';
-import { RefundIn } from '../models/RefundIn';
-import { RefundOut } from '../models/RefundOut';
-import { ResponseCurrencyOut } from '../models/ResponseCurrencyOut';
-import { ResponseEndpointOut } from '../models/ResponseEndpointOut';
-import { ResponseError } from '../models/ResponseError';
-import { ResponseEstimateOut } from '../models/ResponseEstimateOut';
-import { ResponseListCurrencyOut } from '../models/ResponseListCurrencyOut';
-import { ResponseListEndpointOut } from '../models/ResponseListEndpointOut';
-import { ResponseListOrderOut } from '../models/ResponseListOrderOut';
-import { ResponseListRefundOut } from '../models/ResponseListRefundOut';
-import { ResponseOrderOut } from '../models/ResponseOrderOut';
-import { ResponseRatesOut } from '../models/ResponseRatesOut';
-import { ResponseRefundOut } from '../models/ResponseRefundOut';
-import { ResponseTransferOut } from '../models/ResponseTransferOut';
-import { TransferIn } from '../models/TransferIn';
-import { TransferOut } from '../models/TransferOut';
-import { WebhookMessage } from '../models/WebhookMessage';
+import { CursorPageCurrency } from '../models/CursorPageCurrency';
+import { CursorPageEndpoint } from '../models/CursorPageEndpoint';
+import { Endpoint } from '../models/Endpoint';
+import { EstimateResponse } from '../models/EstimateResponse';
+import { GetRatesRequest } from '../models/GetRatesRequest';
+import { GetRatesResponse } from '../models/GetRatesResponse';
+import { ModelError } from '../models/ModelError';
+import { Order } from '../models/Order';
+import { PageOrder } from '../models/PageOrder';
+import { PageRefund } from '../models/PageRefund';
+import { Rate } from '../models/Rate';
+import { Refund } from '../models/Refund';
+import { TransferRequest } from '../models/TransferRequest';
+import { TransferResponse } from '../models/TransferResponse';
 
-import { CurrencyApiRequestFactory, CurrencyApiResponseProcessor} from "../apis/CurrencyApi";
-export class ObservableCurrencyApi {
-    private requestFactory: CurrencyApiRequestFactory;
-    private responseProcessor: CurrencyApiResponseProcessor;
+import { CurrenciesApiRequestFactory, CurrenciesApiResponseProcessor} from "../apis/CurrenciesApi";
+export class ObservableCurrenciesApi {
+    private requestFactory: CurrenciesApiRequestFactory;
+    private responseProcessor: CurrenciesApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: CurrencyApiRequestFactory,
-        responseProcessor?: CurrencyApiResponseProcessor
+        requestFactory?: CurrenciesApiRequestFactory,
+        responseProcessor?: CurrenciesApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new CurrencyApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new CurrencyApiResponseProcessor();
+        this.requestFactory = requestFactory || new CurrenciesApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new CurrenciesApiResponseProcessor();
     }
 
     /**
-     * Get specified currency.
-     * Find currency by code
-     * @param code Specified currency code.
-     */
-    public v1CurrencyFindByCode(code: string, _options?: Configuration): Observable<ResponseCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyFindByCode(code, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrencyFindByCode(rsp)));
-            }));
-    }
- 
-    /**
-     * List currencies.
+     * Retrieve a list of all available currencies.
      * List currencies
-     * @param limit Limit the number of returned items
-     * @param cursor Specifying the start cursor position
-     * @param rated Specifying if currency supports fetching rates
+     * @param limit Number of records to return per page
+     * @param rated Filter currencies by rated status
+     * @param cursor Pagination cursor for fetching next page
+     * @param appId Filter currencies by application ID
      */
-    public v1CurrencyList(limit?: number, cursor?: string, rated?: boolean, _options?: Configuration): Observable<ResponseListCurrencyOut> {
-        const requestContextPromise = this.requestFactory.v1CurrencyList(limit, cursor, rated, _options);
+    public v1CurrenciesList(limit: number, rated?: boolean, cursor?: string, appId?: string, _options?: Configuration): Observable<CursorPageCurrency> {
+        const requestContextPromise = this.requestFactory.v1CurrenciesList(limit, rated, cursor, appId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -99,35 +63,59 @@ export class ObservableCurrencyApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrencyList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrenciesList(rsp)));
+            }));
+    }
+ 
+    /**
+     * Get currency info by currency code
+     * Get Currency
+     * @param code Currency code
+     */
+    public v1CurrenciesRetrieve(code: string, _options?: Configuration): Observable<Currency> {
+        const requestContextPromise = this.requestFactory.v1CurrenciesRetrieve(code, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1CurrenciesRetrieve(rsp)));
             }));
     }
  
 }
 
-import { OrderApiRequestFactory, OrderApiResponseProcessor} from "../apis/OrderApi";
-export class ObservableOrderApi {
-    private requestFactory: OrderApiRequestFactory;
-    private responseProcessor: OrderApiResponseProcessor;
+import { OrdersApiRequestFactory, OrdersApiResponseProcessor} from "../apis/OrdersApi";
+export class ObservableOrdersApi {
+    private requestFactory: OrdersApiRequestFactory;
+    private responseProcessor: OrdersApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: OrderApiRequestFactory,
-        responseProcessor?: OrderApiResponseProcessor
+        requestFactory?: OrdersApiRequestFactory,
+        responseProcessor?: OrdersApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new OrderApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new OrderApiResponseProcessor();
+        this.requestFactory = requestFactory || new OrdersApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new OrdersApiResponseProcessor();
     }
 
     /**
-     * Create a new order.
+     * Create a new payment order
      * Create Order
-     * @param orderIn 
+     * @param createOrderRequest Order details
      */
-    public v1OrderCreate(orderIn: OrderIn, _options?: Configuration): Observable<ResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderCreate(orderIn, _options);
+    public v1OrdersCreate(createOrderRequest: CreateOrderRequest, _options?: Configuration): Observable<Order> {
+        const requestContextPromise = this.requestFactory.v1OrdersCreate(createOrderRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -141,45 +129,21 @@ export class ObservableOrderApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrdersCreate(rsp)));
             }));
     }
  
     /**
-     * Get specified order.
-     * Get order
-     * @param idOrUid Specified the order id or order uid.
-     */
-    public v1OrderGet(idOrUid: string, _options?: Configuration): Observable<ResponseOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderGet(idOrUid, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderGet(rsp)));
-            }));
-    }
- 
-    /**
-     * List orders.
+     * Retrieve a list of orders with pagination
      * List Orders
-     * @param size Limit the number of returned items
-     * @param page Specifying the page index
-     * @param walletId Optional wallet id
-     * @param currency Optional currency code
-     * @param status Optional order status
+     * @param page Page number for pagination, starting from 0
+     * @param size Number of items per page
+     * @param walletId Filter orders by wallet ID
+     * @param currency Filter orders by currency
+     * @param status Order status enum
      */
-    public v1OrderList(size?: number, page?: number, walletId?: string, currency?: string, status?: 'PENDING' | 'PAID' | 'EXPIRED' | 'FAILED' | 'COMPLETED', _options?: Configuration): Observable<ResponseListOrderOut> {
-        const requestContextPromise = this.requestFactory.v1OrderList(size, page, walletId, currency, status, _options);
+    public v1OrdersList(page: number, size: number, walletId?: string, currency?: string, status?: string, _options?: Configuration): Observable<PageOrder> {
+        const requestContextPromise = this.requestFactory.v1OrdersList(page, size, walletId, currency, status, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -193,37 +157,61 @@ export class ObservableOrderApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrderList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrdersList(rsp)));
+            }));
+    }
+ 
+    /**
+     * Get order details by ID or UID
+     * Retrieve Order
+     * @param idOrUid Order ID or UID
+     */
+    public v1OrdersRetrieve(idOrUid: string, _options?: Configuration): Observable<Order> {
+        const requestContextPromise = this.requestFactory.v1OrdersRetrieve(idOrUid, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1OrdersRetrieve(rsp)));
             }));
     }
  
 }
 
-import { RateApiRequestFactory, RateApiResponseProcessor} from "../apis/RateApi";
-export class ObservableRateApi {
-    private requestFactory: RateApiRequestFactory;
-    private responseProcessor: RateApiResponseProcessor;
+import { RatesApiRequestFactory, RatesApiResponseProcessor} from "../apis/RatesApi";
+export class ObservableRatesApi {
+    private requestFactory: RatesApiRequestFactory;
+    private responseProcessor: RatesApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: RateApiRequestFactory,
-        responseProcessor?: RateApiResponseProcessor
+        requestFactory?: RatesApiRequestFactory,
+        responseProcessor?: RatesApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new RateApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new RateApiResponseProcessor();
+        this.requestFactory = requestFactory || new RatesApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RatesApiResponseProcessor();
     }
 
     /**
-     * Estimate the amount of currency exchange.
-     * Estimate the amount of currency exchange.
-     * @param baseCurrency Specified the base currency that needs to be estimated
-     * @param toCurrency Specify the target currency.
-     * @param baseAmount Specify the amount of base currency that need to be estimated.
+     * Convert an amount from one currency to another using current exchange rates.
+     * Estimate currency conversion
+     * @param baseCurrency Source currency code
+     * @param baseAmount Amount in source currency to convert
+     * @param toCurrency Target currency code
      */
-    public v1RateEstimate(baseCurrency: string, toCurrency: string, baseAmount: string, _options?: Configuration): Observable<ResponseEstimateOut> {
-        const requestContextPromise = this.requestFactory.v1RateEstimate(baseCurrency, toCurrency, baseAmount, _options);
+    public v1RatesEstimate(baseCurrency: string, baseAmount: string, toCurrency: string, _options?: Configuration): Observable<EstimateResponse> {
+        const requestContextPromise = this.requestFactory.v1RatesEstimate(baseCurrency, baseAmount, toCurrency, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -237,17 +225,17 @@ export class ObservableRateApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RateEstimate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RatesEstimate(rsp)));
             }));
     }
  
     /**
-     * Query exchange rates between different currencies.
-     * Query exchange rates between different currencies. 
-     * @param getRatesIn 
+     * Get exchange rates for multiple currency pairs.
+     * List exchange rates
+     * @param getRatesRequest Currency pairs to get rates for
      */
-    public v1RateGetRates(getRatesIn: GetRatesIn, _options?: Configuration): Observable<ResponseRatesOut> {
-        const requestContextPromise = this.requestFactory.v1RateGetRates(getRatesIn, _options);
+    public v1RatesList(getRatesRequest: GetRatesRequest, _options?: Configuration): Observable<GetRatesResponse> {
+        const requestContextPromise = this.requestFactory.v1RatesList(getRatesRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -261,35 +249,35 @@ export class ObservableRateApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RateGetRates(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RatesList(rsp)));
             }));
     }
  
 }
 
-import { RefundApiRequestFactory, RefundApiResponseProcessor} from "../apis/RefundApi";
-export class ObservableRefundApi {
-    private requestFactory: RefundApiRequestFactory;
-    private responseProcessor: RefundApiResponseProcessor;
+import { RefundsApiRequestFactory, RefundsApiResponseProcessor} from "../apis/RefundsApi";
+export class ObservableRefundsApi {
+    private requestFactory: RefundsApiRequestFactory;
+    private responseProcessor: RefundsApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: RefundApiRequestFactory,
-        responseProcessor?: RefundApiResponseProcessor
+        requestFactory?: RefundsApiRequestFactory,
+        responseProcessor?: RefundsApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new RefundApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new RefundApiResponseProcessor();
+        this.requestFactory = requestFactory || new RefundsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RefundsApiResponseProcessor();
     }
 
     /**
-     * Create a refund.
+     * Create a new refund for an order
      * Create Refund
-     * @param refundIn 
+     * @param createRefundRequest Refund details
      */
-    public v1RefundCreate(refundIn: RefundIn, _options?: Configuration): Observable<ResponseRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundCreate(refundIn, _options);
+    public v1RefundsCreate(createRefundRequest: CreateRefundRequest, _options?: Configuration): Observable<Refund> {
+        const requestContextPromise = this.requestFactory.v1RefundsCreate(createRefundRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -303,43 +291,19 @@ export class ObservableRefundApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundsCreate(rsp)));
             }));
     }
  
     /**
-     * Get specified refund.
-     * Get Refund
-     * @param idOrUid Specified the refund id or refund uid.
-     */
-    public v1RefundGet(idOrUid: string, _options?: Configuration): Observable<ResponseRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundGet(idOrUid, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (let middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (let middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundGet(rsp)));
-            }));
-    }
- 
-    /**
-     * List refunds.
+     * Retrieve a list of refunds with pagination
      * List Refunds
-     * @param size Limit the number of returned items
-     * @param page Specifying the page index
-     * @param orderId Optional order id
+     * @param page Page number for pagination, starting from 0
+     * @param size Number of items per page
+     * @param orderId Filter refunds by order ID
      */
-    public v1RefundList(size?: number, page?: number, orderId?: string, _options?: Configuration): Observable<ResponseListRefundOut> {
-        const requestContextPromise = this.requestFactory.v1RefundList(size, page, orderId, _options);
+    public v1RefundsList(page: number, size: number, orderId?: string, _options?: Configuration): Observable<PageRefund> {
+        const requestContextPromise = this.requestFactory.v1RefundsList(page, size, orderId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -353,35 +317,59 @@ export class ObservableRefundApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundsList(rsp)));
+            }));
+    }
+ 
+    /**
+     * Get refund details by ID or UID
+     * Retrieve Refund
+     * @param idOrUid Refund ID or UID
+     */
+    public v1RefundsRetrieve(idOrUid: string, _options?: Configuration): Observable<Refund> {
+        const requestContextPromise = this.requestFactory.v1RefundsRetrieve(idOrUid, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (let middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (let middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1RefundsRetrieve(rsp)));
             }));
     }
  
 }
 
-import { TransferApiRequestFactory, TransferApiResponseProcessor} from "../apis/TransferApi";
-export class ObservableTransferApi {
-    private requestFactory: TransferApiRequestFactory;
-    private responseProcessor: TransferApiResponseProcessor;
+import { TransfersApiRequestFactory, TransfersApiResponseProcessor} from "../apis/TransfersApi";
+export class ObservableTransfersApi {
+    private requestFactory: TransfersApiRequestFactory;
+    private responseProcessor: TransfersApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: TransferApiRequestFactory,
-        responseProcessor?: TransferApiResponseProcessor
+        requestFactory?: TransfersApiRequestFactory,
+        responseProcessor?: TransfersApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new TransferApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new TransferApiResponseProcessor();
+        this.requestFactory = requestFactory || new TransfersApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new TransfersApiResponseProcessor();
     }
 
     /**
-     * Create a new transfer.
-     * Create Transfer
-     * @param transferIn 
+     * Transfer funds from merchant wallet to another wallet
+     * Transfer Funds
+     * @param transferRequest Transfer details
      */
-    public v1TransferCreate(transferIn: TransferIn, _options?: Configuration): Observable<ResponseTransferOut> {
-        const requestContextPromise = this.requestFactory.v1TransferCreate(transferIn, _options);
+    public v1TransfersTransfer(transferRequest: TransferRequest, _options?: Configuration): Observable<TransferResponse> {
+        const requestContextPromise = this.requestFactory.v1TransfersTransfer(transferRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -395,35 +383,35 @@ export class ObservableTransferApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1TransferCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1TransfersTransfer(rsp)));
             }));
     }
  
 }
 
-import { WebhookEndpointApiRequestFactory, WebhookEndpointApiResponseProcessor} from "../apis/WebhookEndpointApi";
-export class ObservableWebhookEndpointApi {
-    private requestFactory: WebhookEndpointApiRequestFactory;
-    private responseProcessor: WebhookEndpointApiResponseProcessor;
+import { WebhookEndpointsApiRequestFactory, WebhookEndpointsApiResponseProcessor} from "../apis/WebhookEndpointsApi";
+export class ObservableWebhookEndpointsApi {
+    private requestFactory: WebhookEndpointsApiRequestFactory;
+    private responseProcessor: WebhookEndpointsApiResponseProcessor;
     private configuration: Configuration;
 
     public constructor(
         configuration: Configuration,
-        requestFactory?: WebhookEndpointApiRequestFactory,
-        responseProcessor?: WebhookEndpointApiResponseProcessor
+        requestFactory?: WebhookEndpointsApiRequestFactory,
+        responseProcessor?: WebhookEndpointsApiResponseProcessor
     ) {
         this.configuration = configuration;
-        this.requestFactory = requestFactory || new WebhookEndpointApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new WebhookEndpointApiResponseProcessor();
+        this.requestFactory = requestFactory || new WebhookEndpointsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new WebhookEndpointsApiResponseProcessor();
     }
 
     /**
-     * Create a webhook endpoint.
-     * Create endpoint
-     * @param endpointIn 
+     * Create a new webhook endpoint for receiving event notifications
+     * Create Webhook Endpoint
+     * @param createEndpointRequest Webhook endpoint details
      */
-    public v1EndpointCreate(endpointIn: EndpointIn, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointCreate(endpointIn, _options);
+    public v1WebhookEndpointsCreate(createEndpointRequest: CreateEndpointRequest, _options?: Configuration): Observable<Endpoint> {
+        const requestContextPromise = this.requestFactory.v1WebhookEndpointsCreate(createEndpointRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -437,17 +425,17 @@ export class ObservableWebhookEndpointApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointCreate(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookEndpointsCreate(rsp)));
             }));
     }
  
     /**
-     * delete the specified webhook endpoint.
-     * Delete endpoint
-     * @param endpointId Specified the endpoint id.
+     * Delete a webhook endpoint by ID
+     * Delete Webhook Endpoint
+     * @param endpointId Webhook endpoint ID
      */
-    public v1EndpointDelete(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointDelete(endpointId, _options);
+    public v1WebhookEndpointsDelete(endpointId: string, _options?: Configuration): Observable<void> {
+        const requestContextPromise = this.requestFactory.v1WebhookEndpointsDelete(endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -461,17 +449,18 @@ export class ObservableWebhookEndpointApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointDelete(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookEndpointsDelete(rsp)));
             }));
     }
  
     /**
-     * get the specified webhook endpoint.
-     * Delete endpoint
-     * @param endpointId Specified the endpoint id or endpoint uid.
+     * Retrieve a list of webhook endpoints with cursor-based pagination
+     * List Webhook Endpoints
+     * @param limit The limit of items per page
+     * @param cursor The cursor for pagination
      */
-    public v1EndpointGet(endpointId: string, _options?: Configuration): Observable<ResponseEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointGet(endpointId, _options);
+    public v1WebhookEndpointsList(limit: number, cursor?: string, _options?: Configuration): Observable<CursorPageEndpoint> {
+        const requestContextPromise = this.requestFactory.v1WebhookEndpointsList(limit, cursor, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -485,19 +474,17 @@ export class ObservableWebhookEndpointApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointGet(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookEndpointsList(rsp)));
             }));
     }
  
     /**
-     * List endpoints.
-     * List endpoints
-     * @param limit Limit the number of returned items
-     * @param cursor Specifying the start cursor position
-     * @param ordering The sorting order of the returned items
+     * Get webhook endpoint details by ID
+     * Retrieve Webhook Endpoint
+     * @param endpointId Webhook endpoint ID
      */
-    public v1EndpointList(limit?: number, cursor?: string, ordering?: Ordering, _options?: Configuration): Observable<ResponseListEndpointOut> {
-        const requestContextPromise = this.requestFactory.v1EndpointList(limit, cursor, ordering, _options);
+    public v1WebhookEndpointsRetrieve(endpointId: string, _options?: Configuration): Observable<Endpoint> {
+        const requestContextPromise = this.requestFactory.v1WebhookEndpointsRetrieve(endpointId, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -511,7 +498,7 @@ export class ObservableWebhookEndpointApi {
                 for (let middleware of this.configuration.middleware) {
                     middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
                 }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1EndpointList(rsp)));
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.v1WebhookEndpointsRetrieve(rsp)));
             }));
     }
  

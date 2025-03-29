@@ -2,13 +2,14 @@
 
 # CurrencyPair
 
+Currency pair for this rate
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**baseCurrency** | **String** | The code of the currency you are converting from. | 
-**toCurrency** | **String** | The code of the currency you are converting to. | 
+**baseCurrency** | **String** | Source currency code | 
+**toCurrency** | **String** | Target currency code | 
 
 
 
