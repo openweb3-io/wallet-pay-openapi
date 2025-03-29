@@ -7,15 +7,15 @@ import (
 )
 
 type (
-	TransferIn  = openapi.TransferRequest
-	TransferOut = openapi.TransferResponse
+	TransferRequest  = openapi.TransferRequest
+	TransferResponse = openapi.TransferResponse
 )
 
 type Transfers struct {
 	api *openapi.APIClient
 }
 
-func (e *Transfers) Create(ctx context.Context, transferIn *TransferIn) (*TransferOut, error) {
+func (e *Transfers) Create(ctx context.Context, transferIn *TransferRequest) (*TransferResponse, error) {
 	req := e.api.TransfersApi.V1TransfersTransfer(ctx)
 	req = req.TransferRequest(openapi.TransferRequest(*transferIn))
 
@@ -23,7 +23,7 @@ func (e *Transfers) Create(ctx context.Context, transferIn *TransferIn) (*Transf
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := TransferOut(out)
+	ret := TransferResponse(out)
 
 	return &ret, nil
 }

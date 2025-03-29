@@ -7,9 +7,9 @@ import (
 )
 
 type (
-	ListOrderOut = openapi.PageOrder
-	OrderIn      = openapi.CreateOrderRequest
-	OrderOut     = openapi.Order
+	PageOrder          = openapi.PageOrder
+	CreateOrderRequest = openapi.CreateOrderRequest
+	Order              = openapi.Order
 )
 
 type Orders struct {
@@ -24,7 +24,7 @@ type OrderListOptions struct {
 	Currency *string
 }
 
-func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*ListOrderOut, error) {
+func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*PageOrder, error) {
 	req := e.api.OrdersApi.V1OrdersList(ctx)
 	if options != nil {
 		if options.Size != nil {
@@ -47,15 +47,15 @@ func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*ListOrde
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListOrderOut(out)
+	ret := PageOrder(out)
 	return &ret, nil
 }
 
-func (e *Orders) Create(ctx context.Context, orderIn *OrderIn) (*OrderOut, error) {
+func (e *Orders) Create(ctx context.Context, orderIn *CreateOrderRequest) (*Order, error) {
 	return e.CreateWithOptions(ctx, orderIn, nil)
 }
 
-func (e *Orders) CreateWithOptions(ctx context.Context, orderIn *OrderIn, options *PostOptions) (*OrderOut, error) {
+func (e *Orders) CreateWithOptions(ctx context.Context, orderIn *CreateOrderRequest, options *PostOptions) (*Order, error) {
 	req := e.api.OrdersApi.V1OrdersCreate(ctx)
 	req = req.CreateOrderRequest(openapi.CreateOrderRequest(*orderIn))
 
@@ -63,18 +63,18 @@ func (e *Orders) CreateWithOptions(ctx context.Context, orderIn *OrderIn, option
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := OrderOut(out)
+	ret := Order(out)
 	return &ret, nil
 }
 
-func (e *Orders) Get(ctx context.Context, orderId string) (*OrderOut, error) {
+func (e *Orders) Get(ctx context.Context, orderId string) (*Order, error) {
 	req := e.api.OrdersApi.V1OrdersRetrieve(ctx, orderId)
 
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := OrderOut(out)
+	ret := Order(out)
 
 	return &ret, nil
 }

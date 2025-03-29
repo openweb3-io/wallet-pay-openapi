@@ -8,9 +8,9 @@ import (
 )
 
 type (
-	ListEndpointOut = openapi.CursorPageEndpoint
-	EndpointIn      = openapi.CreateEndpointRequest
-	EndpointOut     = openapi.Endpoint
+	CursorPageEndpoint    = openapi.CursorPageEndpoint
+	CreateEndpointRequest = openapi.CreateEndpointRequest
+	Endpoint              = openapi.Endpoint
 )
 
 type Endpoints struct {
@@ -27,7 +27,7 @@ type EndpointStatsOptions struct {
 	Until *time.Time
 }
 
-func (e *Endpoints) List(ctx context.Context, options *EndpointListOptions) (*ListEndpointOut, error) {
+func (e *Endpoints) List(ctx context.Context, options *EndpointListOptions) (*CursorPageEndpoint, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhookEndpointsList(ctx)
 	if options != nil {
 		req = req.Limit(options.Limit)
@@ -39,15 +39,15 @@ func (e *Endpoints) List(ctx context.Context, options *EndpointListOptions) (*Li
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListEndpointOut(out)
+	ret := CursorPageEndpoint(out)
 	return &ret, nil
 }
 
-func (e *Endpoints) Create(ctx context.Context, endpointIn *EndpointIn) (*EndpointOut, error) {
+func (e *Endpoints) Create(ctx context.Context, endpointIn *CreateEndpointRequest) (*Endpoint, error) {
 	return e.CreateWithOptions(ctx, endpointIn, nil)
 }
 
-func (e *Endpoints) CreateWithOptions(ctx context.Context, endpointIn *EndpointIn, options *PostOptions) (*EndpointOut, error) {
+func (e *Endpoints) CreateWithOptions(ctx context.Context, endpointIn *CreateEndpointRequest, options *PostOptions) (*Endpoint, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhookEndpointsCreate(ctx)
 	req = req.CreateEndpointRequest(openapi.CreateEndpointRequest(*endpointIn))
 
@@ -55,18 +55,18 @@ func (e *Endpoints) CreateWithOptions(ctx context.Context, endpointIn *EndpointI
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := EndpointOut(out)
+	ret := Endpoint(out)
 	return &ret, nil
 }
 
-func (e *Endpoints) Get(ctx context.Context, endpointId string) (*EndpointOut, error) {
+func (e *Endpoints) Get(ctx context.Context, endpointId string) (*Endpoint, error) {
 	req := e.api.WebhookEndpointsApi.V1WebhookEndpointsRetrieve(ctx, endpointId)
 
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := EndpointOut(out)
+	ret := Endpoint(out)
 
 	return &ret, nil
 }

@@ -7,9 +7,9 @@ import (
 )
 
 type (
-	ListRefundOut = openapi.PageRefund
-	RefundIn      = openapi.CreateRefundRequest
-	RefundOut     = openapi.Refund
+	PageRefund          = openapi.PageRefund
+	CreateRefundRequest = openapi.CreateRefundRequest
+	Refund              = openapi.Refund
 )
 
 type Refunds struct {
@@ -22,7 +22,7 @@ type RefundListOptions struct {
 	OrderId *string
 }
 
-func (e *Refunds) List(ctx context.Context, options *RefundListOptions) (*ListRefundOut, error) {
+func (e *Refunds) List(ctx context.Context, options *RefundListOptions) (*PageRefund, error) {
 	req := e.api.RefundsApi.V1RefundsList(ctx)
 	if options != nil {
 		if options.Size != nil {
@@ -39,15 +39,15 @@ func (e *Refunds) List(ctx context.Context, options *RefundListOptions) (*ListRe
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := ListRefundOut(out)
+	ret := PageRefund(out)
 	return &ret, nil
 }
 
-func (e *Refunds) Create(ctx context.Context, refundIn *RefundIn) (*RefundOut, error) {
+func (e *Refunds) Create(ctx context.Context, refundIn *CreateRefundRequest) (*Refund, error) {
 	return e.CreateWithOptions(ctx, refundIn, nil)
 }
 
-func (e *Refunds) CreateWithOptions(ctx context.Context, refundIn *RefundIn, options *PostOptions) (*RefundOut, error) {
+func (e *Refunds) CreateWithOptions(ctx context.Context, refundIn *CreateRefundRequest, options *PostOptions) (*Refund, error) {
 	req := e.api.RefundsApi.V1RefundsCreate(ctx)
 	req = req.CreateRefundRequest(openapi.CreateRefundRequest(*refundIn))
 
@@ -55,18 +55,18 @@ func (e *Refunds) CreateWithOptions(ctx context.Context, refundIn *RefundIn, opt
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := RefundOut(out)
+	ret := Refund(out)
 	return &ret, nil
 }
 
-func (e *Refunds) Get(ctx context.Context, orderId string) (*RefundOut, error) {
+func (e *Refunds) Get(ctx context.Context, orderId string) (*Refund, error) {
 	req := e.api.RefundsApi.V1RefundsRetrieve(ctx, orderId)
 
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := RefundOut(out)
+	ret := Refund(out)
 
 	return &ret, nil
 }

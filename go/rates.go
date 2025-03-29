@@ -7,10 +7,10 @@ import (
 )
 
 type (
-	EstimateOut  = openapi.EstimateResponse
-	GetRatesIn   = openapi.GetRatesRequest
-	GetRatesOut  = openapi.GetRatesResponse
-	CurrencyPair = openapi.CurrencyPair
+	EstimateResponse = openapi.EstimateResponse
+	GetRatesRequest  = openapi.GetRatesRequest
+	GetRatesResponse = openapi.GetRatesResponse
+	CurrencyPair     = openapi.CurrencyPair
 )
 
 type Rates struct {
@@ -23,7 +23,7 @@ type EstimateOptions struct {
 	ToCurrency   string
 }
 
-func (e *Rates) Estimate(ctx context.Context, options *EstimateOptions) (*EstimateOut, error) {
+func (e *Rates) Estimate(ctx context.Context, options *EstimateOptions) (*EstimateResponse, error) {
 	req := e.api.RatesApi.V1RatesEstimate(ctx)
 	req = req.BaseCurrency(options.BaseCurrency)
 	req = req.BaseAmount(options.BaseAmount)
@@ -32,18 +32,18 @@ func (e *Rates) Estimate(ctx context.Context, options *EstimateOptions) (*Estima
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := EstimateOut(out)
+	ret := EstimateResponse(out)
 	return &ret, nil
 }
 
-func (e *Rates) GetRates(ctx context.Context, getRatesIn *GetRatesIn) (*GetRatesOut, error) {
+func (e *Rates) GetRates(ctx context.Context, getRatesIn *GetRatesRequest) (*GetRatesResponse, error) {
 	req := e.api.RatesApi.V1RatesList(ctx)
 	req = req.GetRatesRequest(openapi.GetRatesRequest(*getRatesIn))
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := GetRatesOut(out)
+	ret := GetRatesResponse(out)
 
 	return &ret, nil
 }

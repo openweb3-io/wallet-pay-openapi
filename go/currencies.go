@@ -7,8 +7,8 @@ import (
 )
 
 type (
-	ListResponseCurrencyOut = openapi.CursorPageCurrency
-	CurrencyOut             = openapi.Currency
+	CursorPageCurrency = openapi.CursorPageCurrency
+	Currency           = openapi.Currency
 )
 
 type Currencies struct {
@@ -21,7 +21,7 @@ type CurrencyListOptions struct {
 	Rated  *bool
 }
 
-func (e *Currencies) List(ctx context.Context, options *CurrencyListOptions) (*ListResponseCurrencyOut, error) {
+func (e *Currencies) List(ctx context.Context, options *CurrencyListOptions) (*CursorPageCurrency, error) {
 	req := e.api.CurrenciesApi.V1CurrenciesList(ctx)
 	if options != nil {
 		if options.Cursor != nil {
@@ -39,17 +39,17 @@ func (e *Currencies) List(ctx context.Context, options *CurrencyListOptions) (*L
 		return nil, wrapError(err, res)
 	}
 
-	ret := ListResponseCurrencyOut(out)
+	ret := CursorPageCurrency(out)
 	return &ret, nil
 }
 
-func (e *Currencies) FindByCode(ctx context.Context, code string) (*CurrencyOut, error) {
+func (e *Currencies) FindByCode(ctx context.Context, code string) (*Currency, error) {
 	req := e.api.CurrenciesApi.V1CurrenciesRetrieve(ctx, code)
 
 	out, res, err := req.Execute()
 	if err != nil {
 		return nil, wrapError(err, res)
 	}
-	ret := CurrencyOut(out)
+	ret := Currency(out)
 	return &ret, nil
 }
