@@ -30,7 +30,7 @@ import {
 } from "./openapi/index";
 export * from "./openapi/models/all";
 export * from "./openapi/apis/exception";
-import { createHash } from "crypto";
+import { createHash, createVerify, constants } from "crypto";
 import * as nacl from "tweetnacl";
 
 const VERSION = "0.2.0";
@@ -268,41 +268,36 @@ class Refunds {
   }
 }
 
-
-
 export class WebhookClient {
   private readonly publicKey: string;
 
   public constructor(publicKey: string) {
     this.publicKey = publicKey;
   }
-  
+
   public async verify(payload: string, signature: string): Promise<boolean> {
     try {
-      const crypto = require('crypto');
-      
       // convert payload to buffer
       const payloadBuffer = Buffer.from(payload);
       // convert signature to buffer
-      const signatureBuffer = Buffer.from(signature, 'base64');
+      const signatureBuffer = Buffer.from(signature, "base64");
       // create verify object, using pkcs#1 format public key
-      const verify = crypto.createVerify('sha256');
+      const verify = createVerify("sha256");
       verify.update(payloadBuffer);
-      
+
       // verify signature
       const isValid = verify.verify(
         {
           key: this.publicKey,
-          padding: crypto.constants.RSA_PKCS1_PADDING
+          padding: constants.RSA_PKCS1_PADDING,
         },
         signatureBuffer
       );
-      
+
       return isValid;
     } catch (error) {
-      console.error('verify signature error:', error);
+      console.error("verify signature error:", error);
       return false;
     }
-
   }
 }
