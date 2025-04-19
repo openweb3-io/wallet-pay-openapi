@@ -31,17 +31,13 @@ type ApiV1CurrenciesListRequest struct {
 	ctx _context.Context
 	ApiService *CurrenciesApiService
 	limit *int32
-	rated *bool
 	cursor *string
 	appId *string
+	rated *bool
 }
 
 func (r ApiV1CurrenciesListRequest) Limit(limit int32) ApiV1CurrenciesListRequest {
 	r.limit = &limit
-	return r
-}
-func (r ApiV1CurrenciesListRequest) Rated(rated bool) ApiV1CurrenciesListRequest {
-	r.rated = &rated
 	return r
 }
 func (r ApiV1CurrenciesListRequest) Cursor(cursor string) ApiV1CurrenciesListRequest {
@@ -50,6 +46,10 @@ func (r ApiV1CurrenciesListRequest) Cursor(cursor string) ApiV1CurrenciesListReq
 }
 func (r ApiV1CurrenciesListRequest) AppId(appId string) ApiV1CurrenciesListRequest {
 	r.appId = &appId
+	return r
+}
+func (r ApiV1CurrenciesListRequest) Rated(rated bool) ApiV1CurrenciesListRequest {
+	r.rated = &rated
 	return r
 }
 
@@ -97,16 +97,22 @@ func (a *CurrenciesApiService) V1CurrenciesListExecute(r ApiV1CurrenciesListRequ
 	if r.limit == nil {
 		return localVarReturnValue, nil, reportError("limit is required and must be specified")
 	}
-
-	if r.rated != nil {
-		localVarQueryParams.Add("rated", parameterToString(*r.rated, ""))
+	if *r.limit < 1 {
+		return localVarReturnValue, nil, reportError("limit must be greater than 1")
 	}
+	if *r.limit > 100 {
+		return localVarReturnValue, nil, reportError("limit must be less than 100")
+	}
+
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
 	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	if r.appId != nil {
 		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
+	}
+	if r.rated != nil {
+		localVarQueryParams.Add("rated", parameterToString(*r.rated, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

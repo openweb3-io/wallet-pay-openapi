@@ -261,6 +261,8 @@ func (a *OrdersApiService) V1OrdersListExecute(r ApiV1OrdersListRequest) (PageOr
 		return localVarReturnValue, nil, reportError("size is required and must be specified")
 	}
 
+	localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	if r.walletId != nil {
 		localVarQueryParams.Add("wallet_id", parameterToString(*r.walletId, ""))
 	}
@@ -270,8 +272,6 @@ func (a *OrdersApiService) V1OrdersListExecute(r ApiV1OrdersListRequest) (PageOr
 	if r.status != nil {
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
-	localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

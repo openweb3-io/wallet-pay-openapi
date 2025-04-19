@@ -184,8 +184,8 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     WebhookEndpointsApi apiInstance = new WebhookEndpointsApi(defaultClient);
-    Integer limit = 56; // Integer | The limit of items per page
-    String cursor = "cursor_example"; // String | The cursor for pagination
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     try {
       CursorPageEndpoint result = apiInstance.v1WebhookEndpointsList(limit, cursor);
       System.out.println(result);
@@ -204,8 +204,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| The limit of items per page |
- **cursor** | **String**| The cursor for pagination | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
 
 ### Return type
 

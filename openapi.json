@@ -829,30 +829,23 @@
                 "operationId": "v1.currencies.list",
                 "parameters": [
                     {
-                        "description": "Filter currencies by rated status",
-                        "in": "query",
-                        "name": "rated",
-                        "schema": {
-                            "description": "Filter currencies by rated status",
-                            "type": "boolean"
-                        }
-                    },
-                    {
-                        "description": "Pagination cursor for fetching next page",
+                        "description": "The cursor to use for pagination.",
                         "in": "query",
                         "name": "cursor",
                         "schema": {
-                            "description": "Pagination cursor for fetching next page",
+                            "description": "The cursor to use for pagination.",
                             "type": "string"
                         }
                     },
                     {
-                        "description": "Number of records to return per page",
+                        "description": "The number of items to return per page.",
                         "in": "query",
                         "name": "limit",
                         "required": true,
                         "schema": {
-                            "description": "Number of records to return per page",
+                            "description": "The number of items to return per page.",
+                            "maximum": 100,
+                            "minimum": 1,
                             "type": "integer"
                         }
                     },
@@ -863,6 +856,15 @@
                         "schema": {
                             "description": "Filter currencies by application ID",
                             "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter currencies by rated status",
+                        "in": "query",
+                        "name": "rated",
+                        "schema": {
+                            "description": "Filter currencies by rated status",
+                            "type": "boolean"
                         }
                     }
                 ],
@@ -1013,6 +1015,26 @@
                 "operationId": "v1.orders.list",
                 "parameters": [
                     {
+                        "description": "Page number for pagination, starting from 0",
+                        "in": "query",
+                        "name": "page",
+                        "required": true,
+                        "schema": {
+                            "description": "Page number for pagination, starting from 0",
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Number of items per page",
+                        "in": "query",
+                        "name": "size",
+                        "required": true,
+                        "schema": {
+                            "description": "Number of items per page",
+                            "type": "integer"
+                        }
+                    },
+                    {
                         "description": "Filter orders by wallet ID",
                         "in": "query",
                         "name": "wallet_id",
@@ -1044,26 +1066,6 @@
                                 "OrderStatusExpired",
                                 "OrderStatusCompleted"
                             ]
-                        }
-                    },
-                    {
-                        "description": "Page number for pagination, starting from 0",
-                        "in": "query",
-                        "name": "page",
-                        "required": true,
-                        "schema": {
-                            "description": "Page number for pagination, starting from 0",
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "description": "Number of items per page",
-                        "in": "query",
-                        "name": "size",
-                        "required": true,
-                        "schema": {
-                            "description": "Number of items per page",
-                            "type": "integer"
                         }
                     }
                 ],
@@ -1749,21 +1751,21 @@
                 "operationId": "v1.webhook-endpoints.list",
                 "parameters": [
                     {
-                        "description": "The cursor for pagination",
+                        "description": "The cursor to use for pagination.",
                         "in": "query",
                         "name": "cursor",
                         "schema": {
-                            "description": "The cursor for pagination",
+                            "description": "The cursor to use for pagination.",
                             "type": "string"
                         }
                     },
                     {
-                        "description": "The limit of items per page",
+                        "description": "The number of items to return per page.",
                         "in": "query",
                         "name": "limit",
                         "required": true,
                         "schema": {
-                            "description": "The limit of items per page",
+                            "description": "The number of items to return per page.",
                             "maximum": 100,
                             "minimum": 1,
                             "type": "integer"

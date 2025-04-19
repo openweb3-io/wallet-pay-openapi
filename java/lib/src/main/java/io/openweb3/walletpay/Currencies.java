@@ -14,7 +14,7 @@ public final class Currencies {
 
 	public CursorPageCurrency list(final CurrencyListOptions options) throws ApiException {
 		try {
-			return api.v1CurrenciesList(options.getLimit(), options.getRated(), options.getCursor(), options.getAppId());
+			return api.v1CurrenciesList(options.getLimit(), options.getCursor(), options.getAppId(), options.getRated());
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

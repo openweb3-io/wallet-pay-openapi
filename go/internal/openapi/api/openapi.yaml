@@ -13,31 +13,24 @@ paths:
       description: Retrieve a list of all available currencies.
       operationId: v1.currencies.list
       parameters:
-      - description: Filter currencies by rated status
-        explode: true
-        in: query
-        name: rated
-        required: false
-        schema:
-          description: Filter currencies by rated status
-          type: boolean
-        style: form
-      - description: Pagination cursor for fetching next page
+      - description: The cursor to use for pagination.
         explode: true
         in: query
         name: cursor
         required: false
         schema:
-          description: Pagination cursor for fetching next page
+          description: The cursor to use for pagination.
           type: string
         style: form
-      - description: Number of records to return per page
+      - description: The number of items to return per page.
         explode: true
         in: query
         name: limit
         required: true
         schema:
-          description: Number of records to return per page
+          description: The number of items to return per page.
+          maximum: 100
+          minimum: 1
           type: integer
         style: form
       - description: Filter currencies by application ID
@@ -48,6 +41,15 @@ paths:
         schema:
           description: Filter currencies by application ID
           type: string
+        style: form
+      - description: Filter currencies by rated status
+        explode: true
+        in: query
+        name: rated
+        required: false
+        schema:
+          description: Filter currencies by rated status
+          type: boolean
         style: form
       responses:
         "200":
@@ -139,6 +141,24 @@ paths:
       description: Retrieve a list of orders with pagination
       operationId: v1.orders.list
       parameters:
+      - description: Page number for pagination, starting from 0
+        explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          description: Page number for pagination, starting from 0
+          type: integer
+        style: form
+      - description: Number of items per page
+        explode: true
+        in: query
+        name: size
+        required: true
+        schema:
+          description: Number of items per page
+          type: integer
+        style: form
       - description: Filter orders by wallet ID
         explode: true
         in: query
@@ -171,24 +191,6 @@ paths:
           - OrderStatusFailed
           - OrderStatusExpired
           - OrderStatusCompleted
-        style: form
-      - description: Page number for pagination, starting from 0
-        explode: true
-        in: query
-        name: page
-        required: true
-        schema:
-          description: Page number for pagination, starting from 0
-          type: integer
-        style: form
-      - description: Number of items per page
-        explode: true
-        in: query
-        name: size
-        required: true
-        schema:
-          description: Number of items per page
-          type: integer
         style: form
       responses:
         "200":
@@ -624,22 +626,22 @@ paths:
       description: Retrieve a list of webhook endpoints with cursor-based pagination
       operationId: v1.webhook-endpoints.list
       parameters:
-      - description: The cursor for pagination
+      - description: The cursor to use for pagination.
         explode: true
         in: query
         name: cursor
         required: false
         schema:
-          description: The cursor for pagination
+          description: The cursor to use for pagination.
           type: string
         style: form
-      - description: The limit of items per page
+      - description: The number of items to return per page.
         explode: true
         in: query
         name: limit
         required: true
         schema:
-          description: The limit of items per page
+          description: The number of items to return per page.
           maximum: 100
           minimum: 1
           type: integer

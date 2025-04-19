@@ -306,8 +306,8 @@ public class WebhookEndpointsApi {
     }
     /**
      * Build call for v1WebhookEndpointsList
-     * @param limit The limit of items per page (required)
-     * @param cursor The cursor for pagination (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -375,8 +375,8 @@ public class WebhookEndpointsApi {
     /**
      * List Webhook Endpoints
      * Retrieve a list of webhook endpoints with cursor-based pagination
-     * @param limit The limit of items per page (required)
-     * @param cursor The cursor for pagination (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return CursorPageEndpoint
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -396,8 +396,8 @@ public class WebhookEndpointsApi {
     /**
      * List Webhook Endpoints
      * Retrieve a list of webhook endpoints with cursor-based pagination
-     * @param limit The limit of items per page (required)
-     * @param cursor The cursor for pagination (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @return ApiResponse&lt;CursorPageEndpoint&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -418,8 +418,8 @@ public class WebhookEndpointsApi {
     /**
      * List Webhook Endpoints (asynchronously)
      * Retrieve a list of webhook endpoints with cursor-based pagination
-     * @param limit The limit of items per page (required)
-     * @param cursor The cursor for pagination (optional)
+     * @param limit The number of items to return per page. (required)
+     * @param cursor The cursor to use for pagination. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object

@@ -112,8 +112,8 @@ export class WebhookEndpointsApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Retrieve a list of webhook endpoints with cursor-based pagination
      * List Webhook Endpoints
-     * @param limit The limit of items per page
-     * @param cursor The cursor for pagination
+     * @param limit The number of items to return per page.
+     * @param cursor The cursor to use for pagination.
      */
     public async v1WebhookEndpointsList(limit: number, cursor?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

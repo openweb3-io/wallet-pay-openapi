@@ -166,8 +166,8 @@ import (
 )
 
 func main() {
-    limit := int32(56) // int32 | The limit of items per page
-    cursor := "cursor_example" // string | The cursor for pagination (optional)
+    limit := int32(56) // int32 | The number of items to return per page.
+    cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -192,8 +192,8 @@ Other parameters are passed through a pointer to a apiV1WebhookEndpointsListRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **int32** | The limit of items per page | 
- **cursor** | **string** | The cursor for pagination | 
+ **limit** | **int32** | The number of items to return per page. | 
+ **cursor** | **string** | The cursor to use for pagination. | 
 
 ### Return type
 

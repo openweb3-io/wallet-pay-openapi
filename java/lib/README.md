@@ -91,12 +91,12 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
-    Integer limit = 56; // Integer | Number of records to return per page
-    Boolean rated = true; // Boolean | Filter currencies by rated status
-    String cursor = "cursor_example"; // String | Pagination cursor for fetching next page
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     String appId = "appId_example"; // String | Filter currencies by application ID
+    Boolean rated = true; // Boolean | Filter currencies by rated status
     try {
-      CursorPageCurrency result = apiInstance.v1CurrenciesList(limit, rated, cursor, appId);
+      CursorPageCurrency result = apiInstance.v1CurrenciesList(limit, cursor, appId, rated);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrenciesApi#v1CurrenciesList");

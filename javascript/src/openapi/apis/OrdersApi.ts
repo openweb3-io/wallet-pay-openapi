@@ -103,6 +103,12 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
+        if (page !== undefined) {
+            requestContext.setQueryParam("page", ObjectSerializer.serialize(page, "number", ""));
+        }
+        if (size !== undefined) {
+            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", ""));
+        }
         if (walletId !== undefined) {
             requestContext.setQueryParam("wallet_id", ObjectSerializer.serialize(walletId, "string", ""));
         }
@@ -111,12 +117,6 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (status !== undefined) {
             requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "string", ""));
-        }
-        if (page !== undefined) {
-            requestContext.setQueryParam("page", ObjectSerializer.serialize(page, "number", ""));
-        }
-        if (size !== undefined) {
-            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", ""));
         }
 
         // Header Params

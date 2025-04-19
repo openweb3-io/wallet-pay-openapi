@@ -57,14 +57,23 @@ function signEd25519(data: string, secret: string): string {
 }
 
 class SignatureMiddleware implements Middleware {
-  public constructor(private secret: string) {}
+  public constructor(private readonly secret: string) {}
 
   public pre(context: RequestContext): Promise<RequestContext> {
     const timestamp = new Date().getTime().toString();
     context.setHeaderParam("x-request-time", timestamp);
 
     let source = "";
-    source += context.getBody()?.toString() || "";
+    const body = context.getBody();
+    let bodyStr = "";
+    if (body) {
+      if (typeof body === "object") {
+        bodyStr = JSON.stringify(body);
+      } else {
+        bodyStr = String(body);
+      }
+    }
+    source += bodyStr;
     const url = new URL(context.getUrl());
     source += url.pathname + url.search;
     source += timestamp;
@@ -87,15 +96,15 @@ export interface ApiClientOptions {
 
 export class ApiClient {
   public readonly _configuration: Configuration;
-  public readonly Orders: Orders;
-  public readonly Endpoints: Endpoints;
-  public readonly Currencies: Currencies;
-  public readonly Transfers: Transfers;
-  public readonly Rates: Rates;
-  public readonly Refunds: Refunds;
+  public readonly orders: Orders;
+  public readonly endpoints: Endpoints;
+  public readonly currencies: Currencies;
+  public readonly transfers: Transfers;
+  public readonly rates: Rates;
+  public readonly refunds: Refunds;
 
   public constructor(apiKey: string, secret: string, options: ApiClientOptions) {
-    const baseUrl: string = options.serverUrl ?? "https://api.wallet-pay.openweb3.io";
+    const baseUrl: string = options?.serverUrl ?? "https://api.wallet-pay.openweb3.io";
 
     const baseServer = new ServerConfiguration<any>(baseUrl, {});
 
@@ -108,12 +117,12 @@ export class ApiClient {
     });
 
     this._configuration = config;
-    this.Orders = new Orders(config);
-    this.Endpoints = new Endpoints(config);
-    this.Currencies = new Currencies(config);
-    this.Transfers = new Transfers(config);
-    this.Rates = new Rates(config);
-    this.Refunds = new Refunds(config);
+    this.orders = new Orders(config);
+    this.endpoints = new Endpoints(config);
+    this.currencies = new Currencies(config);
+    this.transfers = new Transfers(config);
+    this.rates = new Rates(config);
+    this.refunds = new Refunds(config);
   }
 }
 export interface PostOptions {

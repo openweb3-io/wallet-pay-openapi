@@ -48,7 +48,7 @@ public class CurrenciesApiTest {
         Boolean rated = null;
         String cursor = null;
         String appId = null;
-        CursorPageCurrency response = api.v1CurrenciesList(limit, rated, cursor, appId);
+        CursorPageCurrency response = api.v1CurrenciesList(limit, cursor, appId, rated);
 
         // TODO: test validations
     }

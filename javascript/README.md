@@ -55,7 +55,7 @@ yarn add @openweb3-io/wallet-pay
 import { ApiClient } from "@openweb3-io/wallet-pay";
 
 const apiClient = new ApiClient("API-KEY", "SECRET");
-const order = await apiClient.Orders.create({ currency: "ton", amount: "1000000000" });
+const order = await apiClient.orders.create({ currency: "ton", amount: "1000000000" });
 ```
 
 # Development

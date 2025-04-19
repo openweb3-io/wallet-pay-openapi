@@ -211,6 +211,14 @@ public class OrdersApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (size != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
+        }
+
         if (walletId != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("wallet_id", walletId));
         }
@@ -221,14 +229,6 @@ public class OrdersApi {
 
         if (status != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
-        }
-
-        if (page != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
-        }
-
-        if (size != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
         }
 
         final String[] localVarAccepts = {

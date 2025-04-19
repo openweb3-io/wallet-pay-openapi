@@ -19,15 +19,15 @@ import java.security.spec.X509EncodedKeySpec;
 
 import io.openweb3.walletpay.exceptions.VerificationException;
 
-public final class Webhook {
-    private final String publicKey;
+public final class WebhookClient {
+	private final String publicKey;
 
-	public Webhook(final String publicKey) {
-        this.publicKey = publicKey;
+	public WebhookClient(final String publicKey) {
+		this.publicKey = publicKey;
 	}
 
 	public boolean verify(final String payload, final String signature) throws VerificationException {
-        try {
+		try {
 			return Utils.verify(payload, signature, this.publicKey);
 		} catch (Exception e) {
 			throw new VerificationException(e.getMessage());

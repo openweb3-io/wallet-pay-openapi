@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="v1CurrenciesList"></a>
 # **v1CurrenciesList**
-> CursorPageCurrency v1CurrenciesList(limit, rated, cursor, appId)
+> CursorPageCurrency v1CurrenciesList(limit, cursor, appId, rated)
 
 List currencies
 
@@ -38,12 +38,12 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     CurrenciesApi apiInstance = new CurrenciesApi(defaultClient);
-    Integer limit = 56; // Integer | Number of records to return per page
-    Boolean rated = true; // Boolean | Filter currencies by rated status
-    String cursor = "cursor_example"; // String | Pagination cursor for fetching next page
+    Integer limit = 56; // Integer | The number of items to return per page.
+    String cursor = "cursor_example"; // String | The cursor to use for pagination.
     String appId = "appId_example"; // String | Filter currencies by application ID
+    Boolean rated = true; // Boolean | Filter currencies by rated status
     try {
-      CursorPageCurrency result = apiInstance.v1CurrenciesList(limit, rated, cursor, appId);
+      CursorPageCurrency result = apiInstance.v1CurrenciesList(limit, cursor, appId, rated);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling CurrenciesApi#v1CurrenciesList");
@@ -60,10 +60,10 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **limit** | **Integer**| Number of records to return per page |
- **rated** | **Boolean**| Filter currencies by rated status | [optional]
- **cursor** | **String**| Pagination cursor for fetching next page | [optional]
+ **limit** | **Integer**| The number of items to return per page. |
+ **cursor** | **String**| The cursor to use for pagination. | [optional]
  **appId** | **String**| Filter currencies by application ID | [optional]
+ **rated** | **Boolean**| Filter currencies by rated status | [optional]
 
 ### Return type
 

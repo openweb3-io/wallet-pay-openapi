@@ -43,13 +43,13 @@ export class ObservableCurrenciesApi {
     /**
      * Retrieve a list of all available currencies.
      * List currencies
-     * @param limit Number of records to return per page
-     * @param rated Filter currencies by rated status
-     * @param cursor Pagination cursor for fetching next page
+     * @param limit The number of items to return per page.
+     * @param cursor The cursor to use for pagination.
      * @param appId Filter currencies by application ID
+     * @param rated Filter currencies by rated status
      */
-    public v1CurrenciesList(limit: number, rated?: boolean, cursor?: string, appId?: string, _options?: Configuration): Observable<CursorPageCurrency> {
-        const requestContextPromise = this.requestFactory.v1CurrenciesList(limit, rated, cursor, appId, _options);
+    public v1CurrenciesList(limit: number, cursor?: string, appId?: string, rated?: boolean, _options?: Configuration): Observable<CursorPageCurrency> {
+        const requestContextPromise = this.requestFactory.v1CurrenciesList(limit, cursor, appId, rated, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -456,8 +456,8 @@ export class ObservableWebhookEndpointsApi {
     /**
      * Retrieve a list of webhook endpoints with cursor-based pagination
      * List Webhook Endpoints
-     * @param limit The limit of items per page
-     * @param cursor The cursor for pagination
+     * @param limit The number of items to return per page.
+     * @param cursor The cursor to use for pagination.
      */
     public v1WebhookEndpointsList(limit: number, cursor?: string, _options?: Configuration): Observable<CursorPageEndpoint> {
         const requestContextPromise = this.requestFactory.v1WebhookEndpointsList(limit, cursor, _options);

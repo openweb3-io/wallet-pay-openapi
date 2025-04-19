@@ -28,19 +28,13 @@ import { CurrenciesApiRequestFactory, CurrenciesApiResponseProcessor} from "../a
 
 export interface CurrenciesApiV1CurrenciesListRequest {
     /**
-     * Number of records to return per page
+     * The number of items to return per page.
      * @type number
      * @memberof CurrenciesApiv1CurrenciesList
      */
     limit: number
     /**
-     * Filter currencies by rated status
-     * @type boolean
-     * @memberof CurrenciesApiv1CurrenciesList
-     */
-    rated?: boolean
-    /**
-     * Pagination cursor for fetching next page
+     * The cursor to use for pagination.
      * @type string
      * @memberof CurrenciesApiv1CurrenciesList
      */
@@ -51,6 +45,12 @@ export interface CurrenciesApiV1CurrenciesListRequest {
      * @memberof CurrenciesApiv1CurrenciesList
      */
     appId?: string
+    /**
+     * Filter currencies by rated status
+     * @type boolean
+     * @memberof CurrenciesApiv1CurrenciesList
+     */
+    rated?: boolean
 }
 
 export interface CurrenciesApiV1CurrenciesRetrieveRequest {
@@ -75,7 +75,7 @@ export class ObjectCurrenciesApi {
      * @param param the request object
      */
     public v1CurrenciesList(param: CurrenciesApiV1CurrenciesListRequest, options?: Configuration): Promise<CursorPageCurrency> {
-        return this.api.v1CurrenciesList(param.limit, param.rated, param.cursor, param.appId,  options).toPromise();
+        return this.api.v1CurrenciesList(param.limit, param.cursor, param.appId, param.rated,  options).toPromise();
     }
 
     /**
@@ -370,13 +370,13 @@ export interface WebhookEndpointsApiV1WebhookEndpointsDeleteRequest {
 
 export interface WebhookEndpointsApiV1WebhookEndpointsListRequest {
     /**
-     * The limit of items per page
+     * The number of items to return per page.
      * @type number
      * @memberof WebhookEndpointsApiv1WebhookEndpointsList
      */
     limit: number
     /**
-     * The cursor for pagination
+     * The cursor to use for pagination.
      * @type string
      * @memberof WebhookEndpointsApiv1WebhookEndpointsList
      */

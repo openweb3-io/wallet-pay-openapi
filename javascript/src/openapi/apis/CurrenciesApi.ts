@@ -17,12 +17,12 @@ export class CurrenciesApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Retrieve a list of all available currencies.
      * List currencies
-     * @param limit Number of records to return per page
-     * @param rated Filter currencies by rated status
-     * @param cursor Pagination cursor for fetching next page
+     * @param limit The number of items to return per page.
+     * @param cursor The cursor to use for pagination.
      * @param appId Filter currencies by application ID
+     * @param rated Filter currencies by rated status
      */
-    public async v1CurrenciesList(limit: number, rated?: boolean, cursor?: string, appId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1CurrenciesList(limit: number, cursor?: string, appId?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'limit' is not null or undefined
@@ -44,9 +44,6 @@ export class CurrenciesApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (rated !== undefined) {
-            requestContext.setQueryParam("rated", ObjectSerializer.serialize(rated, "boolean", ""));
-        }
         if (cursor !== undefined) {
             requestContext.setQueryParam("cursor", ObjectSerializer.serialize(cursor, "string", ""));
         }
@@ -55,6 +52,9 @@ export class CurrenciesApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (appId !== undefined) {
             requestContext.setQueryParam("app_id", ObjectSerializer.serialize(appId, "string", ""));
+        }
+        if (rated !== undefined) {
+            requestContext.setQueryParam("rated", ObjectSerializer.serialize(rated, "boolean", ""));
         }
 
         // Header Params
