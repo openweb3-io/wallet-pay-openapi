@@ -17,20 +17,16 @@ type Refunds struct {
 }
 
 type RefundListOptions struct {
-	Size    *int32
-	Page    *int32
+	Size    int32
+	Page    int32
 	OrderId *string
 }
 
 func (e *Refunds) List(ctx context.Context, options *RefundListOptions) (*PageRefund, error) {
 	req := e.api.RefundsApi.V1RefundsList(ctx)
 	if options != nil {
-		if options.Size != nil {
-			req = req.Size(*options.Size)
-		}
-		if options.Page != nil {
-			req = req.Page(*options.Page)
-		}
+		req = req.Size(options.Size)
+		req = req.Page(options.Page)
 		if options.OrderId != nil {
 			req = req.OrderId(*options.OrderId)
 		}

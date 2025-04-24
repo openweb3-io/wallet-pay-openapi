@@ -17,8 +17,8 @@ type Orders struct {
 }
 
 type OrderListOptions struct {
-	Size     *int32
-	Page     *int32
+	Size     int32
+	Page     int32
 	WalletId *string
 	Status   *string
 	Currency *string
@@ -28,12 +28,8 @@ type OrderListOptions struct {
 func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*PageOrder, error) {
 	req := e.api.OrdersApi.V1OrdersList(ctx)
 	if options != nil {
-		if options.Size != nil {
-			req = req.Size(*options.Size)
-		}
-		if options.Page != nil {
-			req = req.Page(*options.Page)
-		}
+		req = req.Page(options.Page)
+		req = req.Size(options.Size)
 		if options.WalletId != nil {
 			req = req.WalletId(*options.WalletId)
 		}
