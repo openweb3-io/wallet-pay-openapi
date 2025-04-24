@@ -187,9 +187,10 @@ type ApiV1OrdersListRequest struct {
 	ApiService *OrdersApiService
 	page *int32
 	size *int32
-	walletId *string
 	currency *string
+	userId *string
 	status *string
+	walletId *string
 }
 
 func (r ApiV1OrdersListRequest) Page(page int32) ApiV1OrdersListRequest {
@@ -200,16 +201,20 @@ func (r ApiV1OrdersListRequest) Size(size int32) ApiV1OrdersListRequest {
 	r.size = &size
 	return r
 }
-func (r ApiV1OrdersListRequest) WalletId(walletId string) ApiV1OrdersListRequest {
-	r.walletId = &walletId
-	return r
-}
 func (r ApiV1OrdersListRequest) Currency(currency string) ApiV1OrdersListRequest {
 	r.currency = &currency
 	return r
 }
+func (r ApiV1OrdersListRequest) UserId(userId string) ApiV1OrdersListRequest {
+	r.userId = &userId
+	return r
+}
 func (r ApiV1OrdersListRequest) Status(status string) ApiV1OrdersListRequest {
 	r.status = &status
+	return r
+}
+func (r ApiV1OrdersListRequest) WalletId(walletId string) ApiV1OrdersListRequest {
+	r.walletId = &walletId
 	return r
 }
 
@@ -261,16 +266,19 @@ func (a *OrdersApiService) V1OrdersListExecute(r ApiV1OrdersListRequest) (PageOr
 		return localVarReturnValue, nil, reportError("size is required and must be specified")
 	}
 
+	if r.currency != nil {
+		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
+	}
+	if r.userId != nil {
+		localVarQueryParams.Add("user_id", parameterToString(*r.userId, ""))
+	}
+	if r.status != nil {
+		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
 	localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	if r.walletId != nil {
 		localVarQueryParams.Add("wallet_id", parameterToString(*r.walletId, ""))
-	}
-	if r.currency != nil {
-		localVarQueryParams.Add("currency", parameterToString(*r.currency, ""))
-	}
-	if r.status != nil {
-		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

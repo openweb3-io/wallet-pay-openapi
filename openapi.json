@@ -1015,6 +1015,40 @@
                 "operationId": "v1.orders.list",
                 "parameters": [
                     {
+                        "description": "Filter orders by currency",
+                        "in": "query",
+                        "name": "currency",
+                        "schema": {
+                            "description": "Filter orders by currency",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Filter orders by user who made the payment",
+                        "in": "query",
+                        "name": "user_id",
+                        "schema": {
+                            "description": "Filter orders by user who made the payment",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Order status enum",
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "description": "Order status enum",
+                            "type": "string",
+                            "x-enum-varnames": [
+                                "OrderStatusPending",
+                                "OrderStatusPaid",
+                                "OrderStatusFailed",
+                                "OrderStatusExpired",
+                                "OrderStatusCompleted"
+                            ]
+                        }
+                    },
+                    {
                         "description": "Page number for pagination, starting from 0",
                         "in": "query",
                         "name": "page",
@@ -1041,31 +1075,6 @@
                         "schema": {
                             "description": "Filter orders by wallet ID",
                             "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Filter orders by currency",
-                        "in": "query",
-                        "name": "currency",
-                        "schema": {
-                            "description": "Filter orders by currency",
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Order status enum",
-                        "in": "query",
-                        "name": "status",
-                        "schema": {
-                            "description": "Order status enum",
-                            "type": "string",
-                            "x-enum-varnames": [
-                                "OrderStatusPending",
-                                "OrderStatusPaid",
-                                "OrderStatusFailed",
-                                "OrderStatusExpired",
-                                "OrderStatusCompleted"
-                            ]
                         }
                     }
                 ],
@@ -1350,17 +1359,6 @@
                 "operationId": "v1.rates.estimate",
                 "parameters": [
                     {
-                        "description": "Source currency code",
-                        "in": "query",
-                        "name": "base_currency",
-                        "required": true,
-                        "schema": {
-                            "description": "Source currency code",
-                            "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
                         "description": "Amount in source currency to convert",
                         "in": "query",
                         "name": "base_amount",
@@ -1377,6 +1375,17 @@
                         "required": true,
                         "schema": {
                             "description": "Target currency code",
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Source currency code",
+                        "in": "query",
+                        "name": "base_currency",
+                        "required": true,
+                        "schema": {
+                            "description": "Source currency code",
                             "minLength": 1,
                             "type": "string"
                         }

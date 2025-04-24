@@ -115,23 +115,29 @@ export interface OrdersApiV1OrdersListRequest {
      */
     size: number
     /**
-     * Filter orders by wallet ID
-     * @type string
-     * @memberof OrdersApiv1OrdersList
-     */
-    walletId?: string
-    /**
      * Filter orders by currency
      * @type string
      * @memberof OrdersApiv1OrdersList
      */
     currency?: string
     /**
+     * Filter orders by user who made the payment
+     * @type string
+     * @memberof OrdersApiv1OrdersList
+     */
+    userId?: string
+    /**
      * Order status enum
      * @type string
      * @memberof OrdersApiv1OrdersList
      */
     status?: string
+    /**
+     * Filter orders by wallet ID
+     * @type string
+     * @memberof OrdersApiv1OrdersList
+     */
+    walletId?: string
 }
 
 export interface OrdersApiV1OrdersRetrieveRequest {
@@ -165,7 +171,7 @@ export class ObjectOrdersApi {
      * @param param the request object
      */
     public v1OrdersList(param: OrdersApiV1OrdersListRequest, options?: Configuration): Promise<PageOrder> {
-        return this.api.v1OrdersList(param.page, param.size, param.walletId, param.currency, param.status,  options).toPromise();
+        return this.api.v1OrdersList(param.page, param.size, param.currency, param.userId, param.status, param.walletId,  options).toPromise();
     }
 
     /**
@@ -184,12 +190,6 @@ import { RatesApiRequestFactory, RatesApiResponseProcessor} from "../apis/RatesA
 
 export interface RatesApiV1RatesEstimateRequest {
     /**
-     * Source currency code
-     * @type string
-     * @memberof RatesApiv1RatesEstimate
-     */
-    baseCurrency: string
-    /**
      * Amount in source currency to convert
      * @type string
      * @memberof RatesApiv1RatesEstimate
@@ -201,6 +201,12 @@ export interface RatesApiV1RatesEstimateRequest {
      * @memberof RatesApiv1RatesEstimate
      */
     toCurrency: string
+    /**
+     * Source currency code
+     * @type string
+     * @memberof RatesApiv1RatesEstimate
+     */
+    baseCurrency: string
 }
 
 export interface RatesApiV1RatesListRequest {
@@ -225,7 +231,7 @@ export class ObjectRatesApi {
      * @param param the request object
      */
     public v1RatesEstimate(param: RatesApiV1RatesEstimateRequest, options?: Configuration): Promise<EstimateResponse> {
-        return this.api.v1RatesEstimate(param.baseCurrency, param.baseAmount, param.toCurrency,  options).toPromise();
+        return this.api.v1RatesEstimate(param.baseAmount, param.toCurrency, param.baseCurrency,  options).toPromise();
     }
 
     /**

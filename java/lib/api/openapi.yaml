@@ -143,6 +143,39 @@ paths:
       description: Retrieve a list of orders with pagination
       operationId: v1.orders.list
       parameters:
+      - description: Filter orders by currency
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          description: Filter orders by currency
+          type: string
+        style: form
+      - description: Filter orders by user who made the payment
+        explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          description: Filter orders by user who made the payment
+          type: string
+        style: form
+      - description: Order status enum
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Order status enum
+          type: string
+          x-enum-varnames:
+          - OrderStatusPending
+          - OrderStatusPaid
+          - OrderStatusFailed
+          - OrderStatusExpired
+          - OrderStatusCompleted
+        style: form
       - description: Page number for pagination, starting from 0
         explode: true
         in: query
@@ -169,30 +202,6 @@ paths:
         schema:
           description: Filter orders by wallet ID
           type: string
-        style: form
-      - description: Filter orders by currency
-        explode: true
-        in: query
-        name: currency
-        required: false
-        schema:
-          description: Filter orders by currency
-          type: string
-        style: form
-      - description: Order status enum
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          description: Order status enum
-          type: string
-          x-enum-varnames:
-          - OrderStatusPending
-          - OrderStatusPaid
-          - OrderStatusFailed
-          - OrderStatusExpired
-          - OrderStatusCompleted
         style: form
       responses:
         "200":
@@ -372,16 +381,6 @@ paths:
         rates.
       operationId: v1.rates.estimate
       parameters:
-      - description: Source currency code
-        explode: true
-        in: query
-        name: base_currency
-        required: true
-        schema:
-          description: Source currency code
-          minLength: 1
-          type: string
-        style: form
       - description: Amount in source currency to convert
         explode: true
         in: query
@@ -398,6 +397,16 @@ paths:
         required: true
         schema:
           description: Target currency code
+          minLength: 1
+          type: string
+        style: form
+      - description: Source currency code
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          description: Source currency code
           minLength: 1
           type: string
         style: form

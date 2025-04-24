@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 <a name="v1RatesEstimate"></a>
 # **v1RatesEstimate**
-> EstimateResponse v1RatesEstimate(baseCurrency, baseAmount, toCurrency)
+> EstimateResponse v1RatesEstimate(baseAmount, toCurrency, baseCurrency)
 
 Estimate currency conversion
 
@@ -38,11 +38,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RatesApi apiInstance = new RatesApi(defaultClient);
-    String baseCurrency = "baseCurrency_example"; // String | Source currency code
     String baseAmount = "baseAmount_example"; // String | Amount in source currency to convert
     String toCurrency = "toCurrency_example"; // String | Target currency code
+    String baseCurrency = "baseCurrency_example"; // String | Source currency code
     try {
-      EstimateResponse result = apiInstance.v1RatesEstimate(baseCurrency, baseAmount, toCurrency);
+      EstimateResponse result = apiInstance.v1RatesEstimate(baseAmount, toCurrency, baseCurrency);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RatesApi#v1RatesEstimate");
@@ -59,9 +59,9 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **baseCurrency** | **String**| Source currency code |
  **baseAmount** | **String**| Amount in source currency to convert |
  **toCurrency** | **String**| Target currency code |
+ **baseCurrency** | **String**| Source currency code |
 
 ### Return type
 
