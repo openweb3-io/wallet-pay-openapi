@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## V1RefundsList
 
-> PageRefund V1RefundsList(ctx).Page(page).Size(size).OrderId(orderId).Execute()
+> PageRefund V1RefundsList(ctx).Size(size).Page(page).OrderId(orderId).Execute()
 
 List Refunds
 
@@ -97,13 +97,13 @@ import (
 )
 
 func main() {
-    page := int32(56) // int32 | Page number for pagination, starting from 0
     size := int32(56) // int32 | Number of items per page
+    page := int32(56) // int32 | Page number for pagination, starting from 0 (optional)
     orderId := "orderId_example" // string | Filter refunds by order ID (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.RefundsApi.V1RefundsList(context.Background()).Page(page).Size(size).OrderId(orderId).Execute()
+    resp, r, err := api_client.RefundsApi.V1RefundsList(context.Background()).Size(size).Page(page).OrderId(orderId).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `RefundsApi.V1RefundsList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -124,8 +124,8 @@ Other parameters are passed through a pointer to a apiV1RefundsListRequest struc
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **int32** | Page number for pagination, starting from 0 | 
  **size** | **int32** | Number of items per page | 
+ **page** | **int32** | Page number for pagination, starting from 0 | 
  **orderId** | **string** | Filter refunds by order ID | 
 
 ### Return type

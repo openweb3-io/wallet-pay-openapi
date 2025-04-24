@@ -29,21 +29,21 @@ type RatesApiService service
 type ApiV1RatesEstimateRequest struct {
 	ctx _context.Context
 	ApiService *RatesApiService
+	baseCurrency *string
 	baseAmount *string
 	toCurrency *string
-	baseCurrency *string
 }
 
+func (r ApiV1RatesEstimateRequest) BaseCurrency(baseCurrency string) ApiV1RatesEstimateRequest {
+	r.baseCurrency = &baseCurrency
+	return r
+}
 func (r ApiV1RatesEstimateRequest) BaseAmount(baseAmount string) ApiV1RatesEstimateRequest {
 	r.baseAmount = &baseAmount
 	return r
 }
 func (r ApiV1RatesEstimateRequest) ToCurrency(toCurrency string) ApiV1RatesEstimateRequest {
 	r.toCurrency = &toCurrency
-	return r
-}
-func (r ApiV1RatesEstimateRequest) BaseCurrency(baseCurrency string) ApiV1RatesEstimateRequest {
-	r.baseCurrency = &baseCurrency
 	return r
 }
 
@@ -88,6 +88,12 @@ func (a *RatesApiService) V1RatesEstimateExecute(r ApiV1RatesEstimateRequest) (E
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if r.baseCurrency == nil {
+		return localVarReturnValue, nil, reportError("baseCurrency is required and must be specified")
+	}
+	if strlen(*r.baseCurrency) < 1 {
+		return localVarReturnValue, nil, reportError("baseCurrency must have at least 1 elements")
+	}
 	if r.baseAmount == nil {
 		return localVarReturnValue, nil, reportError("baseAmount is required and must be specified")
 	}
@@ -97,16 +103,10 @@ func (a *RatesApiService) V1RatesEstimateExecute(r ApiV1RatesEstimateRequest) (E
 	if strlen(*r.toCurrency) < 1 {
 		return localVarReturnValue, nil, reportError("toCurrency must have at least 1 elements")
 	}
-	if r.baseCurrency == nil {
-		return localVarReturnValue, nil, reportError("baseCurrency is required and must be specified")
-	}
-	if strlen(*r.baseCurrency) < 1 {
-		return localVarReturnValue, nil, reportError("baseCurrency must have at least 1 elements")
-	}
 
+	localVarQueryParams.Add("base_currency", parameterToString(*r.baseCurrency, ""))
 	localVarQueryParams.Add("base_amount", parameterToString(*r.baseAmount, ""))
 	localVarQueryParams.Add("to_currency", parameterToString(*r.toCurrency, ""))
-	localVarQueryParams.Add("base_currency", parameterToString(*r.baseCurrency, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

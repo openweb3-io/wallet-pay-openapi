@@ -834,7 +834,8 @@
                         "name": "cursor",
                         "schema": {
                             "description": "The cursor to use for pagination.",
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "1"
                         }
                     },
                     {
@@ -846,7 +847,8 @@
                             "description": "The number of items to return per page.",
                             "maximum": 100,
                             "minimum": 1,
-                            "type": "integer"
+                            "type": "integer",
+                            "x-order": "2"
                         }
                     },
                     {
@@ -855,7 +857,8 @@
                         "name": "app_id",
                         "schema": {
                             "description": "Filter currencies by application ID",
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "3"
                         }
                     },
                     {
@@ -864,7 +867,8 @@
                         "name": "rated",
                         "schema": {
                             "description": "Filter currencies by rated status",
-                            "type": "boolean"
+                            "type": "boolean",
+                            "x-order": "4"
                         }
                     }
                 ],
@@ -1015,47 +1019,13 @@
                 "operationId": "v1.orders.list",
                 "parameters": [
                     {
-                        "description": "Filter orders by currency",
-                        "in": "query",
-                        "name": "currency",
-                        "schema": {
-                            "description": "Filter orders by currency",
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Filter orders by user who made the payment",
-                        "in": "query",
-                        "name": "user_id",
-                        "schema": {
-                            "description": "Filter orders by user who made the payment",
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Order status enum",
-                        "in": "query",
-                        "name": "status",
-                        "schema": {
-                            "description": "Order status enum",
-                            "type": "string",
-                            "x-enum-varnames": [
-                                "OrderStatusPending",
-                                "OrderStatusPaid",
-                                "OrderStatusFailed",
-                                "OrderStatusExpired",
-                                "OrderStatusCompleted"
-                            ]
-                        }
-                    },
-                    {
                         "description": "Page number for pagination, starting from 0",
                         "in": "query",
                         "name": "page",
-                        "required": true,
                         "schema": {
                             "description": "Page number for pagination, starting from 0",
-                            "type": "integer"
+                            "type": "integer",
+                            "x-order": "1"
                         }
                     },
                     {
@@ -1065,7 +1035,10 @@
                         "required": true,
                         "schema": {
                             "description": "Number of items per page",
-                            "type": "integer"
+                            "maximum": 100,
+                            "minimum": 1,
+                            "type": "integer",
+                            "x-order": "2"
                         }
                     },
                     {
@@ -1074,7 +1047,38 @@
                         "name": "wallet_id",
                         "schema": {
                             "description": "Filter orders by wallet ID",
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "3"
+                        }
+                    },
+                    {
+                        "description": "Filter orders by currency",
+                        "in": "query",
+                        "name": "currency",
+                        "schema": {
+                            "description": "Filter orders by currency",
+                            "type": "string",
+                            "x-order": "4"
+                        }
+                    },
+                    {
+                        "description": "Filter orders by user who made the payment",
+                        "in": "query",
+                        "name": "user_id",
+                        "schema": {
+                            "description": "Filter orders by user who made the payment",
+                            "type": "string",
+                            "x-order": "5"
+                        }
+                    },
+                    {
+                        "description": "Order status enum",
+                        "in": "query",
+                        "name": "status",
+                        "schema": {
+                            "description": "Order status enum",
+                            "type": "string",
+                            "x-order": "6"
                         }
                     }
                 ],
@@ -1359,13 +1363,26 @@
                 "operationId": "v1.rates.estimate",
                 "parameters": [
                     {
+                        "description": "Source currency code",
+                        "in": "query",
+                        "name": "base_currency",
+                        "required": true,
+                        "schema": {
+                            "description": "Source currency code",
+                            "minLength": 1,
+                            "type": "string",
+                            "x-order": "1"
+                        }
+                    },
+                    {
                         "description": "Amount in source currency to convert",
                         "in": "query",
                         "name": "base_amount",
                         "required": true,
                         "schema": {
                             "description": "Amount in source currency to convert",
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "2"
                         }
                     },
                     {
@@ -1376,18 +1393,8 @@
                         "schema": {
                             "description": "Target currency code",
                             "minLength": 1,
-                            "type": "string"
-                        }
-                    },
-                    {
-                        "description": "Source currency code",
-                        "in": "query",
-                        "name": "base_currency",
-                        "required": true,
-                        "schema": {
-                            "description": "Source currency code",
-                            "minLength": 1,
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "3"
                         }
                     }
                 ],
@@ -1460,22 +1467,13 @@
                 "operationId": "v1.refunds.list",
                 "parameters": [
                     {
-                        "description": "Filter refunds by order ID",
-                        "in": "query",
-                        "name": "order_id",
-                        "schema": {
-                            "description": "Filter refunds by order ID",
-                            "type": "string"
-                        }
-                    },
-                    {
                         "description": "Page number for pagination, starting from 0",
                         "in": "query",
                         "name": "page",
-                        "required": true,
                         "schema": {
                             "description": "Page number for pagination, starting from 0",
-                            "type": "integer"
+                            "type": "integer",
+                            "x-order": "1"
                         }
                     },
                     {
@@ -1485,7 +1483,20 @@
                         "required": true,
                         "schema": {
                             "description": "Number of items per page",
-                            "type": "integer"
+                            "maximum": 100,
+                            "minimum": 1,
+                            "type": "integer",
+                            "x-order": "2"
+                        }
+                    },
+                    {
+                        "description": "Filter refunds by order ID",
+                        "in": "query",
+                        "name": "order_id",
+                        "schema": {
+                            "description": "Filter refunds by order ID",
+                            "type": "string",
+                            "x-order": "3"
                         }
                     }
                 ],
@@ -1765,7 +1776,8 @@
                         "name": "cursor",
                         "schema": {
                             "description": "The cursor to use for pagination.",
-                            "type": "string"
+                            "type": "string",
+                            "x-order": "1"
                         }
                     },
                     {
@@ -1777,7 +1789,8 @@
                             "description": "The number of items to return per page.",
                             "maximum": 100,
                             "minimum": 1,
-                            "type": "integer"
+                            "type": "integer",
+                            "x-order": "2"
                         }
                     }
                 ],

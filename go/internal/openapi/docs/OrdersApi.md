@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## V1OrdersList
 
-> PageOrder V1OrdersList(ctx).Page(page).Size(size).Currency(currency).UserId(userId).Status(status).WalletId(walletId).Execute()
+> PageOrder V1OrdersList(ctx).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Execute()
 
 List Orders
 
@@ -97,16 +97,16 @@ import (
 )
 
 func main() {
-    page := int32(56) // int32 | Page number for pagination, starting from 0
     size := int32(56) // int32 | Number of items per page
+    page := int32(56) // int32 | Page number for pagination, starting from 0 (optional)
+    walletId := "walletId_example" // string | Filter orders by wallet ID (optional)
     currency := "currency_example" // string | Filter orders by currency (optional)
     userId := "userId_example" // string | Filter orders by user who made the payment (optional)
     status := "status_example" // string | Order status enum (optional)
-    walletId := "walletId_example" // string | Filter orders by wallet ID (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrdersApi.V1OrdersList(context.Background()).Page(page).Size(size).Currency(currency).UserId(userId).Status(status).WalletId(walletId).Execute()
+    resp, r, err := api_client.OrdersApi.V1OrdersList(context.Background()).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.V1OrdersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -127,12 +127,12 @@ Other parameters are passed through a pointer to a apiV1OrdersListRequest struct
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **int32** | Page number for pagination, starting from 0 | 
  **size** | **int32** | Number of items per page | 
+ **page** | **int32** | Page number for pagination, starting from 0 | 
+ **walletId** | **string** | Filter orders by wallet ID | 
  **currency** | **string** | Filter orders by currency | 
  **userId** | **string** | Filter orders by user who made the payment | 
  **status** | **string** | Order status enum | 
- **walletId** | **string** | Filter orders by wallet ID | 
 
 ### Return type
 

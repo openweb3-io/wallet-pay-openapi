@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrdersList"></a>
 # **v1OrdersList**
-> PageOrder v1OrdersList(page, size, currency, userId, status, walletId)
+> PageOrder v1OrdersList(size, page, walletId, currency, userId, status)
 
 List Orders
 
@@ -111,14 +111,14 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     OrdersApi apiInstance = new OrdersApi(defaultClient);
-    Integer page = 56; // Integer | Page number for pagination, starting from 0
     Integer size = 56; // Integer | Number of items per page
+    Integer page = 56; // Integer | Page number for pagination, starting from 0
+    String walletId = "walletId_example"; // String | Filter orders by wallet ID
     String currency = "currency_example"; // String | Filter orders by currency
     String userId = "userId_example"; // String | Filter orders by user who made the payment
     String status = "status_example"; // String | Order status enum
-    String walletId = "walletId_example"; // String | Filter orders by wallet ID
     try {
-      PageOrder result = apiInstance.v1OrdersList(page, size, currency, userId, status, walletId);
+      PageOrder result = apiInstance.v1OrdersList(size, page, walletId, currency, userId, status);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrdersApi#v1OrdersList");
@@ -135,12 +135,12 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Integer**| Page number for pagination, starting from 0 |
  **size** | **Integer**| Number of items per page |
+ **page** | **Integer**| Page number for pagination, starting from 0 | [optional]
+ **walletId** | **String**| Filter orders by wallet ID | [optional]
  **currency** | **String**| Filter orders by currency | [optional]
  **userId** | **String**| Filter orders by user who made the payment | [optional]
  **status** | **String**| Order status enum | [optional]
- **walletId** | **String**| Filter orders by wallet ID | [optional]
 
 ### Return type
 

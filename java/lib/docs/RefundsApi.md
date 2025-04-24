@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 <a name="v1RefundsList"></a>
 # **v1RefundsList**
-> PageRefund v1RefundsList(page, size, orderId)
+> PageRefund v1RefundsList(size, page, orderId)
 
 List Refunds
 
@@ -111,11 +111,11 @@ public class Example {
     //ApiKeyAuth.setApiKeyPrefix("Token");
 
     RefundsApi apiInstance = new RefundsApi(defaultClient);
-    Integer page = 56; // Integer | Page number for pagination, starting from 0
     Integer size = 56; // Integer | Number of items per page
+    Integer page = 56; // Integer | Page number for pagination, starting from 0
     String orderId = "orderId_example"; // String | Filter refunds by order ID
     try {
-      PageRefund result = apiInstance.v1RefundsList(page, size, orderId);
+      PageRefund result = apiInstance.v1RefundsList(size, page, orderId);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling RefundsApi#v1RefundsList");
@@ -132,8 +132,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **page** | **Integer**| Page number for pagination, starting from 0 |
  **size** | **Integer**| Number of items per page |
+ **page** | **Integer**| Page number for pagination, starting from 0 | [optional]
  **orderId** | **String**| Filter refunds by order ID | [optional]
 
 ### Return type

@@ -185,17 +185,17 @@ func (a *RefundsApiService) V1RefundsCreateExecute(r ApiV1RefundsCreateRequest) 
 type ApiV1RefundsListRequest struct {
 	ctx _context.Context
 	ApiService *RefundsApiService
-	page *int32
 	size *int32
+	page *int32
 	orderId *string
 }
 
-func (r ApiV1RefundsListRequest) Page(page int32) ApiV1RefundsListRequest {
-	r.page = &page
-	return r
-}
 func (r ApiV1RefundsListRequest) Size(size int32) ApiV1RefundsListRequest {
 	r.size = &size
+	return r
+}
+func (r ApiV1RefundsListRequest) Page(page int32) ApiV1RefundsListRequest {
+	r.page = &page
 	return r
 }
 func (r ApiV1RefundsListRequest) OrderId(orderId string) ApiV1RefundsListRequest {
@@ -244,18 +244,23 @@ func (a *RefundsApiService) V1RefundsListExecute(r ApiV1RefundsListRequest) (Pag
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if r.page == nil {
-		return localVarReturnValue, nil, reportError("page is required and must be specified")
-	}
 	if r.size == nil {
 		return localVarReturnValue, nil, reportError("size is required and must be specified")
 	}
+	if *r.size < 1 {
+		return localVarReturnValue, nil, reportError("size must be greater than 1")
+	}
+	if *r.size > 100 {
+		return localVarReturnValue, nil, reportError("size must be less than 100")
+	}
 
+	if r.page != nil {
+		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
+	}
+	localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	if r.orderId != nil {
 		localVarQueryParams.Add("order_id", parameterToString(*r.orderId, ""))
 	}
-	localVarQueryParams.Add("page", parameterToString(*r.page, ""))
-	localVarQueryParams.Add("size", parameterToString(*r.size, ""))
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

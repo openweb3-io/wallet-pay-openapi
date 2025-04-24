@@ -21,6 +21,7 @@ paths:
         schema:
           description: The cursor to use for pagination.
           type: string
+          x-order: "1"
         style: form
       - description: The number of items to return per page.
         explode: true
@@ -32,6 +33,7 @@ paths:
           maximum: 100
           minimum: 1
           type: integer
+          x-order: "2"
         style: form
       - description: Filter currencies by application ID
         explode: true
@@ -41,6 +43,7 @@ paths:
         schema:
           description: Filter currencies by application ID
           type: string
+          x-order: "3"
         style: form
       - description: Filter currencies by rated status
         explode: true
@@ -50,6 +53,7 @@ paths:
         schema:
           description: Filter currencies by rated status
           type: boolean
+          x-order: "4"
         style: form
       responses:
         "200":
@@ -141,47 +145,15 @@ paths:
       description: Retrieve a list of orders with pagination
       operationId: v1.orders.list
       parameters:
-      - description: Filter orders by currency
-        explode: true
-        in: query
-        name: currency
-        required: false
-        schema:
-          description: Filter orders by currency
-          type: string
-        style: form
-      - description: Filter orders by user who made the payment
-        explode: true
-        in: query
-        name: user_id
-        required: false
-        schema:
-          description: Filter orders by user who made the payment
-          type: string
-        style: form
-      - description: Order status enum
-        explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          description: Order status enum
-          type: string
-          x-enum-varnames:
-          - OrderStatusPending
-          - OrderStatusPaid
-          - OrderStatusFailed
-          - OrderStatusExpired
-          - OrderStatusCompleted
-        style: form
       - description: Page number for pagination, starting from 0
         explode: true
         in: query
         name: page
-        required: true
+        required: false
         schema:
           description: Page number for pagination, starting from 0
           type: integer
+          x-order: "1"
         style: form
       - description: Number of items per page
         explode: true
@@ -190,7 +162,10 @@ paths:
         required: true
         schema:
           description: Number of items per page
+          maximum: 100
+          minimum: 1
           type: integer
+          x-order: "2"
         style: form
       - description: Filter orders by wallet ID
         explode: true
@@ -200,6 +175,37 @@ paths:
         schema:
           description: Filter orders by wallet ID
           type: string
+          x-order: "3"
+        style: form
+      - description: Filter orders by currency
+        explode: true
+        in: query
+        name: currency
+        required: false
+        schema:
+          description: Filter orders by currency
+          type: string
+          x-order: "4"
+        style: form
+      - description: Filter orders by user who made the payment
+        explode: true
+        in: query
+        name: user_id
+        required: false
+        schema:
+          description: Filter orders by user who made the payment
+          type: string
+          x-order: "5"
+        style: form
+      - description: Order status enum
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          description: Order status enum
+          type: string
+          x-order: "6"
         style: form
       responses:
         "200":
@@ -373,6 +379,17 @@ paths:
         rates.
       operationId: v1.rates.estimate
       parameters:
+      - description: Source currency code
+        explode: true
+        in: query
+        name: base_currency
+        required: true
+        schema:
+          description: Source currency code
+          minLength: 1
+          type: string
+          x-order: "1"
+        style: form
       - description: Amount in source currency to convert
         explode: true
         in: query
@@ -381,6 +398,7 @@ paths:
         schema:
           description: Amount in source currency to convert
           type: string
+          x-order: "2"
         style: form
       - description: Target currency code
         explode: true
@@ -391,16 +409,7 @@ paths:
           description: Target currency code
           minLength: 1
           type: string
-        style: form
-      - description: Source currency code
-        explode: true
-        in: query
-        name: base_currency
-        required: true
-        schema:
-          description: Source currency code
-          minLength: 1
-          type: string
+          x-order: "3"
         style: form
       responses:
         "200":
@@ -443,23 +452,15 @@ paths:
       description: Retrieve a list of refunds with pagination
       operationId: v1.refunds.list
       parameters:
-      - description: Filter refunds by order ID
-        explode: true
-        in: query
-        name: order_id
-        required: false
-        schema:
-          description: Filter refunds by order ID
-          type: string
-        style: form
       - description: Page number for pagination, starting from 0
         explode: true
         in: query
         name: page
-        required: true
+        required: false
         schema:
           description: Page number for pagination, starting from 0
           type: integer
+          x-order: "1"
         style: form
       - description: Number of items per page
         explode: true
@@ -468,7 +469,20 @@ paths:
         required: true
         schema:
           description: Number of items per page
+          maximum: 100
+          minimum: 1
           type: integer
+          x-order: "2"
+        style: form
+      - description: Filter refunds by order ID
+        explode: true
+        in: query
+        name: order_id
+        required: false
+        schema:
+          description: Filter refunds by order ID
+          type: string
+          x-order: "3"
         style: form
       responses:
         "200":
@@ -643,6 +657,7 @@ paths:
         schema:
           description: The cursor to use for pagination.
           type: string
+          x-order: "1"
         style: form
       - description: The number of items to return per page.
         explode: true
@@ -654,6 +669,7 @@ paths:
           maximum: 100
           minimum: 1
           type: integer
+          x-order: "2"
         style: form
       responses:
         "200":

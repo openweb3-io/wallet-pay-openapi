@@ -67,8 +67,8 @@ func (e *Orders) CreateWithOptions(ctx context.Context, orderIn *CreateOrderRequ
 	return &ret, nil
 }
 
-func (e *Orders) Get(ctx context.Context, orderId string) (*Order, error) {
-	req := e.api.OrdersApi.V1OrdersRetrieve(ctx, orderId)
+func (e *Orders) Retrieve(ctx context.Context, idOrUid string) (*Order, error) {
+	req := e.api.OrdersApi.V1OrdersRetrieve(ctx, idOrUid)
 
 	out, res, err := req.Execute()
 	if err != nil {

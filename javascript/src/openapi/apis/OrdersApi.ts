@@ -69,26 +69,21 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Retrieve a list of orders with pagination
      * List Orders
-     * @param page Page number for pagination, starting from 0
      * @param size Number of items per page
+     * @param page Page number for pagination, starting from 0
+     * @param walletId Filter orders by wallet ID
      * @param currency Filter orders by currency
      * @param userId Filter orders by user who made the payment
      * @param status Order status enum
-     * @param walletId Filter orders by wallet ID
      */
-    public async v1OrdersList(page: number, size: number, currency?: string, userId?: string, status?: string, walletId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'page' is not null or undefined
-        if (page === null || page === undefined) {
-            throw new RequiredError('Required parameter page was null or undefined when calling v1OrdersList.');
-        }
-
 
         // verify required parameter 'size' is not null or undefined
         if (size === null || size === undefined) {
             throw new RequiredError('Required parameter size was null or undefined when calling v1OrdersList.');
         }
+
 
 
 
@@ -105,15 +100,6 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (currency !== undefined) {
-            requestContext.setQueryParam("currency", ObjectSerializer.serialize(currency, "string", ""));
-        }
-        if (userId !== undefined) {
-            requestContext.setQueryParam("user_id", ObjectSerializer.serialize(userId, "string", ""));
-        }
-        if (status !== undefined) {
-            requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "string", ""));
-        }
         if (page !== undefined) {
             requestContext.setQueryParam("page", ObjectSerializer.serialize(page, "number", ""));
         }
@@ -122,6 +108,15 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (walletId !== undefined) {
             requestContext.setQueryParam("wallet_id", ObjectSerializer.serialize(walletId, "string", ""));
+        }
+        if (currency !== undefined) {
+            requestContext.setQueryParam("currency", ObjectSerializer.serialize(currency, "string", ""));
+        }
+        if (userId !== undefined) {
+            requestContext.setQueryParam("user_id", ObjectSerializer.serialize(userId, "string", ""));
+        }
+        if (status !== undefined) {
+            requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "string", ""));
         }
 
         // Header Params

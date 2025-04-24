@@ -18,12 +18,18 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Convert an amount from one currency to another using current exchange rates.
      * Estimate currency conversion
+     * @param baseCurrency Source currency code
      * @param baseAmount Amount in source currency to convert
      * @param toCurrency Target currency code
-     * @param baseCurrency Source currency code
      */
-    public async v1RatesEstimate(baseAmount: string, toCurrency: string, baseCurrency: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RatesEstimate(baseCurrency: string, baseAmount: string, toCurrency: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
+        // verify required parameter 'baseCurrency' is not null or undefined
+        if (baseCurrency === null || baseCurrency === undefined) {
+            throw new RequiredError('Required parameter baseCurrency was null or undefined when calling v1RatesEstimate.');
+        }
+
 
         // verify required parameter 'baseAmount' is not null or undefined
         if (baseAmount === null || baseAmount === undefined) {
@@ -37,12 +43,6 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'baseCurrency' is not null or undefined
-        if (baseCurrency === null || baseCurrency === undefined) {
-            throw new RequiredError('Required parameter baseCurrency was null or undefined when calling v1RatesEstimate.');
-        }
-
-
         // Path Params
         const localVarPath = '/api/v1/rates/estimate';
 
@@ -53,14 +53,14 @@ export class RatesApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
+        if (baseCurrency !== undefined) {
+            requestContext.setQueryParam("base_currency", ObjectSerializer.serialize(baseCurrency, "string", ""));
+        }
         if (baseAmount !== undefined) {
             requestContext.setQueryParam("base_amount", ObjectSerializer.serialize(baseAmount, "string", ""));
         }
         if (toCurrency !== undefined) {
             requestContext.setQueryParam("to_currency", ObjectSerializer.serialize(toCurrency, "string", ""));
-        }
-        if (baseCurrency !== undefined) {
-            requestContext.setQueryParam("base_currency", ObjectSerializer.serialize(baseCurrency, "string", ""));
         }
 
         // Header Params

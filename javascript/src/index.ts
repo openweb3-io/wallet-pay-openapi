@@ -152,6 +152,10 @@ class Orders {
     return await this.api.v1OrdersList({ ...options });
   }
 
+  public async retrieve(idOrUid: string): Promise<Order> {
+    return await this.api.v1OrdersRetrieve({ idOrUid });
+  }
+
   public async create(
     createOrderRequest: CreateOrderRequest,
     options?: PostOptions

@@ -103,17 +103,23 @@ export interface OrdersApiV1OrdersCreateRequest {
 
 export interface OrdersApiV1OrdersListRequest {
     /**
-     * Page number for pagination, starting from 0
-     * @type number
-     * @memberof OrdersApiv1OrdersList
-     */
-    page: number
-    /**
      * Number of items per page
      * @type number
      * @memberof OrdersApiv1OrdersList
      */
     size: number
+    /**
+     * Page number for pagination, starting from 0
+     * @type number
+     * @memberof OrdersApiv1OrdersList
+     */
+    page?: number
+    /**
+     * Filter orders by wallet ID
+     * @type string
+     * @memberof OrdersApiv1OrdersList
+     */
+    walletId?: string
     /**
      * Filter orders by currency
      * @type string
@@ -132,12 +138,6 @@ export interface OrdersApiV1OrdersListRequest {
      * @memberof OrdersApiv1OrdersList
      */
     status?: string
-    /**
-     * Filter orders by wallet ID
-     * @type string
-     * @memberof OrdersApiv1OrdersList
-     */
-    walletId?: string
 }
 
 export interface OrdersApiV1OrdersRetrieveRequest {
@@ -171,7 +171,7 @@ export class ObjectOrdersApi {
      * @param param the request object
      */
     public v1OrdersList(param: OrdersApiV1OrdersListRequest, options?: Configuration): Promise<PageOrder> {
-        return this.api.v1OrdersList(param.page, param.size, param.currency, param.userId, param.status, param.walletId,  options).toPromise();
+        return this.api.v1OrdersList(param.size, param.page, param.walletId, param.currency, param.userId, param.status,  options).toPromise();
     }
 
     /**
@@ -190,6 +190,12 @@ import { RatesApiRequestFactory, RatesApiResponseProcessor} from "../apis/RatesA
 
 export interface RatesApiV1RatesEstimateRequest {
     /**
+     * Source currency code
+     * @type string
+     * @memberof RatesApiv1RatesEstimate
+     */
+    baseCurrency: string
+    /**
      * Amount in source currency to convert
      * @type string
      * @memberof RatesApiv1RatesEstimate
@@ -201,12 +207,6 @@ export interface RatesApiV1RatesEstimateRequest {
      * @memberof RatesApiv1RatesEstimate
      */
     toCurrency: string
-    /**
-     * Source currency code
-     * @type string
-     * @memberof RatesApiv1RatesEstimate
-     */
-    baseCurrency: string
 }
 
 export interface RatesApiV1RatesListRequest {
@@ -231,7 +231,7 @@ export class ObjectRatesApi {
      * @param param the request object
      */
     public v1RatesEstimate(param: RatesApiV1RatesEstimateRequest, options?: Configuration): Promise<EstimateResponse> {
-        return this.api.v1RatesEstimate(param.baseAmount, param.toCurrency, param.baseCurrency,  options).toPromise();
+        return this.api.v1RatesEstimate(param.baseCurrency, param.baseAmount, param.toCurrency,  options).toPromise();
     }
 
     /**
@@ -259,17 +259,17 @@ export interface RefundsApiV1RefundsCreateRequest {
 
 export interface RefundsApiV1RefundsListRequest {
     /**
-     * Page number for pagination, starting from 0
-     * @type number
-     * @memberof RefundsApiv1RefundsList
-     */
-    page: number
-    /**
      * Number of items per page
      * @type number
      * @memberof RefundsApiv1RefundsList
      */
     size: number
+    /**
+     * Page number for pagination, starting from 0
+     * @type number
+     * @memberof RefundsApiv1RefundsList
+     */
+    page?: number
     /**
      * Filter refunds by order ID
      * @type string
@@ -309,7 +309,7 @@ export class ObjectRefundsApi {
      * @param param the request object
      */
     public v1RefundsList(param: RefundsApiV1RefundsListRequest, options?: Configuration): Promise<PageRefund> {
-        return this.api.v1RefundsList(param.page, param.size, param.orderId,  options).toPromise();
+        return this.api.v1RefundsList(param.size, param.page, param.orderId,  options).toPromise();
     }
 
     /**

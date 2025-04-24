@@ -15,9 +15,9 @@ public final class Orders {
 
 	public PageOrder list(final OrderListOptions options) throws ApiException {
 		try {
-			return api.v1OrdersList(options.getPage(),options.getSize(),
+			return api.v1OrdersList(options.getSize(),options.getPage(),
 			 options.getWalletId(),
-			options.getCurrency(), options.getStatus());
+			options.getCurrency(), options.getUserId(), options.getStatus());
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
 			throw Utils.WrapInternalApiException(e);
 		}

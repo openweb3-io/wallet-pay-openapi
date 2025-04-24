@@ -69,23 +69,18 @@ export class RefundsApiRequestFactory extends BaseAPIRequestFactory {
     /**
      * Retrieve a list of refunds with pagination
      * List Refunds
-     * @param page Page number for pagination, starting from 0
      * @param size Number of items per page
+     * @param page Page number for pagination, starting from 0
      * @param orderId Filter refunds by order ID
      */
-    public async v1RefundsList(page: number, size: number, orderId?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1RefundsList(size: number, page?: number, orderId?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
-
-        // verify required parameter 'page' is not null or undefined
-        if (page === null || page === undefined) {
-            throw new RequiredError('Required parameter page was null or undefined when calling v1RefundsList.');
-        }
-
 
         // verify required parameter 'size' is not null or undefined
         if (size === null || size === undefined) {
             throw new RequiredError('Required parameter size was null or undefined when calling v1RefundsList.');
         }
+
 
 
 
@@ -99,14 +94,14 @@ export class RefundsApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("pay-req-id", randomId.toString())
 
         // Query Params
-        if (orderId !== undefined) {
-            requestContext.setQueryParam("order_id", ObjectSerializer.serialize(orderId, "string", ""));
-        }
         if (page !== undefined) {
             requestContext.setQueryParam("page", ObjectSerializer.serialize(page, "number", ""));
         }
         if (size !== undefined) {
             requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", ""));
+        }
+        if (orderId !== undefined) {
+            requestContext.setQueryParam("order_id", ObjectSerializer.serialize(orderId, "string", ""));
         }
 
         // Header Params

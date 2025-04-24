@@ -91,15 +91,15 @@ export class PromiseOrdersApi {
     /**
      * Retrieve a list of orders with pagination
      * List Orders
-     * @param page Page number for pagination, starting from 0
      * @param size Number of items per page
+     * @param page Page number for pagination, starting from 0
+     * @param walletId Filter orders by wallet ID
      * @param currency Filter orders by currency
      * @param userId Filter orders by user who made the payment
      * @param status Order status enum
-     * @param walletId Filter orders by wallet ID
      */
-    public v1OrdersList(page: number, size: number, currency?: string, userId?: string, status?: string, walletId?: string, _options?: Configuration): Promise<PageOrder> {
-        const result = this.api.v1OrdersList(page, size, currency, userId, status, walletId, _options);
+    public v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, _options?: Configuration): Promise<PageOrder> {
+        const result = this.api.v1OrdersList(size, page, walletId, currency, userId, status, _options);
         return result.toPromise();
     }
 
@@ -135,12 +135,12 @@ export class PromiseRatesApi {
     /**
      * Convert an amount from one currency to another using current exchange rates.
      * Estimate currency conversion
+     * @param baseCurrency Source currency code
      * @param baseAmount Amount in source currency to convert
      * @param toCurrency Target currency code
-     * @param baseCurrency Source currency code
      */
-    public v1RatesEstimate(baseAmount: string, toCurrency: string, baseCurrency: string, _options?: Configuration): Promise<EstimateResponse> {
-        const result = this.api.v1RatesEstimate(baseAmount, toCurrency, baseCurrency, _options);
+    public v1RatesEstimate(baseCurrency: string, baseAmount: string, toCurrency: string, _options?: Configuration): Promise<EstimateResponse> {
+        const result = this.api.v1RatesEstimate(baseCurrency, baseAmount, toCurrency, _options);
         return result.toPromise();
     }
 
@@ -186,12 +186,12 @@ export class PromiseRefundsApi {
     /**
      * Retrieve a list of refunds with pagination
      * List Refunds
-     * @param page Page number for pagination, starting from 0
      * @param size Number of items per page
+     * @param page Page number for pagination, starting from 0
      * @param orderId Filter refunds by order ID
      */
-    public v1RefundsList(page: number, size: number, orderId?: string, _options?: Configuration): Promise<PageRefund> {
-        const result = this.api.v1RefundsList(page, size, orderId, _options);
+    public v1RefundsList(size: number, page?: number, orderId?: string, _options?: Configuration): Promise<PageRefund> {
+        const result = this.api.v1RefundsList(size, page, orderId, _options);
         return result.toPromise();
     }
 
