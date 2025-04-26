@@ -207,6 +207,16 @@ paths:
           type: string
           x-order: "6"
         style: form
+      - description: Filter orders by creator
+        explode: true
+        in: query
+        name: creator
+        required: false
+        schema:
+          description: Filter orders by creator
+          type: string
+          x-order: "7"
+        style: form
       responses:
         "200":
           content:
@@ -890,14 +900,17 @@ components:
         note: note
         uid: uid
         amount: amount
+        creator: creator
         metadata:
           key: metadata
-        user_id: user_id
         currency: currency
         expiration: 0
       properties:
         amount:
           description: Amount, supports decimal values
+          type: string
+        creator:
+          description: The identifier of the user who created the order
           type: string
         currency:
           description: 'Currency code. e.g.: USDT, TON, ETH'
@@ -918,13 +931,9 @@ components:
         uid:
           description: External ID, the order ID in the merchant system
           type: string
-        user_id:
-          description: ID of the user who needs to make the payment
-          type: string
       required:
       - amount
       - currency
-      - user_id
       type: object
     CreateRefundRequest:
       example:
@@ -1545,6 +1554,7 @@ components:
       example:
         note: note
         amount: amount
+        creator: creator
         metadata:
           key: metadata
         created_at: created_at
@@ -1565,6 +1575,9 @@ components:
           type: string
         created_at:
           description: Order creation time
+          type: string
+        creator:
+          description: The identifier of the user who created the order
           type: string
         currency:
           description: Currency symbol
@@ -1640,6 +1653,7 @@ components:
         items:
         - note: note
           amount: amount
+          creator: creator
           metadata:
             key: metadata
           created_at: created_at
@@ -1656,6 +1670,7 @@ components:
           status: status
         - note: note
           amount: amount
+          creator: creator
           metadata:
             key: metadata
           created_at: created_at

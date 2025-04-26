@@ -97,9 +97,10 @@ export class PromiseOrdersApi {
      * @param currency Filter orders by currency
      * @param userId Filter orders by user who made the payment
      * @param status Order status enum
+     * @param creator Filter orders by creator
      */
-    public v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, _options?: Configuration): Promise<PageOrder> {
-        const result = this.api.v1OrdersList(size, page, walletId, currency, userId, status, _options);
+    public v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, creator?: string, _options?: Configuration): Promise<PageOrder> {
+        const result = this.api.v1OrdersList(size, page, walletId, currency, userId, status, creator, _options);
         return result.toPromise();
     }
 

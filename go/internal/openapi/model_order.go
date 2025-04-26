@@ -20,6 +20,8 @@ type Order struct {
 	Amount string `json:"amount"`
 	// Order creation time
 	CreatedAt string `json:"created_at"`
+	// The identifier of the user who created the order
+	Creator *string `json:"creator,omitempty"`
 	// Currency symbol
 	Currency string `json:"currency"`
 	// Expiration time in seconds. If payment is not completed within the given time, the order will be automatically canceled
@@ -119,6 +121,38 @@ func (o *Order) GetCreatedAtOk() (*string, bool) {
 // SetCreatedAt sets field value
 func (o *Order) SetCreatedAt(v string) {
 	o.CreatedAt = v
+}
+
+// GetCreator returns the Creator field value if set, zero value otherwise.
+func (o *Order) GetCreator() string {
+	if o == nil || o.Creator == nil {
+		var ret string
+		return ret
+	}
+	return *o.Creator
+}
+
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Order) GetCreatorOk() (*string, bool) {
+	if o == nil || o.Creator == nil {
+		return nil, false
+	}
+	return o.Creator, true
+}
+
+// HasCreator returns a boolean if a field has been set.
+func (o *Order) HasCreator() bool {
+	if o != nil && o.Creator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreator gets a reference to the given string and assigns it to the Creator field.
+func (o *Order) SetCreator(v string) {
+	o.Creator = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -497,6 +531,9 @@ func (o Order) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["created_at"] = o.CreatedAt
+	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
 	}
 	if true {
 		toSerialize["currency"] = o.Currency

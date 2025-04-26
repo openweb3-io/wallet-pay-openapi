@@ -18,6 +18,10 @@ export class CreateOrderRequest {
     */
     'amount': string;
     /**
+    * The identifier of the user who created the order
+    */
+    'creator'?: string;
+    /**
     * Currency code. e.g.: USDT, TON, ETH
     */
     'currency': string;
@@ -37,10 +41,6 @@ export class CreateOrderRequest {
     * External ID, the order ID in the merchant system
     */
     'uid'?: string;
-    /**
-    * ID of the user who needs to make the payment
-    */
-    'userId': string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -48,6 +48,12 @@ export class CreateOrderRequest {
         {
             "name": "amount",
             "baseName": "amount",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "creator",
+            "baseName": "creator",
             "type": "string",
             "format": ""
         },
@@ -78,12 +84,6 @@ export class CreateOrderRequest {
         {
             "name": "uid",
             "baseName": "uid",
-            "type": "string",
-            "format": ""
-        },
-        {
-            "name": "userId",
-            "baseName": "user_id",
             "type": "string",
             "format": ""
         }    ];

@@ -54,6 +54,10 @@
                         "description": "Amount, supports decimal values",
                         "type": "string"
                     },
+                    "creator": {
+                        "description": "The identifier of the user who created the order",
+                        "type": "string"
+                    },
                     "currency": {
                         "description": "Currency code. e.g.: USDT, TON, ETH",
                         "type": "string"
@@ -77,16 +81,11 @@
                     "uid": {
                         "description": "External ID, the order ID in the merchant system",
                         "type": "string"
-                    },
-                    "user_id": {
-                        "description": "ID of the user who needs to make the payment",
-                        "type": "string"
                     }
                 },
                 "required": [
                     "amount",
-                    "currency",
-                    "user_id"
+                    "currency"
                 ],
                 "type": "object"
             },
@@ -549,6 +548,10 @@
                     },
                     "created_at": {
                         "description": "Order creation time",
+                        "type": "string"
+                    },
+                    "creator": {
+                        "description": "The identifier of the user who created the order",
                         "type": "string"
                     },
                     "currency": {
@@ -1079,6 +1082,16 @@
                             "description": "Order status enum",
                             "type": "string",
                             "x-order": "6"
+                        }
+                    },
+                    {
+                        "description": "Filter orders by creator",
+                        "in": "query",
+                        "name": "creator",
+                        "schema": {
+                            "description": "Filter orders by creator",
+                            "type": "string",
+                            "x-order": "7"
                         }
                     }
                 ],

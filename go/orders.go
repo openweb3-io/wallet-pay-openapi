@@ -23,6 +23,7 @@ type OrderListOptions struct {
 	Status   *string
 	Currency *string
 	UserId   *string
+	Creator  *string
 }
 
 func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*PageOrder, error) {
@@ -41,6 +42,9 @@ func (e *Orders) List(ctx context.Context, options *OrderListOptions) (*PageOrde
 		}
 		if options.UserId != nil {
 			req = req.UserId(*options.UserId)
+		}
+		if options.Creator != nil {
+			req = req.Creator(*options.Creator)
 		}
 	}
 	out, res, err := req.Execute()

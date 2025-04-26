@@ -1,6 +1,6 @@
 {
   "name": "@openweb3-io/wallet-pay",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Wallet Pay API client and wallet pay verification library",
   "author": "wallet-pay",
   "repository": "https://github.com/wallet-pay/wallet-pay-libs",

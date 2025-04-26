@@ -188,6 +188,7 @@ public class OrdersApi {
      * @param currency Filter orders by currency (optional)
      * @param userId Filter orders by user who made the payment (optional)
      * @param status Order status enum (optional)
+     * @param creator Filter orders by creator (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
@@ -200,7 +201,7 @@ public class OrdersApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrdersListCall(Integer size, Integer page, String walletId, String currency, String userId, String status, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1OrdersListCall(Integer size, Integer page, String walletId, String currency, String userId, String status, String creator, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -236,6 +237,10 @@ public class OrdersApi {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("status", status));
         }
 
+        if (creator != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("creator", creator));
+        }
+
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -255,7 +260,7 @@ public class OrdersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1OrdersListValidateBeforeCall(Integer size, Integer page, String walletId, String currency, String userId, String status, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call v1OrdersListValidateBeforeCall(Integer size, Integer page, String walletId, String currency, String userId, String status, String creator, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'size' is set
         if (size == null) {
@@ -263,7 +268,7 @@ public class OrdersApi {
         }
         
 
-        okhttp3.Call localVarCall = v1OrdersListCall(size, page, walletId, currency, userId, status, _callback);
+        okhttp3.Call localVarCall = v1OrdersListCall(size, page, walletId, currency, userId, status, creator, _callback);
         return localVarCall;
 
     }
@@ -277,6 +282,7 @@ public class OrdersApi {
      * @param currency Filter orders by currency (optional)
      * @param userId Filter orders by user who made the payment (optional)
      * @param status Order status enum (optional)
+     * @param creator Filter orders by creator (optional)
      * @return PageOrder
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -288,8 +294,8 @@ public class OrdersApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public PageOrder v1OrdersList(Integer size, Integer page, String walletId, String currency, String userId, String status) throws ApiException {
-        ApiResponse<PageOrder> localVarResp = v1OrdersListWithHttpInfo(size, page, walletId, currency, userId, status);
+    public PageOrder v1OrdersList(Integer size, Integer page, String walletId, String currency, String userId, String status, String creator) throws ApiException {
+        ApiResponse<PageOrder> localVarResp = v1OrdersListWithHttpInfo(size, page, walletId, currency, userId, status, creator);
         return localVarResp.getData();
     }
 
@@ -302,6 +308,7 @@ public class OrdersApi {
      * @param currency Filter orders by currency (optional)
      * @param userId Filter orders by user who made the payment (optional)
      * @param status Order status enum (optional)
+     * @param creator Filter orders by creator (optional)
      * @return ApiResponse&lt;PageOrder&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
@@ -313,8 +320,8 @@ public class OrdersApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PageOrder> v1OrdersListWithHttpInfo(Integer size, Integer page, String walletId, String currency, String userId, String status) throws ApiException {
-        okhttp3.Call localVarCall = v1OrdersListValidateBeforeCall(size, page, walletId, currency, userId, status, null);
+    public ApiResponse<PageOrder> v1OrdersListWithHttpInfo(Integer size, Integer page, String walletId, String currency, String userId, String status, String creator) throws ApiException {
+        okhttp3.Call localVarCall = v1OrdersListValidateBeforeCall(size, page, walletId, currency, userId, status, creator, null);
         Type localVarReturnType = new TypeToken<PageOrder>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -328,6 +335,7 @@ public class OrdersApi {
      * @param currency Filter orders by currency (optional)
      * @param userId Filter orders by user who made the payment (optional)
      * @param status Order status enum (optional)
+     * @param creator Filter orders by creator (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -340,9 +348,9 @@ public class OrdersApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1OrdersListAsync(Integer size, Integer page, String walletId, String currency, String userId, String status, final ApiCallback<PageOrder> _callback) throws ApiException {
+    public okhttp3.Call v1OrdersListAsync(Integer size, Integer page, String walletId, String currency, String userId, String status, String creator, final ApiCallback<PageOrder> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1OrdersListValidateBeforeCall(size, page, walletId, currency, userId, status, _callback);
+        okhttp3.Call localVarCall = v1OrdersListValidateBeforeCall(size, page, walletId, currency, userId, status, creator, _callback);
         Type localVarReturnType = new TypeToken<PageOrder>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

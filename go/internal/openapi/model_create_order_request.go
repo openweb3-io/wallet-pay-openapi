@@ -18,6 +18,8 @@ import (
 type CreateOrderRequest struct {
 	// Amount, supports decimal values
 	Amount string `json:"amount"`
+	// The identifier of the user who created the order
+	Creator *string `json:"creator,omitempty"`
 	// Currency code. e.g.: USDT, TON, ETH
 	Currency string `json:"currency"`
 	// Expiration time in seconds. If payment is not completed within the given time, the order will be automatically canceled
@@ -28,19 +30,16 @@ type CreateOrderRequest struct {
 	Note *string `json:"note,omitempty"`
 	// External ID, the order ID in the merchant system
 	Uid *string `json:"uid,omitempty"`
-	// ID of the user who needs to make the payment
-	UserId string `json:"user_id"`
 }
 
 // NewCreateOrderRequest instantiates a new CreateOrderRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCreateOrderRequest(amount string, currency string, userId string) *CreateOrderRequest {
+func NewCreateOrderRequest(amount string, currency string) *CreateOrderRequest {
 	this := CreateOrderRequest{}
 	this.Amount = amount
 	this.Currency = currency
-	this.UserId = userId
 	return &this
 }
 
@@ -74,6 +73,38 @@ func (o *CreateOrderRequest) GetAmountOk() (*string, bool) {
 // SetAmount sets field value
 func (o *CreateOrderRequest) SetAmount(v string) {
 	o.Amount = v
+}
+
+// GetCreator returns the Creator field value if set, zero value otherwise.
+func (o *CreateOrderRequest) GetCreator() string {
+	if o == nil || o.Creator == nil {
+		var ret string
+		return ret
+	}
+	return *o.Creator
+}
+
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrderRequest) GetCreatorOk() (*string, bool) {
+	if o == nil || o.Creator == nil {
+		return nil, false
+	}
+	return o.Creator, true
+}
+
+// HasCreator returns a boolean if a field has been set.
+func (o *CreateOrderRequest) HasCreator() bool {
+	if o != nil && o.Creator != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreator gets a reference to the given string and assigns it to the Creator field.
+func (o *CreateOrderRequest) SetCreator(v string) {
+	o.Creator = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -229,34 +260,13 @@ func (o *CreateOrderRequest) SetUid(v string) {
 	o.Uid = &v
 }
 
-// GetUserId returns the UserId field value
-func (o *CreateOrderRequest) GetUserId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.UserId
-}
-
-// GetUserIdOk returns a tuple with the UserId field value
-// and a boolean to check if the value has been set.
-func (o *CreateOrderRequest) GetUserIdOk() (*string, bool) {
-	if o == nil  {
-		return nil, false
-	}
-	return &o.UserId, true
-}
-
-// SetUserId sets field value
-func (o *CreateOrderRequest) SetUserId(v string) {
-	o.UserId = v
-}
-
 func (o CreateOrderRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["amount"] = o.Amount
+	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
 	}
 	if true {
 		toSerialize["currency"] = o.Currency
@@ -272,9 +282,6 @@ func (o CreateOrderRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Uid != nil {
 		toSerialize["uid"] = o.Uid
-	}
-	if true {
-		toSerialize["user_id"] = o.UserId
 	}
 	return json.Marshal(toSerialize)
 }

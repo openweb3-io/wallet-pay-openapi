@@ -138,6 +138,12 @@ export interface OrdersApiV1OrdersListRequest {
      * @memberof OrdersApiv1OrdersList
      */
     status?: string
+    /**
+     * Filter orders by creator
+     * @type string
+     * @memberof OrdersApiv1OrdersList
+     */
+    creator?: string
 }
 
 export interface OrdersApiV1OrdersRetrieveRequest {
@@ -171,7 +177,7 @@ export class ObjectOrdersApi {
      * @param param the request object
      */
     public v1OrdersList(param: OrdersApiV1OrdersListRequest, options?: Configuration): Promise<PageOrder> {
-        return this.api.v1OrdersList(param.size, param.page, param.walletId, param.currency, param.userId, param.status,  options).toPromise();
+        return this.api.v1OrdersList(param.size, param.page, param.walletId, param.currency, param.userId, param.status, param.creator,  options).toPromise();
     }
 
     /**

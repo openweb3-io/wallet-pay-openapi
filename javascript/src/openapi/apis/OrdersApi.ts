@@ -75,14 +75,16 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
      * @param currency Filter orders by currency
      * @param userId Filter orders by user who made the payment
      * @param status Order status enum
+     * @param creator Filter orders by creator
      */
-    public async v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, _options?: Configuration): Promise<RequestContext> {
+    public async v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, creator?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'size' is not null or undefined
         if (size === null || size === undefined) {
             throw new RequiredError('Required parameter size was null or undefined when calling v1OrdersList.');
         }
+
 
 
 
@@ -117,6 +119,9 @@ export class OrdersApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (status !== undefined) {
             requestContext.setQueryParam("status", ObjectSerializer.serialize(status, "string", ""));
+        }
+        if (creator !== undefined) {
+            requestContext.setQueryParam("creator", ObjectSerializer.serialize(creator, "string", ""));
         }
 
         // Header Params

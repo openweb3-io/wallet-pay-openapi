@@ -142,9 +142,10 @@ export class ObservableOrdersApi {
      * @param currency Filter orders by currency
      * @param userId Filter orders by user who made the payment
      * @param status Order status enum
+     * @param creator Filter orders by creator
      */
-    public v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, _options?: Configuration): Observable<PageOrder> {
-        const requestContextPromise = this.requestFactory.v1OrdersList(size, page, walletId, currency, userId, status, _options);
+    public v1OrdersList(size: number, page?: number, walletId?: string, currency?: string, userId?: string, status?: string, creator?: string, _options?: Configuration): Observable<PageOrder> {
+        const requestContextPromise = this.requestFactory.v1OrdersList(size, page, walletId, currency, userId, status, creator, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);

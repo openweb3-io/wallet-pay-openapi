@@ -22,6 +22,10 @@ export class Order {
     */
     'createdAt': string;
     /**
+    * The identifier of the user who created the order
+    */
+    'creator'?: string;
+    /**
     * Currency symbol
     */
     'currency': string;
@@ -86,6 +90,12 @@ export class Order {
         {
             "name": "createdAt",
             "baseName": "created_at",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "creator",
+            "baseName": "creator",
             "type": "string",
             "format": ""
         },

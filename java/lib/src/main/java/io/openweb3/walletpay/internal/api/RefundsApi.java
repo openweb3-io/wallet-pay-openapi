@@ -182,8 +182,8 @@ public class RefundsApi {
     }
     /**
      * Build call for v1RefundsList
-     * @param page Page number for pagination, starting from 0 (required)
      * @param size Number of items per page (required)
+     * @param page Page number for pagination, starting from 0 (optional)
      * @param orderId Filter refunds by order ID (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
@@ -197,7 +197,7 @@ public class RefundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundsListCall(Integer page, Integer size, String orderId, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call v1RefundsListCall(Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -209,16 +209,16 @@ public class RefundsApi {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (orderId != null) {
-            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order_id", orderId));
-        }
-
         if (page != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
         }
 
         if (size != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("size", size));
+        }
+
+        if (orderId != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("order_id", orderId));
         }
 
         final String[] localVarAccepts = {
@@ -240,12 +240,7 @@ public class RefundsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call v1RefundsListValidateBeforeCall(Integer page, Integer size, String orderId, final ApiCallback _callback) throws ApiException {
-        
-        // verify the required parameter 'page' is set
-        if (page == null) {
-            throw new ApiException("Missing the required parameter 'page' when calling v1RefundsList(Async)");
-        }
+    private okhttp3.Call v1RefundsListValidateBeforeCall(Integer size, Integer page, String orderId, final ApiCallback _callback) throws ApiException {
         
         // verify the required parameter 'size' is set
         if (size == null) {
@@ -253,7 +248,7 @@ public class RefundsApi {
         }
         
 
-        okhttp3.Call localVarCall = v1RefundsListCall(page, size, orderId, _callback);
+        okhttp3.Call localVarCall = v1RefundsListCall(size, page, orderId, _callback);
         return localVarCall;
 
     }
@@ -261,8 +256,8 @@ public class RefundsApi {
     /**
      * List Refunds
      * Retrieve a list of refunds with pagination
-     * @param page Page number for pagination, starting from 0 (required)
      * @param size Number of items per page (required)
+     * @param page Page number for pagination, starting from 0 (optional)
      * @param orderId Filter refunds by order ID (optional)
      * @return PageRefund
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -275,16 +270,16 @@ public class RefundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public PageRefund v1RefundsList(Integer page, Integer size, String orderId) throws ApiException {
-        ApiResponse<PageRefund> localVarResp = v1RefundsListWithHttpInfo(page, size, orderId);
+    public PageRefund v1RefundsList(Integer size, Integer page, String orderId) throws ApiException {
+        ApiResponse<PageRefund> localVarResp = v1RefundsListWithHttpInfo(size, page, orderId);
         return localVarResp.getData();
     }
 
     /**
      * List Refunds
      * Retrieve a list of refunds with pagination
-     * @param page Page number for pagination, starting from 0 (required)
      * @param size Number of items per page (required)
+     * @param page Page number for pagination, starting from 0 (optional)
      * @param orderId Filter refunds by order ID (optional)
      * @return ApiResponse&lt;PageRefund&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -297,8 +292,8 @@ public class RefundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PageRefund> v1RefundsListWithHttpInfo(Integer page, Integer size, String orderId) throws ApiException {
-        okhttp3.Call localVarCall = v1RefundsListValidateBeforeCall(page, size, orderId, null);
+    public ApiResponse<PageRefund> v1RefundsListWithHttpInfo(Integer size, Integer page, String orderId) throws ApiException {
+        okhttp3.Call localVarCall = v1RefundsListValidateBeforeCall(size, page, orderId, null);
         Type localVarReturnType = new TypeToken<PageRefund>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
@@ -306,8 +301,8 @@ public class RefundsApi {
     /**
      * List Refunds (asynchronously)
      * Retrieve a list of refunds with pagination
-     * @param page Page number for pagination, starting from 0 (required)
      * @param size Number of items per page (required)
+     * @param page Page number for pagination, starting from 0 (optional)
      * @param orderId Filter refunds by order ID (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
@@ -321,9 +316,9 @@ public class RefundsApi {
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call v1RefundsListAsync(Integer page, Integer size, String orderId, final ApiCallback<PageRefund> _callback) throws ApiException {
+    public okhttp3.Call v1RefundsListAsync(Integer size, Integer page, String orderId, final ApiCallback<PageRefund> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = v1RefundsListValidateBeforeCall(page, size, orderId, _callback);
+        okhttp3.Call localVarCall = v1RefundsListValidateBeforeCall(size, page, orderId, _callback);
         Type localVarReturnType = new TypeToken<PageRefund>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **String** | Amount | 
 **createdAt** | **String** | Order creation time | 
+**creator** | **String** | The identifier of the user who created the order |  [optional]
 **currency** | **String** | Currency symbol | 
 **expiration** | **Integer** | Expiration time in seconds. If payment is not completed within the given time, the order will be automatically canceled | 
 **expiredAt** | **String** | Order expiration time |  [optional]

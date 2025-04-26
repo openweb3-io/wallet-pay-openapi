@@ -138,6 +138,7 @@ export interface OrderListOptions extends ListOptions {
   walletId?: string;
   currency?: string;
   userId?: string;
+  creator?: string;
   status?: "PENDING" | "PAID" | "EXPIRED" | "FAILED" | "COMPLETED";
 }
 

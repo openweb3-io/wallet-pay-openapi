@@ -6,7 +6,7 @@
 
     <groupId>io.openweb3</groupId>
     <artifactId>walletpay</artifactId>
-    <version>0.2.9</version>
+    <version>0.2.11</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -5,6 +5,7 @@ public class OrderListOptions extends ListOptions {
     private String status;
     private String currency;
     private String userId;
+    private String creator;
 
     public void setWalletId(final String walletId) {
         this.walletId = walletId;
@@ -38,6 +39,14 @@ public class OrderListOptions extends ListOptions {
         return userId;
     }
 
+    public void setCreator(final String creator) {
+        this.creator = creator;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
     public OrderListOptions walletId(final String walletId) {
         this.walletId = walletId;
         return this;
@@ -55,6 +64,11 @@ public class OrderListOptions extends ListOptions {
 
     public OrderListOptions status(final String status) {
         this.status = status;
+        return this;
+    }
+
+    public OrderListOptions creator(final String creator) {
+        this.creator = creator;
         return this;
     }
 }

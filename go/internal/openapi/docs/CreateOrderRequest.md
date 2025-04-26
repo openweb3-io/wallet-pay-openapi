@@ -5,18 +5,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **string** | Amount, supports decimal values | 
+**Creator** | Pointer to **string** | The identifier of the user who created the order | [optional] 
 **Currency** | **string** | Currency code. e.g.: USDT, TON, ETH | 
 **Expiration** | Pointer to **int32** | Expiration time in seconds. If payment is not completed within the given time, the order will be automatically canceled | [optional] 
 **Metadata** | Pointer to **map[string]string** | Order metadata | [optional] 
 **Note** | Pointer to **string** | Order description from merchant | [optional] 
 **Uid** | Pointer to **string** | External ID, the order ID in the merchant system | [optional] 
-**UserId** | **string** | ID of the user who needs to make the payment | 
 
 ## Methods
 
 ### NewCreateOrderRequest
 
-`func NewCreateOrderRequest(amount string, currency string, userId string, ) *CreateOrderRequest`
+`func NewCreateOrderRequest(amount string, currency string, ) *CreateOrderRequest`
 
 NewCreateOrderRequest instantiates a new CreateOrderRequest object
 This constructor will assign default values to properties that have it defined,
@@ -50,6 +50,31 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
+
+### GetCreator
+
+`func (o *CreateOrderRequest) GetCreator() string`
+
+GetCreator returns the Creator field if non-nil, zero value otherwise.
+
+### GetCreatorOk
+
+`func (o *CreateOrderRequest) GetCreatorOk() (*string, bool)`
+
+GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreator
+
+`func (o *CreateOrderRequest) SetCreator(v string)`
+
+SetCreator sets Creator field to given value.
+
+### HasCreator
+
+`func (o *CreateOrderRequest) HasCreator() bool`
+
+HasCreator returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -180,26 +205,6 @@ SetUid sets Uid field to given value.
 `func (o *CreateOrderRequest) HasUid() bool`
 
 HasUid returns a boolean if a field has been set.
-
-### GetUserId
-
-`func (o *CreateOrderRequest) GetUserId() string`
-
-GetUserId returns the UserId field if non-nil, zero value otherwise.
-
-### GetUserIdOk
-
-`func (o *CreateOrderRequest) GetUserIdOk() (*string, bool)`
-
-GetUserIdOk returns a tuple with the UserId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUserId
-
-`func (o *CreateOrderRequest) SetUserId(v string)`
-
-SetUserId sets UserId field to given value.
-
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

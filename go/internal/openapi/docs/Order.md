@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **string** | Amount | 
 **CreatedAt** | **string** | Order creation time | 
+**Creator** | Pointer to **string** | The identifier of the user who created the order | [optional] 
 **Currency** | **string** | Currency symbol | 
 **Expiration** | **int32** | Expiration time in seconds. If payment is not completed within the given time, the order will be automatically canceled | 
 **ExpiredAt** | Pointer to **string** | Order expiration time | [optional] 
@@ -78,6 +79,31 @@ and a boolean to check if the value has been set.
 
 SetCreatedAt sets CreatedAt field to given value.
 
+
+### GetCreator
+
+`func (o *Order) GetCreator() string`
+
+GetCreator returns the Creator field if non-nil, zero value otherwise.
+
+### GetCreatorOk
+
+`func (o *Order) GetCreatorOk() (*string, bool)`
+
+GetCreatorOk returns a tuple with the Creator field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreator
+
+`func (o *Order) SetCreator(v string)`
+
+SetCreator sets Creator field to given value.
+
+### HasCreator
+
+`func (o *Order) HasCreator() bool`
+
+HasCreator returns a boolean if a field has been set.
 
 ### GetCurrency
 

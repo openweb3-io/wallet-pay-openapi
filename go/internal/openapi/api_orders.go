@@ -191,6 +191,7 @@ type ApiV1OrdersListRequest struct {
 	currency *string
 	userId *string
 	status *string
+	creator *string
 }
 
 func (r ApiV1OrdersListRequest) Size(size int32) ApiV1OrdersListRequest {
@@ -215,6 +216,10 @@ func (r ApiV1OrdersListRequest) UserId(userId string) ApiV1OrdersListRequest {
 }
 func (r ApiV1OrdersListRequest) Status(status string) ApiV1OrdersListRequest {
 	r.status = &status
+	return r
+}
+func (r ApiV1OrdersListRequest) Creator(creator string) ApiV1OrdersListRequest {
+	r.creator = &creator
 	return r
 }
 
@@ -284,6 +289,9 @@ func (a *OrdersApiService) V1OrdersListExecute(r ApiV1OrdersListRequest) (PageOr
 	}
 	if r.status != nil {
 		localVarQueryParams.Add("status", parameterToString(*r.status, ""))
+	}
+	if r.creator != nil {
+		localVarQueryParams.Add("creator", parameterToString(*r.creator, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

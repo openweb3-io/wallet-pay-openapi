@@ -31,7 +31,7 @@ import (
 )
 
 func main() {
-    createOrderRequest := *openapiclient.NewCreateOrderRequest("Amount_example", "Currency_example", "UserId_example") // CreateOrderRequest | Order details
+    createOrderRequest := *openapiclient.NewCreateOrderRequest("Amount_example", "Currency_example") // CreateOrderRequest | Order details
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
@@ -78,7 +78,7 @@ Name | Type | Description  | Notes
 
 ## V1OrdersList
 
-> PageOrder V1OrdersList(ctx).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Execute()
+> PageOrder V1OrdersList(ctx).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Creator(creator).Execute()
 
 List Orders
 
@@ -103,10 +103,11 @@ func main() {
     currency := "currency_example" // string | Filter orders by currency (optional)
     userId := "userId_example" // string | Filter orders by user who made the payment (optional)
     status := "status_example" // string | Order status enum (optional)
+    creator := "creator_example" // string | Filter orders by creator (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.OrdersApi.V1OrdersList(context.Background()).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Execute()
+    resp, r, err := api_client.OrdersApi.V1OrdersList(context.Background()).Size(size).Page(page).WalletId(walletId).Currency(currency).UserId(userId).Status(status).Creator(creator).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `OrdersApi.V1OrdersList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -133,6 +134,7 @@ Name | Type | Description  | Notes
  **currency** | **string** | Filter orders by currency | 
  **userId** | **string** | Filter orders by user who made the payment | 
  **status** | **string** | Order status enum | 
+ **creator** | **string** | Filter orders by creator | 
 
 ### Return type
 

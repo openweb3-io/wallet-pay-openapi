@@ -40,6 +40,10 @@ public class Order {
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private String createdAt;
 
+  public static final String SERIALIZED_NAME_CREATOR = "creator";
+  @SerializedName(SERIALIZED_NAME_CREATOR)
+  private String creator;
+
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
@@ -134,6 +138,29 @@ public class Order {
 
   public void setCreatedAt(String createdAt) {
     this.createdAt = createdAt;
+  }
+
+
+  public Order creator(String creator) {
+    
+    this.creator = creator;
+    return this;
+  }
+
+   /**
+   * The identifier of the user who created the order
+   * @return creator
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The identifier of the user who created the order")
+
+  public String getCreator() {
+    return creator;
+  }
+
+
+  public void setCreator(String creator) {
+    this.creator = creator;
   }
 
 
@@ -449,6 +476,7 @@ public class Order {
     Order order = (Order) o;
     return Objects.equals(this.amount, order.amount) &&
         Objects.equals(this.createdAt, order.createdAt) &&
+        Objects.equals(this.creator, order.creator) &&
         Objects.equals(this.currency, order.currency) &&
         Objects.equals(this.expiration, order.expiration) &&
         Objects.equals(this.expiredAt, order.expiredAt) &&
@@ -466,7 +494,7 @@ public class Order {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, createdAt, currency, expiration, expiredAt, failedAt, failedMessage, id, metadata, note, paidAt, status, uid, userId, walletId);
+    return Objects.hash(amount, createdAt, creator, currency, expiration, expiredAt, failedAt, failedMessage, id, metadata, note, paidAt, status, uid, userId, walletId);
   }
 
   @Override
@@ -475,6 +503,7 @@ public class Order {
     sb.append("class Order {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
     sb.append("    expiredAt: ").append(toIndentedString(expiredAt)).append("\n");

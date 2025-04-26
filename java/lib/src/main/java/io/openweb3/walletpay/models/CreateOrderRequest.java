@@ -36,6 +36,10 @@ public class CreateOrderRequest {
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private String amount;
 
+  public static final String SERIALIZED_NAME_CREATOR = "creator";
+  @SerializedName(SERIALIZED_NAME_CREATOR)
+  private String creator;
+
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
@@ -55,10 +59,6 @@ public class CreateOrderRequest {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
   private String uid;
-
-  public static final String SERIALIZED_NAME_USER_ID = "user_id";
-  @SerializedName(SERIALIZED_NAME_USER_ID)
-  private String userId;
 
 
   public CreateOrderRequest amount(String amount) {
@@ -80,6 +80,29 @@ public class CreateOrderRequest {
 
   public void setAmount(String amount) {
     this.amount = amount;
+  }
+
+
+  public CreateOrderRequest creator(String creator) {
+    
+    this.creator = creator;
+    return this;
+  }
+
+   /**
+   * The identifier of the user who created the order
+   * @return creator
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "The identifier of the user who created the order")
+
+  public String getCreator() {
+    return creator;
+  }
+
+
+  public void setCreator(String creator) {
+    this.creator = creator;
   }
 
 
@@ -205,28 +228,6 @@ public class CreateOrderRequest {
   }
 
 
-  public CreateOrderRequest userId(String userId) {
-    
-    this.userId = userId;
-    return this;
-  }
-
-   /**
-   * ID of the user who needs to make the payment
-   * @return userId
-  **/
-  @ApiModelProperty(required = true, value = "ID of the user who needs to make the payment")
-
-  public String getUserId() {
-    return userId;
-  }
-
-
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -237,17 +238,17 @@ public class CreateOrderRequest {
     }
     CreateOrderRequest createOrderRequest = (CreateOrderRequest) o;
     return Objects.equals(this.amount, createOrderRequest.amount) &&
+        Objects.equals(this.creator, createOrderRequest.creator) &&
         Objects.equals(this.currency, createOrderRequest.currency) &&
         Objects.equals(this.expiration, createOrderRequest.expiration) &&
         Objects.equals(this.metadata, createOrderRequest.metadata) &&
         Objects.equals(this.note, createOrderRequest.note) &&
-        Objects.equals(this.uid, createOrderRequest.uid) &&
-        Objects.equals(this.userId, createOrderRequest.userId);
+        Objects.equals(this.uid, createOrderRequest.uid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, expiration, metadata, note, uid, userId);
+    return Objects.hash(amount, creator, currency, expiration, metadata, note, uid);
   }
 
   @Override
@@ -255,12 +256,12 @@ public class CreateOrderRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateOrderRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    expiration: ").append(toIndentedString(expiration)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

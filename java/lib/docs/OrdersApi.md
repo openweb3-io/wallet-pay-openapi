@@ -83,7 +83,7 @@ Name | Type | Description  | Notes
 
 <a name="v1OrdersList"></a>
 # **v1OrdersList**
-> PageOrder v1OrdersList(size, page, walletId, currency, userId, status)
+> PageOrder v1OrdersList(size, page, walletId, currency, userId, status, creator)
 
 List Orders
 
@@ -117,8 +117,9 @@ public class Example {
     String currency = "currency_example"; // String | Filter orders by currency
     String userId = "userId_example"; // String | Filter orders by user who made the payment
     String status = "status_example"; // String | Order status enum
+    String creator = "creator_example"; // String | Filter orders by creator
     try {
-      PageOrder result = apiInstance.v1OrdersList(size, page, walletId, currency, userId, status);
+      PageOrder result = apiInstance.v1OrdersList(size, page, walletId, currency, userId, status, creator);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling OrdersApi#v1OrdersList");
@@ -141,6 +142,7 @@ Name | Type | Description  | Notes
  **currency** | **String**| Filter orders by currency | [optional]
  **userId** | **String**| Filter orders by user who made the payment | [optional]
  **status** | **String**| Order status enum | [optional]
+ **creator** | **String**| Filter orders by creator | [optional]
 
 ### Return type
 
