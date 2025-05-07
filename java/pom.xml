@@ -6,7 +6,7 @@
 
     <groupId>io.openweb3</groupId>
     <artifactId>walletpay</artifactId>
-    <version>0.2.11</version>
+    <version>0.2.12</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -119,6 +119,26 @@
                         <goals>
                             <goal>clean</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.10</version>
+                <executions>
+                    <execution>
+                        <id>add_sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>lib/src/main/java</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
