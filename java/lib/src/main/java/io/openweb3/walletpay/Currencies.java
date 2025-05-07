@@ -21,7 +21,7 @@ public final class Currencies {
 	}
 
 	// find by code
-	public Currency retrieve(final String code) throws ApiException {
+	public Currency findByCode(final String code) throws ApiException {
 		try {
 			return api.v1CurrenciesRetrieve(code);
 		} catch (io.openweb3.walletpay.internal.ApiException e) {
