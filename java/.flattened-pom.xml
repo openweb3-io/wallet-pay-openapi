@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.openweb3</groupId>
   <artifactId>walletpay</artifactId>
-  <version>0.2.12</version>
+  <version>0.2.13</version>
   <name>WalletPay Library</name>
   <description>walletpay library.</description>
   <url>https://github.com/openweb3-io/wallet-pay-openapi</url>

@@ -1,11 +1,11 @@
 <h1 align="center">
-    <a style="text-decoration: none" href="https://pay.openweb3.io">
+    <a style="text-decoration: none" href="https://walletpay.openweb3.io">
       <img width="120" src="" />
-      <p align="center">pay - walletpay as a service</p>
+      <p align="center">walletpay - walletpay as a service</p>
     </a>
 </h1>
 <h2 align="center">
-  <a href="https://pay.openweb3.io">Website</a> | <a href="https://docs.pay.openweb3.io">Documentation</a> | <a href="https://pay.openweb3.io/slack">Community Slack</a>
+  <a href="https://walletpay.openweb3.io">Website</a> | <a href="https://docs.openweb3.io/reference/v1orderscreate">Documentation</a> | <a href="https://walletpay.openweb3.io/slack">Community Slack</a>
 <h2>
 
 Java library for interacting with the pay API and verifying pay signatures
@@ -13,11 +13,11 @@ Java library for interacting with the pay API and verifying pay signatures
 ![GitHub tag](https://img.shields.io/github/tag/pay/walletpay.svg)
 [![Maven Central (Java)](https://img.shields.io/maven-central/v/io.openweb3.walletpay/pay?label=maven-central%20(java))](https://search.maven.org/artifact/io.openweb3.walletpay/pay)
 
-[![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://pay.openweb3.io/slack/)
+[![Join our slack](https://img.shields.io/badge/Slack-join%20the%20community-blue?logo=slack&style=social)](https://walletpay.openweb3.io/slack/)
 
 # Usage Documentation
 
-You can find general usage documentation at <https://docs.pay.openweb3.io>.  For complete API documentation with code examples for each endpoint in all of our official client libraries head over to our API documentation site at <https://api.wallet-pay.openweb3.io>.
+You can find general usage documentation at <https://docs.walletpay.openweb3.io>.  For complete API documentation with code examples for each endpoint in all of our official client libraries head over to our API documentation site at <https://api.wallet-pay.openweb3.io>.
 
 # Language Support
 
@@ -49,9 +49,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>io.openweb3.walletpay</groupId>
-  <artifactId>pay</artifactId>
-  <version>0.1.0</version>
+  <groupId>io.openweb3</groupId>
+  <artifactId>walletpay</artifactId>
+  <version>0.2.13</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "io.openweb3.walletpay:pay:0.1.0"
+implementation "io.openweb3:walletpay:0.2.13"
 ```
 
 # Development
