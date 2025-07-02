@@ -56,6 +56,10 @@ public class Currency {
   @SerializedName(SERIALIZED_NAME_DECIMALS)
   private Integer decimals;
 
+  public static final String SERIALIZED_NAME_DISABLED = "disabled";
+  @SerializedName(SERIALIZED_NAME_DISABLED)
+  private Boolean disabled;
+
   public static final String SERIALIZED_NAME_LOGO = "logo";
   @SerializedName(SERIALIZED_NAME_LOGO)
   private String logo;
@@ -243,6 +247,28 @@ public class Currency {
 
   public void setDecimals(Integer decimals) {
     this.decimals = decimals;
+  }
+
+
+  public Currency disabled(Boolean disabled) {
+    
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Whether the currency is disabled
+   * @return disabled
+  **/
+  @ApiModelProperty(required = true, value = "Whether the currency is disabled")
+
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
   }
 
 
@@ -578,6 +604,7 @@ public class Currency {
         Objects.equals(this.code, currency.code) &&
         Objects.equals(this.contractAddress, currency.contractAddress) &&
         Objects.equals(this.decimals, currency.decimals) &&
+        Objects.equals(this.disabled, currency.disabled) &&
         Objects.equals(this.logo, currency.logo) &&
         Objects.equals(this.maxFee, currency.maxFee) &&
         Objects.equals(this.maxFeeForCtAddr, currency.maxFeeForCtAddr) &&
@@ -596,7 +623,7 @@ public class Currency {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, disabled, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
   }
 
   @Override
@@ -609,6 +636,7 @@ public class Currency {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
     sb.append("    decimals: ").append(toIndentedString(decimals)).append("\n");
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    logo: ").append(toIndentedString(logo)).append("\n");
     sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
     sb.append("    maxFeeForCtAddr: ").append(toIndentedString(maxFeeForCtAddr)).append("\n");

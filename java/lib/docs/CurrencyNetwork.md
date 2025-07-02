@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **canWithdraw** | **Boolean** | Whether withdrawals are enabled for this network | 
 **code** | **String** | Associated with Currency by code | 
 **contractAddress** | **String** | Smart contract address for token (if applicable) |  [optional]
+**disabled** | **Boolean** | Whether the network is disabled | 
 **id** | **String** | Unique identifier for the currency network | 
 **maxFee** | **String** | Maximum transaction fee | 
 **maxFeeForCtAddr** | **String** | Maximum fee for contract address transactions | 

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **code** | **String** | Currency code identifier | 
 **contractAddress** | **String** | Contract address |  [optional]
 **decimals** | **Integer** | Decimal precision | 
+**disabled** | **Boolean** | Whether the currency is disabled | 
 **logo** | **String** | Logo URL | 
 **maxFee** | **String** | Maximum fee | 
 **maxFeeForCtAddr** | **String** | Maximum fee for contract address | 

@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **CanWithdraw** | **bool** | Whether withdrawals are enabled for this network | 
 **Code** | **string** | Associated with Currency by code | 
 **ContractAddress** | Pointer to **string** | Smart contract address for token (if applicable) | [optional] 
+**Disabled** | **bool** | Whether the network is disabled | 
 **Id** | **string** | Unique identifier for the currency network | 
 **MaxFee** | **string** | Maximum transaction fee | 
 **MaxFeeForCtAddr** | **string** | Maximum fee for contract address transactions | 
@@ -27,7 +28,7 @@ Name | Type | Description | Notes
 
 ### NewCurrencyNetwork
 
-`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
+`func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, disabled bool, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string, ) *CurrencyNetwork`
 
 NewCurrencyNetwork instantiates a new CurrencyNetwork object
 This constructor will assign default values to properties that have it defined,
@@ -146,6 +147,26 @@ SetContractAddress sets ContractAddress field to given value.
 `func (o *CurrencyNetwork) HasContractAddress() bool`
 
 HasContractAddress returns a boolean if a field has been set.
+
+### GetDisabled
+
+`func (o *CurrencyNetwork) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *CurrencyNetwork) GetDisabledOk() (*bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *CurrencyNetwork) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
+
 
 ### GetId
 

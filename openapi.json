@@ -140,6 +140,10 @@
                         "description": "Decimal precision",
                         "type": "integer"
                     },
+                    "disabled": {
+                        "description": "Whether the currency is disabled",
+                        "type": "boolean"
+                    },
                     "logo": {
                         "description": "Logo URL",
                         "type": "string"
@@ -208,6 +212,7 @@
                     "can_withdraw",
                     "code",
                     "decimals",
+                    "disabled",
                     "logo",
                     "max_fee",
                     "max_fee_for_ct_addr",
@@ -245,6 +250,10 @@
                     "contract_address": {
                         "description": "Smart contract address for token (if applicable)",
                         "type": "string"
+                    },
+                    "disabled": {
+                        "description": "Whether the network is disabled",
+                        "type": "boolean"
                     },
                     "id": {
                         "description": "Unique identifier for the currency network",
@@ -304,6 +313,7 @@
                     "can_transfer",
                     "can_withdraw",
                     "code",
+                    "disabled",
                     "id",
                     "max_fee",
                     "max_fee_for_ct_addr",
@@ -1372,6 +1382,7 @@
         },
         "/api/v1/rates/estimate": {
             "get": {
+                "deprecated": true,
                 "description": "Convert an amount from one currency to another using current exchange rates.",
                 "operationId": "v1.rates.estimate",
                 "parameters": [

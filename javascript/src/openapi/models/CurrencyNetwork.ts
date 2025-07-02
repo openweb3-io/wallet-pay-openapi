@@ -34,6 +34,10 @@ export class CurrencyNetwork {
     */
     'contractAddress'?: string;
     /**
+    * Whether the network is disabled
+    */
+    'disabled': boolean;
+    /**
     * Unique identifier for the currency network
     */
     'id': string;
@@ -117,6 +121,12 @@ export class CurrencyNetwork {
             "name": "contractAddress",
             "baseName": "contract_address",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
             "format": ""
         },
         {

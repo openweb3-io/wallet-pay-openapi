@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Code** | **string** | Currency code identifier | 
 **ContractAddress** | Pointer to **string** | Contract address | [optional] 
 **Decimals** | **int32** | Decimal precision | 
+**Disabled** | **bool** | Whether the currency is disabled | 
 **Logo** | **string** | Logo URL | 
 **MaxFee** | **string** | Maximum fee | 
 **MaxFeeForCtAddr** | **string** | Maximum fee for contract address | 
@@ -29,7 +30,7 @@ Name | Type | Description | Notes
 
 ### NewCurrency
 
-`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string, ) *Currency`
+`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string, ) *Currency`
 
 NewCurrency instantiates a new Currency object
 This constructor will assign default values to properties that have it defined,
@@ -167,6 +168,26 @@ and a boolean to check if the value has been set.
 `func (o *Currency) SetDecimals(v int32)`
 
 SetDecimals sets Decimals field to given value.
+
+
+### GetDisabled
+
+`func (o *Currency) GetDisabled() bool`
+
+GetDisabled returns the Disabled field if non-nil, zero value otherwise.
+
+### GetDisabledOk
+
+`func (o *Currency) GetDisabledOk() (*bool, bool)`
+
+GetDisabledOk returns a tuple with the Disabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisabled
+
+`func (o *Currency) SetDisabled(v bool)`
+
+SetDisabled sets Disabled field to given value.
 
 
 ### GetLogo

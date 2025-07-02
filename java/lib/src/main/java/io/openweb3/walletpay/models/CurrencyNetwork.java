@@ -49,6 +49,10 @@ public class CurrencyNetwork {
   @SerializedName(SERIALIZED_NAME_CONTRACT_ADDRESS)
   private String contractAddress;
 
+  public static final String SERIALIZED_NAME_DISABLED = "disabled";
+  @SerializedName(SERIALIZED_NAME_DISABLED)
+  private Boolean disabled;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -210,6 +214,28 @@ public class CurrencyNetwork {
 
   public void setContractAddress(String contractAddress) {
     this.contractAddress = contractAddress;
+  }
+
+
+  public CurrencyNetwork disabled(Boolean disabled) {
+    
+    this.disabled = disabled;
+    return this;
+  }
+
+   /**
+   * Whether the network is disabled
+   * @return disabled
+  **/
+  @ApiModelProperty(required = true, value = "Whether the network is disabled")
+
+  public Boolean getDisabled() {
+    return disabled;
+  }
+
+
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
   }
 
 
@@ -514,6 +540,7 @@ public class CurrencyNetwork {
         Objects.equals(this.canWithdraw, currencyNetwork.canWithdraw) &&
         Objects.equals(this.code, currencyNetwork.code) &&
         Objects.equals(this.contractAddress, currencyNetwork.contractAddress) &&
+        Objects.equals(this.disabled, currencyNetwork.disabled) &&
         Objects.equals(this.id, currencyNetwork.id) &&
         Objects.equals(this.maxFee, currencyNetwork.maxFee) &&
         Objects.equals(this.maxFeeForCtAddr, currencyNetwork.maxFeeForCtAddr) &&
@@ -531,7 +558,7 @@ public class CurrencyNetwork {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, disabled, id, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minCollectAmount, minConfirmations, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, network);
   }
 
   @Override
@@ -543,6 +570,7 @@ public class CurrencyNetwork {
     sb.append("    canWithdraw: ").append(toIndentedString(canWithdraw)).append("\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    contractAddress: ").append(toIndentedString(contractAddress)).append("\n");
+    sb.append("    disabled: ").append(toIndentedString(disabled)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    maxFee: ").append(toIndentedString(maxFee)).append("\n");
     sb.append("    maxFeeForCtAddr: ").append(toIndentedString(maxFeeForCtAddr)).append("\n");

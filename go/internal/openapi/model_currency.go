@@ -28,6 +28,8 @@ type Currency struct {
 	ContractAddress *string `json:"contract_address,omitempty"`
 	// Decimal precision
 	Decimals int32 `json:"decimals"`
+	// Whether the currency is disabled
+	Disabled bool `json:"disabled"`
 	// Logo URL
 	Logo string `json:"logo"`
 	// Maximum fee
@@ -62,13 +64,14 @@ type Currency struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string) *Currency {
+func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string) *Currency {
 	this := Currency{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
 	this.CanWithdraw = canWithdraw
 	this.Code = code
 	this.Decimals = decimals
+	this.Disabled = disabled
 	this.Logo = logo
 	this.MaxFee = maxFee
 	this.MaxFeeForCtAddr = maxFeeForCtAddr
@@ -243,6 +246,30 @@ func (o *Currency) GetDecimalsOk() (*int32, bool) {
 // SetDecimals sets field value
 func (o *Currency) SetDecimals(v int32) {
 	o.Decimals = v
+}
+
+// GetDisabled returns the Disabled field value
+func (o *Currency) GetDisabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value
+// and a boolean to check if the value has been set.
+func (o *Currency) GetDisabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Disabled, true
+}
+
+// SetDisabled sets field value
+func (o *Currency) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetLogo returns the Logo field value
@@ -609,6 +636,9 @@ func (o Currency) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["decimals"] = o.Decimals
+	}
+	if true {
+		toSerialize["disabled"] = o.Disabled
 	}
 	if true {
 		toSerialize["logo"] = o.Logo

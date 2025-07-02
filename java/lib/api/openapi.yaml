@@ -393,6 +393,7 @@ paths:
       x-accepts: application/json
   /api/v1/rates/estimate:
     get:
+      deprecated: true
       description: Convert an amount from one currency to another using current exchange
         rates.
       operationId: v1.rates.estimate
@@ -1000,6 +1001,7 @@ components:
           min_fee: min_fee
           name: name
           can_withdraw: true
+          disabled: true
           id: id
           can_transfer: true
           min_deposit_amount: min_deposit_amount
@@ -1018,6 +1020,7 @@ components:
           min_fee: min_fee
           name: name
           can_withdraw: true
+          disabled: true
           id: id
           can_transfer: true
           min_deposit_amount: min_deposit_amount
@@ -1033,6 +1036,7 @@ components:
         name: name
         logo: logo
         can_withdraw: true
+        disabled: true
         can_transfer: true
         min_deposit_amount: min_deposit_amount
         max_fee: max_fee
@@ -1055,6 +1059,9 @@ components:
         decimals:
           description: Decimal precision
           type: integer
+        disabled:
+          description: Whether the currency is disabled
+          type: boolean
         logo:
           description: Logo URL
           type: string
@@ -1107,6 +1114,7 @@ components:
       - can_withdraw
       - code
       - decimals
+      - disabled
       - logo
       - max_fee
       - max_fee_for_ct_addr
@@ -1136,6 +1144,7 @@ components:
         min_fee: min_fee
         name: name
         can_withdraw: true
+        disabled: true
         id: id
         can_transfer: true
         min_deposit_amount: min_deposit_amount
@@ -1157,6 +1166,9 @@ components:
         contract_address:
           description: Smart contract address for token (if applicable)
           type: string
+        disabled:
+          description: Whether the network is disabled
+          type: boolean
         id:
           description: Unique identifier for the currency network
           type: string
@@ -1201,6 +1213,7 @@ components:
       - can_transfer
       - can_withdraw
       - code
+      - disabled
       - id
       - max_fee
       - max_fee_for_ct_addr
@@ -1260,6 +1273,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -1278,6 +1292,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -1293,6 +1308,7 @@ components:
           name: name
           logo: logo
           can_withdraw: true
+          disabled: true
           can_transfer: true
           min_deposit_amount: min_deposit_amount
           max_fee: max_fee
@@ -1316,6 +1332,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -1334,6 +1351,7 @@ components:
             min_fee: min_fee
             name: name
             can_withdraw: true
+            disabled: true
             id: id
             can_transfer: true
             min_deposit_amount: min_deposit_amount
@@ -1349,6 +1367,7 @@ components:
           name: name
           logo: logo
           can_withdraw: true
+          disabled: true
           can_transfer: true
           min_deposit_amount: min_deposit_amount
           max_fee: max_fee

@@ -39,6 +39,10 @@ export class Currency {
     */
     'decimals': number;
     /**
+    * Whether the currency is disabled
+    */
+    'disabled': boolean;
+    /**
     * Logo URL
     */
     'logo': string;
@@ -132,6 +136,12 @@ export class Currency {
             "name": "decimals",
             "baseName": "decimals",
             "type": "number",
+            "format": ""
+        },
+        {
+            "name": "disabled",
+            "baseName": "disabled",
+            "type": "boolean",
             "format": ""
         },
         {

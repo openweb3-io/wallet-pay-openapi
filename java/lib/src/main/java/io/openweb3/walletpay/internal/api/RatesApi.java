@@ -74,7 +74,9 @@ public class RatesApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call v1RatesEstimateCall(String baseCurrency, String baseAmount, String toCurrency, final ApiCallback _callback) throws ApiException {
         Object localVarPostBody = null;
 
@@ -117,6 +119,7 @@ public class RatesApi {
         return localVarApiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
+    @Deprecated
     @SuppressWarnings("rawtypes")
     private okhttp3.Call v1RatesEstimateValidateBeforeCall(String baseCurrency, String baseAmount, String toCurrency, final ApiCallback _callback) throws ApiException {
         
@@ -158,7 +161,9 @@ public class RatesApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public EstimateResponse v1RatesEstimate(String baseCurrency, String baseAmount, String toCurrency) throws ApiException {
         ApiResponse<EstimateResponse> localVarResp = v1RatesEstimateWithHttpInfo(baseCurrency, baseAmount, toCurrency);
         return localVarResp.getData();
@@ -181,7 +186,9 @@ public class RatesApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public ApiResponse<EstimateResponse> v1RatesEstimateWithHttpInfo(String baseCurrency, String baseAmount, String toCurrency) throws ApiException {
         okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(baseCurrency, baseAmount, toCurrency, null);
         Type localVarReturnType = new TypeToken<EstimateResponse>(){}.getType();
@@ -206,7 +213,9 @@ public class RatesApi {
         <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
         <tr><td> 500 </td><td> Internal Server Error </td><td>  -  </td></tr>
      </table>
+     * @deprecated
      */
+    @Deprecated
     public okhttp3.Call v1RatesEstimateAsync(String baseCurrency, String baseAmount, String toCurrency, final ApiCallback<EstimateResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = v1RatesEstimateValidateBeforeCall(baseCurrency, baseAmount, toCurrency, _callback);

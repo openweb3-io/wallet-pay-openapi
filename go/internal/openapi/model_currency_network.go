@@ -26,6 +26,8 @@ type CurrencyNetwork struct {
 	Code string `json:"code"`
 	// Smart contract address for token (if applicable)
 	ContractAddress *string `json:"contract_address,omitempty"`
+	// Whether the network is disabled
+	Disabled bool `json:"disabled"`
 	// Unique identifier for the currency network
 	Id string `json:"id"`
 	// Maximum transaction fee
@@ -58,12 +60,13 @@ type CurrencyNetwork struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
+func NewCurrencyNetwork(canDeposit bool, canTransfer bool, canWithdraw bool, code string, disabled bool, id string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minConfirmations int32, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, network string) *CurrencyNetwork {
 	this := CurrencyNetwork{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
 	this.CanWithdraw = canWithdraw
 	this.Code = code
+	this.Disabled = disabled
 	this.Id = id
 	this.MaxFee = maxFee
 	this.MaxFeeForCtAddr = maxFeeForCtAddr
@@ -213,6 +216,30 @@ func (o *CurrencyNetwork) HasContractAddress() bool {
 // SetContractAddress gets a reference to the given string and assigns it to the ContractAddress field.
 func (o *CurrencyNetwork) SetContractAddress(v string) {
 	o.ContractAddress = &v
+}
+
+// GetDisabled returns the Disabled field value
+func (o *CurrencyNetwork) GetDisabled() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value
+// and a boolean to check if the value has been set.
+func (o *CurrencyNetwork) GetDisabledOk() (*bool, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Disabled, true
+}
+
+// SetDisabled sets field value
+func (o *CurrencyNetwork) SetDisabled(v bool) {
+	o.Disabled = v
 }
 
 // GetId returns the Id field value
@@ -551,6 +578,9 @@ func (o CurrencyNetwork) MarshalJSON() ([]byte, error) {
 	}
 	if o.ContractAddress != nil {
 		toSerialize["contract_address"] = o.ContractAddress
+	}
+	if true {
+		toSerialize["disabled"] = o.Disabled
 	}
 	if true {
 		toSerialize["id"] = o.Id
