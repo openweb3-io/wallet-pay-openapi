@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AdditionalFeeRate** | Pointer to **float32** | Additional fee rate | [optional] 
+**AdditionalFeeWalletId** | Pointer to **string** | Additional fee wallet ID | [optional] 
 **Amount** | **string** | Amount, supports decimal values | 
 **Creator** | Pointer to **string** | The identifier of the user who created the order | [optional] 
 **Currency** | **string** | Currency code. e.g.: USDT, TON, ETH | 
@@ -30,6 +32,56 @@ will change when the set of required properties is changed
 NewCreateOrderRequestWithDefaults instantiates a new CreateOrderRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAdditionalFeeRate
+
+`func (o *CreateOrderRequest) GetAdditionalFeeRate() float32`
+
+GetAdditionalFeeRate returns the AdditionalFeeRate field if non-nil, zero value otherwise.
+
+### GetAdditionalFeeRateOk
+
+`func (o *CreateOrderRequest) GetAdditionalFeeRateOk() (*float32, bool)`
+
+GetAdditionalFeeRateOk returns a tuple with the AdditionalFeeRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalFeeRate
+
+`func (o *CreateOrderRequest) SetAdditionalFeeRate(v float32)`
+
+SetAdditionalFeeRate sets AdditionalFeeRate field to given value.
+
+### HasAdditionalFeeRate
+
+`func (o *CreateOrderRequest) HasAdditionalFeeRate() bool`
+
+HasAdditionalFeeRate returns a boolean if a field has been set.
+
+### GetAdditionalFeeWalletId
+
+`func (o *CreateOrderRequest) GetAdditionalFeeWalletId() string`
+
+GetAdditionalFeeWalletId returns the AdditionalFeeWalletId field if non-nil, zero value otherwise.
+
+### GetAdditionalFeeWalletIdOk
+
+`func (o *CreateOrderRequest) GetAdditionalFeeWalletIdOk() (*string, bool)`
+
+GetAdditionalFeeWalletIdOk returns a tuple with the AdditionalFeeWalletId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalFeeWalletId
+
+`func (o *CreateOrderRequest) SetAdditionalFeeWalletId(v string)`
+
+SetAdditionalFeeWalletId sets AdditionalFeeWalletId field to given value.
+
+### HasAdditionalFeeWalletId
+
+`func (o *CreateOrderRequest) HasAdditionalFeeWalletId() bool`
+
+HasAdditionalFeeWalletId returns a boolean if a field has been set.
 
 ### GetAmount
 

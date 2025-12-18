@@ -40,12 +40,6 @@ export interface CurrenciesApiV1CurrenciesListRequest {
      */
     cursor?: string
     /**
-     * Filter currencies by application ID
-     * @type string
-     * @memberof CurrenciesApiv1CurrenciesList
-     */
-    appId?: string
-    /**
      * Filter currencies by rated status
      * @type boolean
      * @memberof CurrenciesApiv1CurrenciesList
@@ -75,7 +69,7 @@ export class ObjectCurrenciesApi {
      * @param param the request object
      */
     public v1CurrenciesList(param: CurrenciesApiV1CurrenciesListRequest, options?: Configuration): Promise<CursorPageCurrency> {
-        return this.api.v1CurrenciesList(param.limit, param.cursor, param.appId, param.rated,  options).toPromise();
+        return this.api.v1CurrenciesList(param.limit, param.cursor, param.rated,  options).toPromise();
     }
 
     /**

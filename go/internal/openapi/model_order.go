@@ -16,6 +16,8 @@ import (
 
 // Order struct for Order
 type Order struct {
+	// Additional fee charged based on additional_fee_rate from the order creation request. Decimal string format
+	AdditionalFee *string `json:"additional_fee,omitempty"`
 	// Amount
 	Amount string `json:"amount"`
 	// Order creation time
@@ -32,6 +34,8 @@ type Order struct {
 	FailedAt *string `json:"failed_at,omitempty"`
 	// Error message when order fails
 	FailedMessage *string `json:"failed_message,omitempty"`
+	// Base transaction fee charged for the order. Decimal string format. Does not include additional_fee
+	Fee *string `json:"fee,omitempty"`
 	// System unique ID of the order
 	Id string `json:"id"`
 	// Order metadata
@@ -73,6 +77,38 @@ func NewOrder(amount string, createdAt string, currency string, expiration int32
 func NewOrderWithDefaults() *Order {
 	this := Order{}
 	return &this
+}
+
+// GetAdditionalFee returns the AdditionalFee field value if set, zero value otherwise.
+func (o *Order) GetAdditionalFee() string {
+	if o == nil || o.AdditionalFee == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdditionalFee
+}
+
+// GetAdditionalFeeOk returns a tuple with the AdditionalFee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Order) GetAdditionalFeeOk() (*string, bool) {
+	if o == nil || o.AdditionalFee == nil {
+		return nil, false
+	}
+	return o.AdditionalFee, true
+}
+
+// HasAdditionalFee returns a boolean if a field has been set.
+func (o *Order) HasAdditionalFee() bool {
+	if o != nil && o.AdditionalFee != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalFee gets a reference to the given string and assigns it to the AdditionalFee field.
+func (o *Order) SetAdditionalFee(v string) {
+	o.AdditionalFee = &v
 }
 
 // GetAmount returns the Amount field value
@@ -297,6 +333,38 @@ func (o *Order) HasFailedMessage() bool {
 // SetFailedMessage gets a reference to the given string and assigns it to the FailedMessage field.
 func (o *Order) SetFailedMessage(v string) {
 	o.FailedMessage = &v
+}
+
+// GetFee returns the Fee field value if set, zero value otherwise.
+func (o *Order) GetFee() string {
+	if o == nil || o.Fee == nil {
+		var ret string
+		return ret
+	}
+	return *o.Fee
+}
+
+// GetFeeOk returns a tuple with the Fee field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Order) GetFeeOk() (*string, bool) {
+	if o == nil || o.Fee == nil {
+		return nil, false
+	}
+	return o.Fee, true
+}
+
+// HasFee returns a boolean if a field has been set.
+func (o *Order) HasFee() bool {
+	if o != nil && o.Fee != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFee gets a reference to the given string and assigns it to the Fee field.
+func (o *Order) SetFee(v string) {
+	o.Fee = &v
 }
 
 // GetId returns the Id field value
@@ -526,6 +594,9 @@ func (o *Order) SetWalletId(v string) {
 
 func (o Order) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AdditionalFee != nil {
+		toSerialize["additional_fee"] = o.AdditionalFee
+	}
 	if true {
 		toSerialize["amount"] = o.Amount
 	}
@@ -549,6 +620,9 @@ func (o Order) MarshalJSON() ([]byte, error) {
 	}
 	if o.FailedMessage != nil {
 		toSerialize["failed_message"] = o.FailedMessage
+	}
+	if o.Fee != nil {
+		toSerialize["fee"] = o.Fee
 	}
 	if true {
 		toSerialize["id"] = o.Id

@@ -7,6 +7,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**additionalFeeRate** | **BigDecimal** | Additional fee rate |  [optional]
+**additionalFeeWalletId** | **String** | Additional fee wallet ID |  [optional]
 **amount** | **String** | Amount, supports decimal values | 
 **creator** | **String** | The identifier of the user who created the order |  [optional]
 **currency** | **String** | Currency code. e.g.: USDT, TON, ETH | 

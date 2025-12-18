@@ -18,10 +18,6 @@ export class TransferRequest {
     */
     'amount': string;
     /**
-    * Whether to automatically commit the transfer
-    */
-    'autoCommit'?: boolean;
-    /**
     * Currency code for the transfer (e.g., TON, USDT, ETH)
     */
     'currency': string;
@@ -29,6 +25,10 @@ export class TransferRequest {
     * Optional description for the transfer
     */
     'description'?: string;
+    /**
+    * Optional metadata for storing extra info
+    */
+    'metadata'?: { [key: string]: string; };
     /**
     * Optional tags for categorizing the transfer
     */
@@ -48,12 +48,6 @@ export class TransferRequest {
             "format": ""
         },
         {
-            "name": "autoCommit",
-            "baseName": "auto_commit",
-            "type": "boolean",
-            "format": ""
-        },
-        {
             "name": "currency",
             "baseName": "currency",
             "type": "string",
@@ -63,6 +57,12 @@ export class TransferRequest {
             "name": "description",
             "baseName": "description",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "metadata",
+            "baseName": "metadata",
+            "type": "{ [key: string]: string; }",
             "format": ""
         },
         {

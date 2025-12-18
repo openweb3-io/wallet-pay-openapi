@@ -44,6 +44,8 @@ type Currency struct {
 	MinFee string `json:"min_fee"`
 	// Minimum fee for contract address
 	MinFeeForCtAddr string `json:"min_fee_for_ct_addr"`
+	// Minimum transfer amount per transaction
+	MinTransferAmount string `json:"min_transfer_amount"`
 	// Minimum on-chain withdrawal amount per transaction
 	MinWithdrawAmount string `json:"min_withdraw_amount"`
 	// Currency name
@@ -64,7 +66,7 @@ type Currency struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string) *Currency {
+func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minTransferAmount string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string) *Currency {
 	this := Currency{}
 	this.CanDeposit = canDeposit
 	this.CanTransfer = canTransfer
@@ -79,6 +81,7 @@ func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code strin
 	this.MinDepositAmount = minDepositAmount
 	this.MinFee = minFee
 	this.MinFeeForCtAddr = minFeeForCtAddr
+	this.MinTransferAmount = minTransferAmount
 	this.MinWithdrawAmount = minWithdrawAmount
 	this.Name = name
 	this.NeedMemo = needMemo
@@ -440,6 +443,30 @@ func (o *Currency) SetMinFeeForCtAddr(v string) {
 	o.MinFeeForCtAddr = v
 }
 
+// GetMinTransferAmount returns the MinTransferAmount field value
+func (o *Currency) GetMinTransferAmount() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.MinTransferAmount
+}
+
+// GetMinTransferAmountOk returns a tuple with the MinTransferAmount field value
+// and a boolean to check if the value has been set.
+func (o *Currency) GetMinTransferAmountOk() (*string, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.MinTransferAmount, true
+}
+
+// SetMinTransferAmount sets field value
+func (o *Currency) SetMinTransferAmount(v string) {
+	o.MinTransferAmount = v
+}
+
 // GetMinWithdrawAmount returns the MinWithdrawAmount field value
 func (o *Currency) GetMinWithdrawAmount() string {
 	if o == nil {
@@ -660,6 +687,9 @@ func (o Currency) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["min_fee_for_ct_addr"] = o.MinFeeForCtAddr
+	}
+	if true {
+		toSerialize["min_transfer_amount"] = o.MinTransferAmount
 	}
 	if true {
 		toSerialize["min_withdraw_amount"] = o.MinWithdrawAmount

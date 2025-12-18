@@ -19,17 +19,15 @@ export class CurrenciesApiRequestFactory extends BaseAPIRequestFactory {
      * List currencies
      * @param limit The number of items to return per page.
      * @param cursor The cursor to use for pagination.
-     * @param appId Filter currencies by application ID
      * @param rated Filter currencies by rated status
      */
-    public async v1CurrenciesList(limit: number, cursor?: string, appId?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async v1CurrenciesList(limit: number, cursor?: string, rated?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'limit' is not null or undefined
         if (limit === null || limit === undefined) {
             throw new RequiredError('Required parameter limit was null or undefined when calling v1CurrenciesList.');
         }
-
 
 
 
@@ -49,9 +47,6 @@ export class CurrenciesApiRequestFactory extends BaseAPIRequestFactory {
         }
         if (limit !== undefined) {
             requestContext.setQueryParam("limit", ObjectSerializer.serialize(limit, "number", ""));
-        }
-        if (appId !== undefined) {
-            requestContext.setQueryParam("app_id", ObjectSerializer.serialize(appId, "string", ""));
         }
         if (rated !== undefined) {
             requestContext.setQueryParam("rated", ObjectSerializer.serialize(rated, "boolean", ""));

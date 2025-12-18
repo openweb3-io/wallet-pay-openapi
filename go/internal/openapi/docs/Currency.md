@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **MinDepositAmount** | **string** | Minimum deposit amount per transaction | 
 **MinFee** | **string** | Minimum fee | 
 **MinFeeForCtAddr** | **string** | Minimum fee for contract address | 
+**MinTransferAmount** | **string** | Minimum transfer amount per transaction | 
 **MinWithdrawAmount** | **string** | Minimum on-chain withdrawal amount per transaction | 
 **Name** | **string** | Currency name | 
 **NeedMemo** | **bool** | Whether memo is required | 
@@ -30,7 +31,7 @@ Name | Type | Description | Notes
 
 ### NewCurrency
 
-`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string, ) *Currency`
+`func NewCurrency(canDeposit bool, canTransfer bool, canWithdraw bool, code string, decimals int32, disabled bool, logo string, maxFee string, maxFeeForCtAddr string, maxWithdrawAmount string, minDepositAmount string, minFee string, minFeeForCtAddr string, minTransferAmount string, minWithdrawAmount string, name string, needMemo bool, precision int32, rated bool, symbol string, ) *Currency`
 
 NewCurrency instantiates a new Currency object
 This constructor will assign default values to properties that have it defined,
@@ -328,6 +329,26 @@ and a boolean to check if the value has been set.
 `func (o *Currency) SetMinFeeForCtAddr(v string)`
 
 SetMinFeeForCtAddr sets MinFeeForCtAddr field to given value.
+
+
+### GetMinTransferAmount
+
+`func (o *Currency) GetMinTransferAmount() string`
+
+GetMinTransferAmount returns the MinTransferAmount field if non-nil, zero value otherwise.
+
+### GetMinTransferAmountOk
+
+`func (o *Currency) GetMinTransferAmountOk() (*string, bool)`
+
+GetMinTransferAmountOk returns a tuple with the MinTransferAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMinTransferAmount
+
+`func (o *Currency) SetMinTransferAmount(v string)`
+
+SetMinTransferAmount sets MinTransferAmount field to given value.
 
 
 ### GetMinWithdrawAmount

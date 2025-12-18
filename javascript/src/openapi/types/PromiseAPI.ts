@@ -41,11 +41,10 @@ export class PromiseCurrenciesApi {
      * List currencies
      * @param limit The number of items to return per page.
      * @param cursor The cursor to use for pagination.
-     * @param appId Filter currencies by application ID
      * @param rated Filter currencies by rated status
      */
-    public v1CurrenciesList(limit: number, cursor?: string, appId?: string, rated?: boolean, _options?: Configuration): Promise<CursorPageCurrency> {
-        const result = this.api.v1CurrenciesList(limit, cursor, appId, rated, _options);
+    public v1CurrenciesList(limit: number, cursor?: string, rated?: boolean, _options?: Configuration): Promise<CursorPageCurrency> {
+        const result = this.api.v1CurrenciesList(limit, cursor, rated, _options);
         return result.toPromise();
     }
 

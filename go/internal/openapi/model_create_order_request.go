@@ -16,6 +16,10 @@ import (
 
 // CreateOrderRequest struct for CreateOrderRequest
 type CreateOrderRequest struct {
+	// Additional fee rate
+	AdditionalFeeRate *float32 `json:"additional_fee_rate,omitempty"`
+	// Additional fee wallet ID
+	AdditionalFeeWalletId *string `json:"additional_fee_wallet_id,omitempty"`
 	// Amount, supports decimal values
 	Amount string `json:"amount"`
 	// The identifier of the user who created the order
@@ -49,6 +53,70 @@ func NewCreateOrderRequest(amount string, currency string) *CreateOrderRequest {
 func NewCreateOrderRequestWithDefaults() *CreateOrderRequest {
 	this := CreateOrderRequest{}
 	return &this
+}
+
+// GetAdditionalFeeRate returns the AdditionalFeeRate field value if set, zero value otherwise.
+func (o *CreateOrderRequest) GetAdditionalFeeRate() float32 {
+	if o == nil || o.AdditionalFeeRate == nil {
+		var ret float32
+		return ret
+	}
+	return *o.AdditionalFeeRate
+}
+
+// GetAdditionalFeeRateOk returns a tuple with the AdditionalFeeRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrderRequest) GetAdditionalFeeRateOk() (*float32, bool) {
+	if o == nil || o.AdditionalFeeRate == nil {
+		return nil, false
+	}
+	return o.AdditionalFeeRate, true
+}
+
+// HasAdditionalFeeRate returns a boolean if a field has been set.
+func (o *CreateOrderRequest) HasAdditionalFeeRate() bool {
+	if o != nil && o.AdditionalFeeRate != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalFeeRate gets a reference to the given float32 and assigns it to the AdditionalFeeRate field.
+func (o *CreateOrderRequest) SetAdditionalFeeRate(v float32) {
+	o.AdditionalFeeRate = &v
+}
+
+// GetAdditionalFeeWalletId returns the AdditionalFeeWalletId field value if set, zero value otherwise.
+func (o *CreateOrderRequest) GetAdditionalFeeWalletId() string {
+	if o == nil || o.AdditionalFeeWalletId == nil {
+		var ret string
+		return ret
+	}
+	return *o.AdditionalFeeWalletId
+}
+
+// GetAdditionalFeeWalletIdOk returns a tuple with the AdditionalFeeWalletId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateOrderRequest) GetAdditionalFeeWalletIdOk() (*string, bool) {
+	if o == nil || o.AdditionalFeeWalletId == nil {
+		return nil, false
+	}
+	return o.AdditionalFeeWalletId, true
+}
+
+// HasAdditionalFeeWalletId returns a boolean if a field has been set.
+func (o *CreateOrderRequest) HasAdditionalFeeWalletId() bool {
+	if o != nil && o.AdditionalFeeWalletId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAdditionalFeeWalletId gets a reference to the given string and assigns it to the AdditionalFeeWalletId field.
+func (o *CreateOrderRequest) SetAdditionalFeeWalletId(v string) {
+	o.AdditionalFeeWalletId = &v
 }
 
 // GetAmount returns the Amount field value
@@ -262,6 +330,12 @@ func (o *CreateOrderRequest) SetUid(v string) {
 
 func (o CreateOrderRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AdditionalFeeRate != nil {
+		toSerialize["additional_fee_rate"] = o.AdditionalFeeRate
+	}
+	if o.AdditionalFeeWalletId != nil {
+		toSerialize["additional_fee_wallet_id"] = o.AdditionalFeeWalletId
+	}
 	if true {
 		toSerialize["amount"] = o.Amount
 	}

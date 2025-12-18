@@ -18,12 +18,12 @@ import (
 type TransferRequest struct {
 	// Amount to transfer, supports decimal values
 	Amount string `json:"amount"`
-	// Whether to automatically commit the transfer
-	AutoCommit *bool `json:"auto_commit,omitempty"`
 	// Currency code for the transfer (e.g., TON, USDT, ETH)
 	Currency string `json:"currency"`
 	// Optional description for the transfer
 	Description *string `json:"description,omitempty"`
+	// Optional metadata for storing extra info
+	Metadata map[string]string `json:"metadata,omitempty"`
 	// Optional tags for categorizing the transfer
 	Tags []string `json:"tags,omitempty"`
 	// Destination wallet ID to transfer funds to
@@ -72,38 +72,6 @@ func (o *TransferRequest) GetAmountOk() (*string, bool) {
 // SetAmount sets field value
 func (o *TransferRequest) SetAmount(v string) {
 	o.Amount = v
-}
-
-// GetAutoCommit returns the AutoCommit field value if set, zero value otherwise.
-func (o *TransferRequest) GetAutoCommit() bool {
-	if o == nil || o.AutoCommit == nil {
-		var ret bool
-		return ret
-	}
-	return *o.AutoCommit
-}
-
-// GetAutoCommitOk returns a tuple with the AutoCommit field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TransferRequest) GetAutoCommitOk() (*bool, bool) {
-	if o == nil || o.AutoCommit == nil {
-		return nil, false
-	}
-	return o.AutoCommit, true
-}
-
-// HasAutoCommit returns a boolean if a field has been set.
-func (o *TransferRequest) HasAutoCommit() bool {
-	if o != nil && o.AutoCommit != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAutoCommit gets a reference to the given bool and assigns it to the AutoCommit field.
-func (o *TransferRequest) SetAutoCommit(v bool) {
-	o.AutoCommit = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -160,6 +128,39 @@ func (o *TransferRequest) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *TransferRequest) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *TransferRequest) GetMetadata() map[string]string {
+	if o == nil  {
+		var ret map[string]string
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *TransferRequest) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *TransferRequest) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *TransferRequest) SetMetadata(v map[string]string) {
+	o.Metadata = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -224,14 +225,14 @@ func (o TransferRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["amount"] = o.Amount
 	}
-	if o.AutoCommit != nil {
-		toSerialize["auto_commit"] = o.AutoCommit
-	}
 	if true {
 		toSerialize["currency"] = o.Currency
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags

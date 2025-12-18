@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **minDepositAmount** | **String** | Minimum deposit amount per transaction | 
 **minFee** | **String** | Minimum fee | 
 **minFeeForCtAddr** | **String** | Minimum fee for contract address | 
+**minTransferAmount** | **String** | Minimum transfer amount per transaction | 
 **minWithdrawAmount** | **String** | Minimum on-chain withdrawal amount per transaction | 
 **name** | **String** | Currency name | 
 **needMemo** | **Boolean** | Whether memo is required | 

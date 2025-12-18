@@ -88,6 +88,10 @@ public class Currency {
   @SerializedName(SERIALIZED_NAME_MIN_FEE_FOR_CT_ADDR)
   private String minFeeForCtAddr;
 
+  public static final String SERIALIZED_NAME_MIN_TRANSFER_AMOUNT = "min_transfer_amount";
+  @SerializedName(SERIALIZED_NAME_MIN_TRANSFER_AMOUNT)
+  private String minTransferAmount;
+
   public static final String SERIALIZED_NAME_MIN_WITHDRAW_AMOUNT = "min_withdraw_amount";
   @SerializedName(SERIALIZED_NAME_MIN_WITHDRAW_AMOUNT)
   private String minWithdrawAmount;
@@ -426,6 +430,28 @@ public class Currency {
   }
 
 
+  public Currency minTransferAmount(String minTransferAmount) {
+    
+    this.minTransferAmount = minTransferAmount;
+    return this;
+  }
+
+   /**
+   * Minimum transfer amount per transaction
+   * @return minTransferAmount
+  **/
+  @ApiModelProperty(required = true, value = "Minimum transfer amount per transaction")
+
+  public String getMinTransferAmount() {
+    return minTransferAmount;
+  }
+
+
+  public void setMinTransferAmount(String minTransferAmount) {
+    this.minTransferAmount = minTransferAmount;
+  }
+
+
   public Currency minWithdrawAmount(String minWithdrawAmount) {
     
     this.minWithdrawAmount = minWithdrawAmount;
@@ -612,6 +638,7 @@ public class Currency {
         Objects.equals(this.minDepositAmount, currency.minDepositAmount) &&
         Objects.equals(this.minFee, currency.minFee) &&
         Objects.equals(this.minFeeForCtAddr, currency.minFeeForCtAddr) &&
+        Objects.equals(this.minTransferAmount, currency.minTransferAmount) &&
         Objects.equals(this.minWithdrawAmount, currency.minWithdrawAmount) &&
         Objects.equals(this.name, currency.name) &&
         Objects.equals(this.needMemo, currency.needMemo) &&
@@ -623,7 +650,7 @@ public class Currency {
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, disabled, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
+    return Objects.hash(canDeposit, canTransfer, canWithdraw, code, contractAddress, decimals, disabled, logo, maxFee, maxFeeForCtAddr, maxWithdrawAmount, minDepositAmount, minFee, minFeeForCtAddr, minTransferAmount, minWithdrawAmount, name, needMemo, networks, precision, rated, symbol);
   }
 
   @Override
@@ -644,6 +671,7 @@ public class Currency {
     sb.append("    minDepositAmount: ").append(toIndentedString(minDepositAmount)).append("\n");
     sb.append("    minFee: ").append(toIndentedString(minFee)).append("\n");
     sb.append("    minFeeForCtAddr: ").append(toIndentedString(minFeeForCtAddr)).append("\n");
+    sb.append("    minTransferAmount: ").append(toIndentedString(minTransferAmount)).append("\n");
     sb.append("    minWithdrawAmount: ").append(toIndentedString(minWithdrawAmount)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    needMemo: ").append(toIndentedString(needMemo)).append("\n");

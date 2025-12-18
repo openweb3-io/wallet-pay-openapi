@@ -71,6 +71,10 @@ export class Currency {
     */
     'minFeeForCtAddr': string;
     /**
+    * Minimum transfer amount per transaction
+    */
+    'minTransferAmount': string;
+    /**
     * Minimum on-chain withdrawal amount per transaction
     */
     'minWithdrawAmount': string;
@@ -183,6 +187,12 @@ export class Currency {
         {
             "name": "minFeeForCtAddr",
             "baseName": "min_fee_for_ct_addr",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "minTransferAmount",
+            "baseName": "min_transfer_amount",
             "type": "string",
             "format": ""
         },

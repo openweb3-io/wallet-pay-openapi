@@ -14,6 +14,10 @@ import { HttpFile } from '../http/http';
 
 export class Order {
     /**
+    * Additional fee charged based on additional_fee_rate from the order creation request. Decimal string format
+    */
+    'additionalFee'?: string;
+    /**
     * Amount
     */
     'amount': string;
@@ -45,6 +49,10 @@ export class Order {
     * Error message when order fails
     */
     'failedMessage'?: string;
+    /**
+    * Base transaction fee charged for the order. Decimal string format. Does not include additional_fee
+    */
+    'fee'?: string;
     /**
     * System unique ID of the order
     */
@@ -81,6 +89,12 @@ export class Order {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "additionalFee",
+            "baseName": "additional_fee",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "amount",
             "baseName": "amount",
@@ -126,6 +140,12 @@ export class Order {
         {
             "name": "failedMessage",
             "baseName": "failed_message",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "fee",
+            "baseName": "fee",
             "type": "string",
             "format": ""
         },

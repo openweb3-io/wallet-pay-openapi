@@ -14,6 +14,14 @@ import { HttpFile } from '../http/http';
 
 export class CreateOrderRequest {
     /**
+    * Additional fee rate
+    */
+    'additionalFeeRate'?: number;
+    /**
+    * Additional fee wallet ID
+    */
+    'additionalFeeWalletId'?: string;
+    /**
     * Amount, supports decimal values
     */
     'amount': string;
@@ -45,6 +53,18 @@ export class CreateOrderRequest {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "additionalFeeRate",
+            "baseName": "additional_fee_rate",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "additionalFeeWalletId",
+            "baseName": "additional_fee_wallet_id",
+            "type": "string",
+            "format": ""
+        },
         {
             "name": "amount",
             "baseName": "amount",

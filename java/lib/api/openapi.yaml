@@ -35,16 +35,6 @@ paths:
           type: integer
           x-order: "2"
         style: form
-      - description: Filter currencies by application ID
-        explode: true
-        in: query
-        name: app_id
-        required: false
-        schema:
-          description: Filter currencies by application ID
-          type: string
-          x-order: "3"
-        style: form
       - description: Filter currencies by rated status
         explode: true
         in: query
@@ -924,9 +914,17 @@ components:
         creator: creator
         metadata:
           key: metadata
+        additional_fee_rate: 0.8008281904610115
+        additional_fee_wallet_id: additional_fee_wallet_id
         currency: currency
-        expiration: 0
+        expiration: 6
       properties:
+        additional_fee_rate:
+          description: Additional fee rate
+          type: number
+        additional_fee_wallet_id:
+          description: Additional fee wallet ID
+          type: string
         amount:
           description: Amount, supports decimal values
           type: string
@@ -984,6 +982,7 @@ components:
         symbol: symbol
         code: code
         need_memo: true
+        min_transfer_amount: min_transfer_amount
         precision: 1
         can_deposit: true
         contract_address: contract_address
@@ -1083,6 +1082,9 @@ components:
         min_fee_for_ct_addr:
           description: Minimum fee for contract address
           type: string
+        min_transfer_amount:
+          description: Minimum transfer amount per transaction
+          type: string
         min_withdraw_amount:
           description: Minimum on-chain withdrawal amount per transaction
           type: string
@@ -1122,6 +1124,7 @@ components:
       - min_deposit_amount
       - min_fee
       - min_fee_for_ct_addr
+      - min_transfer_amount
       - min_withdraw_amount
       - name
       - need_memo
@@ -1256,6 +1259,7 @@ components:
         - symbol: symbol
           code: code
           need_memo: true
+          min_transfer_amount: min_transfer_amount
           precision: 1
           can_deposit: true
           contract_address: contract_address
@@ -1315,6 +1319,7 @@ components:
         - symbol: symbol
           code: code
           need_memo: true
+          min_transfer_amount: min_transfer_amount
           precision: 1
           can_deposit: true
           contract_address: contract_address
@@ -1596,6 +1601,7 @@ components:
         creator: creator
         metadata:
           key: metadata
+        fee: fee
         created_at: created_at
         expired_at: expired_at
         failed_message: failed_message
@@ -1603,12 +1609,17 @@ components:
         uid: uid
         wallet_id: wallet_id
         user_id: user_id
+        additional_fee: additional_fee
         currency: currency
         expiration: 0
         failed_at: failed_at
         id: id
         status: status
       properties:
+        additional_fee:
+          description: Additional fee charged based on additional_fee_rate from the
+            order creation request. Decimal string format
+          type: string
         amount:
           description: Amount
           type: string
@@ -1633,6 +1644,10 @@ components:
           type: string
         failed_message:
           description: Error message when order fails
+          type: string
+        fee:
+          description: Base transaction fee charged for the order. Decimal string
+            format. Does not include additional_fee
           type: string
         id:
           description: System unique ID of the order
@@ -1695,6 +1710,7 @@ components:
           creator: creator
           metadata:
             key: metadata
+          fee: fee
           created_at: created_at
           expired_at: expired_at
           failed_message: failed_message
@@ -1702,6 +1718,7 @@ components:
           uid: uid
           wallet_id: wallet_id
           user_id: user_id
+          additional_fee: additional_fee
           currency: currency
           expiration: 0
           failed_at: failed_at
@@ -1712,6 +1729,7 @@ components:
           creator: creator
           metadata:
             key: metadata
+          fee: fee
           created_at: created_at
           expired_at: expired_at
           failed_message: failed_message
@@ -1719,6 +1737,7 @@ components:
           uid: uid
           wallet_id: wallet_id
           user_id: user_id
+          additional_fee: additional_fee
           currency: currency
           expiration: 0
           failed_at: failed_at
@@ -1863,9 +1882,10 @@ components:
       example:
         to_wallet_id: to_wallet_id
         amount: amount
+        metadata:
+          key: metadata
         description: description
         currency: currency
-        auto_commit: true
         tags:
         - tags
         - tags
@@ -1873,15 +1893,18 @@ components:
         amount:
           description: Amount to transfer, supports decimal values
           type: string
-        auto_commit:
-          description: Whether to automatically commit the transfer
-          type: boolean
         currency:
           description: Currency code for the transfer (e.g., TON, USDT, ETH)
           type: string
         description:
           description: Optional description for the transfer
           type: string
+        metadata:
+          additionalProperties:
+            type: string
+          description: Optional metadata for storing extra info
+          nullable: true
+          type: object
         tags:
           description: Optional tags for categorizing the transfer
           items:

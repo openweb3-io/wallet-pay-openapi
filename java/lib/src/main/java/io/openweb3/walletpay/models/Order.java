@@ -32,6 +32,10 @@ import java.util.Map;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class Order {
+  public static final String SERIALIZED_NAME_ADDITIONAL_FEE = "additional_fee";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_FEE)
+  private String additionalFee;
+
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private String amount;
@@ -64,6 +68,10 @@ public class Order {
   @SerializedName(SERIALIZED_NAME_FAILED_MESSAGE)
   private String failedMessage;
 
+  public static final String SERIALIZED_NAME_FEE = "fee";
+  @SerializedName(SERIALIZED_NAME_FEE)
+  private String fee;
+
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private String id;
@@ -95,6 +103,29 @@ public class Order {
   public static final String SERIALIZED_NAME_WALLET_ID = "wallet_id";
   @SerializedName(SERIALIZED_NAME_WALLET_ID)
   private String walletId;
+
+
+  public Order additionalFee(String additionalFee) {
+    
+    this.additionalFee = additionalFee;
+    return this;
+  }
+
+   /**
+   * Additional fee charged based on additional_fee_rate from the order creation request. Decimal string format
+   * @return additionalFee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional fee charged based on additional_fee_rate from the order creation request. Decimal string format")
+
+  public String getAdditionalFee() {
+    return additionalFee;
+  }
+
+
+  public void setAdditionalFee(String additionalFee) {
+    this.additionalFee = additionalFee;
+  }
 
 
   public Order amount(String amount) {
@@ -274,6 +305,29 @@ public class Order {
 
   public void setFailedMessage(String failedMessage) {
     this.failedMessage = failedMessage;
+  }
+
+
+  public Order fee(String fee) {
+    
+    this.fee = fee;
+    return this;
+  }
+
+   /**
+   * Base transaction fee charged for the order. Decimal string format. Does not include additional_fee
+   * @return fee
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Base transaction fee charged for the order. Decimal string format. Does not include additional_fee")
+
+  public String getFee() {
+    return fee;
+  }
+
+
+  public void setFee(String fee) {
+    this.fee = fee;
   }
 
 
@@ -474,7 +528,8 @@ public class Order {
       return false;
     }
     Order order = (Order) o;
-    return Objects.equals(this.amount, order.amount) &&
+    return Objects.equals(this.additionalFee, order.additionalFee) &&
+        Objects.equals(this.amount, order.amount) &&
         Objects.equals(this.createdAt, order.createdAt) &&
         Objects.equals(this.creator, order.creator) &&
         Objects.equals(this.currency, order.currency) &&
@@ -482,6 +537,7 @@ public class Order {
         Objects.equals(this.expiredAt, order.expiredAt) &&
         Objects.equals(this.failedAt, order.failedAt) &&
         Objects.equals(this.failedMessage, order.failedMessage) &&
+        Objects.equals(this.fee, order.fee) &&
         Objects.equals(this.id, order.id) &&
         Objects.equals(this.metadata, order.metadata) &&
         Objects.equals(this.note, order.note) &&
@@ -494,13 +550,14 @@ public class Order {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, createdAt, creator, currency, expiration, expiredAt, failedAt, failedMessage, id, metadata, note, paidAt, status, uid, userId, walletId);
+    return Objects.hash(additionalFee, amount, createdAt, creator, currency, expiration, expiredAt, failedAt, failedMessage, fee, id, metadata, note, paidAt, status, uid, userId, walletId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Order {\n");
+    sb.append("    additionalFee: ").append(toIndentedString(additionalFee)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
@@ -509,6 +566,7 @@ public class Order {
     sb.append("    expiredAt: ").append(toIndentedString(expiredAt)).append("\n");
     sb.append("    failedAt: ").append(toIndentedString(failedAt)).append("\n");
     sb.append("    failedMessage: ").append(toIndentedString(failedMessage)).append("\n");
+    sb.append("    fee: ").append(toIndentedString(fee)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    note: ").append(toIndentedString(note)).append("\n");

@@ -51,7 +51,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>io.openweb3</groupId>
   <artifactId>walletpay</artifactId>
-  <version>0.2.13</version>
+  <version>0.2.14</version>
 </dependency>
 ```
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-implementation "io.openweb3:walletpay:0.2.13"
+implementation "io.openweb3:walletpay:0.2.14"
 ```
 
 # Development

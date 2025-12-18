@@ -32,7 +32,6 @@ type ApiV1CurrenciesListRequest struct {
 	ApiService *CurrenciesApiService
 	limit *int32
 	cursor *string
-	appId *string
 	rated *bool
 }
 
@@ -42,10 +41,6 @@ func (r ApiV1CurrenciesListRequest) Limit(limit int32) ApiV1CurrenciesListReques
 }
 func (r ApiV1CurrenciesListRequest) Cursor(cursor string) ApiV1CurrenciesListRequest {
 	r.cursor = &cursor
-	return r
-}
-func (r ApiV1CurrenciesListRequest) AppId(appId string) ApiV1CurrenciesListRequest {
-	r.appId = &appId
 	return r
 }
 func (r ApiV1CurrenciesListRequest) Rated(rated bool) ApiV1CurrenciesListRequest {
@@ -108,9 +103,6 @@ func (a *CurrenciesApiService) V1CurrenciesListExecute(r ApiV1CurrenciesListRequ
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
 	localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
-	if r.appId != nil {
-		localVarQueryParams.Add("app_id", parameterToString(*r.appId, ""))
-	}
 	if r.rated != nil {
 		localVarQueryParams.Add("rated", parameterToString(*r.rated, ""))
 	}

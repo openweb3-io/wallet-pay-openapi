@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | **string** | Amount to transfer, supports decimal values | 
-**AutoCommit** | Pointer to **bool** | Whether to automatically commit the transfer | [optional] 
 **Currency** | **string** | Currency code for the transfer (e.g., TON, USDT, ETH) | 
 **Description** | Pointer to **string** | Optional description for the transfer | [optional] 
+**Metadata** | Pointer to **map[string]string** | Optional metadata for storing extra info | [optional] 
 **Tags** | Pointer to **[]string** | Optional tags for categorizing the transfer | [optional] 
 **ToWalletId** | **string** | Destination wallet ID to transfer funds to | 
 
@@ -49,31 +49,6 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
-
-### GetAutoCommit
-
-`func (o *TransferRequest) GetAutoCommit() bool`
-
-GetAutoCommit returns the AutoCommit field if non-nil, zero value otherwise.
-
-### GetAutoCommitOk
-
-`func (o *TransferRequest) GetAutoCommitOk() (*bool, bool)`
-
-GetAutoCommitOk returns a tuple with the AutoCommit field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoCommit
-
-`func (o *TransferRequest) SetAutoCommit(v bool)`
-
-SetAutoCommit sets AutoCommit field to given value.
-
-### HasAutoCommit
-
-`func (o *TransferRequest) HasAutoCommit() bool`
-
-HasAutoCommit returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -120,6 +95,41 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetMetadata
+
+`func (o *TransferRequest) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *TransferRequest) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *TransferRequest) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *TransferRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
+### SetMetadataNil
+
+`func (o *TransferRequest) SetMetadataNil(b bool)`
+
+ SetMetadataNil sets the value for Metadata to be an explicit nil
+
+### UnsetMetadata
+`func (o *TransferRequest) UnsetMetadata()`
+
+UnsetMetadata ensures that no value is present for Metadata, not even an explicit nil
 ### GetTags
 
 `func (o *TransferRequest) GetTags() []string`

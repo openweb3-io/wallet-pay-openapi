@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AdditionalFee** | Pointer to **string** | Additional fee charged based on additional_fee_rate from the order creation request. Decimal string format | [optional] 
 **Amount** | **string** | Amount | 
 **CreatedAt** | **string** | Order creation time | 
 **Creator** | Pointer to **string** | The identifier of the user who created the order | [optional] 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **ExpiredAt** | Pointer to **string** | Order expiration time | [optional] 
 **FailedAt** | Pointer to **string** | Order failure time | [optional] 
 **FailedMessage** | Pointer to **string** | Error message when order fails | [optional] 
+**Fee** | Pointer to **string** | Base transaction fee charged for the order. Decimal string format. Does not include additional_fee | [optional] 
 **Id** | **string** | System unique ID of the order | 
 **Metadata** | Pointer to **map[string]string** | Order metadata | [optional] 
 **Note** | **string** | Order description from merchant | 
@@ -39,6 +41,31 @@ will change when the set of required properties is changed
 NewOrderWithDefaults instantiates a new Order object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAdditionalFee
+
+`func (o *Order) GetAdditionalFee() string`
+
+GetAdditionalFee returns the AdditionalFee field if non-nil, zero value otherwise.
+
+### GetAdditionalFeeOk
+
+`func (o *Order) GetAdditionalFeeOk() (*string, bool)`
+
+GetAdditionalFeeOk returns a tuple with the AdditionalFee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAdditionalFee
+
+`func (o *Order) SetAdditionalFee(v string)`
+
+SetAdditionalFee sets AdditionalFee field to given value.
+
+### HasAdditionalFee
+
+`func (o *Order) HasAdditionalFee() bool`
+
+HasAdditionalFee returns a boolean if a field has been set.
 
 ### GetAmount
 
@@ -219,6 +246,31 @@ SetFailedMessage sets FailedMessage field to given value.
 `func (o *Order) HasFailedMessage() bool`
 
 HasFailedMessage returns a boolean if a field has been set.
+
+### GetFee
+
+`func (o *Order) GetFee() string`
+
+GetFee returns the Fee field if non-nil, zero value otherwise.
+
+### GetFeeOk
+
+`func (o *Order) GetFeeOk() (*string, bool)`
+
+GetFeeOk returns a tuple with the Fee field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFee
+
+`func (o *Order) SetFee(v string)`
+
+SetFee sets Fee field to given value.
+
+### HasFee
+
+`func (o *Order) HasFee() bool`
+
+HasFee returns a boolean if a field has been set.
 
 ### GetId
 

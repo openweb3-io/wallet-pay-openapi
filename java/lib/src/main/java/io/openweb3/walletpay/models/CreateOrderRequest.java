@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,14 @@ import java.util.Map;
  */
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen")
 public class CreateOrderRequest {
+  public static final String SERIALIZED_NAME_ADDITIONAL_FEE_RATE = "additional_fee_rate";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_FEE_RATE)
+  private BigDecimal additionalFeeRate;
+
+  public static final String SERIALIZED_NAME_ADDITIONAL_FEE_WALLET_ID = "additional_fee_wallet_id";
+  @SerializedName(SERIALIZED_NAME_ADDITIONAL_FEE_WALLET_ID)
+  private String additionalFeeWalletId;
+
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private String amount;
@@ -59,6 +68,52 @@ public class CreateOrderRequest {
   public static final String SERIALIZED_NAME_UID = "uid";
   @SerializedName(SERIALIZED_NAME_UID)
   private String uid;
+
+
+  public CreateOrderRequest additionalFeeRate(BigDecimal additionalFeeRate) {
+    
+    this.additionalFeeRate = additionalFeeRate;
+    return this;
+  }
+
+   /**
+   * Additional fee rate
+   * @return additionalFeeRate
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional fee rate")
+
+  public BigDecimal getAdditionalFeeRate() {
+    return additionalFeeRate;
+  }
+
+
+  public void setAdditionalFeeRate(BigDecimal additionalFeeRate) {
+    this.additionalFeeRate = additionalFeeRate;
+  }
+
+
+  public CreateOrderRequest additionalFeeWalletId(String additionalFeeWalletId) {
+    
+    this.additionalFeeWalletId = additionalFeeWalletId;
+    return this;
+  }
+
+   /**
+   * Additional fee wallet ID
+   * @return additionalFeeWalletId
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Additional fee wallet ID")
+
+  public String getAdditionalFeeWalletId() {
+    return additionalFeeWalletId;
+  }
+
+
+  public void setAdditionalFeeWalletId(String additionalFeeWalletId) {
+    this.additionalFeeWalletId = additionalFeeWalletId;
+  }
 
 
   public CreateOrderRequest amount(String amount) {
@@ -237,7 +292,9 @@ public class CreateOrderRequest {
       return false;
     }
     CreateOrderRequest createOrderRequest = (CreateOrderRequest) o;
-    return Objects.equals(this.amount, createOrderRequest.amount) &&
+    return Objects.equals(this.additionalFeeRate, createOrderRequest.additionalFeeRate) &&
+        Objects.equals(this.additionalFeeWalletId, createOrderRequest.additionalFeeWalletId) &&
+        Objects.equals(this.amount, createOrderRequest.amount) &&
         Objects.equals(this.creator, createOrderRequest.creator) &&
         Objects.equals(this.currency, createOrderRequest.currency) &&
         Objects.equals(this.expiration, createOrderRequest.expiration) &&
@@ -248,13 +305,15 @@ public class CreateOrderRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, creator, currency, expiration, metadata, note, uid);
+    return Objects.hash(additionalFeeRate, additionalFeeWalletId, amount, creator, currency, expiration, metadata, note, uid);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateOrderRequest {\n");
+    sb.append("    additionalFeeRate: ").append(toIndentedString(additionalFeeRate)).append("\n");
+    sb.append("    additionalFeeWalletId: ").append(toIndentedString(additionalFeeWalletId)).append("\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    creator: ").append(toIndentedString(creator)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");

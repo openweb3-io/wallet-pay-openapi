@@ -24,7 +24,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * TransferRequest
@@ -35,10 +37,6 @@ public class TransferRequest {
   @SerializedName(SERIALIZED_NAME_AMOUNT)
   private String amount;
 
-  public static final String SERIALIZED_NAME_AUTO_COMMIT = "auto_commit";
-  @SerializedName(SERIALIZED_NAME_AUTO_COMMIT)
-  private Boolean autoCommit;
-
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
   private String currency;
@@ -46,6 +44,10 @@ public class TransferRequest {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
   private String description;
+
+  public static final String SERIALIZED_NAME_METADATA = "metadata";
+  @SerializedName(SERIALIZED_NAME_METADATA)
+  private Map<String, String> metadata = null;
 
   public static final String SERIALIZED_NAME_TAGS = "tags";
   @SerializedName(SERIALIZED_NAME_TAGS)
@@ -75,29 +77,6 @@ public class TransferRequest {
 
   public void setAmount(String amount) {
     this.amount = amount;
-  }
-
-
-  public TransferRequest autoCommit(Boolean autoCommit) {
-    
-    this.autoCommit = autoCommit;
-    return this;
-  }
-
-   /**
-   * Whether to automatically commit the transfer
-   * @return autoCommit
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "Whether to automatically commit the transfer")
-
-  public Boolean getAutoCommit() {
-    return autoCommit;
-  }
-
-
-  public void setAutoCommit(Boolean autoCommit) {
-    this.autoCommit = autoCommit;
   }
 
 
@@ -143,6 +122,37 @@ public class TransferRequest {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+
+  public TransferRequest metadata(Map<String, String> metadata) {
+    
+    this.metadata = metadata;
+    return this;
+  }
+
+  public TransferRequest putMetadataItem(String key, String metadataItem) {
+    if (this.metadata == null) {
+      this.metadata = new HashMap<>();
+    }
+    this.metadata.put(key, metadataItem);
+    return this;
+  }
+
+   /**
+   * Optional metadata for storing extra info
+   * @return metadata
+  **/
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "Optional metadata for storing extra info")
+
+  public Map<String, String> getMetadata() {
+    return metadata;
+  }
+
+
+  public void setMetadata(Map<String, String> metadata) {
+    this.metadata = metadata;
   }
 
 
@@ -209,16 +219,16 @@ public class TransferRequest {
     }
     TransferRequest transferRequest = (TransferRequest) o;
     return Objects.equals(this.amount, transferRequest.amount) &&
-        Objects.equals(this.autoCommit, transferRequest.autoCommit) &&
         Objects.equals(this.currency, transferRequest.currency) &&
         Objects.equals(this.description, transferRequest.description) &&
+        Objects.equals(this.metadata, transferRequest.metadata) &&
         Objects.equals(this.tags, transferRequest.tags) &&
         Objects.equals(this.toWalletId, transferRequest.toWalletId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, autoCommit, currency, description, tags, toWalletId);
+    return Objects.hash(amount, currency, description, metadata, tags, toWalletId);
   }
 
   @Override
@@ -226,9 +236,9 @@ public class TransferRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class TransferRequest {\n");
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
-    sb.append("    autoCommit: ").append(toIndentedString(autoCommit)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    metadata: ").append(toIndentedString(metadata)).append("\n");
     sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
     sb.append("    toWalletId: ").append(toIndentedString(toWalletId)).append("\n");
     sb.append("}");

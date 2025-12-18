@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## V1CurrenciesList
 
-> CursorPageCurrency V1CurrenciesList(ctx).Limit(limit).Cursor(cursor).AppId(appId).Rated(rated).Execute()
+> CursorPageCurrency V1CurrenciesList(ctx).Limit(limit).Cursor(cursor).Rated(rated).Execute()
 
 List currencies
 
@@ -32,12 +32,11 @@ import (
 func main() {
     limit := int32(56) // int32 | The number of items to return per page.
     cursor := "cursor_example" // string | The cursor to use for pagination. (optional)
-    appId := "appId_example" // string | Filter currencies by application ID (optional)
     rated := true // bool | Filter currencies by rated status (optional)
 
     configuration := openapiclient.NewConfiguration()
     api_client := openapiclient.NewAPIClient(configuration)
-    resp, r, err := api_client.CurrenciesApi.V1CurrenciesList(context.Background()).Limit(limit).Cursor(cursor).AppId(appId).Rated(rated).Execute()
+    resp, r, err := api_client.CurrenciesApi.V1CurrenciesList(context.Background()).Limit(limit).Cursor(cursor).Rated(rated).Execute()
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `CurrenciesApi.V1CurrenciesList``: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -60,7 +59,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **limit** | **int32** | The number of items to return per page. | 
  **cursor** | **string** | The cursor to use for pagination. | 
- **appId** | **string** | Filter currencies by application ID | 
  **rated** | **bool** | Filter currencies by rated status | 
 
 ### Return type
