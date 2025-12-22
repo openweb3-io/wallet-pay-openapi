@@ -1,6 +1,7 @@
 #test
 vendor
 .idea
+.yarn
 node_modules
 examples
 
