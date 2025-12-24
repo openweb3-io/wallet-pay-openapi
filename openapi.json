@@ -59,7 +59,7 @@
                         "type": "string"
                     },
                     "amount": {
-                        "description": "Amount, supports decimal values",
+                        "description": "Amount in nano units (multiply by 10^decimals) as string representation",
                         "type": "string"
                     },
                     "creator": {
@@ -100,7 +100,7 @@
             "CreateRefundRequest": {
                 "properties": {
                     "amount": {
-                        "description": "Amount to refund",
+                        "description": "Amount to refund in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "note": {
@@ -165,11 +165,11 @@
                         "type": "string"
                     },
                     "max_withdraw_amount": {
-                        "description": "Maximum on-chain withdrawal amount per transaction",
+                        "description": "Maximum on-chain withdrawal amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_deposit_amount": {
-                        "description": "Minimum deposit amount per transaction",
+                        "description": "Minimum deposit amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_fee": {
@@ -181,11 +181,11 @@
                         "type": "string"
                     },
                     "min_transfer_amount": {
-                        "description": "Minimum transfer amount per transaction",
+                        "description": "Minimum transfer amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_withdraw_amount": {
-                        "description": "Minimum on-chain withdrawal amount per transaction",
+                        "description": "Minimum on-chain withdrawal amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "name": {
@@ -281,11 +281,11 @@
                         "type": "string"
                     },
                     "max_withdraw_amount": {
-                        "description": "Maximum on-chain withdrawal amount per transaction",
+                        "description": "Maximum on-chain withdrawal amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_collect_amount": {
-                        "description": "Minimum collection amount",
+                        "description": "Minimum collection amount in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_confirmations": {
@@ -293,7 +293,7 @@
                         "type": "integer"
                     },
                     "min_deposit_amount": {
-                        "description": "Minimum deposit amount per transaction",
+                        "description": "Minimum deposit amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "min_fee": {
@@ -305,7 +305,7 @@
                         "type": "string"
                     },
                     "min_withdraw_amount": {
-                        "description": "Minimum on-chain withdrawal amount per transaction",
+                        "description": "Minimum on-chain withdrawal amount per transaction in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "name": {
@@ -500,7 +500,7 @@
             "EstimateResponse": {
                 "properties": {
                     "base_amount": {
-                        "description": "Amount in source currency",
+                        "description": "Amount in source currency to convert in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "base_currency": {
@@ -512,7 +512,7 @@
                         "type": "number"
                     },
                     "to_amount": {
-                        "description": "Converted amount in target currency",
+                        "description": "Converted amount in target currency in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "to_currency": {
@@ -570,7 +570,7 @@
                         "type": "string"
                     },
                     "amount": {
-                        "description": "Amount",
+                        "description": "Amount in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "created_at": {
@@ -724,7 +724,7 @@
             "Refund": {
                 "properties": {
                     "amount": {
-                        "description": "Amount being refunded",
+                        "description": "Amount being refunded in nano units (multiply by 10^decimals)",
                         "type": "string"
                     },
                     "completed_at": {
@@ -789,7 +789,7 @@
             "TransferRequest": {
                 "properties": {
                     "amount": {
-                        "description": "Amount to transfer, supports decimal values",
+                        "description": "Amount to transfer in nano units (multiply by 10^decimals) as string representation",
                         "type": "string"
                     },
                     "currency": {
@@ -1414,12 +1414,12 @@
                         }
                     },
                     {
-                        "description": "Amount in source currency to convert",
+                        "description": "Amount in source currency to convert in nano units (multiply by 10^decimals)",
                         "in": "query",
                         "name": "base_amount",
                         "required": true,
                         "schema": {
-                            "description": "Amount in source currency to convert",
+                            "description": "Amount in source currency to convert in nano units (multiply by 10^decimals)",
                             "type": "string",
                             "x-order": "2"
                         }
