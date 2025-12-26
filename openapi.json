@@ -818,7 +818,7 @@
                         "uniqueItems": false
                     },
                     "to_wallet_id": {
-                        "description": "Destination wallet ID to transfer funds to",
+                        "description": "Destination wallet ID to transfer funds to， support wallet ID、wallet uid、wallet user ID",
                         "type": "string"
                     }
                 },
